@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.2
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Apr 03, 2026 at 12:04 PM
--- Server version: 10.6.25-MariaDB
--- PHP Version: 8.4.16
+-- Host: 127.0.0.1
+-- Generation Time: Apr 03, 2026 at 03:38 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `techinbo_rkhospital`
+-- Database: `techinbo_nirajindustries`
 --
 
 -- --------------------------------------------------------
@@ -69,7 +69,8 @@ INSERT INTO `admin_activity_log` (`id`, `user_id`, `action`, `detail`, `ip`, `cr
 (26, 1, 'login', 'Login with 2FA captcha', '223.185.36.56', '2026-04-02 13:29:34'),
 (27, 1, 'login', 'Login with 2FA captcha', '223.185.36.56', '2026-04-02 14:01:09'),
 (28, 1, 'login', 'Login with 2FA captcha', '223.185.40.209', '2026-04-02 17:04:21'),
-(29, 1, 'login', 'Login with 2FA captcha', '223.185.41.92', '2026-04-03 11:23:12');
+(29, 1, 'login', 'Login with 2FA captcha', '223.185.41.92', '2026-04-03 11:23:12'),
+(30, 1, 'login', 'Login with 2FA captcha', '::1', '2026-04-03 17:50:14');
 
 -- --------------------------------------------------------
 
@@ -102,7 +103,7 @@ CREATE TABLE `admin_users` (
 --
 
 INSERT INTO `admin_users` (`id`, `name`, `email`, `password`, `role`, `avatar`, `phone`, `status`, `two_fa_enabled`, `last_login`, `last_login_ip`, `login_count`, `notes`, `updated_at`, `reset_token`, `reset_expires`, `created_at`) VALUES
-(1, 'Admin', 'admin@gmail.com', '$2y$10$7LOSNnhH61YkPmfaA9J2gOD8Hr8qQ9hMtyvnkLgXZbCxAVij00dry', 'superadmin', NULL, '', 1, 1, '2026-04-03 11:23:12', '223.185.41.92', 23, '', '2026-03-30 13:52:29', NULL, NULL, '2026-03-26 09:21:34'),
+(1, 'Admin', 'admin@gmail.com', '$2y$10$7LOSNnhH61YkPmfaA9J2gOD8Hr8qQ9hMtyvnkLgXZbCxAVij00dry', 'superadmin', NULL, '', 1, 1, '2026-04-03 17:50:14', '::1', 24, '', '2026-03-30 13:52:29', NULL, NULL, '2026-03-26 09:21:34'),
 (2, 'Yash Chikahle', 'yashchikhale711@gmail.com', '$2y$10$LSy9tMTjoLHSOIpy5iq7CeV1Zk8EpDCJ9SR0hzo4Q4rf9wNed7xhu', 'admin', NULL, '9860303965', 1, 1, '2026-03-31 11:32:10', '::1', 1, 'Managing Doctors', '2026-03-31 11:31:01', NULL, NULL, '2026-03-31 06:01:01');
 
 -- --------------------------------------------------------
@@ -252,6 +253,67 @@ CREATE TABLE `doctor_services` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `products`
+--
+
+CREATE TABLE `products` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `slug` varchar(255) NOT NULL,
+  `category` varchar(100) NOT NULL,
+  `description` text DEFAULT NULL,
+  `full_description` text DEFAULT NULL,
+  `specifications` text DEFAULT NULL,
+  `features` text DEFAULT NULL,
+  `applications` text DEFAULT NULL,
+  `brand` varchar(100) DEFAULT NULL,
+  `sku` varchar(100) DEFAULT NULL,
+  `weight` varchar(50) DEFAULT NULL,
+  `dimensions` varchar(100) DEFAULT NULL,
+  `material` varchar(150) DEFAULT NULL,
+  `color` varchar(100) DEFAULT NULL,
+  `warranty` varchar(100) DEFAULT NULL,
+  `certifications` varchar(255) DEFAULT NULL,
+  `image2` varchar(255) DEFAULT NULL,
+  `image3` varchar(255) DEFAULT NULL,
+  `image4` varchar(255) DEFAULT NULL,
+  `in_stock` tinyint(1) NOT NULL DEFAULT 1,
+  `availability` varchar(100) DEFAULT 'In Stock',
+  `delivery_info` varchar(255) DEFAULT 'Pan India Delivery Available',
+  `country_of_origin` varchar(100) DEFAULT 'India',
+  `tags` varchar(255) DEFAULT NULL,
+  `image` varchar(255) DEFAULT NULL,
+  `badge` varchar(50) DEFAULT NULL,
+  `badge_type` varchar(50) DEFAULT NULL,
+  `moq` varchar(100) DEFAULT NULL,
+  `rating` decimal(2,1) DEFAULT 4.5,
+  `reviews` int(11) DEFAULT 0,
+  `is_active` tinyint(1) DEFAULT 1,
+  `sort_order` int(11) DEFAULT 0,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `products`
+--
+
+INSERT INTO `products` (`id`, `name`, `slug`, `category`, `description`, `full_description`, `specifications`, `features`, `applications`, `brand`, `sku`, `weight`, `dimensions`, `material`, `color`, `warranty`, `certifications`, `image2`, `image3`, `image4`, `in_stock`, `availability`, `delivery_info`, `country_of_origin`, `tags`, `image`, `badge`, `badge_type`, `moq`, `rating`, `reviews`, `is_active`, `sort_order`, `created_at`) VALUES
+(1, 'Heavy Duty Steel Bars', 'heavy-duty-steel-bars', 'construction', 'High tensile strength TMT steel bars for residential and commercial construction. ISI certified.', 'Niraj Industries Heavy Duty Steel Bars are manufactured using the highest grade raw materials, conforming to IS 1786 standards. These TMT (Thermo-Mechanically Treated) steel bars offer superior tensile strength, excellent bendability, and outstanding corrosion resistance — making them the preferred choice for residential, commercial, and industrial construction projects across India.', 'Grade: Fe 500D|Standard: IS 1786|Tensile Strength: 545 N/mm²|Yield Strength: 500 N/mm²|Elongation: 16% min|Available Sizes: 8mm, 10mm, 12mm, 16mm, 20mm, 25mm, 32mm|Length: 12 meters standard', 'Superior corrosion resistance|Excellent weldability without pre-heating|High ductility and bendability|Earthquake resistant structure|Uniform ribbing for better bonding|Low carbon equivalent|Consistent quality batch to batch', 'Residential buildings|Commercial complexes|Bridges and flyovers|Industrial structures|Underground foundations|Retaining walls|Pre-stressed concrete structures', 'Niraj Industries', 'NI-STL-TMT-001', '7.85 kg/meter (varies by diameter)', '12 meters length | 8mm to 32mm diameter', 'High Grade Steel (Fe 500D)', 'Silver Grey', '5 Years Manufacturer Warranty', 'ISI Certified|IS 1786|BIS Approved', NULL, NULL, NULL, 1, 'In Stock', 'Pan India Delivery | Dispatched within 2-3 business days', 'India', 'steel bars,tmt bars,construction steel,reinforcement bars,building material', 'assets/img/all-images/products/Gate-Valve-1.png', 'Bestseller', 'best', '1 Ton', 5.0, 128, 1, 1, '2026-04-03 11:40:11'),
+(2, 'Portland Cement 53 Grade', 'portland-cement-53-grade', 'construction', 'Premium 53 grade OPC cement offering superior compressive strength for all structural applications.', 'Niraj Industries Portland Cement 53 Grade is a premium quality OPC (Ordinary Portland Cement) manufactured under strict quality control. Conforming to IS 269, this cement provides exceptional early and ultimate strength, making it ideal for high-performance concrete applications. Our cement guarantees consistent setting time, superior workability, and long-term durability for all construction needs.', 'Grade: OPC 53|Standard: IS 269|Compressive Strength (3 days): 27 N/mm² min|Compressive Strength (7 days): 37 N/mm² min|Compressive Strength (28 days): 53 N/mm² min|Setting Time (Initial): 30 min min|Setting Time (Final): 600 min max|Fineness: 225 m²/kg min|Packing: 50 kg bags', 'High early strength development|Superior workability and consistency|Low heat of hydration|Excellent sulfate resistance|Uniform fineness for smooth finish|Ideal for RCC and prestressed work|Long shelf life with proper storage', 'RCC construction|Pre-stressed concrete|Bridges and heavy structures|Industrial floors|Precast concrete products|High-rise buildings|Foundation works', 'Niraj Industries', 'NI-CEM-OPC53-002', '50 kg per bag', 'Standard 50kg HDPE bag', 'Ordinary Portland Cement Grade 53', 'Grey', 'Best before 3 months from manufacture date', 'ISI Certified|IS 269|BIS Approved|ISO 9001:2015', NULL, NULL, NULL, 1, 'In Stock', 'Pan India Delivery | Bulk orders dispatched within 1-2 business days', 'India', 'cement,opc 53,portland cement,construction material,binding material', 'assets/img/all-images/products/SEAMLESS-PIPES-11.png', 'New', 'new', '100 Bags', 4.0, 94, 1, 2, '2026-04-03 11:40:11'),
+(3, 'Industrial Safety Helmets', 'industrial-safety-helmets', 'industrial', 'IS 2925 certified hard hats with superior impact protection for industrial and construction workers.', 'Niraj Industries Industrial Safety Helmets are designed and manufactured as per IS 2925 standards, providing maximum head protection in demanding industrial environments. Engineered with high-impact ABS shell and a comfortable suspension system, these helmets offer all-day comfort while ensuring superior protection against falling objects, electrical hazards, and impact forces.', 'Standard: IS 2925|Shell Material: High-Density ABS|Suspension: 4-point ratchet|Weight: 380g approx|Temperature Range: -10°C to +50°C|Electrical Rating: Up to 440V AC|Impact Absorption: As per IS 2925|Available Colors: White, Yellow, Red, Blue, Green', 'High-impact resistant ABS shell|4-point adjustable ratchet suspension|Ventilation slots for airflow|UV stabilized material|Sweat-absorbent foam lining|Compatible with ear muffs and face shields|Meets IS 2925 & EN 397 standards', 'Construction sites|Mining operations|Manufacturing plants|Chemical industries|Power plants and utilities|Oil & Gas facilities|Infrastructure projects', 'Niraj Industries', 'NI-SAF-HLM-003', '380 grams', 'One size fits all (adjustable 52-63 cm)', 'High Density ABS Plastic', 'Available in White, Yellow, Red, Blue, Green', '2 Years from date of manufacture', 'IS 2925 Certified|EN 397|ISI Mark|CE Marked', NULL, NULL, NULL, 1, 'In Stock', 'Pan India Delivery | Dispatched within 48 hours', 'India', 'safety helmet,hard hat,industrial helmet,head protection,PPE', 'assets/img/all-images/products/Fire-Fighting-Accsesories.png', 'Hot', 'hot', '50 Pcs', 4.5, 76, 1, 3, '2026-04-03 11:40:11'),
+(4, 'Copper Wiring Cables', 'copper-wiring-cables', 'electrical', 'FRLS grade copper conductor cables with fire-retardant insulation. Available in 1.5 to 10 sq mm sizes.', 'Niraj Industries Copper Wiring Cables are FRLS (Flame Retardant Low Smoke) grade cables designed for safe and reliable electrical installations. Manufactured with 99.97% pure electrolytic copper conductors, these cables offer superior conductivity, minimal power loss, and outstanding fire safety properties — critical for residential, commercial, and industrial electrical systems.', 'Type: FRLS PVC Insulated|Conductor: 99.97% Electrolytic Copper|Voltage Grade: 1100V|Standard: IS 694|Temperature Rating: 70°C continuous|Available Sizes: 1.0 sq mm to 10 sq mm|Insulation: FR-PVC|Color Coding: Red, Yellow, Blue, Black, Green', '99.97% pure electrolytic copper|FRLS insulation - low smoke emission|Flame retardant as per IS 694|Excellent flexibility and easy installation|Anti-rodent properties|Halogen-free options available|Colour-coded for easy identification|Superior current carrying capacity', 'Residential wiring|Commercial buildings|Industrial installations|Power panels and distribution|HVAC systems|Data centers|Government and infrastructure projects', 'Niraj Industries', 'NI-ELE-CAB-004', 'Varies by cable size (per meter)', 'Available in 90m and 200m coil lengths', '99.97% Electrolytic Copper with FRLS PVC Insulation', 'Red, Yellow, Blue, Black, Green (standard color coding)', '3 Years Manufacturer Warranty', 'IS 694 Certified|ISI Mark|BIS Approved|FRLS Certified', NULL, NULL, NULL, 1, 'In Stock', 'Pan India Delivery | Dispatched within 2-3 business days', 'India', 'copper cables,electrical wire,FRLS cable,wiring cable,electrical cable', 'assets/img/all-images/products/ERW-PIPES-11-1.png', NULL, NULL, '500 Mtr', 5.0, 112, 1, 4, '2026-04-03 11:40:11'),
+(5, 'UPVC Pressure Pipes', 'upvc-pressure-pipes', 'plumbing', 'Corrosion-resistant UPVC pipes for water supply and irrigation. Available in 20mm to 200mm diameter.', 'Niraj Industries UPVC Pressure Pipes are manufactured from unplasticized PVC compound conforming to IS 4985 standards. These pipes offer exceptional corrosion resistance, smooth inner surface for maximum flow efficiency, and outstanding durability for both above-ground and underground water supply applications. Our pipes are non-toxic, making them safe for potable water distribution.', 'Material: UPVC (Unplasticized PVC)|Standard: IS 4985|Pressure Ratings: Class 2.5, 4, 6, 10 kg/cm²|Available Sizes: 20mm to 315mm OD|Wall Thickness: As per IS 4985|Jointing: Solvent cement / Rubber ring|Color: Grey (standard)|Operating Temperature: up to 45°C', 'Corrosion and chemical resistant|Smooth inner bore for maximum flow|Non-toxic and safe for drinking water|Lightweight yet extremely strong|UV stabilized for outdoor use|Easy installation with solvent welding|Long service life of 50+ years|No scaling or pitting', 'Municipal water supply|Agricultural irrigation|Industrial water distribution|Borewell rising mains|Drainage and sewage systems|Chemical industry piping|Fire fighting systems', 'Niraj Industries', 'NI-PLM-UPV-005', 'Varies by diameter and length', '20mm to 315mm OD | Standard 6 meter lengths', 'Unplasticized Polyvinyl Chloride (UPVC)', 'Grey', '10 Years against manufacturing defects', 'IS 4985 Certified|ISI Mark|BIS Approved|WQA Certified', NULL, NULL, NULL, 1, 'In Stock', 'Pan India Delivery | Dispatched within 3-5 business days', 'India', 'upvc pipes,pressure pipes,water supply pipes,plumbing pipes,pvc pipes', 'assets/img/all-images/products/HDPE-pipes-and-fittings.png', 'Sale', 'sale', '100 Mtr', 4.0, 58, 1, 5, '2026-04-03 11:40:11'),
+(6, 'Safety Harness Full Body', 'safety-harness-full-body', 'safety', 'EN 361 compliant full body safety harness with double lanyard for working at heights above 2 metres.', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 'In Stock', 'Pan India Delivery Available', 'India', NULL, 'assets/img/all-images/products/Safety-Valves.png', 'Top Rated', 'best', '10 Pcs', 5.0, 89, 1, 6, '2026-04-03 11:40:11'),
+(7, 'AAC Blocks Lightweight', 'aac-blocks-lightweight', 'construction', 'Autoclaved aerated concrete blocks — lightweight, thermally insulating, and earthquake resistant.', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 'In Stock', 'Pan India Delivery Available', 'India', NULL, 'assets/img/all-images/products/GI-pipes-Fittings.png', 'New', 'new', '500 Pcs', 4.5, 43, 1, 7, '2026-04-03 11:40:11'),
+(8, 'Industrial Gloves Heavy Duty', 'industrial-gloves-heavy-duty', 'industrial', 'Chemical and cut-resistant nitrile gloves for industrial handling. Ergonomic grip, washable, durable.', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 'In Stock', 'Pan India Delivery Available', 'India', NULL, 'assets/img/all-images/products/Fittings.png', NULL, NULL, '100 Pairs', 4.0, 67, 1, 8, '2026-04-03 11:40:11'),
+(9, 'MCB Distribution Board', 'mcb-distribution-board', 'electrical', 'Single phase & three phase MCB distribution panels with surge protection for commercial buildings.', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 'In Stock', 'Pan India Delivery Available', 'India', NULL, 'assets/img/all-images/products/Butterfly-Valve.png', 'Hot', 'hot', '5 Units', 5.0, 102, 1, 9, '2026-04-03 11:40:11'),
+(10, 'GI Pipe Fittings Set', 'gi-pipe-fittings-set', 'plumbing', 'Galvanised iron pipe fittings including elbows, tees, reducers and couplings. Complete range available.', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 'In Stock', 'Pan India Delivery Available', 'India', NULL, 'assets/img/all-images/products/MS-pipes-Fittings.png', NULL, NULL, '50 Pcs', 4.0, 55, 1, 10, '2026-04-03 11:40:11'),
+(11, 'Fire Extinguisher CO2 Type', 'fire-extinguisher-co2-type', 'safety', 'BIS certified CO2 fire extinguisher for electrical fires. Available in 2kg, 4.5kg and 9kg capacities.', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 'In Stock', 'Pan India Delivery Available', 'India', NULL, 'assets/img/all-images/products/PRV.png', 'Certified', 'best', '5 Units', 5.0, 81, 1, 11, '2026-04-03 11:40:11'),
+(12, 'Waterproofing Compound', 'waterproofing-compound', 'construction', 'Polymer-modified integral waterproofing compound for concrete and mortar mix. Long lasting protection.', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 'In Stock', 'Pan India Delivery Available', 'India', NULL, 'assets/img/all-images/products/Strainers.png', 'New', 'new', '50 Ltrs', 4.5, 37, 1, 12, '2026-04-03 11:40:11');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `services`
 --
 
@@ -362,6 +424,12 @@ ALTER TABLE `doctor_services`
   ADD KEY `service_id` (`service_id`);
 
 --
+-- Indexes for table `products`
+--
+ALTER TABLE `products`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `services`
 --
 ALTER TABLE `services`
@@ -377,7 +445,7 @@ ALTER TABLE `services`
 -- AUTO_INCREMENT for table `admin_activity_log`
 --
 ALTER TABLE `admin_activity_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `admin_users`
@@ -402,6 +470,12 @@ ALTER TABLE `categories`
 --
 ALTER TABLE `doctors`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `products`
+--
+ALTER TABLE `products`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `services`
