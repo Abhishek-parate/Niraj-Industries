@@ -1,969 +1,419 @@
-<?php $base_url = "http://localhost/nirajindustries/"; ?>
-<?php include 'include/config.php'; ?>
+<?php
+/**
+ * Contact Us Page — Rebuilders Construction Company
+ * SEO-Optimized | E-E-A-T Ready | Local SEO
+ */
+$base_url = "http://localhost/nirajindustries/";
+include 'include/config.php';
+
+$page_title       = "Contact Us - Rebuilders Construction Company | Get A Free Quote Today";
+$meta_description = "Contact Rebuilders Construction Company for free quotes, consultations, and expert construction services. Available Monday to Friday, 8AM - 5PM. Call us or fill out our contact form.";
+$meta_keywords    = "contact rebuilders construction, construction company contact, free quote construction, construction consultation, rebuilders contact number, construction services inquiry";
+?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description"
-        content="Contact Dr. Agrawal's R.K. Hospital Nagpur. Book appointment for Orthopedic Surgery, Robotic Knee Replacement, Gynecology & Pregnancy Care. Call +91 97660 57372. Located at Central Avenue, Nagpur.">
-    <meta name="keywords"
-        content="RK Hospital Nagpur contact, Dr Agrawal hospital appointment, orthopedic hospital contact Nagpur, gynecology hospital Nagpur, contact RK hospital">
-    <meta name="author" content="Dr. Agrawal's R.K. Hospital Nagpur">
-    <meta property="og:title" content="Contact Us | Dr. Agrawal's R.K. Hospital Nagpur">
-    <meta property="og:description"
-        content="Book appointment for Orthopedic Surgery, Robotic Knee Replacement, Gynecology & Pregnancy Care. Available 24/7.">
-    <title>Contact Us | Dr. Agrawal's R.K. Hospital Nagpur</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Favicon -->
-    <link rel="shortcut icon" href="<?php echo $base_url; ?>assets/img/RK-Logo.png" type="image/x-icon">
-    <link rel="apple-touch-icon" sizes="180x180" href="<?php echo $base_url; ?>assets/img/RK-Logo.png">
+    <!-- Primary SEO -->
+    <title><?php echo htmlspecialchars($page_title); ?></title>
+    <meta name="description" content="<?php echo htmlspecialchars($meta_description); ?>">
+    <meta name="keywords" content="<?php echo htmlspecialchars($meta_keywords); ?>">
+    <meta name="author" content="Rebuilders Construction Company">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="googlebot" content="index, follow">
 
-    <!-- Theme Settings Js -->
-    <script src="assets/js/theme-script.js"></script>
+    <!-- Canonical -->
+    <link rel="canonical" href="<?php echo $base_url; ?>contact">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/css/animate.css">
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="<?php echo $base_url; ?>contact">
+    <meta property="og:title" content="<?php echo htmlspecialchars($page_title); ?>">
+    <meta property="og:description" content="<?php echo htmlspecialchars($meta_description); ?>">
+    <meta property="og:image" content="<?php echo $base_url; ?>assets/img/all-images/hero/hero-img27.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Contact Rebuilders Construction Company — Get A Free Quote">
+    <meta property="og:locale" content="en_IN">
+    <meta property="og:site_name" content="Rebuilders Construction Company">
 
-    <!-- Fontawesome CSS -->
-    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/plugins/fontawesome/css/fontawesome.min.css">
-    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/plugins/fontawesome/css/all.min.css">
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="<?php echo htmlspecialchars($page_title); ?>">
+    <meta name="twitter:description" content="<?php echo htmlspecialchars($meta_description); ?>">
+    <meta name="twitter:image" content="<?php echo $base_url; ?>assets/img/all-images/hero/hero-img27.png">
+    <meta name="twitter:image:alt" content="Contact Rebuilders Construction Company">
 
-    <!-- Iconsax CSS-->
-    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/css/iconsax.css">
+    <!--===== FAV ICON =======-->
+    <link rel="shortcut icon" href="<?php echo $base_url; ?>assets/img/logo/fav-logo1.png" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="<?php echo $base_url; ?>assets/img/logo/fav-logo1.png">
 
-    <!-- Feathericon CSS -->
-    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/css/feather.css">
+    <!--===== CSS LINKS =======-->
+    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/css/plugins/bootstrap.min.css">
+    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/css/plugins/fontawesome.css">
+    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/css/plugins/swiper.bundle.css">
+    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/css/plugins/aos.css">
+    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/css/plugins/magnific-popup.css">
+    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/css/plugins/mobile.css">
+    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/css/plugins/owlcarousel.min.css">
+    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/css/plugins/sidebar.css">
+    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/css/plugins/slick-slider.css">
+    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/css/plugins/nice-select.css">
+    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/css/main.css">
 
-    <!-- Slick CSS -->
-    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/plugins/slick/slick.css">
-    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/plugins/slick/slick-theme.css">
-
-    <!-- Wow CSS -->
-    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/plugins/wow/css/animate.css">
-
-    <!-- select CSS -->
-    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/plugins/select2/css/select2.min.css">
-
-    <!-- Fancybox CSS -->
-    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/plugins/fancybox/jquery.fancybox.min.css">
-
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=DM+Sans:wght@400;500;600;700&display=swap"
-        rel="stylesheet">
-
-    <!-- Main CSS -->
-    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/css/style.css">
-
-    <style>
-    /* ═══════════════════════════════════════════
-       THEME VARIABLES & DOCTOR CARD STYLES
-    ═══════════════════════════════════════════ */
-    :root {
-        --red: #d32f2f;
-        --red-dark: #b71c1c;
-        --red-light: #ef5350;
-        --red-bg: #fff5f5;
-        --red-border: #fecaca;
-        --text-dark: #1a1a2e;
-        --text-mid: #374151;
-        --text-soft: #6b7280;
-        --white: #ffffff;
-        --border: #e5e7eb;
-        --shadow-sm: 0 2px 12px rgba(211, 47, 47, 0.08);
-        --shadow-lg: 0 16px 48px rgba(211, 47, 47, 0.18);
-    }
-
-    .rk-eyebrow {
-        font-size: 11.5px;
-        font-weight: 700;
-        letter-spacing: 2px;
-        text-transform: uppercase;
-        color: var(--red);
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        margin-bottom: 8px;
-    }
-
-    .rk-eyebrow::before {
-        content: '';
-        width: 30px;
-        height: 3px;
-        background: var(--red);
-        border-radius: 2px;
-        flex-shrink: 0;
-    }
-
-    .rk-section-title {
-        font-size: clamp(1.5rem, 3vw, 2rem);
-        font-weight: 800;
-        color: var(--text-dark);
-        margin-bottom: 6px;
-        line-height: 1.25;
-    }
-
-    .rk-section-title span {
-        color: var(--red);
-    }
-
-    /* DOCTOR CARD */
-    .doc-card {
-        background: var(--white);
-        border-radius: 20px;
-        overflow: hidden;
-        border: 1px solid var(--border);
-        box-shadow: var(--shadow-sm);
-        transition: all 0.32s;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-    }
-
-    .doc-card:hover {
-        box-shadow: var(--shadow-lg);
-        transform: translateY(-6px);
-        border-color: var(--red-border);
-    }
-
-    .doc-banner {
-        background: linear-gradient(135deg, #7f0000 0%, #c62828 100%);
-        padding: 36px 28px 0;
-        text-align: center;
-        position: relative;
-        overflow: hidden;
-    }
-
-    .doc-banner .deco-ring {
-        position: absolute;
-        border: 2px solid rgba(255, 255, 255, 0.07);
-        border-radius: 50%;
-    }
-
-    .doc-banner .deco-ring.r1 {
-        width: 180px;
-        height: 180px;
-        top: -60px;
-        right: -50px;
-    }
-
-    .doc-banner .deco-ring.r2 {
-        width: 110px;
-        height: 110px;
-        bottom: 10px;
-        left: -30px;
-    }
-
-    .doc-banner::after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        height: 38px;
-        background: var(--white);
-        border-radius: 50% 50% 0 0 / 30px 30px 0 0;
-    }
-
-    .doc-photo-wrap {
-        display: inline-block;
-        position: relative;
-        z-index: 2;
-        margin-bottom: 8px;
-    }
-
-    .doc-photo-wrap img {
-        width: 155px;
-        height: 155px;
-        border-radius: 50%;
-        object-fit: cover;
-        object-position: top;
-        border: 5px solid #fff;
-        box-shadow: 0 6px 30px rgba(0, 0, 0, 0.25);
-        display: block;
-    }
-
-    .doc-photo-wrap::before {
-        content: '';
-        position: absolute;
-        inset: -6px;
-        border-radius: 50%;
-        border: 3px solid rgba(255, 255, 255, 0.35);
-    }
-
-    .doc-spec-badge {
-        position: absolute;
-        bottom: 2px;
-        left: 50%;
-        transform: translateX(-50%);
-        white-space: nowrap;
-        background: linear-gradient(135deg, var(--red-dark), var(--red));
-        color: #fff;
-        font-size: 10.5px;
-        font-weight: 700;
-        padding: 4px 14px;
-        border-radius: 100px;
-        box-shadow: 0 3px 12px rgba(183, 28, 28, 0.45);
-    }
-
-    .doc-body {
-        padding: 16px 26px 28px;
-        display: flex;
-        flex-direction: column;
-        flex: 1;
-    }
-
-    .doc-name {
-        font-size: 1.22rem;
-        font-weight: 800;
-        color: var(--text-dark);
-        text-align: center;
-        margin-bottom: 2px;
-    }
-
-    .doc-degree {
-        font-size: 12px;
-        color: var(--text-soft);
-        text-align: center;
-        margin-bottom: 16px;
-    }
-
-    .doc-hr {
-        height: 1px;
-        background: var(--border);
-        margin: 0 0 15px;
-    }
-
-    .doc-tags {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 7px;
-        margin-bottom: 16px;
-    }
-
-    .doc-tag {
-        background: var(--red-bg);
-        color: var(--red-dark);
-        font-size: 11px;
-        font-weight: 600;
-        padding: 4px 12px;
-        border-radius: 100px;
-        border: 1px solid var(--red-border);
-    }
-
-    .doc-bio {
-        font-size: 13.5px;
-        color: var(--text-mid);
-        line-height: 1.75;
-        margin-bottom: 18px;
-        flex: 1;
-    }
-
-    .doc-info-strip {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 14px;
-        background: var(--red-bg);
-        border: 1px solid var(--red-border);
-        border-radius: 11px;
-        padding: 12px 15px;
-        margin-bottom: 20px;
-    }
-
-    .doc-info-item {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        font-size: 12.5px;
-        color: var(--text-mid);
-    }
-
-    .doc-info-item i {
-        color: var(--red);
-        font-size: 13px;
-    }
-
-    .doc-info-item strong {
-        color: var(--text-dark);
-    }
-
-    .doc-actions {
-        display: flex;
-        gap: 10px;
-    }
-
-    .btn-rk-primary {
-        flex: 1;
-        display: block;
-        text-align: center;
-        background: linear-gradient(135deg, var(--red-dark), var(--red-light));
-        color: #fff !important;
-        font-size: 13.5px;
-        font-weight: 700;
-        padding: 12px 16px;
-        border-radius: 10px;
-        text-decoration: none;
-        box-shadow: 0 4px 16px rgba(183, 28, 28, 0.32);
-    }
-
-    .btn-rk-primary:hover {
-        background: linear-gradient(135deg, #7f0000, var(--red-dark));
-        box-shadow: 0 6px 22px rgba(183, 28, 28, 0.45);
-        transform: translateY(-1px);
-    }
-
-    .btn-rk-outline {
-        display: flex;
-        align-items: center;
-        gap: 7px;
-        padding: 12px 16px;
-        border-radius: 10px;
-        border: 2px solid var(--red);
-        color: var(--red);
-        font-size: 13.5px;
-        font-weight: 700;
-        text-decoration: none;
-    }
-
-    .btn-rk-outline:hover {
-        background: var(--red);
-        color: #fff;
-    }
-
-    @media (max-width: 768px) {
-        .doc-actions {
-            flex-direction: column;
-        }
-
-        .doc-info-strip {
-            flex-direction: column;
-            gap: 10px;
-        }
-    }
-    .doc-read-more-btn {
-    background: none;
-    border: none;
-    color: #c0392b;
-    font-size: 0.82rem;
-    font-weight: 600;
-    padding: 4px 0;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    margin-top: 4px;
-}
-.doc-read-more-btn:hover { text-decoration: underline; }
-.doc-read-more-btn i { font-size: 0.7rem; transition: transform 0.2s; }
-.doc-read-more-btn.open i { transform: rotate(180deg); }
-    </style>
+    <!--===== jQuery (must be first) =======-->
+    <script src="<?php echo $base_url; ?>assets/js/plugins/jquery-3-6-0.min.js"></script>
 </head>
+<body class="homepage4-body">
 
-<body>
-    <!-- Main Wrapper -->
-    <div class="main-wrapper">
-
-
-        <?php include 'include/header.php'; ?>
-
-        <!-- ═══════════════════════ HERO BANNER ═══════════════════════ -->
-        <section class="contact-hero-banner">
-            <img src="assets/img/home/image-crousel1.webp" alt="RK Hospital Nagpur Contact" class="banner-img">
-            <div class="banner-grid-pattern"></div>
-            <div class="banner-overlay"></div>
-
-            <!-- Floating Stat Badges -->
-            <div class="banner-stat-badge badge-left">
-                <div class="badge-icon"><i class="fa-solid fa-star"></i></div>
-                <div class="badge-text">
-                    <div class="num">5.0 ★</div>
-                    <div class="label">496+ Reviews</div>
-                </div>
-            </div>
-
-            <div class="banner-stat-badge badge-right">
-                <div class="badge-icon"><i class="fa-solid fa-clock"></i></div>
-                <div class="badge-text">
-                    <div class="num">24/7</div>
-                    <div class="label">Emergency Care</div>
-                </div>
-            </div>
-
-            <div class="banner-content">
-                <div class="banner-eyebrow">
-                    <i class="fa-solid fa-hospital"></i>
-                    Dr. Agrawal's R.K. Hospital, Nagpur
-                </div>
-                <h1 class="banner-heading">
-                    Get In Touch With<br>
-                    <span>Our Specialists</span>
-                </h1>
-                <p class="banner-sub">
-                    Book an appointment for Orthopedic Surgery, Robotic Knee Replacement, Gynecology & Pregnancy Care.
-                    Available 24/7 for emergencies.
-                </p>
-                <div class="banner-cta-group">
-                    <a href="tel:+919766057372" class="banner-btn-primary">
-                        <i class="fa-solid fa-phone"></i>
-                        Call Now: +91 97660 57372
-                    </a>
-                    <a href="#contact-form" class="banner-btn-outline">
-                        <i class="fa-solid fa-calendar-check"></i>
-                        Book Appointment
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <!-- ═══════════════════════ BREADCRUMB ═══════════════════════ -->
-        <div class="breadcrumb-strip">
-            <div class="container">
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="/"><i class="fa-solid fa-house me-1"></i>Home</a></li>
-                        <li class="breadcrumb-item active">Contact Us</li>
-                    </ol>
-                </nav>
-            </div>
-        </div>
-
-        <!-- ═══════════════════════ QUICK INFO STRIP ═══════════════════════ -->
-        <div class="quick-info-strip">
-            <div class="quick-info-grid">
-                <div class="quick-info-item">
-                    <div class="qi-icon"><i class="fa-solid fa-location-dot"></i></div>
-                    <div class="qi-text">
-                        <div class="label">Our Location</div>
-                        <div class="value"> 27 Chandrashekhar, Azad Square, Central Ave, Ladpura, Itwari, Nagpur, Maharashtra 440002</div>
-                    </div>
-                </div>
-                <div class="quick-info-item">
-                    <div class="qi-icon"><i class="fa-solid fa-phone-volume"></i></div>
-                    <div class="qi-text">
-                        <div class="label">Emergency & Appointment</div>
-                        <div class="value">
-                            <a href="tel:+919766057372">+91 97660 57372  </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="quick-info-item">
-                    <div class="qi-icon"><i class="fa-solid fa-clock"></i></div>
-                    <div class="qi-text">
-                        <div class="label"> Timings</div>
-                        <div class="value">Opens 24 Hours</div>
-                    </div>
-                </div>
-                <div class="quick-info-item">
-                    <div class="qi-icon"><i class="fa-solid fa-shield-halved"></i></div>
-                    <div class="qi-text">
-                        <div class="label">Emergency Services</div>
-                        <div class="value"><span class="open-badge">Open 24/7</span>&nbsp; Always Available</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- ═══════════════════════ MAIN CONTACT SECTION ═══════════════════════ -->
-        <section class="contact-main-section" id="contact-form">
-            <div class="container">
-
-                <div class="row mb-5">
-                    <div class="col-12 text-center">
-                        <div class="rk-eyebrow justify-content-center">Contact Information</div>
-                        <h2 class="rk-section-title">We're Here To <span>Help You</span></h2>
-                        <p style="color:var(--text-soft); font-size:15px; max-width:560px; margin: 8px auto 0;">
-                            Reach out to our team for appointments, inquiries, or emergency care. We respond promptly.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="row g-4">
-
-                    <!-- LEFT: Contact Info Cards + Emergency -->
-                    <div class="col-lg-5">
-
-                        <!-- Address Card -->
-                        <div class="row g-3">
-                            <div class="col-12 wow fadeInLeft" data-wow-duration="0.8s">
-                                <div class="contact-info-card">
-                                    <div class="card-badge"><i class="fa-solid fa-location-dot"></i> Hospital Location
-                                    </div>
-                                    <div class="card-icon-wrap">
-                                        <i class="fa-solid fa-building-columns"></i>
-                                    </div>
-                                    <h4>Hospital Address</h4>
-                                    <p>27 Chandrashekhar, Azad Square, Central Ave, Ladpura, Itwari, Nagpur, Maharashtra 440002</p>
-                                    <a href="https://maps.google.com/?q=Dr.Agrawal%27s+R.K.Hospital+Nagpur"
-                                        target="_blank" rel="noopener"
-                                        style="color:var(--red); font-weight:700; margin-top:8px; display:inline-flex; align-items:center; gap:6px; font-size:13px;">
-                                        <i class="fa-solid fa-diamond-turn-right"></i> Get Directions
-                                    </a>
-                                </div>
-                            </div>
-
-                            <!-- Phone Card -->
-                            <div class="col-12 wow fadeInLeft" data-wow-duration="0.8s" data-wow-delay="0.1s">
-                                <div class="contact-info-card">
-                                    <div class="card-badge"><i class="fa-solid fa-phone"></i> Call Us</div>
-                                    <div class="card-icon-wrap outline-style">
-                                        <i class="fa-solid fa-phone-volume"></i>
-                                    </div>
-                                    <h4>Phone Numbers</h4>
-                                    <a href="tel:+919766057372"
-                                        style="font-weight:700; font-size:16px; color:var(--red);">+91 97660 57372</a>
-                                 
-                                    <p style="margin-top:10px; font-size:12.5px; color:var(--text-soft);">Available 24/7
-                                        for Emergency .</p>
-                                </div>
-                            </div>
-
-                            <!-- OPD Timings Card -->
-                            <div class="col-12 wow fadeInLeft" data-wow-duration="0.8s" data-wow-delay="0.2s">
-                                <div class="contact-info-card">
-                                    <div class="card-badge"><i class="fa-solid fa-calendar"></i> OPD Schedule</div>
-                                    <div class="card-icon-wrap outline-style">
-                                        <i class="fa-solid fa-clock"></i>
-                                    </div>
-                                    <h4>Working Hours</h4>
-                                    <table class="opd-table">
-                                        <tr>
-                                            <td>Monday – Sunday</td>
-                                            <td>Opens 24 Hours</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Monday – Sunday</td>
-                                            <td>24 Hours Service Available</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Sunday</td>
-                                            <td>By Appointment</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Emergency Services</td>
-                                            <td><span class="open-badge">24/7 Open</span></td>
-                                        </tr>
-                                    </table>
-                                </div>
-                            </div>
-
-                            <!-- Social Card -->
-                            <div class="col-12 wow fadeInLeft" data-wow-duration="0.8s" data-wow-delay="0.3s">
-                                <div class="sidebar-card">
-                                    <h5><i class="fa-solid fa-share-nodes"></i> Connect With Us</h5>
-                                    <div class="social-links-grid">
-                                        <a href="https://www.facebook.com/share/1Aze23diqp/" class="social-link-card fb" target="_blank">
-                                            <i class="fa-brands fa-facebook"></i> Facebook
-                                        </a>
-                                        <a href="https://www.instagram.com/dr.agrawalsnirajindustries?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" class="social-link-card ig" target="_blank">
-                                            <i class="fa-brands fa-instagram"></i> Instagram
-                                        </a>
-                                        <a href="https://wa.me/919766057372" class="social-link-card wa"
-                                            target="_blank">
-                                            <i class="fa-brands fa-whatsapp"></i> WhatsApp
-                                        </a>
-                                        
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-
-                    <!-- RIGHT: Contact Form -->
-                    <div class="col-lg-7 wow fadeInRight" data-wow-duration="0.8s">
-                        <div class="form-section-wrap">
-                            <div class="form-section-header">
-                                <h3>Book an Appointment</h3>
-                                <p>Fill in the form and our team will get back to you within 30 minutes during Hospital
-                                    hours.</p>
-                            </div>
-                            <div class="form-section-body">
-                                <form action="#" method="POST">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="rk-form-group">
-                                                <label>Full Name <span class="req">*</span></label>
-                                                <input type="text" name="name" class="rk-form-control"
-                                                    placeholder="e.g. Ramesh Sharma" required>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="rk-form-group">
-                                                <label>Phone Number <span class="req">*</span></label>
-                                                <input type="tel" name="phone" class="rk-form-control"
-                                                    placeholder="+91 XXXXX XXXXX" required>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="rk-form-group">
-                                                <label>Email Address</label>
-                                                <input type="email" name="email" class="rk-form-control"
-                                                    placeholder="your@email.com">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="rk-form-group">
-                                                <label>Preferred Date</label>
-                                                <input type="date" name="date" class="rk-form-control">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="rk-form-group">
-                                                <label>Choose Department / Service <span class="req">*</span></label>
-                                                <div class="service-checkboxes">
-                                                    <div class="service-checkbox-item">
-                                                        <input type="checkbox" id="s1" name="service[]"
-                                                            value="Robotic Knee Replacement">
-                                                        <label for="s1">Robotic Knee Replacement</label>
-                                                    </div>
-                                                    <div class="service-checkbox-item">
-                                                        <input type="checkbox" id="s2" name="service[]"
-                                                            value="Hip Replacement">
-                                                        <label for="s2">Hip Replacement Surgery</label>
-                                                    </div>
-                                                    <div class="service-checkbox-item">
-                                                        <input type="checkbox" id="s3" name="service[]"
-                                                            value="Spine Surgery">
-                                                        <label for="s3">Spine & Back Pain</label>
-                                                    </div>
-                                                    <div class="service-checkbox-item">
-                                                        <input type="checkbox" id="s4" name="service[]"
-                                                            value="Fracture & Trauma">
-                                                        <label for="s4">Fracture & Trauma Care</label>
-                                                    </div>
-                                                    <div class="service-checkbox-item">
-                                                        <input type="checkbox" id="s5" name="service[]"
-                                                            value="Pregnancy Care">
-                                                        <label for="s5">Pregnancy & Delivery</label>
-                                                    </div>
-                                                    <div class="service-checkbox-item">
-                                                        <input type="checkbox" id="s6" name="service[]"
-                                                            value="Gynecology">
-                                                        <label for="s6">Gynecology / PCOS</label>
-                                                    </div>
-                                                    <div class="service-checkbox-item">
-                                                        <input type="checkbox" id="s7" name="service[]"
-                                                            value="Infertility">
-                                                        <label for="s7">Infertility Treatment</label>
-                                                    </div>
-                                                    <div class="service-checkbox-item">
-                                                        <input type="checkbox" id="s8" name="service[]"
-                                                            value="Laparoscopy">
-                                                        <label for="s8">Laparoscopic Surgery</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="rk-form-group">
-                                                <label>Your Message / Symptoms</label>
-                                                <textarea name="message" class="rk-form-control"
-                                                    placeholder="Briefly describe your condition or any specific queries..."></textarea>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <button type="submit" class="btn-submit-rk">
-                                                Send Appointment Request
-                                                <i class="fa-solid fa-arrow-right"></i>
-                                            </button>
-                                            <div class="form-trust-badges">
-                                                <div class="trust-badge">
-                                                    <i class="fa-solid fa-shield-halved"></i>
-                                                    100% Confidential
-                                                </div>
-                                                <div class="trust-badge">
-                                                    <i class="fa-solid fa-bolt"></i>
-                                                    Reply within 30 mins
-                                                </div>
-                                                <div class="trust-badge">
-                                                    <i class="fa-solid fa-star"></i>
-                                                    5★ Rated Hospital
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-
-
-        <!-- ═══════════════════════ DOCTORS STRIP ═══════════════════════ -->
-        <section class="doctors-strip">
-            <div class="container">
-                <div class="row mb-4">
-                    <div class="col-12 text-center">
-                        <div class="rk-eyebrow justify-content-center" style="color:#ff8a80;">Our Specialists</div>
-                        <h2 class="rk-section-title" style="color:#fff; font-family:'Playfair Display',serif;">
-                            Contact Our <span style="color:#ff8a80; font-style:italic;">Expert Doctors</span> Directly
-                        </h2>
-                    </div>
-                </div>
-                <?php
-                $doc_sql    = "SELECT * FROM doctors WHERE is_published = 1 ORDER BY id ASC";
-                $doc_result = $conn->query($doc_sql);
-                $doc_count  = $doc_result ? $doc_result->num_rows : 0;
-
-                // Responsive column width based on total doctor count
-                if ($doc_count === 1)      $col_class = 'col-lg-8 col-md-10';
-                elseif ($doc_count === 2)  $col_class = 'col-lg-6';
-                elseif ($doc_count === 3)  $col_class = 'col-lg-4 col-md-6';
-                else                       $col_class = 'col-lg-3 col-md-6';
-                ?>
-
-                <div class="row g-4 justify-content-center mb-5">
-
-                    <?php if ($doc_count > 0): ?>
-                    <?php while ($doc = $doc_result->fetch_assoc()): ?>
-
-                    <?php
-                        // Tags: comma-separated string -> up to 6 badge spans
-                        $tags_html = '';
-                        if (!empty($doc['tags'])) {
-                            $tag_arr = array_slice(
-                                array_filter(array_map('trim', explode(',', $doc['tags']))),
-                                0, 6
-                            );
-                            foreach ($tag_arr as $t) {
-                                $tags_html .= '<span class="doc-tag">' . htmlspecialchars($t) . '</span>';
-                            }
-                        }
-
-                        // Photo: DB stores full relative path or just filename
-                        $photo = !empty($doc['photo']) ? $doc['photo'] : 'assets/img/patients/default.jpg';
-                        if (strpos($photo, 'assets/') !== 0 && strpos($photo, 'http') !== 0) {
-                            $photo = 'assets/img/doctors/' . $photo;
-                        }
-
-                        // Bio: prefer bio column, fall back to excerpt
-                        $bio_text = !empty($doc['bio']) ? $doc['bio'] : ($doc['excerpt'] ?? '');
-
-                        // Location fallback
-                        $location = !empty($doc['location']) ? htmlspecialchars($doc['location']) : 'Nagpur';
-                    ?>
-
-                    <div class="<?= $col_class ?>">
-                        <div class="doc-card">
-
-                            <div class="doc-banner">
-                                <div class="deco-ring r1"></div>
-                                <div class="deco-ring r2"></div>
-                                <div class="doc-photo-wrap">
-                                    <img src="<?= htmlspecialchars($photo) ?>"
-                                        alt="<?= htmlspecialchars($doc['name']) ?> – <?= htmlspecialchars($doc['designation'] ?? '') ?>">
-                                    <span
-                                        class="doc-spec-badge"><?= htmlspecialchars($doc['designation'] ?? $doc['specialty'] ?? '') ?></span>
-                                </div>
-                            </div>
-
-                            <div class="doc-body">
-                                <div class="doc-name"><?= htmlspecialchars($doc['name']) ?></div>
-                                <div class="doc-degree"><?= htmlspecialchars($doc['specialty'] ?? '') ?></div>
-                                <div class="doc-hr"></div>
-
-                                <?php if ($tags_html): ?>
-                                <div class="doc-tags">
-                                    <?= $tags_html ?>
-                                </div>
-                                <?php endif; ?>
-
-                            <?php if (!empty($bio_text)): ?>
-<div class="doc-bio-wrap" style="text-align:justify; flex:1; margin-bottom:18px;">
-    <p class="doc-bio doc-bio-short" style="margin-bottom:6px; flex:unset;">
-        <?= nl2br(htmlspecialchars(mb_substr(strip_tags($bio_text), 0, 300))) ?>...
-    </p>
-    <p class="doc-bio doc-bio-full" style="display:none; margin-bottom:6px; flex:unset;">
-        <?= nl2br(htmlspecialchars($bio_text)) ?>
-    </p>
+<!--===== PRELOADER STARTS =======-->
+<div class="preloader preloader4">
+    <div class="loading-container">
+        <div class="loading"></div>
+        <div id="loading-icon"><img src="<?php echo $base_url; ?>assets/img/logo/preloader3.png" alt="Rebuilders Construction"></div>
+    </div>
 </div>
-<?php endif; ?>
+<!--===== PRELOADER ENDS =======-->
 
-                                <div class="doc-info-strip">
-                                    <div class="doc-info-item">
-                                        <i class="fa-solid fa-location-dot"></i>
-                                        <span><?= $location ?></span>
-                                    </div>
-                                    <?php if (!empty($doc['consultation_fee'])): ?>
-                                    <div class="doc-info-item">
-                                        <i class="fa-solid fa-indian-rupee-sign"></i>
-                                        <span>Consultation:
-                                            <strong>₹<?= htmlspecialchars($doc['consultation_fee']) ?></strong></span>
-                                    </div>
-                                    <?php endif; ?>
-                                </div>
-             
-                                <div class="doc-actions">
-                                    <a href="<?= SITE_URL ?>/doctors/<?= urlencode($doc['slug']) ?>"
-                                        class="btn-rk-primary">
-                                        View Profile
-                                    </a>
-                                    <a href="#contact-form" class="btn-rk-outline">
-                                        <i class="fa-solid fa-calendar-check"></i> Book
-                                    </a>
-                                </div>
-                            </div>
+<?php include 'include/header.php'; ?>
+<!--===== MOBILE HEADER ENDS =======-->
 
-                        </div>
-                    </div>
-
-                    <?php endwhile; ?>
-
-                    <?php else: ?>
-                    <div class="col-12 text-center py-5">
-                        <p class="text-muted">Doctor profiles coming soon. Please check back later.</p>
-                    </div>
-                    <?php endif; ?>
-
+<!--===== HERO / INNER BANNER AREA STARTS =======-->
+<div class="inner-hero-area" style="background-image: url(<?php echo $base_url; ?>assets/img/all-images/hero/hero-img27.png);" role="banner" aria-label="Contact Us Banner">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7">
+                <div class="header-area">
+                    <h1>Contact Us</h1>
+                    <div class="space32"></div>
+                    <a href="<?php echo $base_url; ?>index.php">Home <i class="fa-solid fa-angle-right" aria-hidden="true"></i></a>
+                    <a href="<?php echo $base_url; ?>contact-us.php"><span>Contact Us</span></a>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--===== HERO / INNER BANNER AREA ENDS =======-->
 
-                <!-- Emergency CTA -->
-                <div class="row mt-4">
-                    <div class="col-12">
-                        <div class="emergency-cta wow fadeInUp" data-wow-duration="0.8s">
-                            <div class="emergency-icon">
-                                <i class="fa-solid fa-truck-medical"></i>
+<!--===== CONTACT AREA STARTS =======-->
+<section class="contact1-section-area sp1 bg-w" aria-labelledby="contact-heading">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="contact-header heading2">
+                    <h5><img src="<?php echo $base_url; ?>assets/img/icons/sub-logo1.svg" alt=""> Contact Us</h5>
+                    <div class="space16"></div>
+                    <h2 class="text-anime-style-3" id="contact-heading">How We Work The Process Of Working With Rebuilders</h2>
+                    <div class="space32"></div>
+                    <h3>Work Hour</h3>
+                    <div class="space16"></div>
+                    <ul>
+                        <li><a href="#"><i class="fa-solid fa-clock" aria-hidden="true"></i> Monday - Friday</a></li>
+                        <li><a href="#"><i class="fa-solid fa-clock" aria-hidden="true"></i> 8:00 Am - 5:00 Pm</a></li>
+                    </ul>
+                    <div class="contact-author-area">
+                        <div class="author-box">
+                            <div class="icons">
+                                <img src="<?php echo $base_url; ?>assets/img/icons/location1.svg" alt="Location Icon">
                             </div>
-                            <div class="emergency-text">
-                                <h4>Medical Emergency? Call Immediately!</h4>
-                                <p>24/7 Emergency services for accidents, fractures, trauma, and pregnancy emergencies
-                                    in Nagpur</p>
-                                <div class="emergency-numbers">
-                                    <a href="tel:+919766057372" class="emergency-num-link">
-                                        <i class="fa-solid fa-phone"></i> +91 97660 57372
-                                    </a>
-                                    
-                                </div>
+                            <div class="text">
+                                <h4>Our Location</h4>
+                                <address><a href="https://maps.google.com/?q=570+White+Mission+Apt+Hellerborough" target="_blank" rel="noopener noreferrer">570 White Mission Apt, Hellerborough</a></address>
                             </div>
                         </div>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- ═══════════════════════ MAP SECTION ═══════════════════════ -->
-        <div class="map-section">
-            <div class="container">
-
-                <!-- Map iframe — clean, no floating card on top -->
-                <div class="map-iframe-wrap wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.1s"
-                    style="margin-bottom: 0; padding-bottom: 0;">
-                    <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3721.1061519931973!2d79.10822074564915!3d21.14817342644816!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bd4c79a161b6283%3A0xb92548dea3dc4756!2sDr.Agrawal&#39;s%20R.K.Hospital!5e0!3m2!1sen!2sin!4v1773395830626!5m2!1sen!2sin"
-                        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-                        title="RK Hospital Nagpur Location Map">
-                    </iframe>
-                </div>
-
-            </div>
-        </div>
-
-        <?php include 'include/footer.php'; ?>
-
-        <!-- Cursor -->
-        <div class="mouse-cursor cursor-outer"></div>
-        <div class="mouse-cursor cursor-inner"></div>
-    </div>
-    <!-- /Main Wrapper -->
-
-    <!-- Offcanvas (same as index) -->
-    <div class="offcanvas offcanvas-offset offcanvas-end support_popup" tabindex="-1" id="support_item">
-        <div class="offcanvas-header">
-            <a href="/"><img src="assets/img/logo.svg" alt="logo" class="img-fluid logo"></a>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close">
-                <i class="isax isax-close-circle"></i>
-            </button>
-        </div>
-        <div class="offcanvas-body">
-            <div class="about-popup-item">
-                <h3 class="title">About RK Hospital</h3>
-                <p>Leading Orthopedic & Gynecology Hospital in Nagpur with 25+ years of medical excellence.</p>
-                <div class="about-img d-flex align-items-center gap-2 justify-content-between">
-                    <img src="assets/img/home/about-doctor1.webp" alt="RK Hospital" class="img-fluid"
-                        style="border-radius:8px;">
-                    <img src="assets/img/home/about-doctor2.webp" alt="RK Hospital" class="img-fluid"
-                        style="border-radius:8px;">
-                    <img src="assets/img/home/about-doctor3.webp" alt="RK Hospital" class="img-fluid"
-                        style="border-radius:8px;">
-                </div>
-            </div>
-            <div class="about-popup-item">
-                <h3 class="title">Hospital Address</h3>
-                <p>27, Chandrashekhar Azad Square, Central Avenue Road, Nagpur 440002</p>
-            </div>
-            <div class="about-popup-item">
-                <h3 class="title">Contact Information</h3>
-                <div class="support-item mb-3">
-                    <div class="avatar avatar-lg bg-primary rounded-circle">
-                        <i class="isax isax-call-calling"></i>
-                    </div>
-                    <div>
-                        <p class="title">Emergency Cases</p>
-                        <h5 class="link"><a href="tel:+919766057372">+91 97660 57372</a></h5>
+                        <div class="author-box">
+                            <div class="icons">
+                                <img src="<?php echo $base_url; ?>assets/img/icons/call1.svg" alt="Phone Icon">
+                            </div>
+                            <div class="text">
+                                <h4>Office Number</h4>
+                                <a href="tel:9256831469" aria-label="Call Rebuilders Construction at (925) 683-1469">(925) 683-1469</a>
+                            </div>
+                        </div>
+                        <div class="author-box">
+                            <div class="icons">
+                                <img src="<?php echo $base_url; ?>assets/img/icons/mail1.svg" alt="Mail Icon">
+                            </div>
+                            <div class="text">
+                                <h4>Our Mail</h4>
+                                <a href="mailto:social@rebuilders.com" aria-label="Email Rebuilders Construction at social@rebuilders.com">social@rebuilders.com</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="about-popup-item border-0">
-                <h3 class="title">Follow Us</h3>
-                <ul class="d-flex align-items-center gap-2 social-iyem">
-                    <li><a href="https://www.facebook.com/share/1Aze23diqp/" class="social-icon"><i class="fa-brands fa-facebook"></i></a></li>
-                    <li><a href="https://www.instagram.com/dr.agrawalsnirajindustries?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" class="social-icon"><i class="fa-brands fa-instagram"></i></a></li>
-                    <li><a href="https://wa.me/919766057372" class="social-icon" target="_blank"><i
-                                class="fa-brands fa-whatsapp"></i></a></li>
-                </ul>
+            <div class="col-lg-6">
+                <div class="contact-boxarea">
+                    <form action="#" method="post" aria-label="Contact Form — Send us your message">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="input-area">
+                                    <label for="first_name">First Name*</label>
+                                    <div class="space16"></div>
+                                    <input type="text" id="first_name" name="first_name" placeholder="First Name" required aria-required="true">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="input-area">
+                                    <label for="last_name">Last Name*</label>
+                                    <div class="space16"></div>
+                                    <input type="text" id="last_name" name="last_name" placeholder="Last Name" required aria-required="true">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="input-area">
+                                    <label for="email">Email Address*</label>
+                                    <div class="space16"></div>
+                                    <input type="email" id="email" name="email" placeholder="Email Address" required aria-required="true">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="input-area">
+                                    <label for="phone">Phone Number*</label>
+                                    <div class="space16"></div>
+                                    <input type="tel" id="phone" name="phone" placeholder="Phone Number" required aria-required="true">
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="input-area">
+                                    <label for="message">Message*</label>
+                                    <div class="space16"></div>
+                                    <textarea id="message" name="message" placeholder="Type your message..." required aria-required="true"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="input-area">
+                                    <button type="submit" class="header-btn1" aria-label="Submit Contact Form">Send Now <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
-        <img src="assets/img/bg/offcanvas-bg.png" alt="element" class="element-01">
     </div>
+</section>
+<!--===== CONTACT AREA ENDS =======-->
 
-    <!-- ScrollToTop -->
-    <div class="progress-wrap active-progress">
-        <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
-            <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"
-                style="transition: stroke-dashoffset 10ms linear 0s; stroke-dasharray: 307.919px, 307.919px; stroke-dashoffset: 228.265px;">
-            </path>
-        </svg>
+<!--===== GOOGLE MAP STARTS =======-->
+<div class="mapouter" aria-label="Rebuilders Construction Office Location Map" role="region">
+    <div class="gmap_canvas">
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d4506257.120552435!2d88.67021924228865!3d21.954385721237916!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sbd!4v1704088968016!5m2!1sen!2sbd"
+            width="100%"
+            height="450"
+            style="border:0; display:block;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Rebuilders Construction Office Location on Google Maps">
+        </iframe>
     </div>
+</div>
+<!--===== GOOGLE MAP ENDS =======-->
 
-   <script src="assets/js/jquery-3.7.1.min.js"></script>
-<script src="assets/js/bootstrap.bundle.min.js"></script>
-<script src="assets/js/feather.min.js"></script>
-<script src="assets/js/backToTop.js"></script>
-<script src="assets/plugins/slick/slick.min.js"></script>
-<script src="assets/plugins/fancybox/jquery.fancybox.min.js"></script>
-<script src="assets/plugins/wow/js/wow.min.js"></script>
-<script src="assets/js/script.js"></script>
+<!--===== FAQ AREA STARTS =======-->
+<section class="faq-inner-area sp8" aria-labelledby="faq-heading">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5 m-auto">
+                <div class="heading2 text-center space-margin60">
+                    <h5><img src="<?php echo $base_url; ?>assets/img/icons/sub-logo1.svg" alt="">FAQ</h5>
+                    <div class="space16"></div>
+                    <h2 id="faq-heading">Have Any Question</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 m-auto">
+                <div class="faq-widget-area">
+                    <div class="accordion" id="accordionExample">
+                        <div class="accordion-item">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    How can I get in touch with your team?
+                                </button>
+                            </h3>
+                            <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <p>To schedule a consultation or site visit, please call us directly or use the contact form to request an appointment. We will work with you to find a convenient time.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    What are your office hours?
+                                </button>
+                            </h3>
+                            <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <p>Our office is open Monday through Friday, from 8:00 AM to 5:00 PM. For urgent queries, you can also reach us via email at social@rebuilders.com.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    Where is your office located?
+                                </button>
+                            </h3>
+                            <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <p>Our office is located at 570 White Mission Apt, Hellerborough. You can find us on Google Maps using the interactive map above on this page.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                    What should I include in my inquiry?
+                                </button>
+                            </h3>
+                            <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <p>Please include your project type, estimated budget, preferred timeline, and location. The more details you provide, the faster we can respond with the right solution for your needs.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                    Can I visit your office without an appointment?
+                                </button>
+                            </h3>
+                            <div id="collapseFive" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <p>While walk-ins are welcome during office hours, we strongly recommend booking an appointment so our team can give you their full attention and prepare for your consultation.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                                    How do I schedule a consultation or site visit?
+                                </button>
+                            </h3>
+                            <div id="collapseSix" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <p>To schedule a consultation or site visit, please call us directly or use the contact form to request an appointment. We will work with you to find a convenient time.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--===== FAQ AREA ENDS =======-->
 
-<script>
-function toggleBio(btn) {
-    var wrap  = btn.closest('.doc-bio-wrap');
-    var short = wrap.querySelector('.doc-bio-short');
-    var full  = wrap.querySelector('.doc-bio-full');
-    var isOpen = btn.classList.contains('open');
-    if (isOpen) {
-        full.style.display  = 'none';
-        short.style.display = 'block';
-        btn.classList.remove('open');
-        btn.innerHTML = 'Read More <i class="fa-solid fa-chevron-down"></i>';
-    } else {
-        short.style.display = 'none';
-        full.style.display  = 'block';
-        btn.classList.add('open');
-        btn.innerHTML = 'Read Less <i class="fa-solid fa-chevron-up"></i>';
-    }
-}
-</script>
+<!--===== PROJECT AREA STARTS =======-->
+<section class="project1-section-area sp1" aria-labelledby="project-heading">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 m-auto">
+                <div class="project-header text-center heading2 space-margin60">
+                    <h5 data-aos="fade-left" data-aos-duration="800">
+                        <img src="<?php echo $base_url; ?>assets/img/icons/sub-logo1.svg" alt=""> Our Project
+                    </h5>
+                    <div class="space16"></div>
+                    <h2 class="text-anime-style-3" id="project-heading">Our Latest Projects</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="swiper" role="region" aria-label="Latest Construction Projects Slider">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <div class="img1">
+                    <img src="<?php echo $base_url; ?>assets/img/all-images/project/project-img1.png" alt="Downtown Office Building Project by Rebuilders Construction" loading="lazy">
+                </div>
+                <div class="content-area">
+                    <a href="<?php echo $base_url; ?>project-single.php">Downtown Office Building</a>
+                    <div class="space16"></div>
+                    <p>This upscale condominium complex features multiple residential units with modern amenities.</p>
+                    <div class="space16"></div>
+                    <a href="<?php echo $base_url; ?>project-single.php" class="readmore">Read More <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="img1">
+                    <img src="<?php echo $base_url; ?>assets/img/all-images/project/project-img2.png" alt="Residential Complex Project by Rebuilders Construction" loading="lazy">
+                </div>
+                <div class="content-area">
+                    <a href="<?php echo $base_url; ?>project-single.php">Residential Complex</a>
+                    <div class="space16"></div>
+                    <p>This upscale condominium complex features multiple residential units with modern amenities.</p>
+                    <div class="space16"></div>
+                    <a href="<?php echo $base_url; ?>project-single.php" class="readmore">Read More <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="img1">
+                    <img src="<?php echo $base_url; ?>assets/img/all-images/project/project-img3.png" alt="Commercial Building Project by Rebuilders Construction" loading="lazy">
+                </div>
+                <div class="content-area">
+                    <a href="<?php echo $base_url; ?>project-single.php">Commercial Building</a>
+                    <div class="space16"></div>
+                    <p>This upscale condominium complex features multiple residential units with modern amenities.</p>
+                    <div class="space16"></div>
+                    <a href="<?php echo $base_url; ?>project-single.php" class="readmore">Read More <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="swiper-pagination"></div>
+        <div class="swiper-scrollbar"></div>
+    </div>
+</section>
+<!--===== PROJECT AREA ENDS =======-->
+
+<!--===== CTA AREA STARTS =======-->
+<section class="cta1-section-area sp4" aria-labelledby="cta-heading">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <div class="cta-header">
+                    <h2 class="text-anime-style-3" id="cta-heading">Get in Touch with Rebuilders Construction Company</h2>
+                </div>
+            </div>
+            <div class="col-lg-2"></div>
+            <div class="col-lg-4">
+                <div class="btn-area" data-aos="zoom-in" data-aos-duration="1000">
+                    <a href="<?php echo $base_url; ?>contact-us.php" class="header-btn1">Get Started <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+                    <a href="<?php echo $base_url; ?>contact-us.php" class="header-btn2">Schedule Now <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--===== CTA AREA ENDS =======-->
+
+<!--===== FOOTER AREA STARTS =======-->
+<?php include 'include/footer.php'; ?>
+<!--===== FOOTER AREA ENDS =======-->
+
+<!--===== JS SCRIPT LINKS =======-->
+<script src="<?php echo $base_url; ?>assets/js/plugins/bootstrap.min.js"></script>
+<script src="<?php echo $base_url; ?>assets/js/plugins/fontawesome.js"></script>
+<script src="<?php echo $base_url; ?>assets/js/plugins/aos.js"></script>
+<script src="<?php echo $base_url; ?>assets/js/plugins/swiper.bundle.js"></script>
+<script src="<?php echo $base_url; ?>assets/js/plugins/counter.js"></script>
+<script src="<?php echo $base_url; ?>assets/js/plugins/gsap.min.js"></script>
+<script src="<?php echo $base_url; ?>assets/js/plugins/ScrollTrigger.min.js"></script>
+<script src="<?php echo $base_url; ?>assets/js/plugins/Splitetext.js"></script>
+<script src="<?php echo $base_url; ?>assets/js/plugins/sidebar.js"></script>
+<script src="<?php echo $base_url; ?>assets/js/plugins/magnific-popup.js"></script>
+<script src="<?php echo $base_url; ?>assets/js/plugins/mobilemenu.js"></script>
+<script src="<?php echo $base_url; ?>assets/js/plugins/owlcarousel.min.js"></script>
+<script src="<?php echo $base_url; ?>assets/js/plugins/gsap-animation.js"></script>
+<script src="<?php echo $base_url; ?>assets/js/plugins/nice-select.js"></script>
+<script src="<?php echo $base_url; ?>assets/js/plugins/waypoints.js"></script>
+<script src="<?php echo $base_url; ?>assets/js/plugins/slick-slider.js"></script>
+<script src="<?php echo $base_url; ?>assets/js/plugins/circle-progress.js"></script>
+<script src="<?php echo $base_url; ?>assets/js/main.js"></script>
+
 </body>
-
-</body>
-
 </html>

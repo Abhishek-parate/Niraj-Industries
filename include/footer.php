@@ -1,129 +1,65 @@
-<?php $_base = rtrim(SITE_URL, '/') . '/'; ?>
-<style>
-.footer.inner-footer { margin-top: 0 !important; padding-top: 0 !important; }
-.footer-top { padding-bottom: 10px !important; }
-@media (max-width: 768px) {
-    .footer-bottom {
-        padding-top: 12px !important;
-        padding-bottom: 12px !important;
-    }
-}
-</style>
-<!-- Footer Section -->
-<footer class="footer inner-footer footer-info">
-    <div class="footer-top py-5">
-        <div class="container">
-            <div class="row">
-
-                <!-- Logo + About -->
-                <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
-                    <div class="footer-widget">
-                        <a href="<?= $_base ?>" class="d-inline-block mb-3">
-                            <img src="<?= $_base ?>assets/img/team/rk-hospital-best-hospital-in-nagpur.png"
-                                alt="RK Hospital" style="height:80px; width:auto; max-width:200px; object-fit:contain;">
-                        </a>
-
-                        <p class="text-dark mb-4">
-                            R.K. Hospital, Nagpur — providing compassionate, quality healthcare for over 5+ years.
-                            Your health is our priority.
-                        </p>
-
-                        <ul class="d-flex gap-3 list-unstyled">
-                            <li><a href="https://www.facebook.com/share/1Aze23diqp/" class="social-icon" target="_blank"><i class="fa-brands fa-facebook"></i></a></li>
-                           
-                            <li><a href="https://www.instagram.com/dr.agrawalsnirajindustries?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="><i class="fa-brands fa-instagram"></i></a></li>
-                   
-                        </ul>
-                    </div>
+<!--===== FOOTER AREA STARTS =======-->
+<footer class="footer1-section-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-6">
+                <div class="footer-logo">
+                    <img src="assets/img/logo/logo2.png" alt="Rebuilders Construction Logo">
+                    <div class="space24"></div>
+                    <p>At Rebuilders Construction Company, we are committed to delivering exceptional quality and unparalleled customer service.</p>
+                    <div class="space32"></div>
+                    <ul>
+                        <li><a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a></li>
+                        <li><a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a></li>
+                        <li><a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a></li>
+                        <li><a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a></li>
+                    </ul>
                 </div>
-
-                <!-- Quick Links -->
-                <div class="col-xl-2 col-lg-2 col-md-3 col-sm-6 mb-4">
-                    <div class="footer-widget footer-menu">
-                        <h6 class="footer-title">Quick Links</h6>
-                        <ul class="list-unstyled">
-                            <li><a href="<?= $_base ?>">Home</a></li>
-                            <li><a href="<?= $_base ?>about-us">About Us</a></li>
-                            <li><a href="<?= $_base ?>doctors/Abhishek">Our Doctors</a></li>
-                            <li><a href="<?= $_base ?>services">Services</a></li>
-
-                        </ul>
-                    </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-6">
+                <div class="footer-content">
+                    <h3>Our Products</h3>
+                    <div class="space8"></div>
+                    <ul>
+                        <li><a href="service2.php">Product One</a></li>
+                        <li><a href="service3.php">Product Two</a></li>
+                        <li><a href="service4.php">Product Three</a></li>
+                    </ul>
                 </div>
-
-                <!-- Resources -->
-                <div class="col-xl-2 col-lg-2 col-md-3 col-sm-6 mb-4">
-                    <div class="footer-widget footer-menu">
-                        <h6 class="footer-title">Resources</h6>
-                        <ul class="list-unstyled">
-                            <li><a href="<?= $_base ?>blogs">Blog</a></li>
-                            <li><a href="<?= $_base ?>services">Our Specialties</a></li>
-                            <li><a href="<?= $_base ?>contact-us">Book Appointment</a></li>
-                        </ul>
-                    </div>
+            </div>
+            <div class="col-lg-2 col-md-6 col-6">
+                <div class="footer-content2">
+                    <h3>About Link</h3>
+                    <div class="space8"></div>
+                    <ul>
+                        <li><a href="about-us.php">About Us</a></li>
+                        <li><a href="blog.php">Blog</a></li>
+                        <li><a href="service1.php">Products</a></li>
+                        <li><a href="contact-us.php">Contact Us</a></li>
+                    </ul>
                 </div>
-
-                <!-- Help Center -->
-                <div class="col-xl-2 col-lg-2 col-md-3 col-sm-6 mb-4">
-                    <div class="footer-widget footer-menu">
-                        <h6 class="footer-title">Help Center</h6>
-                        <ul class="list-unstyled">
-                            <li><a href="<?= $_base ?>privacy-policy">Privacy Policy</a></li>
-                            <li><a href="<?= $_base ?>cancellation-policy">Cancellation Policy</a></li>
-                            <li><a href="<?= $_base ?>terms-conditions">Terms & Conditions</a></li>
-                            <li><a href="<?= $_base ?>contact-us">Contact Us</a></li>
-                        </ul>
-                    </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="footer-form">
+                    <h3>Subscribe Our Newsletter</h3>
+                    <div class="space32"></div>
+                    <form action="#" method="post">
+                        <input type="email" placeholder="Enter Your Email" required>
+                        <button type="submit" class="header-btn1">Subscribe <i class="fa-solid fa-arrow-right"></i></button>
+                    </form>
                 </div>
-
-                <!-- Contact + Newsletter -->
-                <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
-                    <div class="footer-widget">
-                        <h6 class="footer-title">Contact Us</h6>
-
-                        <ul class="list-unstyled mb-3">
-                            <li class="mb-2">
-                                <i class="fa fa-map-marker-alt me-2 text-primary"></i>
-                               <a style="color:#0F172A;">27 Chandrashekhar, Azad Square, Central Ave, Ladpura, Itwari, Nagpur, Maharashtra 440002</a>
-                            </li>
-                            <li class="mb-2">
-                                <i class="fa fa-phone me-2 text-primary"></i>
-                                <a href="tel:+919766057372">+91 97660 57372</a>
-                            </li>
-                            <li class="mb-3">
-                                <i class="fa fa-envelope me-2 text-primary"></i>
-                                <a href="mailto: info@dragrawalsnirajindustries.in"> info@dragrawalsnirajindustries.in</a>
-                            </li>
-                        </ul>
-
-                    </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="copyright-area">
+                    <p style="text-align:center;">&copy; Copyright 2024 Rebuilders. All rights reserved</p>
+                    <ul>
+                        <li><a href="#">Terms & Condition <span> | </span> Privacy Policy</a></li>
+                    </ul>
                 </div>
-
             </div>
         </div>
     </div>
-<!-- Footer Bottom -->
-<div class="footer-bottom py-3 border-top">
-    <div class="container">
-        <div class="d-flex flex-wrap justify-content-between align-items-center">
-
-            <ul class="list-unstyled d-flex gap-3 mb-0 invisible">
-                <li><a href="#">About</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-
-            <p style="text-align: center; margin-bottom: 0;">
-                Copyright &copy; <?= date('Y') ?> R.K. Hospital Nagpur. All Rights Reserved | Designed And Developed By 
-                <a href="https://techinbox.in/" target="_blank" style="color:#0F172A;">Techinbox.in</a>
-            </p>
-
-            <ul class="list-unstyled d-flex gap-3 mb-0 d-none d-md-flex">
-                <li><a href="<?= $_base ?>about-us">About</a></li>
-                <li><a href="<?= $_base ?>contact-us">Contact</a></li>
-            </ul>
-
-        </div>
-    </div>
-</div>
 </footer>
-<!-- /Footer Section -->
+<!--===== FOOTER AREA ENDS =======-->

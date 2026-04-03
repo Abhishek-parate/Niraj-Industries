@@ -1,958 +1,657 @@
 <?php
-/**
- * About Us Page — Dr. Agrawal's R.K. Hospital Nagpur
- * SEO-optimized | Red + Primary theme | Premium hospital design
- */
+
 $base_url = "http://localhost/nirajindustries/";
 include 'include/config.php';
-$page_title       = "About Dr. Agrawal's R.K. Hospital Nagpur | Best Orthopedic & Gynecology Hospital";
-$meta_description = "Learn about Dr. Agrawal's R.K. Hospital Nagpur — a leading orthopedic & gynecology hospital with 25+ years of excellence in robotic knee replacement, hip replacement, spine surgery, and women's healthcare.";
-$meta_keywords    = "RK Hospital Nagpur, about RK Hospital, Dr Rahul Agrawal orthopedic, Dr Priyanka Jain gynecologist, best hospital Nagpur, orthopedic hospital Nagpur, gynecology hospital Nagpur, robotic knee replacement Nagpur";
+
+$page_title       = "About Us - Rebuilders Construction Company | Trusted Construction Partner";
+$meta_description = "Learn about Rebuilders Construction Company — trusted construction partner with 20+ years of experience. Expert team, proven quality, and commitment to excellence in every project we build.";
+$meta_keywords    = "about rebuilders construction, construction company history, trusted construction partner, construction team, construction values, best construction company, rebuilders construction nagpur";
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Primary SEO -->
+    <title><?php echo htmlspecialchars($page_title); ?></title>
     <meta name="description" content="<?php echo htmlspecialchars($meta_description); ?>">
     <meta name="keywords" content="<?php echo htmlspecialchars($meta_keywords); ?>">
-    <meta name="author" content="Dr. Agrawal's R.K. Hospital Nagpur">
-    <meta name="robots" content="index, follow">
+    <meta name="author" content="Rebuilders Construction Company">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="googlebot" content="index, follow">
 
+    <!-- Canonical -->
+    <link rel="canonical" href="<?php echo $base_url; ?>about-us">
+
+    <!-- Open Graph -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="<?php echo $base_url; ?>about-us.php">
+    <meta property="og:url" content="<?php echo $base_url; ?>about-us">
     <meta property="og:title" content="<?php echo htmlspecialchars($page_title); ?>">
     <meta property="og:description" content="<?php echo htmlspecialchars($meta_description); ?>">
-    <meta property="og:image" content="<?php echo $base_url; ?>assets/img/home/about-doctor1.webp">
-    <meta property="og:site_name" content="Dr. Agrawal's R.K. Hospital Nagpur">
+    <meta property="og:image" content="<?php echo $base_url; ?>assets/img/all-images/about/about-img1.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Rebuilders Construction Company — Trusted Construction Partner">
+    <meta property="og:locale" content="en_IN">
+    <meta property="og:site_name" content="Rebuilders Construction Company">
 
+    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="<?php echo htmlspecialchars($page_title); ?>">
     <meta name="twitter:description" content="<?php echo htmlspecialchars($meta_description); ?>">
-    <meta name="twitter:image" content="<?php echo $base_url; ?>assets/img/home/about-doctor1.webp">
+    <meta name="twitter:image" content="<?php echo $base_url; ?>assets/img/all-images/about/about-img1.png">
+    <meta name="twitter:image:alt" content="Rebuilders Construction Company">
 
-    <link rel="canonical" href="<?php echo $base_url; ?>about-us">
+    <!--===== FAV ICON =======-->
+    <link rel="shortcut icon" href="<?php echo $base_url; ?>assets/img/logo/fav-logo4.png" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="<?php echo $base_url; ?>assets/img/logo/fav-logo4.png">
 
-    <title><?php echo htmlspecialchars($page_title); ?></title>
+    <!--===== CSS LINKS =======-->
+    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/css/plugins/bootstrap.min.css">
+    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/css/plugins/fontawesome.css">
+    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/css/plugins/swiper.bundle.css">
+    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/css/plugins/aos.css">
+    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/css/plugins/magnific-popup.css">
+    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/css/plugins/mobile.css">
+    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/css/plugins/owlcarousel.min.css">
+    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/css/plugins/sidebar.css">
+    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/css/plugins/slick-slider.css">
+    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/css/plugins/nice-select.css">
+    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/css/main.css">
 
-    <link rel="shortcut icon" href="<?php echo $base_url; ?>assets/img/RK-Logo.png" type="image/x-icon">
-    <link rel="apple-touch-icon" sizes="180x180" href="<?php echo $base_url; ?>assets/img/RK-Logo.png">
-
-    <script src="<?php echo $base_url; ?>assets/js/theme-script.js"></script>
-
-    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/css/animate.css">
-    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/plugins/fontawesome/css/fontawesome.min.css">
-    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/plugins/fontawesome/css/all.min.css">
-    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/css/iconsax.css">
-    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/css/feather.css">
-    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/plugins/wow/css/animate.css">
-    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/plugins/fancybox/jquery.fancybox.min.css">
-    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/css/style.css">
-
-    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/css/about-us.css">
-
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Hospital",
-        "name": "Dr. Agrawal's R.K. Hospital",
-        "url": "<?php echo $base_url; ?>",
-        "logo": "<?php echo $base_url; ?>assets/img/logo.svg",
-        "image": "<?php echo $base_url; ?>assets/img/home/about-doctor1.webp",
-        "description": "<?php echo htmlspecialchars($meta_description); ?>",
-        "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "27, Chandrashekhar Azad Square, Central Avenue Road, Beside Hotel Al Zam Zam, Gandhibagh",
-            "addressLocality": "Nagpur",
-            "addressRegion": "Maharashtra",
-            "postalCode": "440002",
-            "addressCountry": "IN"
-        },
-        "telephone": ["+919766057372"],
-        "openingHours": ["Mo-Sa 11:00-16:00", "Mo-Sa 19:00-21:00"],
-        "medicalSpecialty": ["Orthopedic Surgery", "Gynecology", "Obstetrics", "Trauma Surgery"],
-        "aggregateRating": {
-            "@type": "AggregateRating",
-            "ratingValue": "5",
-            "reviewCount": "496"
-        }
-    }
-    </script>
-
-    <style>
-/* ════════════════════════════════════════════════
-   OUR STORY SECTION
-════════════════════════════════════════════════ */
-.rk-our-story-section {
-    padding: 96px 0 100px;
-    background: #fff;
-    position: relative;
-    overflow: hidden;
-}
-
-.rk-our-story-section::before {
-    content: '';
-    position: absolute;
-    top: -100px;
-    right: -100px;
-    width: 420px;
-    height: 420px;
-    background: radial-gradient(circle, rgba(220,53,69,0.05) 0%, transparent 70%);
-    pointer-events: none;
-}
-
-.rk-our-story-section::after {
-    content: '';
-    position: absolute;
-    bottom: -80px;
-    left: -80px;
-    width: 320px;
-    height: 320px;
-    background: radial-gradient(circle, rgba(13,110,253,0.04) 0%, transparent 70%);
-    pointer-events: none;
-}
-
-/* ══ TOP: Centered Intro ════════════════════════ */
-.rk-story-top-center {
-    text-align: center;
-    max-width: 740px;
-    margin: 0 auto 64px;
-}
-
-.rk-story-main-heading {
-    font-size: clamp(1.85rem, 3.2vw, 2.6rem);
-    font-weight: 900;
-    color: #1a1a2e;
-    line-height: 1.22;
-    margin: 10px 0 18px;
-}
-
-.rk-story-main-heading .accent {
-    color: #dc3545;
-}
-
-.rk-story-intro-text {
-    font-size: 1rem;
-    color: #5a5a78;
-    line-height: 1.82;
-    margin-bottom: 36px;
-}
-
-/* Stat Strip */
-.rk-story-stat-strip {
-    display: inline-flex;
-    align-items: center;
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-    border-radius: 18px;
-    padding: 18px 36px;
-    gap: 0;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.stat-strip-item {
-    text-align: center;
-    padding: 6px 28px;
-}
-
-.stat-strip-num {
-    font-size: 1.65rem;
-    font-weight: 900;
-    color: #fff;
-    letter-spacing: -0.5px;
-    line-height: 1;
-}
-
-.stat-strip-lbl {
-    font-size: 0.67rem;
-    color: rgba(255,255,255,0.52);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    font-weight: 700;
-    margin-top: 5px;
-}
-
-.stat-strip-sep {
-    width: 1px;
-    height: 38px;
-    background: rgba(255,255,255,0.12);
-    flex-shrink: 0;
-}
-
-/* ══ BOTTOM: Body Row ═══════════════════════════ */
-.rk-story-body-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
-    align-items: center;
-}
-
-@media (max-width: 991px) {
-    .rk-story-body-row {
-        grid-template-columns: 1fr;
-        gap: 48px;
-    }
-}
-
-/* ══ LEFT: Image Column ════════════════════════ */
-.rk-story-img-col { /* wrapper */ }
-
-.rk-story-visual {
-    position: relative;
-    padding-bottom: 90px;
-    padding-right: 56px;
-}
-
-/* Main Image */
-.story-img-main {
-    position: relative;
-    border-radius: 24px;
-    overflow: hidden;
-    box-shadow: 0 20px 64px rgba(0,0,0,0.13);
-    z-index: 2;
-}
-
-.story-img-main img {
-    width: 100%;
-    height: 460px;
-    object-fit: cover;
-    object-position: top center;
-    display: block;
-    transition: transform 0.55s ease;
-}
-
-.story-img-main:hover img {
-    transform: scale(1.035);
-}
-
-/* Experience Badge */
-.story-exp-badge {
-    position: absolute;
-    top: 28px;
-    left: -20px;
-    background: linear-gradient(135deg, #dc3545, #b02a37);
-    color: #fff;
-    border-radius: 18px;
-    padding: 16px 18px;
-    box-shadow: 0 10px 30px rgba(220,53,69,0.38);
-    z-index: 5;
-    text-align: center;
-    min-width: 96px;
-}
-
-.story-exp-badge .exp-num {
-    font-size: 1.9rem;
-    font-weight: 900;
-    line-height: 1;
-    letter-spacing: -1px;
-}
-
-.story-exp-badge .exp-label {
-    font-size: 0.62rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    opacity: 0.88;
-    margin-top: 4px;
-    line-height: 1.3;
-}
-
-/* Floating Secondary Image */
-.story-img-float {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    width: 210px;
-    border-radius: 18px;
-    overflow: hidden;
-    border: 5px solid #fff;
-    box-shadow: 0 12px 36px rgba(0,0,0,0.16);
-    z-index: 3;
-}
-
-.story-img-float img {
-    width: 100%;
-    height: 170px;
-    object-fit: cover;
-    object-position: top center;
-    display: block;
-    transition: transform 0.45s ease;
-}
-
-.story-img-float:hover img {
-    transform: scale(1.04);
-}
-
-/* Floating Stat Card */
-.story-float-card {
-    position: absolute;
-    bottom: 30px;
-    left: 20px;
-    background: #fff;
-    border-radius: 14px;
-    padding: 13px 16px;
-    display: flex;
-    align-items: center;
-    gap: 11px;
-    box-shadow: 0 8px 28px rgba(0,0,0,0.11);
-    border: 1px solid #eef0f4;
-    z-index: 4;
-    min-width: 185px;
-}
-
-.sfc-icon {
-    width: 38px;
-    height: 38px;
-    background: rgba(220,53,69,0.09);
-    color: #dc3545;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1rem;
-    flex-shrink: 0;
-}
-
-.sfc-num {
-    font-size: 1.05rem;
-    font-weight: 900;
-    color: #1a1a2e;
-    line-height: 1;
-}
-
-.sfc-lbl {
-    font-size: 0.66rem;
-    color: #8c8fa5;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.4px;
-    margin-top: 3px;
-}
-
-/* ══ RIGHT: Content Column ══════════════════════ */
-.rk-story-content-col { /* wrapper */ }
-
-.story-body-lead {
-    font-size: 0.97rem;
-    font-weight: 500;
-    color: #3a3a5c;
-    line-height: 1.8;
-    border-left: 3px solid #dc3545;
-    padding-left: 16px;
-    margin-bottom: 16px;
-}
-
-.story-body-text {
-    font-size: 0.9rem;
-    color: #5a5a78;
-    line-height: 1.82;
-    margin-bottom: 28px;
-}
-
-/* Highlights Grid */
-.rk-story-highlights {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-    margin-bottom: 32px;
-}
-
-.story-hl-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 0.82rem;
-    font-weight: 600;
-    color: #3a3a5c;
-    padding: 9px 13px;
-    border-radius: 10px;
-    background: #f8f9fb;
-    border: 1px solid #eef0f4;
-    transition: background 0.2s, border-color 0.2s, transform 0.2s;
-    cursor: default;
-}
-
-.story-hl-item:hover {
-    background: #fff5f5;
-    border-color: #fecaca;
-    transform: translateX(4px);
-}
-
-.hl-icon {
-    width: 30px;
-    height: 30px;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.75rem;
-    flex-shrink: 0;
-}
-
-.hl-red    { background: rgba(220,53,69,0.10);  color: #dc3545; }
-.hl-blue   { background: rgba(13,110,253,0.10); color: #0d6efd; }
-.hl-green  { background: rgba(25,135,84,0.10);  color: #198754; }
-.hl-orange { background: rgba(253,126,20,0.10); color: #fd7e14; }
-.hl-pink   { background: rgba(214,51,132,0.10); color: #d63384; }
-.hl-purple { background: rgba(111,66,193,0.10); color: #6f42c1; }
-.hl-yellow { background: rgba(255,193,7,0.13);  color: #c49a00; }
-.hl-teal   { background: rgba(13,202,240,0.10); color: #0d8daa; }
-
-/* CTA Row */
-.story-cta-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 14px;
-    align-items: center;
-}
-
-/* ══ Responsive ═════════════════════════════════ */
-@media (max-width: 991px) {
-    .rk-our-story-section { padding: 72px 0 80px; }
-
-    .rk-story-visual {
-        padding-right: 44px;
-        padding-bottom: 72px;
-        max-width: 480px;
-        margin: 0 auto;
-    }
-}
-
-@media (max-width: 575px) {
-    .rk-our-story-section { padding: 56px 0 60px; }
-
-    .rk-story-top-center { margin-bottom: 44px; }
-
-    .rk-story-stat-strip {
-        padding: 14px 16px;
-        gap: 4px;
-        border-radius: 14px;
-    }
-    .stat-strip-item   { padding: 4px 14px; }
-    .stat-strip-num    { font-size: 1.25rem; }
-    .stat-strip-sep    { display: none; }
-
-    .story-img-main img  { height: 280px; }
-
-    .story-exp-badge {
-        top: 14px;
-        left: -10px;
-        min-width: 78px;
-        padding: 10px 12px;
-    }
-    .story-exp-badge .exp-num { font-size: 1.4rem; }
-
-    .story-img-float { width: 150px; }
-    .story-img-float img { height: 120px; }
-
-    .story-float-card  { min-width: 160px; left: 10px; }
-
-    .rk-story-highlights { grid-template-columns: 1fr; }
-
-    .story-cta-row { flex-direction: column; align-items: stretch; }
-    .story-cta-row .rk-btn-primary,
-    .story-cta-row .rk-btn-outline { text-align: center; justify-content: center; }
-}
-
-/* ════════════════════════════════════════════════
-   AWARDS & ACCREDITATIONS OVERRIDE (Top Icon Layout)
-════════════════════════════════════════════════ */
-.rk-award-card {
-    display: flex !important;
-    flex-direction: column !important; /* Forces top-to-bottom */
-    align-items: center !important;    /* Centers horizontally */
-    text-align: center;                /* Centers text */
-    background: #fff;
-    padding: 40px 24px;
-    border-radius: 20px;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.06);
-    border: 1px solid #eef0f4;
-    height: 100%;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.rk-award-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 15px 50px rgba(0,0,0,0.1);
-}
-
-.rk-award-card .aw-icon {
-    width: 72px;
-    height: 72px;
-    background: linear-gradient(135deg, #dc3545, #b02a37);
-    color: #fff;
-    font-size: 26px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 18px;
-    margin-bottom: 24px; /* Space between icon and text */
-    box-shadow: 0 10px 24px rgba(220,53,69,0.35);
-}
-
-.rk-award-card .aw-content h4 {
-    font-size: 1.15rem;
-    font-weight: 800;
-    color: #1a1a2e;
-    margin-bottom: 12px;
-    line-height: 1.4;
-}
-
-.rk-award-card .aw-content p {
-    font-size: 0.9rem;
-    color: #5a5a78;
-    line-height: 1.7;
-    margin-bottom: 0;
-}
-/* ─── Mobile Spacing Fix — about-us.php ─── */
-@media (max-width: 768px) {
-    .about-section {
-        padding-top: 35px !important;
-        padding-bottom: 35px !important;
-    }
-    .rk-our-story-section {
-        padding-top: 35px !important;
-        padding-bottom: 35px !important;
-    }
-    .rk-awards-section {
-        padding-top: 35px !important;
-        padding-bottom: 35px !important;
-    }
-}
-@media (max-width: 768px) {
-    .rk-story-body-row {
-        gap: 24px !important;
-    }
-}
-    </style>
+    <!--===== jQuery (must be first) =======-->
+    <script src="<?php echo $base_url; ?>assets/js/plugins/jquery-3-6-0.min.js"></script>
 </head>
+<body class="homepage4-body">
 
-<body>
-
-
-
-    <div class="main-wrapper">
-
-        <?php include 'include/header.php'; ?>
-
-        <section class="contact-hero-banner">
-            <img src="<?= $base_url ?>assets/img/home/image-crousel2.webp" alt="RK Hospital Nagpur About Us" class="banner-img">
-            <div class="banner-grid-pattern"></div>
-            <div class="banner-overlay"></div>
-
-            <div class="banner-stat-badge badge-left">
-                <div class="badge-icon"><i class="fa-solid fa-award"></i></div>
-                <div class="badge-text">
-                    <div class="num">5+</div>
-                    <div class="label">Years of Excellence</div>
-                </div>
-            </div>
-
-            <div class="banner-stat-badge badge-right">
-                <div class="badge-icon"><i class="fa-solid fa-star"></i></div>
-                <div class="badge-text">
-                    <div class="num">5.0 ★</div>
-                    <div class="label">496+ Reviews</div>
-                </div>
-            </div>
-
-            <div class="banner-content">
-                <div class="banner-eyebrow">
-                    <i class="fa-solid fa-hospital"></i>
-                    Dr. Agrawal's R.K. Hospital, Nagpur
-                </div>
-                <h1 class="banner-heading">
-                    About Our<br>
-                    <span>Hospital & Doctors</span>
-                </h1>
-                <p class="banner-sub">
-                    Over 25 years of compassionate care in Orthopedic Surgery, Robotic Knee Replacement, Gynecology &amp; Pregnancy Care — trusted by thousands of families in Nagpur.
-                </p>
-                <div class="banner-cta-group">
-                    <a href="tel:+919766057372" class="banner-btn-primary">
-                        <i class="fa-solid fa-phone"></i>
-                        Call Now: +91 97660 57372
-                    </a>
-                    <a href="<?= $base_url ?>contact-us" class="banner-btn-outline">
-                        <i class="fa-solid fa-calendar-check"></i>
-                        Book Appointment
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <div class="breadcrumb-strip">
-            <div class="container">
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="<?= $base_url ?>"><i class="fa-solid fa-house me-1"></i>Home</a></li>
-                        <li class="breadcrumb-item active">About Us</li>
-                    </ol>
-                </nav>
-            </div>
-        </div>
-
-        </section>
-        <section class="about-section">
-    <div class="container">
-        <div class="row align-items-center">
-            
-            <div class="col-lg-6 col-md-12">
-                <div class="about-img-info">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="about-inner-img">
-                                <div class="about-img">
-                                    <img src="assets/img/home/about-doctor1.webp" class="img-fluid" alt="Orthopedic Surgeon in Nagpur RK Hospital">
-                                </div>
-                                <div class="about-img">
-                                    <img src="assets/img/home/about-doctor3.webp" class="img-fluid" alt="Gynecology Treatment RK Hospital Nagpur">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="about-inner-img">
-                                <div class="about-box">
-                                    <h4>5+ Years of Medical Excellence in Nagpur</h4>
-                                </div>
-                                <div class="about-img">
-                                    <img src="assets/img/home/about-doctor2.webp" class="img-fluid" alt="Robotic Knee Replacement Surgery Nagpur">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-6 col-md-12">
-                <div class="section-inner-header about-inner-header">
-                    <h6>About Dr. Agrawal's R.K. Hospital</h6>
-                    <h2>
-                        Leading Orthopedic & Gynecology Hospital in 
-                        <span class="text-danger">Nagpur</span>
-                    </h2>
-                </div>
-
-                <div class="about-content">
-                    <div class="about-content-details" style="text-align: justify;">
-
-                        <p>
-                            Dr. Agrawal's R.K. Hospital is one of the most trusted and advanced healthcare centers in Nagpur, specializing in Orthopedics and Gynecology. Known for its excellence in robotic knee replacement, hip replacement, spine surgery, and trauma care, the hospital provides world-class treatment using modern technology and highly experienced specialists.
-                        </p>
-
-                        <p>
-                            Our gynecology and obstetrics department offers comprehensive pregnancy care, high-risk pregnancy management, and advanced laparoscopic surgeries. With a strong focus on patient safety, hygiene, and personalized care, we ensure the best outcomes for both mother and baby.
-                        </p>
-
-                        <p>
-                            With a 5-star patient rating and a reputation for successful surgeries, expert doctors, and supportive staff, R.K. Hospital stands as a leading choice for quality healthcare in Nagpur. We are available 24/7 for emergency services, ensuring timely and reliable medical care when you need it most.
-                        </p>
-
-                    </div>
-
-                    <div class="about-contact">
-                        <div class="about-contact-icon">
-                            <span><i class="isax isax-call-calling5"></i></span>
-                        </div>
-                        <div class="about-contact-text">
-                            <p>24/7 Emergency & Appointment</p>
-                            <h4>+91 97660 57372</h4>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-        </div>
+<!--===== PRELOADER STARTS =======-->
+<div class="preloader preloader4">
+    <div class="loading-container">
+        <div class="loading"></div>
+        <div id="loading-icon"><img src="<?php echo $base_url; ?>assets/img/logo/preloader3.png" alt="Rebuilders Construction"></div>
     </div>
-</section>
-<section class="rk-our-story-section" aria-labelledby="story-heading">
-    <div class="container">
+</div>
+<!--===== PRELOADER ENDS =======-->
 
-        <div class="rk-story-top-center wow fadeInUp" data-wow-duration="0.9s">
-            <div class="rk-section-eyebrow">Our Story</div>
-            <h2 class="rk-story-main-heading" id="story-heading">
-                Building a Legacy of <span class="accent">Healing &amp; Trust</span> in Nagpur
-            </h2>
-            <p class="rk-story-intro-text">
-                Dr. Agrawal's R.K. Hospital was founded with a single, unwavering commitment — to bring the
-                highest standard of medical care within reach of every patient in Nagpur and the Vidarbha region.
-                What began as a vision has grown into one of Nagpur's most trusted multi-specialty hospitals.
-            </p>
-
-            <div class="rk-story-stat-strip">
-                <div class="stat-strip-item">
-                    <div class="stat-strip-num">5+</div>
-                    <div class="stat-strip-lbl">Years of Excellence</div>
-                </div>
-                <div class="stat-strip-sep"></div>
-                <div class="stat-strip-item">
-                    <div class="stat-strip-num">25K+</div>
-                    <div class="stat-strip-lbl">Patients Treated</div>
-                </div>
-                <div class="stat-strip-sep"></div>
-                <div class="stat-strip-item">
-                    <div class="stat-strip-num">5.0★</div>
-                    <div class="stat-strip-lbl">Google Rating</div>
-                </div>
-                <div class="stat-strip-sep"></div>
-                <div class="stat-strip-item">
-                    <div class="stat-strip-num">496+</div>
-                    <div class="stat-strip-lbl">Verified Reviews</div>
-                </div>
-            </div>
-        </div>
-        <div class="rk-story-body-row">
-
-            <div class="rk-story-img-col wow fadeInLeft" data-wow-duration="1s">
-                <div class="rk-story-visual">
-
-                    <div class="story-img-main">
-                        <img
-                            src="assets/img/about/hospital.jpeg"
-                            alt="Dr. Rahul Agrawal — Best Orthopedic Surgeon Nagpur at R.K. Hospital"
-                            loading="lazy"
-                        >
-                    </div>
-
-                    </div>
-            </div>
-            <div class="rk-story-content-col wow fadeInRight" data-wow-duration="1s">
-
-                <p class="story-body-lead">
-                    Equipped with <strong>state-of-the-art robotic surgical technology</strong>, modular operation
-                    theatres, and a team of highly experienced specialists who have collectively performed
-                    thousands of successful surgeries across orthopedics and gynecology.
-                </p>
-                <p class="story-body-text">
-                    From complex robotic knee and hip replacement surgeries to high-risk pregnancy management,
-                    spine treatment, and advanced laparoscopic gynecology — we are a complete healthcare
-                    destination for patients across Nagpur, Wardha, Amravati, and beyond.
-                </p>
-
-                <div class="rk-story-highlights">
-
-                    <div class="story-hl-item">
-                        <div class="hl-icon hl-red"><i class="fa-solid fa-robot"></i></div>
-                        <span>Robotic Joint Replacement</span>
-                    </div>
-                    <div class="story-hl-item">
-                        <div class="hl-icon hl-blue"><i class="fa-solid fa-kit-medical"></i></div>
-                        <span>Modular Operation Theatres</span>
-                    </div>
-                    <div class="story-hl-item">
-                        <div class="hl-icon hl-green"><i class="fa-solid fa-shield-halved"></i></div>
-                        <span>Cashless Insurance Facility</span>
-                    </div>
-                    <div class="story-hl-item">
-                        <div class="hl-icon hl-orange"><i class="fa-solid fa-truck-medical"></i></div>
-                        <span>24/7 Emergency &amp; Trauma Care</span>
-                    </div>
-                    <div class="story-hl-item">
-                        <div class="hl-icon hl-pink"><i class="fa-solid fa-baby"></i></div>
-                        <span>High-Risk Pregnancy Care</span>
-                    </div>
-                    <div class="story-hl-item">
-                        <div class="hl-icon hl-purple"><i class="fa-solid fa-stethoscope"></i></div>
-                        <span>Advanced Laparoscopic Surgery</span>
-                    </div>
-                    <div class="story-hl-item">
-                        <div class="hl-icon hl-yellow"><i class="fa-solid fa-star"></i></div>
-                        <span>5★ Rated Patient Care</span>
-                    </div>
-                    <div class="story-hl-item">
-                        <div class="hl-icon hl-teal"><i class="fa-solid fa-user-doctor"></i></div>
-                        <span>Experienced Specialist Doctors</span>
-                    </div>
-
-                </div>
-                <div class="story-cta-row">
-                    <a href="contact-us" class="rk-btn-primary">
-                        <i class="fa-solid fa-calendar-check"></i>
-                        Book Appointment
-                    </a>
-                    <a href="tel:+919766057372" class="rk-btn-outline">
-                        <i class="fa-solid fa-phone"></i>
-                        Call: +91 97660 57372
-                    </a>
-                </div>
-
-            </div>
-            </div>
-        </div>
-</section>
-<section class="rk-awards-section" aria-labelledby="awards-heading">
-            <div class="container">
-                <div class="rk-section-header center">
-                    <div class="rk-section-eyebrow">Recognition &amp; Trust</div>
-                    <h2 class="rk-heading" id="awards-heading">
-                        Awards &amp; <span class="accent">Accreditations</span>
-                    </h2>
-                    <p class="lead">
-                        Our commitment to excellence has earned us recognition from patients and the medical community alike — consistently rated among the best hospitals in Nagpur.
-                    </p>
-                </div>
-
-                <div class="row g-4">
-
-                    <div class="col-lg-3 col-md-6 d-flex">
-                        <div class="rk-award-card w-100 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.1s">
-                            <div class="aw-icon" aria-hidden="true"><i class="fa-solid fa-star"></i></div>
-                            <div class="aw-content">
-                                <h4>5-Star Google Rating</h4>
-                                <p>496+ verified patient reviews with consistent 5-star ratings on Google for orthopedic and gynecology care.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6 d-flex">
-                        <div class="rk-award-card w-100 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.2s">
-                            <div class="aw-icon" aria-hidden="true"><i class="fa-solid fa-certificate"></i></div>
-                            <div class="aw-content">
-                                <h4>Fellowship in Joint Replacement</h4>
-                                <p>Dr. Rahul Agrawal holds FIJR fellowship — specialized advanced training in joint replacement surgery.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6 d-flex">
-                        <div class="rk-award-card w-100 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.3s">
-                            <div class="aw-icon" aria-hidden="true"><i class="fa-solid fa-shield-halved"></i></div>
-                            <div class="aw-content">
-                                <h4>Cashless Insurance Empanelled</h4>
-                                <p>Empanelled with major TPA and insurance companies for seamless, cashless treatment across all services.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6 d-flex">
-                        <div class="rk-award-card w-100 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.4s">
-                            <div class="aw-icon" aria-hidden="true"><i class="fa-solid fa-trophy"></i></div>
-                            <div class="aw-content">
-                                <h4>Trusted by 25,000+ Patients</h4>
-                                <p>Over 25 years of consistent care, thousands of successful surgeries, and a loyal patient base across Vidarbha.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-        <div class="mouse-cursor cursor-outer"></div>
-        <div class="mouse-cursor cursor-inner"></div>
-
-        <?php include 'include/footer.php'; ?>
-
-    </div>
-    <div class="offcanvas offcanvas-offset offcanvas-end support_popup" tabindex="-1" id="support_item">
-        <div class="offcanvas-header">
-            <a href="/">
-                <img src="<?php echo $base_url; ?>assets/img/logo.svg" alt="RK Hospital Nagpur Logo" class="img-fluid logo">
-            </a>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close">
-                <i class="isax isax-close-circle"></i>
-            </button>
-        </div>
-        <div class="offcanvas-body">
-            <div class="about-popup-item">
-                <h3 class="title">About R.K. Hospital</h3>
-                <p>Nagpur's leading orthopedic &amp; gynecology hospital — delivering world-class surgical care since 1999.</p>
-            </div>
-            <div class="about-popup-item">
-                <h3 class="title">Our Location</h3>
-                <div class="loction-item">
-                    <h4 class="title">Nagpur, Maharashtra</h4>
-                    <p class="location">27, Chandrashekhar Azad Square, Central Avenue Road, Beside Hotel Al Zam Zam, Gandhibagh, Nagpur — 440002</p>
-                </div>
-            </div>
-            <div class="about-popup-item">
-                <h3 class="title">Contact Information</h3>
-                <div class="support-item mb-3">
-                    <div class="avatar avatar-lg bg-primary rounded-circle">
-                        <i class="isax isax-call-calling"></i>
-                    </div>
-                    <div>
-                        <p class="title">Emergency &amp; Appointments</p>
-                        <h5 class="link"><a href="tel:+919766057372">+91 97660 57372</a></h5>
-                    </div>
-                </div>
-                <div class="support-item">
-                    <div class="avatar avatar-lg bg-primary rounded-circle">
-                        <i class="isax isax-headphone5"></i>
-                    </div>
-                   
-                </div>
-            </div>
-            <div class="about-popup-item border-0">
-                <h3 class="title">Follow Us</h3>
-                <ul class="d-flex align-items-center gap-2 social-iyem">
-                    <li><a href="#" class="social-icon" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a></li>
-                    <li><a href="#" class="social-icon" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a></li>
-                    <li><a href="#" class="social-icon" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a></li>
-                </ul>
-            </div>
-        </div>
-        <img src="<?php echo $base_url; ?>assets/img/bg/offcanvas-bg.png" alt="" class="element-01" aria-hidden="true">
-    </div>
-
-    <div class="progress-wrap active-progress">
-        <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102" aria-hidden="true">
-            <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"
-                style="transition:stroke-dashoffset 10ms linear;stroke-dasharray:307.919px,307.919px;stroke-dashoffset:228.265px;">
-            </path>
+<!--===== PROGRESS STARTS =======-->
+<div class="paginacontainer">
+    <div class="progress-wrap">
+        <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+            <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
         </svg>
     </div>
+</div>
+<!--===== PROGRESS ENDS =======-->
 
-    <script src="<?php echo $base_url; ?>assets/js/jquery-3.7.1.min.js"></script>
-    <script src="<?php echo $base_url; ?>assets/js/bootstrap.bundle.min.js"></script>
-    <script src="<?php echo $base_url; ?>assets/js/feather.min.js"></script>
-    <script src="<?php echo $base_url; ?>assets/js/backToTop.js"></script>
-    <script src="<?php echo $base_url; ?>assets/plugins/fancybox/jquery.fancybox.min.js"></script>
-    <script src="<?php echo $base_url; ?>assets/js/counter.js"></script>
-    <script src="<?php echo $base_url; ?>assets/plugins/wow/js/wow.min.js"></script>
-    <script src="<?php echo $base_url; ?>assets/js/script.js"></script>
-    <script>
-        // Initialize WOW.js animations
-        new WOW().init();
-    </script>
-     <script>
-        document.addEventListener("DOMContentLoaded", function () {
+<?php include 'include/header.php'; ?>
+<!--===== MOBILE HEADER ENDS =======-->
 
-    const progressWrap = document.querySelector(".progress-wrap");
-    const progressPath = document.querySelector(".progress-wrap path");
+<!--===== HERO / INNER BANNER AREA STARTS =======-->
+<div class="inner-hero-area" style="background-image: url(<?php echo $base_url; ?>assets/img/all-images/hero/hero-img14.png);">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="header-area">
+                    <h2>About Us</h2>
+                    <div class="space32"></div>
+                    <a href="<?php echo $base_url; ?>index.php">Home</a>
+                    <i class="fa-solid fa-angle-right"></i>
+                    <a href="<?php echo $base_url; ?>about-us.php"><span>About Us</span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--===== HERO / INNER BANNER AREA ENDS =======-->
 
-    const pathLength = progressPath.getTotalLength();
+<!--===== ABOUT AREA STARTS =======-->
+<section class="about1-section-area sp1" aria-labelledby="about-rebuilders">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5">
+                <div class="about-header heading2">
+                    <h5 data-aos="fade-left" data-aos-duration="800">
+                        <img src="<?php echo $base_url; ?>assets/img/icons/sub-logo4.svg" alt="">About Us
+                    </h5>
+                    <div class="space16"></div>
+                    <h2 class="text-anime-style-3" id="about-rebuilders">Trusted Rebuilders Construction Partner</h2>
+                    <div class="space70 d-lg-block d-none"></div>
+                    <div class="space30 d-lg-none d-block"></div>
+                    <div class="images-area text-center">
+                        <div class="img1 reveal image-anime">
+                            <img src="<?php echo $base_url; ?>assets/img/all-images/about/about-img1.png" alt="Rebuilders Construction Engineer — Expert Team">
+                        </div>
+                        <div class="text">
+                            <p>Engineer</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="sucess-text">
+                    <div class="images-area2">
+                        <div class="img2 reveal image-anime">
+                            <img src="<?php echo $base_url; ?>assets/img/all-images/about/about-img2.png" alt="Rebuilders Active Construction Site — Quality Workmanship">
+                        </div>
+                        <div class="text">
+                            <p>Engineer</p>
+                        </div>
+                    </div>
+                    <div class="counter-text">
+                        <h2 class="text-anime-style-3"><span class="counter">100</span>%</h2>
+                        <div class="space16"></div>
+                        <p>Success Rate</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="peragraph heading2">
+                    <p data-aos="fade-left" data-aos-duration="1000">Welcome to Rebuilders Construction Company, where quality craftsmanship and unwavering integrity are the foundations of business. With over 12 years of experience in the construction industry, we have been dedicated to transforming vision.</p>
+                    <div class="space24"></div>
+                    <div class="btn-area1" data-aos="fade-left" data-aos-duration="1200">
+                        <a href="<?php echo $base_url; ?>contact-us.php" class="header-btn2-h4">Learn More <span><i class="fa-solid fa-arrow-right"></i></span></a>
+                    </div>
+                    <div class="space80 d-lg-block d-none"></div>
+                    <div class="space30 d-lg-none d-block"></div>
+                    <div class="images-area text-center">
+                        <div class="img1 reveal image-anime">
+                            <img src="<?php echo $base_url; ?>assets/img/all-images/about/about-img3.png" alt="Best Construction Workers — Skilled Professional Team">
+                        </div>
+                        <div class="text">
+                            <p>Best Workers</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--===== ABOUT AREA ENDS =======-->
 
-    progressPath.style.strokeDasharray = pathLength;
-    progressPath.style.strokeDashoffset = pathLength;
+<!--===== VALUE AREA STARTS =======-->
+<section class="value-section-area bg1 sp1" aria-labelledby="value-heading">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 m-auto">
+                <div class="value-header text-center heading2 space-margin60">
+                    <h5><img src="<?php echo $base_url; ?>assets/img/icons/sub-logo4.svg" alt="">Our Value</h5>
+                    <div class="space16"></div>
+                    <h2 id="value-heading">The Values That Shape Our Approach to Rebuilding Lives &amp; Strengthening Communities</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-7">
+                <div class="value-details-box">
+                    <div class="img1">
+                        <img src="<?php echo $base_url; ?>assets/img/all-images/others/value-img1.png" alt="Rebuilders Core Values — Integrity, Quality, Transparency">
+                    </div>
+                    <div class="content-area heading1">
+                        <h5>Our Value</h5>
+                        <div class="space16"></div>
+                        <h3>We approach each individual with compassion and understanding,</h3>
+                        <div class="space16"></div>
+                        <p>We are committed to honesty, transparency, and ethical practices in all our interactions and services. We believe in empowering individuals with the tools and resources.</p>
+                        <div class="space16"></div>
+                        <div class="btn-area1">
+                            <a href="<?php echo $base_url; ?>contact-us.php" class="header-btn2-h4">Learn More <span><i class="fa-solid fa-arrow-right"></i></span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div class="value-boxs-area">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-6">
+                            <div class="value-box">
+                                <div class="arrow">
+                                    <a href="<?php echo $base_url; ?>contact-us.php" aria-label="Learn about Our Mission"><i class="fa-solid fa-arrow-right"></i></a>
+                                </div>
+                                <h5>Our Mission</h5>
+                                <div class="space16"></div>
+                                <a href="<?php echo $base_url; ?>contact-us.php">Our mission is to provide comprehensive support and resources to those in need.</a>
+                                <div class="space16"></div>
+                                <p>Helping them overcome challenges and achieve their full potential. We are dedicated empowering individuals through education advocacy &amp; direct.</p>
+                            </div>
+                            <div class="space30"></div>
+                        </div>
+                        <div class="col-lg-12 col-md-6">
+                            <div class="value-box2">
+                                <div class="arrow">
+                                    <a href="<?php echo $base_url; ?>contact-us.php" aria-label="Learn about Our Vision"><i class="fa-solid fa-arrow-right"></i></a>
+                                </div>
+                                <h5>Our Vision</h5>
+                                <div class="space16"></div>
+                                <a href="<?php echo $base_url; ?>contact-us.php">Our vision is to provide comprehensive support and resources to those in need.</a>
+                                <div class="space16"></div>
+                                <p>Helping them overcome challenges and achieve their full potential. We are dedicated empowering individuals through education advocacy &amp; direct.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--===== VALUE AREA ENDS =======-->
 
-    // Scroll update
-    window.addEventListener("scroll", function () {
-        let scroll = window.scrollY;
-        let height = document.documentElement.scrollHeight - window.innerHeight;
+<!--===== HISTORY AREA STARTS =======-->
+<section class="history-section-area sp1" aria-labelledby="history-heading">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 m-auto">
+                <div class="history-header heading2 text-center space-margin60">
+                    <h5><img src="<?php echo $base_url; ?>assets/img/icons/sub-logo4.svg" alt="">Rebuilders History</h5>
+                    <div class="space16"></div>
+                    <h2 id="history-heading">A Journey of Innovation: The Rebuilders Story Year by Year</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="history-details-boxarea">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6">
+                            <div class="history-boxes">
+                                <span>2019</span>
+                                <div class="space16"></div>
+                                <a href="#">Founding Year</a>
+                                <div class="space16"></div>
+                                <p>Briefly explain the inspiration behind starting the company, its initial goals, and any challenges faced.</p>
+                                <div class="space16"></div>
+                                <a href="#" class="readmore">Read More <i class="fa-solid fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <div class="history-boxes">
+                                <span>2020</span>
+                                <div class="space16"></div>
+                                <a href="#">Expansion and Growth</a>
+                                <div class="space16"></div>
+                                <p>Discuss how the company began to grow, any new markets it entered, or significant hires made.</p>
+                                <div class="space16"></div>
+                                <a href="#" class="readmore">Read More <i class="fa-solid fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <div class="history-boxes">
+                                <span>2021</span>
+                                <div class="space16"></div>
+                                <a href="#">Significant Milestone</a>
+                                <div class="space16"></div>
+                                <p>Provide context on why this milestone was important and how it impacted the company's trajectory.</p>
+                                <div class="space16"></div>
+                                <a href="#" class="readmore">Read More <i class="fa-solid fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <div class="history-boxes">
+                                <span>2022</span>
+                                <div class="space16"></div>
+                                <a href="#">Innovation &amp; Development</a>
+                                <div class="space16"></div>
+                                <p>Highlight the innovation, how it set the company apart, and its impact on customers or the industry.</p>
+                                <div class="space16"></div>
+                                <a href="#" class="readmore">Read More <i class="fa-solid fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <div class="history-boxes" style="padding: 0; border: none;">
+                                <span>2023</span>
+                                <div class="space16"></div>
+                                <a href="#">Community &amp; Culture</a>
+                                <div class="space16"></div>
+                                <p>Discuss efforts to build company culture, community involvement, or social responsibility initiatives.</p>
+                                <div class="space16"></div>
+                                <a href="#" class="readmore">Read More <i class="fa-solid fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <div class="history-boxes" style="padding: 0; border: none;">
+                                <span>2024</span>
+                                <div class="space16"></div>
+                                <a href="#">Present and Future</a>
+                                <div class="space16"></div>
+                                <p>Conclude with the current state of the company and a forward-looking statement about where it's headed.</p>
+                                <div class="space16"></div>
+                                <a href="#" class="readmore">Read More <i class="fa-solid fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="img1 image-anime reveal">
+                    <img src="<?php echo $base_url; ?>assets/img/all-images/others/history-img1.png" alt="Rebuilders Construction Company History — 2019 to 2024">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--===== HISTORY AREA ENDS =======-->
 
-        let progress = pathLength - (scroll * pathLength / height);
-        progressPath.style.strokeDashoffset = progress;
+<!--===== CHOOSE AREA STARTS =======-->
+<section class="choose6-section-area sp1" aria-labelledby="choose-heading">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <div class="choose-images">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6">
+                            <div class="img1 reveal image-anime">
+                                <img src="<?php echo $base_url; ?>assets/img/all-images/choose/choose-img1.png" alt="Rebuilders Construction Project — Commercial Building">
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <div class="space30 d-md-none d-block"></div>
+                            <div class="img1 reveal image-anime">
+                                <img src="<?php echo $base_url; ?>assets/img/all-images/choose/choose-img2.png" alt="Rebuilders Construction Project — Residential Complex">
+                            </div>
+                        </div>
+                        <div class="space30"></div>
+                        <div class="img1 reveal image-anime">
+                            <img src="<?php echo $base_url; ?>assets/img/all-images/choose/choose-img3.png" alt="Rebuilders Construction Project — Infrastructure Work">
+                        </div>
+                    </div>
+                    <div class="others-area">
+                        <div class="widget-text">
+                            <div class="icons">
+                                <img src="<?php echo $base_url; ?>assets/img/icons/choose10.svg" alt="Concept Icon">
+                            </div>
+                            <p>Concept</p>
+                        </div>
+                        <div class="widget-text">
+                            <div class="icons">
+                                <img src="<?php echo $base_url; ?>assets/img/icons/choose11.svg" alt="Plan Icon">
+                            </div>
+                            <p>Plan</p>
+                        </div>
+                        <div class="widget-text" style="border: none;">
+                            <div class="icons">
+                                <img src="<?php echo $base_url; ?>assets/img/icons/choose12.svg" alt="Build Icon">
+                            </div>
+                            <p>Build</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="choose-header heading4">
+                    <h5 data-aos="fade-left" data-aos-duration="800">
+                        <img src="<?php echo $base_url; ?>assets/img/icons/sub-logo4.svg" alt=""> Why Choose Us
+                    </h5>
+                    <div class="space16"></div>
+                    <h2 class="text-anime-style-3" id="choose-heading">You Dream It We Build It</h2>
+                    <div class="space20"></div>
+                    <p data-aos="fade-left" data-aos-duration="900">At Rebuilders Construction Company, we pride ourselves on delivering the highest quality workmanship in every project we undertake. Our attention to detail and commitment to using only the finest materials ensure that your construction project stands the test of time.</p>
+                    <div class="space24"></div>
+                    <div class="list-area" data-aos="fade-left" data-aos-duration="1000">
+                        <div class="icons">
+                            <img src="<?php echo $base_url; ?>assets/img/icons/check4.svg" alt="Check">
+                        </div>
+                        <div class="text">
+                            <a href="#">Experienced and Skilled Team</a>
+                            <p>Our team is composed of highly skilled professionals, including architects, engineers, project managers.</p>
+                        </div>
+                    </div>
+                    <div class="space24"></div>
+                    <div class="list-area" data-aos="fade-left" data-aos-duration="1100">
+                        <div class="icons">
+                            <img src="<?php echo $base_url; ?>assets/img/icons/check4.svg" alt="Check">
+                        </div>
+                        <div class="text">
+                            <a href="#">Customer-Centric Approach</a>
+                            <p>Your satisfaction is our top priority. We take the time to understand your needs &amp; preferences, providing personalized service.</p>
+                        </div>
+                    </div>
+                    <div class="space24"></div>
+                    <div class="list-area" data-aos="fade-left" data-aos-duration="1200">
+                        <div class="icons">
+                            <img src="<?php echo $base_url; ?>assets/img/icons/check4.svg" alt="Check">
+                        </div>
+                        <div class="text">
+                            <a href="#">Timely and Efficient Delivery</a>
+                            <p>We understand the importance of completing projects on time and within every budget, keeping everything on track.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--===== CHOOSE AREA ENDS =======-->
 
-        // Show / hide button
-        if (scroll > 100) {
-            progressWrap.classList.add("active-progress");
-        } else {
-            progressWrap.classList.remove("active-progress");
-        }
-    });
+<!--===== COST CALCULATOR AREA STARTS =======-->
+<section class="cost4-calculator-area sp1" aria-labelledby="cost-heading">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 m-auto">
+                <div class="cost-header text-center space-margin60 heading1">
+                    <h5 data-aos="fade-left" data-aos-duration="800">
+                        <img src="<?php echo $base_url; ?>assets/img/icons/sub-logo4.svg" alt="">Estimated Price
+                    </h5>
+                    <div class="space16"></div>
+                    <h3 class="text-anime-style-3" id="cost-heading">Cost Calculator</h3>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-10 m-auto">
+                <div class="cost-section-boxarea">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <div class="row">
+                                <div class="col-lg-6" data-aos="fade-up" data-aos-duration="800">
+                                    <div class="slider-area">
+                                        <h3>Home Size:</h3>
+                                        <div class="space16"></div>
+                                        <div class="slider-container">
+                                            <div id="slider-value" class="slider-value">150</div>
+                                            <input type="range" min="0" max="300" value="150" id="slider" aria-label="Home Size Slider">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6" data-aos="fade-up" data-aos-duration="900">
+                                    <div class="slider-area">
+                                        <h3>Number Of Floors:</h3>
+                                        <div class="space16"></div>
+                                        <div class="slider-container">
+                                            <div id="slider-value2" class="slider-value2">5</div>
+                                            <input type="range" min="0" max="10" value="5" id="slider2" aria-label="Number of Floors Slider">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="space32"></div>
+                                    <div class="select-area">
+                                        <h3>Energetic Class:</h3>
+                                        <div class="space16"></div>
+                                        <select aria-label="Select Energetic Class">
+                                            <option value="1">Option 01</option>
+                                            <option value="2">Option 02</option>
+                                            <option value="3">Option 03</option>
+                                            <option value="4">Option 04</option>
+                                            <option value="5">Option 05</option>
+                                            <option value="6">Option 06</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="space32"></div>
+                                    <div class="select-area">
+                                        <h3>Bathroom:</h3>
+                                        <div class="space16"></div>
+                                        <select aria-label="Select Number of Bathrooms">
+                                            <option value="1">Option 01</option>
+                                            <option value="2">Option 02</option>
+                                            <option value="3">Option 03</option>
+                                            <option value="4">Option 04</option>
+                                            <option value="5">Option 05</option>
+                                            <option value="6">Option 06</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4" data-aos="fade-up" data-aos-duration="1200">
+                                    <div class="space32"></div>
+                                    <div class="select-area">
+                                        <h3>Terrace:</h3>
+                                        <div class="space16"></div>
+                                        <div class="btn-area1">
+                                            <a href="javascript:void(0);" class="yes active-size" aria-label="Terrace Yes">Yes</a>
+                                            <a href="javascript:void(0);" class="no" aria-label="Terrace No">No</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="space32"></div>
+                                <div class="col-lg-12" data-aos="fade-up" data-aos-duration="1000">
+                                    <div class="materials-area">
+                                        <h3>Building Materials:</h3>
+                                        <ul>
+                                            <li><a href="#">Cellular Concrete</a></li>
+                                            <li><a href="#">Ventilated Bricks</a></li>
+                                            <li><a href="#">Wood</a></li>
+                                            <li><a href="#" style="margin: 16px 0 0 0;">Prefabricated</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="space32"></div>
+                                    <h2 class="text-anime-style-3">$<span class="counter">32,500</span></h2>
+                                    <div class="space16"></div>
+                                    <p>Estimated Price</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="cost-head">
+                                <h4 data-aos="fade-left" data-aos-duration="800">Terms &amp; Condition</h4>
+                                <div class="space16"></div>
+                                <p data-aos="fade-left" data-aos-duration="900">By accessing or using our website, you agree to comply with and be bound by the following terms and conditions.</p>
+                                <div class="space16"></div>
+                                <ul data-aos="fade-left" data-aos-duration="1000">
+                                    <li><img src="<?php echo $base_url; ?>assets/img/icons/check4.svg" alt="Check"> Planning and Budget</li>
+                                    <li><img src="<?php echo $base_url; ?>assets/img/icons/check4.svg" alt="Check"> Start For New Construction</li>
+                                    <li><img src="<?php echo $base_url; ?>assets/img/icons/check4.svg" alt="Check"> Interior Quality Finishes</li>
+                                </ul>
+                                <div class="space32"></div>
+                                <div class="btn-area" data-aos="fade-left" data-aos-duration="1200">
+                                    <a href="<?php echo $base_url; ?>contact-us.php" class="header-btn2-h4">Request It Now <span><i class="fa-solid fa-arrow-right"></i></span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--===== COST CALCULATOR AREA ENDS =======-->
 
-    // Click scroll to top
-    progressWrap.addEventListener("click", function () {
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
-    });
+<!--===== PROJECT AREA STARTS =======-->
+<section class="project1-section-area sp1" aria-labelledby="project-heading">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 m-auto">
+                <div class="project-header text-center heading2 space-margin60">
+                    <h5 data-aos="fade-left" data-aos-duration="800">
+                        <img src="<?php echo $base_url; ?>assets/img/icons/sub-logo4.svg" alt=""> Our Project
+                    </h5>
+                    <div class="space16"></div>
+                    <h2 class="text-anime-style-3" id="project-heading">Our Latest Projects</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="swiper" role="region" aria-label="Latest Construction Projects Slider">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <div class="img1">
+                    <img src="<?php echo $base_url; ?>assets/img/all-images/project/project-img1.png" alt="Downtown Office Building Project by Rebuilders Construction">
+                </div>
+                <div class="content-area">
+                    <a href="<?php echo $base_url; ?>contact-us.php">Downtown Office Building</a>
+                    <div class="space16"></div>
+                    <p>This upscale condominium complex features multiple residential units with modern amenities.</p>
+                    <div class="space16"></div>
+                    <a href="<?php echo $base_url; ?>contact-us.php" class="readmore">Read More <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="img1">
+                    <img src="<?php echo $base_url; ?>assets/img/all-images/project/project-img2.png" alt="Residential Complex Project by Rebuilders Construction">
+                </div>
+                <div class="content-area">
+                    <a href="<?php echo $base_url; ?>contact-us.php">Residential Complex</a>
+                    <div class="space16"></div>
+                    <p>This upscale condominium complex features multiple residential units with modern amenities.</p>
+                    <div class="space16"></div>
+                    <a href="<?php echo $base_url; ?>contact-us.php" class="readmore">Read More <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="img1">
+                    <img src="<?php echo $base_url; ?>assets/img/all-images/project/project-img3.png" alt="Commercial Building Project by Rebuilders Construction">
+                </div>
+                <div class="content-area">
+                    <a href="<?php echo $base_url; ?>contact-us.php">Commercial Building</a>
+                    <div class="space16"></div>
+                    <p>This upscale condominium complex features multiple residential units with modern amenities.</p>
+                    <div class="space16"></div>
+                    <a href="<?php echo $base_url; ?>contact-us.php" class="readmore">Read More <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="swiper-pagination"></div>
+        <div class="swiper-scrollbar"></div>
+    </div>
+</section>
+<!--===== PROJECT AREA ENDS =======-->
 
-});
-</script>
+<div class="space50 d-lg-block d-none"></div>
+
+<!--===== CTA AREA STARTS =======-->
+<section class="cta1-section-area sp4" aria-labelledby="cta-heading">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <div class="cta-header">
+                    <h2 class="text-anime-style-3" id="cta-heading">Get in Touch with Rebuilders Construction Company</h2>
+                </div>
+            </div>
+            <div class="col-lg-2"></div>
+            <div class="col-lg-4">
+                <div class="btn-area" data-aos="zoom-in" data-aos-duration="1000">
+                    <a href="<?php echo $base_url; ?>contact-us.php" class="header-btn2-h4">Get Started <span><i class="fa-solid fa-arrow-right"></i></span></a>
+                    <a href="<?php echo $base_url; ?>contact-us.php" class="header-btn2-h4">Schedule Now <span><i class="fa-solid fa-arrow-right"></i></span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--===== CTA AREA ENDS =======-->
+
+<!--===== FOOTER AREA STARTS =======-->
+<?php include 'include/footer.php'; ?>
+<!--===== FOOTER AREA ENDS =======-->
+
+<!--===== JS SCRIPT LINKS =======-->
+<script src="<?php echo $base_url; ?>assets/js/plugins/bootstrap.min.js"></script>
+<script src="<?php echo $base_url; ?>assets/js/plugins/fontawesome.js"></script>
+<script src="<?php echo $base_url; ?>assets/js/plugins/aos.js"></script>
+<script src="<?php echo $base_url; ?>assets/js/plugins/swiper.bundle.js"></script>
+<script src="<?php echo $base_url; ?>assets/js/plugins/counter.js"></script>
+<script src="<?php echo $base_url; ?>assets/js/plugins/gsap.min.js"></script>
+<script src="<?php echo $base_url; ?>assets/js/plugins/ScrollTrigger.min.js"></script>
+<script src="<?php echo $base_url; ?>assets/js/plugins/Splitetext.js"></script>
+<script src="<?php echo $base_url; ?>assets/js/plugins/sidebar.js"></script>
+<script src="<?php echo $base_url; ?>assets/js/plugins/magnific-popup.js"></script>
+<script src="<?php echo $base_url; ?>assets/js/plugins/mobilemenu.js"></script>
+<script src="<?php echo $base_url; ?>assets/js/plugins/owlcarousel.min.js"></script>
+<script src="<?php echo $base_url; ?>assets/js/plugins/gsap-animation.js"></script>
+<script src="<?php echo $base_url; ?>assets/js/plugins/nice-select.js"></script>
+<script src="<?php echo $base_url; ?>assets/js/plugins/waypoints.js"></script>
+<script src="<?php echo $base_url; ?>assets/js/plugins/slick-slider.js"></script>
+<script src="<?php echo $base_url; ?>assets/js/plugins/circle-progress.js"></script>
+<script src="<?php echo $base_url; ?>assets/js/main.js"></script>
 
 </body>
 </html>
