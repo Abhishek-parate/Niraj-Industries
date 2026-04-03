@@ -5,7 +5,7 @@
 define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
 define('DB_PASS', '');
-define('DB_NAME', 'nirajindustries');
+define('DB_NAME', 'techinbo_nirajindustries');
 
 // ─── Site Configuration ───────────────────────────────────────────────────────
 define('SITE_URL',        'http://localhost/nirajindustries');
