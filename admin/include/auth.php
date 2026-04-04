@@ -18,12 +18,11 @@ if (empty($_SESSION['admin_id'])) {
 
 // ── Role → allowed modules map ────────────────────────────────────────────────
 $_ROLE_PERMS = [
-    'superadmin' => ['dashboard', 'users', 'products', 'settings', 'logs'],
-    'admin'      => ['dashboard', 'users', 'products'],
-    'editor'     => ['dashboard', 'products'],
+    'superadmin' => ['dashboard', 'users', 'products', 'blogs', 'settings', 'logs'],
+    'admin'      => ['dashboard', 'users', 'products', 'blogs'],
+    'editor'     => ['dashboard', 'products', 'blogs'],
     'viewer'     => ['dashboard'],
 ];
-
 /**
  * Check if logged-in admin has one of the given roles.
  * @param  string|string[] $roles

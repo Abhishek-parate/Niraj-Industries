@@ -45,12 +45,16 @@ $_hRoleBadge = [
 // ── Action icon map ───────────────────────────────────────────────────────────
 function _notifIcon(string $action): string {
     $map = [
-        'login'            => ['fa-sign-in-alt',  'bg-success'],
-        'logout'           => ['fa-sign-out-alt', 'bg-secondary'],
-        'user_created'     => ['fa-user-plus',    'bg-primary'],
-        'user_updated'     => ['fa-user-edit',    'bg-info'],
-        'product_created'  => ['fa-box',          'bg-warning'],
-        'product_updated'  => ['fa-box',          'bg-info'],
+        'login'           => ['fa-sign-in-alt',  'bg-success'],
+        'logout'          => ['fa-sign-out-alt', 'bg-secondary'],
+        'user_created'    => ['fa-user-plus',    'bg-primary'],
+        'user_updated'    => ['fa-user-edit',    'bg-info'],
+        'product_created' => ['fa-box',          'bg-warning'],
+        'product_updated' => ['fa-box',          'bg-info'],
+        // ── Blogs ──
+        'blog_created'    => ['fa-file-alt',     'bg-success'],
+        'blog_updated'    => ['fa-file-alt',      'bg-info'],
+        'blog_deleted'    => ['fa-trash',         'bg-danger'],
     ];
     $v = $map[$action] ?? ['fa-bell', 'bg-secondary'];
     return "<span class=\"avatar avatar-xs flex-shrink-0\">
@@ -226,6 +230,13 @@ if (canAccess('products')) {
     $_menuItems[] = ['section' => 'Products', 'icon' => 'fe fe-box', 'label' => 'All Products', 'url' => $_base . 'products/'];
     if (!hasRole('viewer'))
         $_menuItems[] = ['section' => 'Products', 'icon' => 'fe fe-box', 'label' => 'Add Product', 'url' => $_base . 'products/add'];
+}
+
+// ── Blogs ─────────────────────────────────────────────────────────────────────
+if (canAccess('blogs')) {
+    $_menuItems[] = ['section' => 'Blogs', 'icon' => 'fe fe-file-text', 'label' => 'All Blogs', 'url' => $_base . 'blogs/'];
+    if (!hasRole('viewer'))
+        $_menuItems[] = ['section' => 'Blogs', 'icon' => 'fe fe-file-text', 'label' => 'Add Blog', 'url' => $_base . 'blogs/add'];
 }
 
 // Profile (always)

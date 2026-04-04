@@ -3,8 +3,8 @@ require_once __DIR__ . '/../include/config.php';
 require_once __DIR__ . '/include/auth.php';
 
 // ── Products Stats ────────────────────────────────────────────────────────────
-$totalProducts  = (int)$conn->query("SELECT COUNT(*) AS c FROM products")->fetch_assoc()['c'];
-$activeProducts = (int)$conn->query("SELECT COUNT(*) AS c FROM products WHERE is_active=1")->fetch_assoc()['c'];
+$totalProducts    = (int)$conn->query("SELECT COUNT(*) AS c FROM products")->fetch_assoc()['c'];
+$activeProducts   = (int)$conn->query("SELECT COUNT(*) AS c FROM products WHERE is_active=1")->fetch_assoc()['c'];
 $inactiveProducts = $totalProducts - $activeProducts;
 
 // ── Products by Category ──────────────────────────────────────────────────────
@@ -20,6 +20,23 @@ $outOfStock = (int)$conn->query("SELECT COUNT(*) AS c FROM products WHERE in_sto
 $totalUsers  = (int)$conn->query("SELECT COUNT(*) AS c FROM admin_users")->fetch_assoc()['c'];
 $activeUsers = (int)$conn->query("SELECT COUNT(*) AS c FROM admin_users WHERE status=1")->fetch_assoc()['c'];
 
+// ── Blog Stats ────────────────────────────────────────────────────────────────
+$totalBlogs     = (int)$conn->query("SELECT COUNT(*) AS c FROM blogs")->fetch_assoc()['c'];
+$publishedBlogs = (int)$conn->query("SELECT COUNT(*) AS c FROM blogs WHERE is_published=1")->fetch_assoc()['c'];
+$draftBlogs     = $totalBlogs - $publishedBlogs;
+$totalViews     = (int)$conn->query("SELECT COALESCE(SUM(views),0) AS c FROM blogs")->fetch_assoc()['c'];
+
+// ── Blog Categories Stats ─────────────────────────────────────────────────────
+$blogCatStats = [];
+$res = $conn->query("
+    SELECT bc.name, COUNT(b.id) AS total
+    FROM blog_categories bc
+    LEFT JOIN blogs b ON b.categories = bc.id AND b.is_published = 1
+    GROUP BY bc.id
+    ORDER BY bc.sort_order ASC
+");
+if ($res) while ($r = $res->fetch_assoc()) $blogCatStats[] = $r;
+
 // ── Recent Products ───────────────────────────────────────────────────────────
 $recentProducts = [];
 $res = $conn->query("
@@ -29,6 +46,19 @@ $res = $conn->query("
     LIMIT 8
 ");
 if ($res) while ($r = $res->fetch_assoc()) $recentProducts[] = $r;
+
+// ── Recent Blogs ──────────────────────────────────────────────────────────────
+$recentBlogs = [];
+$res = $conn->query("
+    SELECT b.id, b.title, b.slug, b.image, b.views, b.comments, b.is_published,
+           b.published_at, b.reading_time, b.created_at,
+           bc.name AS cat_name
+    FROM blogs b
+    LEFT JOIN blog_categories bc ON bc.id = b.categories
+    ORDER BY b.created_at DESC
+    LIMIT 8
+");
+if ($res) while ($r = $res->fetch_assoc()) $recentBlogs[] = $r;
 
 // ── Recent Activity Log ───────────────────────────────────────────────────────
 $activityLog = [];
@@ -76,14 +106,24 @@ require_once __DIR__ . '/include/head.php';
                         <i class="fa fa-calendar-alt me-1"></i><?= date('l, d M Y') ?>
                     </p>
                 </div>
-                <?php if (canAccess('products') && !hasRole('viewer')): ?>
-                <a href="<?= SITE_URL ?>/admin/products/add" class="btn btn-warning fw-semibold px-4" style="border-radius:10px;background:#f5c518;border:none;color:#1a1a1a;">
-                    <i class="fa fa-plus me-2"></i>Add Product
-                </a>
-                <?php endif; ?>
+                <div class="d-flex gap-2">
+                    <?php if (canAccess('blogs') && !hasRole('viewer')): ?>
+                    <a href="<?= SITE_URL ?>/admin/blogs/add" class="btn fw-semibold px-3" style="border-radius:10px;background:#e0f2fe;border:none;color:#0369a1;font-size:.85rem;">
+                        <i class="fa fa-plus me-1"></i>Add Blog
+                    </a>
+                    <?php endif; ?>
+                    <?php if (canAccess('products') && !hasRole('viewer')): ?>
+                    <a href="<?= SITE_URL ?>/admin/products/add" class="btn btn-warning fw-semibold px-4" style="border-radius:10px;background:#f5c518;border:none;color:#1a1a1a;">
+                        <i class="fa fa-plus me-2"></i>Add Product
+                    </a>
+                    <?php endif; ?>
+                </div>
             </div>
 
-            <!-- ── Row 1: Stat Cards ── -->
+            <!-- ── Row 1: Product Stat Cards ── -->
+            <p class="text-muted fw-semibold mb-2" style="font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;">
+                <i class="fa fa-box me-1"></i> Products Overview
+            </p>
             <div class="row g-3 mb-4">
 
                 <!-- Total Products -->
@@ -108,7 +148,7 @@ require_once __DIR__ . '/include/head.php';
                     </div>
                 </div>
 
-                <!-- Active Products -->
+                <!-- In Stock -->
                 <div class="col-xl-3 col-sm-6">
                     <div class="card border-0 shadow-sm h-100" style="border-radius:14px;">
                         <div class="card-body p-4">
@@ -116,9 +156,7 @@ require_once __DIR__ . '/include/head.php';
                                 <div style="width:48px;height:48px;background:#f0fdf4;border-radius:12px;display:flex;align-items:center;justify-content:center;">
                                     <i class="fa fa-check-circle" style="color:#22c55e;font-size:1.2rem;"></i>
                                 </div>
-                                <span class="badge rounded-pill" style="background:#f0fdf4;color:#16a34a;font-size:.72rem;font-weight:600;">
-                                    in stock
-                                </span>
+                                <span class="badge rounded-pill" style="background:#f0fdf4;color:#16a34a;font-size:.72rem;font-weight:600;">in stock</span>
                             </div>
                             <h2 class="fw-bold mb-1" style="font-size:2rem;color:#1a1a1a;"><?= $inStock ?></h2>
                             <p class="text-muted mb-2" style="font-size:.82rem;">In Stock</p>
@@ -138,9 +176,7 @@ require_once __DIR__ . '/include/head.php';
                                 <div style="width:48px;height:48px;background:#eff6ff;border-radius:12px;display:flex;align-items:center;justify-content:center;">
                                     <i class="fa fa-tags" style="color:#3b82f6;font-size:1.2rem;"></i>
                                 </div>
-                                <span class="badge rounded-pill" style="background:#eff6ff;color:#1d4ed8;font-size:.72rem;font-weight:600;">
-                                    categories
-                                </span>
+                                <span class="badge rounded-pill" style="background:#eff6ff;color:#1d4ed8;font-size:.72rem;font-weight:600;">categories</span>
                             </div>
                             <h2 class="fw-bold mb-1" style="font-size:2rem;color:#1a1a1a;"><?= count($catStats) ?></h2>
                             <p class="text-muted mb-2" style="font-size:.82rem;">Product Categories</p>
@@ -160,9 +196,7 @@ require_once __DIR__ . '/include/head.php';
                                 <div style="width:48px;height:48px;background:#fdf4ff;border-radius:12px;display:flex;align-items:center;justify-content:center;">
                                     <i class="fa fa-users" style="color:#a855f7;font-size:1.2rem;"></i>
                                 </div>
-                                <span class="badge rounded-pill" style="background:#fdf4ff;color:#7e22ce;font-size:.72rem;font-weight:600;">
-                                    <?= $activeUsers ?> active
-                                </span>
+                                <span class="badge rounded-pill" style="background:#fdf4ff;color:#7e22ce;font-size:.72rem;font-weight:600;"><?= $activeUsers ?> active</span>
                             </div>
                             <h2 class="fw-bold mb-1" style="font-size:2rem;color:#1a1a1a;"><?= $totalUsers ?></h2>
                             <p class="text-muted mb-2" style="font-size:.82rem;">Admin Users</p>
@@ -176,7 +210,99 @@ require_once __DIR__ . '/include/head.php';
 
             </div>
 
-            <!-- ── Row 2: Recent Products + Category Breakdown ── -->
+            <!-- ── Row 2: Blog Stat Cards ── -->
+            <?php if (canAccess('blogs')): ?>
+            <p class="text-muted fw-semibold mb-2" style="font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;">
+                <i class="fa fa-file-alt me-1"></i> Blogs Overview
+            </p>
+            <div class="row g-3 mb-4">
+
+                <!-- Total Blogs -->
+                <div class="col-xl-3 col-sm-6">
+                    <div class="card border-0 shadow-sm h-100" style="border-radius:14px;">
+                        <div class="card-body p-4">
+                            <div class="d-flex align-items-center justify-content-between mb-3">
+                                <div style="width:48px;height:48px;background:#f0f9ff;border-radius:12px;display:flex;align-items:center;justify-content:center;">
+                                    <i class="fa fa-file-alt" style="color:#0ea5e9;font-size:1.2rem;"></i>
+                                </div>
+                                <span class="badge rounded-pill" style="background:#f0f9ff;color:#0369a1;font-size:.72rem;font-weight:600;">
+                                    <?= $publishedBlogs ?> published
+                                </span>
+                            </div>
+                            <h2 class="fw-bold mb-1" style="font-size:2rem;color:#1a1a1a;"><?= $totalBlogs ?></h2>
+                            <p class="text-muted mb-2" style="font-size:.82rem;">Total Blogs</p>
+                            <div class="progress" style="height:4px;border-radius:4px;background:#f0f0f0;">
+                                <div class="progress-bar" style="width:<?= $totalBlogs > 0 ? round(($publishedBlogs/$totalBlogs)*100) : 0 ?>%;background:#0ea5e9;border-radius:4px;"></div>
+                            </div>
+                            <p class="text-muted mt-1 mb-0" style="font-size:.72rem;"><?= $draftBlogs ?> drafts</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Published -->
+                <div class="col-xl-3 col-sm-6">
+                    <div class="card border-0 shadow-sm h-100" style="border-radius:14px;">
+                        <div class="card-body p-4">
+                            <div class="d-flex align-items-center justify-content-between mb-3">
+                                <div style="width:48px;height:48px;background:#f0fdf4;border-radius:12px;display:flex;align-items:center;justify-content:center;">
+                                    <i class="fa fa-check-circle" style="color:#22c55e;font-size:1.2rem;"></i>
+                                </div>
+                                <span class="badge rounded-pill" style="background:#f0fdf4;color:#16a34a;font-size:.72rem;font-weight:600;">live</span>
+                            </div>
+                            <h2 class="fw-bold mb-1" style="font-size:2rem;color:#1a1a1a;"><?= $publishedBlogs ?></h2>
+                            <p class="text-muted mb-2" style="font-size:.82rem;">Published</p>
+                            <div class="progress" style="height:4px;border-radius:4px;background:#f0f0f0;">
+                                <div class="progress-bar" style="width:<?= $totalBlogs > 0 ? round(($publishedBlogs/$totalBlogs)*100) : 0 ?>%;background:#22c55e;border-radius:4px;"></div>
+                            </div>
+                            <p class="text-muted mt-1 mb-0" style="font-size:.72rem;"><?= $draftBlogs ?> unpublished</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Total Views -->
+                <div class="col-xl-3 col-sm-6">
+                    <div class="card border-0 shadow-sm h-100" style="border-radius:14px;">
+                        <div class="card-body p-4">
+                            <div class="d-flex align-items-center justify-content-between mb-3">
+                                <div style="width:48px;height:48px;background:#fff7ed;border-radius:12px;display:flex;align-items:center;justify-content:center;">
+                                    <i class="fa fa-eye" style="color:#f97316;font-size:1.2rem;"></i>
+                                </div>
+                                <span class="badge rounded-pill" style="background:#fff7ed;color:#c2410c;font-size:.72rem;font-weight:600;">all time</span>
+                            </div>
+                            <h2 class="fw-bold mb-1" style="font-size:2rem;color:#1a1a1a;"><?= number_format($totalViews) ?></h2>
+                            <p class="text-muted mb-2" style="font-size:.82rem;">Total Views</p>
+                            <div class="progress" style="height:4px;border-radius:4px;background:#f0f0f0;">
+                                <div class="progress-bar" style="width:100%;background:#f97316;border-radius:4px;"></div>
+                            </div>
+                            <p class="text-muted mt-1 mb-0" style="font-size:.72rem;">across all blogs</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Blog Categories -->
+                <div class="col-xl-3 col-sm-6">
+                    <div class="card border-0 shadow-sm h-100" style="border-radius:14px;">
+                        <div class="card-body p-4">
+                            <div class="d-flex align-items-center justify-content-between mb-3">
+                                <div style="width:48px;height:48px;background:#fdf4ff;border-radius:12px;display:flex;align-items:center;justify-content:center;">
+                                    <i class="fa fa-layer-group" style="color:#a855f7;font-size:1.2rem;"></i>
+                                </div>
+                                <span class="badge rounded-pill" style="background:#fdf4ff;color:#7e22ce;font-size:.72rem;font-weight:600;">categories</span>
+                            </div>
+                            <h2 class="fw-bold mb-1" style="font-size:2rem;color:#1a1a1a;"><?= count($blogCatStats) ?></h2>
+                            <p class="text-muted mb-2" style="font-size:.82rem;">Blog Categories</p>
+                            <div class="progress" style="height:4px;border-radius:4px;background:#f0f0f0;">
+                                <div class="progress-bar" style="width:100%;background:#a855f7;border-radius:4px;"></div>
+                            </div>
+                            <p class="text-muted mt-1 mb-0" style="font-size:.72rem;">across all blogs</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <?php endif; ?>
+
+            <!-- ── Row 3: Recent Products + Category Breakdown ── -->
             <div class="row g-3 mb-4">
 
                 <!-- Recent Products Table -->
@@ -321,7 +447,142 @@ require_once __DIR__ . '/include/head.php';
 
             </div>
 
-            <!-- ── Row 3: Activity Log + Admin Users ── -->
+            <!-- ── Row 4: Recent Blogs + Blog Categories ── -->
+            <?php if (canAccess('blogs')): ?>
+            <div class="row g-3 mb-4">
+
+                <!-- Recent Blogs Table -->
+                <div class="col-xl-8">
+                    <div class="card border-0 shadow-sm h-100" style="border-radius:14px;">
+                        <div class="card-header bg-white border-0 px-4 pt-4 pb-3 d-flex align-items-center justify-content-between" style="border-radius:14px 14px 0 0;">
+                            <div>
+                                <h5 class="fw-bold mb-0 text-dark">Recent Blogs</h5>
+                                <p class="text-muted mb-0" style="font-size:.78rem;">Latest added articles</p>
+                            </div>
+                            <a href="<?= SITE_URL ?>/admin/blogs/" class="btn btn-sm fw-semibold" style="background:#f0f9ff;color:#0369a1;border:1px solid #bae6fd;border-radius:8px;font-size:.8rem;">
+                                View All <i class="fa fa-arrow-right ms-1"></i>
+                            </a>
+                        </div>
+                        <div class="card-body p-0">
+                            <div class="table-responsive">
+                                <table class="table table-hover mb-0" style="font-size:.85rem;">
+                                    <thead style="background:#f8f9fa;">
+                                        <tr>
+                                            <th class="px-4 py-3 text-muted fw-semibold" style="font-size:.72rem;letter-spacing:.05em;text-transform:uppercase;border:none;">Blog</th>
+                                            <th class="py-3 text-muted fw-semibold" style="font-size:.72rem;letter-spacing:.05em;text-transform:uppercase;border:none;">Category</th>
+                                            <th class="py-3 text-muted fw-semibold" style="font-size:.72rem;letter-spacing:.05em;text-transform:uppercase;border:none;">Views</th>
+                                            <th class="py-3 text-muted fw-semibold" style="font-size:.72rem;letter-spacing:.05em;text-transform:uppercase;border:none;">Read Time</th>
+                                            <th class="py-3 text-muted fw-semibold" style="font-size:.72rem;letter-spacing:.05em;text-transform:uppercase;border:none;">Published</th>
+                                            <th class="py-3 text-muted fw-semibold" style="font-size:.72rem;letter-spacing:.05em;text-transform:uppercase;border:none;">Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php if (empty($recentBlogs)): ?>
+                                        <tr>
+                                            <td colspan="6" class="text-center text-muted py-5">
+                                                <i class="fa fa-newspaper fa-2x mb-2 d-block" style="color:#e5e7eb;"></i>
+                                                No blogs found.
+                                            </td>
+                                        </tr>
+                                        <?php else: foreach ($recentBlogs as $b):
+                                            $bImgUrl = !empty($b['image'])
+                                                ? SITE_URL . '/' . ltrim($b['image'], '/')
+                                                : SITE_URL . '/assets/img/blog/blog-placeholder.jpg';
+                                        ?>
+                                        <tr>
+                                            <td class="px-4 py-3" style="border:none;">
+                                                <div class="d-flex align-items-center gap-3">
+                                                    <img src="<?= htmlspecialchars($bImgUrl) ?>"
+                                                         alt="<?= htmlspecialchars($b['title']) ?>"
+                                                         onerror="this.src='<?= SITE_URL ?>/assets/img/blog/blog-placeholder.jpg'"
+                                                         style="width:44px;height:44px;object-fit:cover;border-radius:10px;border:1px solid #f0f0f0;">
+                                                    <div>
+                                                        <div class="fw-semibold text-dark" style="font-size:.85rem;line-height:1.3;">
+                                                            <?= htmlspecialchars(mb_strimwidth($b['title'], 0, 36, '…')) ?>
+                                                        </div>
+                                                        <div class="text-muted" style="font-size:.72rem;">
+                                                            <?= date('d M Y', strtotime($b['created_at'])) ?>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="py-3" style="border:none;">
+                                                <span style="font-size:.75rem;background:#f0f9ff;color:#0369a1;padding:3px 10px;border-radius:20px;font-weight:500;">
+                                                    <?= htmlspecialchars($b['cat_name'] ?? 'General') ?>
+                                                </span>
+                                            </td>
+                                            <td class="py-3" style="border:none;">
+                                                <div class="d-flex align-items-center gap-1">
+                                                    <i class="fa fa-eye" style="color:#f97316;font-size:.75rem;"></i>
+                                                    <span style="font-size:.82rem;font-weight:600;"><?= number_format($b['views']) ?></span>
+                                                </div>
+                                            </td>
+                                            <td class="py-3 text-muted" style="border:none;font-size:.82rem;">
+                                                <i class="fa fa-clock me-1" style="color:#9ca3af;"></i><?= $b['reading_time'] ?> min
+                                            </td>
+                                            <td class="py-3 text-muted" style="border:none;font-size:.78rem;">
+                                                <?= $b['published_at'] ? date('d M Y', strtotime($b['published_at'])) : '—' ?>
+                                            </td>
+                                            <td class="py-3" style="border:none;">
+                                                <?php if ($b['is_published']): ?>
+                                                <span style="font-size:.72rem;background:#f0fdf4;color:#16a34a;padding:3px 8px;border-radius:20px;font-weight:600;">
+                                                    <i class="fa fa-circle me-1" style="font-size:.45rem;"></i>Published
+                                                </span>
+                                                <?php else: ?>
+                                                <span style="font-size:.72rem;background:#f3f4f6;color:#6b7280;padding:3px 8px;border-radius:20px;font-weight:600;">
+                                                    <i class="fa fa-circle me-1" style="font-size:.45rem;"></i>Draft
+                                                </span>
+                                                <?php endif; ?>
+                                            </td>
+                                        </tr>
+                                        <?php endforeach; endif; ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Blog Category Breakdown -->
+                <div class="col-xl-4">
+                    <div class="card border-0 shadow-sm h-100" style="border-radius:14px;">
+                        <div class="card-header bg-white border-0 px-4 pt-4 pb-3" style="border-radius:14px 14px 0 0;">
+                            <h5 class="fw-bold mb-0 text-dark">Blog Categories</h5>
+                            <p class="text-muted mb-0" style="font-size:.78rem;">Published blogs per category</p>
+                        </div>
+                        <div class="card-body px-4">
+                            <?php
+                            $blogCatColors = ['#0ea5e9','#a855f7','#22c55e','#f97316','#ef4444','#f5c518','#06b6d4'];
+                            $maxBlogCat = max(array_column($blogCatStats,'total') ?: [1]);
+                            foreach ($blogCatStats as $bi => $bcat):
+                                $bpct = $maxBlogCat > 0 ? round(($bcat['total']/$maxBlogCat)*100) : 0;
+                                $bcol = $blogCatColors[$bi % count($blogCatColors)];
+                            ?>
+                            <div class="mb-3">
+                                <div class="d-flex justify-content-between align-items-center mb-1">
+                                    <span style="font-size:.83rem;font-weight:600;color:#1a1a1a;">
+                                        <?= htmlspecialchars($bcat['name']) ?>
+                                    </span>
+                                    <span style="font-size:.75rem;color:#6b7280;font-weight:500;">
+                                        <?= $bcat['total'] ?> blog<?= $bcat['total'] != 1 ? 's' : '' ?>
+                                    </span>
+                                </div>
+                                <div style="height:6px;background:#f0f0f0;border-radius:4px;overflow:hidden;">
+                                    <div style="width:<?= $bpct ?>%;height:100%;background:<?= $bcol ?>;border-radius:4px;transition:width .6s;"></div>
+                                </div>
+                            </div>
+                            <?php endforeach;
+                            if (empty($blogCatStats)): ?>
+                            <p class="text-muted text-center py-4" style="font-size:.85rem;">No blog categories found.</p>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <?php endif; ?>
+
+            <!-- ── Row 5: Activity Log + Admin Users ── -->
             <div class="row g-3">
 
                 <!-- Recent Activity -->
@@ -342,6 +603,9 @@ require_once __DIR__ . '/include/head.php';
                                 'user_updated'    => ['#eff6ff','#1d4ed8'],
                                 'product_created' => ['#fffbeb','#d4a017'],
                                 'product_updated' => ['#fffbeb','#d4a017'],
+                                'blog_created'    => ['#f0f9ff','#0369a1'],
+                                'blog_updated'    => ['#f0f9ff','#0369a1'],
+                                'blog_deleted'    => ['#fef2f2','#dc2626'],
                             ];
                             foreach ($activityLog as $log):
                                 $ac = $actionColors[$log['action']] ?? ['#f3f4f6','#374151'];

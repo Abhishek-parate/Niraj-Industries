@@ -1,863 +1,602 @@
 <?php
-require_once 'include/config.php';
+$base_url = "http://localhost/nirajindustries/";
+include 'include/config.php';
 
-// ─── Get slug from URL ────────────────────────────────────────────────────────
-$slug = isset($_GET['slug']) ? clean($_GET['slug']) : '';
+// Get slug from URL
+$slug = isset($_GET['slug']) ? trim($conn->real_escape_string($_GET['slug'])) : '';
 
-if (empty($slug)) {
-    header("Location: " . SITE_URL . "/blogs.php");
+if (!$slug) {
+    header('Location: ' . $base_url . 'blogs.php');
     exit;
 }
 
-// ─── Fetch the blog post ──────────────────────────────────────────────────────
-$blog_sql = "SELECT 
-               b.id, b.title, b.slug, b.content, b.image,
-               b.views, b.comments, b.published_at, b.tags,
-               c.name  AS category_name, c.slug AS category_slug,
-               a.name  AS author_name,   a.photo AS author_photo,
-               a.profile_url AS author_url, a.designation AS author_designation,
-               a.bio   AS author_bio
-             FROM blogs b
-             LEFT JOIN categories c ON b.category_id = c.id
-             LEFT JOIN doctors    a ON b.doctor_id   = a.id
-             WHERE b.slug = ? AND b.is_published = 1
-             LIMIT 1";
+// Fetch blog post
+$result = $conn->query("
+    SELECT b.*, bc.name as cat_name, bc.slug as cat_slug
+    FROM blogs b
+    LEFT JOIN blog_categories bc ON bc.id = b.categories
+    WHERE b.slug = '$slug' AND b.is_published = 1
+    LIMIT 1
+");
+$blog = $result->fetch_assoc();
 
-$stmt = $conn->prepare($blog_sql);
-$stmt->bind_param("s", $slug);
-$stmt->execute();
-$blog_res = $stmt->get_result();
-
-if (!$blog_res || $blog_res->num_rows === 0) {
-    http_response_code(404);
-    ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <base href="<?= SITE_URL ?>/">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404 - Blog Not Found | Dr. Agrawal's R.K. Hospital</title>
-    <link rel="shortcut icon" href="<?= asset('assets/img/RK-Logo.png') ?>" type="image/x-icon">
-    <link rel="stylesheet" href="<?= asset('assets/css/bootstrap.min.css') ?>">
-    <link rel="stylesheet" href="<?= asset('assets/plugins/fontawesome/css/fontawesome.min.css') ?>">
-    <link rel="stylesheet" href="<?= asset('assets/plugins/fontawesome/css/all.min.css') ?>">
-    <link rel="stylesheet" href="<?= asset('assets/css/style.css') ?>">
-    <style>
-        .error-404-wrap {
-            min-height: 80vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 60px 20px;
-        }
-        .error-404-code {
-            font-size: 100px;
-            font-weight: 800;
-            color: #1a6ef5;
-            line-height: 1;
-            margin-bottom: 10px;
-        }
-        .error-404-title {
-            font-size: 26px;
-            font-weight: 700;
-            color: #1a1a2e;
-            margin-bottom: 12px;
-        }
-        .error-404-msg {
-            color: #6c757d;
-            font-size: 15px;
-            margin-bottom: 30px;
-            max-width: 440px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-    </style>
-</head>
-<body>
-    <?php $headerClass = 'header-default inner-header'; include 'include/header.php'; ?>
-    <div class="main-wrapper">
-        <div class="error-404-wrap">
-            <div>
-                <div class="error-404-code">404</div>
-                <div class="error-404-title">Blog Post Not Found</div>
-                <p class="error-404-msg">
-                    The blog post you're looking for doesn't exist or may have been removed.
-                    Please check the URL or browse our latest articles.
-                </p>
-                <a href="index.php" class="btn btn-primary me-2">
-                    <i class="fa fa-home me-1"></i> Go to Home
-                </a>
-                <a href="<?= SITE_URL ?>/blogs.php" class="btn btn-outline-primary">
-                    <i class="fa fa-newspaper-o me-1"></i> Browse Blogs
-                </a>
-            </div>
-        </div>
-    </div>
-    <script src="<?= asset('assets/js/jquery-3.7.1.min.js') ?>"></script>
-    <script src="<?= asset('assets/js/bootstrap.bundle.min.js') ?>"></script>
-    <script src="<?= asset('assets/js/script.js') ?>"></script>
-</body>
-</html>
-<?php
+if (!$blog) {
+    header('Location: ' . $base_url . 'blogs.php');
     exit;
 }
 
-$blog = $blog_res->fetch_assoc();
+// Increment views
+$conn->query("UPDATE blogs SET views = views + 1 WHERE id = " . intval($blog['id']));
 
-// ─── Increment view count ──────────────────────────────────────────────────────
-$view_stmt = $conn->prepare("UPDATE blogs SET views = views + 1 WHERE slug = ?");
-$view_stmt->bind_param("s", $slug);
-$view_stmt->execute();
+$page_title = htmlspecialchars($blog['title']) . ' | Niraj Industries';
+$meta_description = htmlspecialchars($blog['excerpt']);
 
-// ─── Build tags array ──────────────────────────────────────────────────────────
-$tags = !empty($blog['tags'])
-    ? array_map('trim', explode(',', $blog['tags']))
-    : [];
+// Prev / Next
+$prev_result = $conn->query("
+    SELECT id, title, slug FROM blogs
+    WHERE is_published = 1 AND published_at < '" . $conn->real_escape_string($blog['published_at']) . "'
+    ORDER BY published_at DESC LIMIT 1
+");
+$prev_post = $prev_result->fetch_assoc();
 
-// ─── Sidebar: Categories with count ───────────────────────────────────────────
-$categories_sql = "SELECT c.name, c.slug, COUNT(b.id) as blog_count 
-                   FROM categories c 
-                   LEFT JOIN blogs b ON b.category_id = c.id AND b.is_published = 1
-                   GROUP BY c.id ORDER BY blog_count DESC";
-$categories_res = $conn->query($categories_sql);
+$next_result = $conn->query("
+    SELECT id, title, slug FROM blogs
+    WHERE is_published = 1 AND published_at > '" . $conn->real_escape_string($blog['published_at']) . "'
+    ORDER BY published_at ASC LIMIT 1
+");
+$next_post = $next_result->fetch_assoc();
 
-// ─── Sidebar: Latest 4 posts ───────────────────────────────────────────────────
-$latest_sql = "SELECT b.title, b.slug, b.image, b.published_at 
-               FROM blogs b 
-               WHERE b.is_published = 1 AND b.slug != ?
-               ORDER BY b.published_at DESC LIMIT 4";
-$latest_stmt = $conn->prepare($latest_sql);
-$latest_stmt->bind_param("s", $slug);
-$latest_stmt->execute();
-$latest_res = $latest_stmt->get_result();
+// Related posts (same category)
+$related_result = $conn->query("
+    SELECT b.id, b.title, b.slug, b.image, b.excerpt, b.published_at, b.reading_time, bc.name as cat_name
+    FROM blogs b
+    LEFT JOIN blog_categories bc ON bc.id = b.categories
+    WHERE b.categories = " . intval($blog['categories']) . "
+      AND b.id != " . intval($blog['id']) . "
+      AND b.is_published = 1
+    ORDER BY b.published_at DESC
+    LIMIT 3
+");
+$related_posts = [];
+while ($row = $related_result->fetch_assoc()) {
+    $related_posts[] = $row;
+}
 
-// ─── SEO ───────────────────────────────────────────────────────────────────────
-$meta_desc = truncate(strip_tags($blog['content']), 160);
+// Latest posts sidebar
+$latest_result = $conn->query("
+    SELECT id, title, image, published_at, slug
+    FROM blogs
+    WHERE is_published = 1
+    ORDER BY published_at DESC
+    LIMIT 4
+");
+$latest_posts = [];
+while ($row = $latest_result->fetch_assoc()) {
+    $latest_posts[] = $row;
+}
+
+// All categories
+$categories_result = $conn->query("
+    SELECT bc.id, bc.name, bc.slug, COUNT(b.id) as post_count
+    FROM blog_categories bc
+    LEFT JOIN blogs b ON b.categories = bc.id AND b.is_published = 1
+    GROUP BY bc.id ORDER BY bc.sort_order ASC
+");
+$all_categories = [];
+while ($row = $categories_result->fetch_assoc()) {
+    $all_categories[] = $row;
+}
+
+// Tags
+$tags_arr = [];
+if (!empty($blog['tags'])) {
+    $tags_arr = array_filter(array_map('trim', explode(',', $blog['tags'])));
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <base href="<?= SITE_URL ?>/">
-    <title><?= htmlspecialchars($blog['title']) ?> - Dr. Agrawal's R.K. Hospital</title>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="<?= htmlspecialchars($meta_desc) ?>">
-    <?php if (!empty($tags)): ?>
-    <meta name="keywords" content="<?= htmlspecialchars(implode(', ', $tags)) ?>">
-    <?php endif; ?>
-    <meta name="author" content="Dr. Agrawal's R.K. Hospital">
+    <title><?php echo $page_title; ?></title>
+    <meta name="description" content="<?php echo $meta_description; ?>">
+    <link rel="shortcut icon" href="<?php echo $base_url; ?>assets/img/logo/fav-logo4.png" type="image/x-icon">
 
-    <meta property="og:title" content="<?= htmlspecialchars($blog['title']) ?>">
-    <meta property="og:description" content="<?= htmlspecialchars($meta_desc) ?>">
-    <meta property="og:image" content="<?= asset($blog['image']) ?>">
-    <meta property="og:url" content="<?= SITE_URL ?>/blog/<?= urlencode($blog['slug']) ?>">
-    <meta property="og:type" content="article">
+    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/css/plugins/bootstrap.min.css">
+    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/css/plugins/fontawesome.css">
+    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/css/plugins/aos.css">
+    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/css/plugins/mobile.css">
+    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/css/plugins/sidebar.css">
+    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/css/main.css">
 
-    <link rel="shortcut icon" href="<?= asset('assets/img/RK-Logo.png') ?>" type="image/x-icon">
-    <link rel="apple-touch-icon" sizes="180x180" href="<?= asset('assets/img/RK-Logo.png') ?>">
-    <script src="<?= asset('assets/js/theme-script.js') ?>"></script>
-    <link rel="stylesheet" href="<?= asset('assets/css/bootstrap.min.css') ?>">
-    <link rel="stylesheet" href="<?= asset('assets/plugins/fontawesome/css/fontawesome.min.css') ?>">
-    <link rel="stylesheet" href="<?= asset('assets/plugins/fontawesome/css/all.min.css') ?>">
-    <link rel="stylesheet" href="<?= asset('assets/css/iconsax.css') ?>">
-    <link rel="stylesheet" href="<?= asset('assets/css/feather.css') ?>">
-    <link rel="stylesheet" href="<?= asset('assets/plugins/fancybox/jquery.fancybox.min.css') ?>">
-    <link rel="stylesheet" href="<?= asset('assets/css/style.css') ?>">
+    <script src="<?php echo $base_url; ?>assets/js/plugins/jquery-3-6-0.min.js"></script>
 
     <style>
-        /* =============================================
-           RESPONSIVE BLOG DETAIL PAGE - CUSTOM STYLES
-           ============================================= */
+/* =========================================================
+   BLOG DETAILS PAGE — Niraj Industries Theme
+   ========================================================= */
 
-        /* ── Global overflow fix ──────────────────────── */
-        * {
-            box-sizing: border-box;
-        }
-        html, body {
-            overflow-x: hidden;
-            max-width: 100%;
-        }
+/* ---- Hero ---- */
+.blog-detail-hero {
+    background: linear-gradient(135deg, var(--blue) 0%, var(--blue-mid) 100%);
+    padding: 56px 0 48px;
+    position: relative;
+    overflow: hidden;
+}
+.blog-detail-hero::before {
+    content: '';
+    position: absolute;
+    right: -60px; top: -60px;
+    width: 360px; height: 360px;
+    background: rgba(245,166,35,.08);
+    border-radius: 50%;
+}
+.blog-detail-hero .breadcrumb-nav {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 13px; color: rgba(255,255,255,.7); margin-bottom: 16px;
+}
+.blog-detail-hero .breadcrumb-nav a { color: rgba(255,255,255,.7); text-decoration: none; }
+.blog-detail-hero .breadcrumb-nav a:hover { color: var(--yellow); }
+.blog-detail-hero .breadcrumb-nav i { font-size: 10px; }
+.blog-detail-hero .hero-cat {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--yellow); color: var(--blue);
+    font-size: 11px; font-weight: 700;
+    padding: 4px 14px; border-radius: 20px;
+    text-transform: uppercase; letter-spacing: .5px;
+    margin-bottom: 14px;
+}
+.blog-detail-hero h1 {
+    font-size: 38px; font-weight: 800; color: #fff;
+    line-height: 1.2; margin-bottom: 18px;
+    font-family: var(--font-head);
+    max-width: 740px;
+}
+.blog-meta-strip {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 20px;
+}
+.blog-meta-strip .meta-item {
+    display: flex; align-items: center; gap: 6px;
+    font-size: 13px; color: rgba(255,255,255,.75);
+}
+.blog-meta-strip .meta-item i { color: var(--yellow); }
 
-        /* ── Page Layout ─────────────────────────────── */
-        .content {
-            padding-top: 40px;
-            padding-bottom: 40px;
-            overflow-x: hidden;
-        }
-        .content .container {
-            padding-left: 15px;
-            padding-right: 15px;
-        }
-        .content .row {
-            margin-left: 0;
-            margin-right: 0;
-        }
-        .content .row > [class*="col-"] {
-            padding-left: 12px;
-            padding-right: 12px;
-        }
+/* ---- Main Layout ---- */
+.blog-detail-area { padding: 56px 0 72px; background: var(--bg-soft); }
 
-        /* ── Blog View wrapper ────────────────────────── */
-        .blog-view {
-            width: 100%;
-            overflow-x: hidden;
-        }
+/* ---- Featured Image ---- */
+.blog-featured-img {
+    width: 100%; border-radius: var(--radius-lg);
+    overflow: hidden; margin-bottom: 36px;
+    box-shadow: var(--shadow-md);
+    max-height: 460px;
+}
+.blog-featured-img img {
+    width: 100%; height: 460px; object-fit: cover;
+    display: block;
+}
 
-        /* ── Blog Title ───────────────────────────────── */
-        .blog-view h3 {
-            font-size: clamp(1.15rem, 4vw, 1.75rem);
-            font-weight: 700;
-            line-height: 1.35;
-            margin-bottom: 1rem;
-            color: #1a1a2e;
-            word-break: break-word;
-            overflow-wrap: break-word;
-            white-space: normal;
-        }
+/* ---- Content Box ---- */
+.blog-content-box {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border);
+    padding: 40px 44px;
+    box-shadow: var(--shadow-sm);
+    margin-bottom: 28px;
+}
+.blog-content-box .blog-body {
+    font-size: 15.5px;
+    color: var(--text-2);
+    line-height: 1.85;
+}
+.blog-body h2 {
+    font-size: 24px; font-weight: 800; color: var(--text);
+    margin: 32px 0 14px; font-family: var(--font-head);
+}
+.blog-body h3 {
+    font-size: 20px; font-weight: 700; color: var(--text);
+    margin: 26px 0 12px;
+}
+.blog-body p { margin-bottom: 18px; }
+.blog-body ul, .blog-body ol {
+    padding-left: 24px; margin-bottom: 18px;
+}
+.blog-body ul li, .blog-body ol li {
+    margin-bottom: 8px; color: var(--text-2);
+}
+.blog-body blockquote {
+    background: var(--yellow-light);
+    border-left: 4px solid var(--yellow);
+    padding: 18px 22px;
+    border-radius: 0 var(--radius) var(--radius) 0;
+    margin: 24px 0;
+    font-style: italic;
+    color: var(--text);
+}
+.blog-body img {
+    width: 100%; border-radius: var(--radius);
+    margin: 20px 0; box-shadow: var(--shadow-sm);
+}
+.blog-body strong { color: var(--text); font-weight: 700; }
+.blog-body a { color: var(--yellow-dark); text-decoration: underline; }
 
-        /* ── Blog Hero Image ──────────────────────────── */
-        .blog-image {
-            margin-bottom: 1rem;
-            border-radius: 10px;
-            overflow: hidden;
-        }
-        .blog-image img {
-            width: 100%;
-            height: auto;
-            display: block;
-            object-fit: cover;
-            border-radius: 10px;
-        }
+/* ---- Tags & Share ---- */
+.blog-tags-share {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border);
+    padding: 22px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 28px;
+    box-shadow: var(--shadow-sm);
+}
+.tags-row { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
+.tags-row .label { font-size: 13px; font-weight: 700; color: var(--text); margin-right: 4px; }
+.tag-chip {
+    background: var(--bg-soft); border: 1px solid var(--border);
+    color: var(--text-2); font-size: 12px;
+    padding: 5px 12px; border-radius: 20px;
+    text-decoration: none; transition: var(--transition);
+}
+.tag-chip:hover { background: var(--yellow); border-color: var(--yellow); color: var(--blue); }
+.share-row { display: flex; align-items: center; gap: 10px; }
+.share-row .label { font-size: 13px; font-weight: 700; color: var(--text); }
+.share-btn {
+    width: 34px; height: 34px;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 50%; font-size: 14px;
+    text-decoration: none; transition: var(--transition);
+}
+.share-btn.fb  { background: #1877f2; color: #fff; }
+.share-btn.tw  { background: #1da1f2; color: #fff; }
+.share-btn.li  { background: #0077b5; color: #fff; }
+.share-btn.wa  { background: #25d366; color: #fff; }
+.share-btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-sm); }
 
-        /* ── Blog Meta Info Row ───────────────────────── */
-        .blog-info {
-            padding: 12px 0;
-            border-top: 1px solid #f0f0f0;
-            border-bottom: 1px solid #f0f0f0;
-            margin-bottom: 1.25rem;
-            gap: 10px;
-        }
-        .blog-info .post-left ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            gap: 10px 16px;
-        }
-        .blog-info .post-left ul li {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            font-size: 13px;
-            color: #555;
-        }
-        .blog-views {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            flex-wrap: wrap;
-            margin-top: 4px;
-        }
+/* ---- Prev / Next Navigation ---- */
+.blog-prev-next {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 40px;
+}
+.prev-next-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 20px 22px;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    transition: var(--transition);
+    box-shadow: var(--shadow-sm);
+}
+.prev-next-card:hover {
+    border-color: var(--yellow);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+}
+.prev-next-card .nav-label {
+    font-size: 11px; font-weight: 700;
+    color: var(--yellow-dark); text-transform: uppercase;
+    letter-spacing: .5px; display: flex; align-items: center; gap: 6px;
+}
+.prev-next-card .nav-title {
+    font-size: 14px; font-weight: 600; color: var(--text);
+    line-height: 1.4; display: -webkit-box;
+    -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.prev-next-card.next-card { text-align: right; align-items: flex-end; }
 
-        /* Author row inside meta */
-        .post-author a {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            text-decoration: none;
-            color: #333;
-        }
-        .post-author img {
-            width: 28px;
-            height: 28px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid #e0e8ff;
-        }
+/* ---- Related Posts ---- */
+.related-section { margin-top: 8px; }
+.related-section .section-head {
+    font-size: 22px; font-weight: 800; color: var(--text);
+    margin-bottom: 24px; display: flex; align-items: center; gap: 10px;
+}
+.related-section .section-head::after {
+    content: ''; flex: 1; height: 2px; background: var(--border);
+}
+.related-card {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+    height: 100%;
+    display: flex; flex-direction: column;
+}
+.related-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: var(--yellow-border); }
+.related-card-img { height: 170px; overflow: hidden; position: relative; }
+.related-card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s; }
+.related-card:hover .related-card-img img { transform: scale(1.05); }
+.related-card-body { padding: 18px 18px 16px; flex: 1; }
+.related-card-cat {
+    font-size: 11px; font-weight: 700; color: var(--yellow-dark);
+    text-transform: uppercase; letter-spacing: .5px;
+    margin-bottom: 8px; display: block;
+}
+.related-card-body h5 {
+    font-size: 15px; font-weight: 700; color: var(--text);
+    margin-bottom: 8px; line-height: 1.4;
+}
+.related-card-body h5 a { color: inherit; text-decoration: none; }
+.related-card-body h5 a:hover { color: var(--yellow-dark); }
+.related-card-body p { font-size: 13px; color: var(--text-3); line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.related-card-footer { padding: 12px 18px; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+.related-card-footer span { font-size: 12px; color: var(--text-3); }
+.related-card-footer a { font-size: 12px; font-weight: 600; color: var(--blue); text-decoration: none; }
+.related-card-footer a:hover { color: var(--yellow-dark); }
 
-        /* ── Blog Content ─────────────────────────────── */
-        .blog-content {
-            font-size: 15px;
-            line-height: 1.8;
-            color: #333;
-            word-break: break-word;
-            overflow-wrap: break-word;
-        }
-        .blog-content img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-        }
-        .blog-content h1, .blog-content h2, .blog-content h3,
-        .blog-content h4, .blog-content h5 {
-            margin-top: 1.5rem;
-            margin-bottom: 0.75rem;
-            font-weight: 700;
-            color: #1a1a2e;
-            line-height: 1.35;
-        }
-        .blog-content p {
-            margin-bottom: 1rem;
-        }
-        .blog-content ul, .blog-content ol {
-            padding-left: 1.4rem;
-            margin-bottom: 1rem;
-        }
-        .blog-content a {
-            color: #1a6ef5;
-            word-break: break-all;
-        }
-        .blog-content table {
-            width: 100%;
-            overflow-x: auto;
-            display: block;
-        }
+/* ---- Sidebar (same as blogs.php) ---- */
+.blog-sidebar { }
+.sidebar-widget {
+    background: var(--white); border-radius: var(--radius-lg);
+    border: 1px solid var(--border); padding: 24px;
+    margin-bottom: 24px; box-shadow: var(--shadow-sm);
+}
+.sidebar-widget-title {
+    font-size: 16px; font-weight: 800; color: var(--text);
+    margin-bottom: 18px; padding-bottom: 12px;
+    border-bottom: 2px solid var(--yellow);
+    display: flex; align-items: center; gap: 8px;
+}
+.sidebar-widget-title i { color: var(--yellow); }
+.sidebar-search { display: flex; gap: 0; border: 1.5px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+.sidebar-search input { flex: 1; border: none; padding: 10px 14px; font-size: 14px; color: var(--text); outline: none; }
+.sidebar-search button { background: var(--yellow); border: none; padding: 0 16px; color: var(--blue); font-size: 15px; cursor: pointer; transition: var(--transition); }
+.sidebar-search button:hover { background: var(--yellow-dark); }
+.latest-post-item { display: flex; gap: 12px; margin-bottom: 16px; padding-bottom: 16px; border-bottom: 1px solid var(--border); text-decoration: none; }
+.latest-post-item:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+.latest-post-img { width: 68px; height: 56px; border-radius: var(--radius-sm); overflow: hidden; flex-shrink: 0; }
+.latest-post-img img { width: 100%; height: 100%; object-fit: cover; }
+.latest-post-info { flex: 1; }
+.latest-post-info span { font-size: 11px; color: var(--yellow-dark); display: block; margin-bottom: 4px; }
+.latest-post-info h6 { font-size: 13px; font-weight: 600; color: var(--text); line-height: 1.4; margin: 0; transition: color .2s; }
+.latest-post-item:hover h6 { color: var(--yellow-dark); }
+.cat-list-item { display: flex; align-items: center; justify-content: space-between; padding: 10px 0; border-bottom: 1px dashed var(--border); text-decoration: none; transition: var(--transition); }
+.cat-list-item:last-child { border-bottom: none; }
+.cat-list-item span:first-child { font-size: 14px; color: var(--text-2); display: flex; align-items: center; gap: 8px; transition: color .2s; }
+.cat-list-item span:first-child i { color: var(--yellow); font-size: 11px; }
+.cat-list-item .count { background: var(--yellow-light); color: var(--blue); font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 20px; }
+.cat-list-item:hover span:first-child { color: var(--yellow-dark); }
+.tags-cloud { display: flex; flex-wrap: wrap; gap: 8px; }
 
-        /* ── About Author Box ─────────────────────────── */
-        .about-author {
-            display: flex;
-            gap: 16px;
-            align-items: flex-start;
-            background: #f8faff;
-            border: 1px solid #e4edff;
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 1.5rem;
-        }
-        .about-author-img .author-img-wrap img {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid #e0e8ff;
-            flex-shrink: 0;
-        }
-        .author-details h5 {
-            font-size: 16px;
-            font-weight: 700;
-            margin-bottom: 2px;
-            color: #1a1a2e;
-        }
-        .author-details p {
-            font-size: 13.5px;
-            color: #555;
-        }
-
-        /* ── Tags ─────────────────────────────────────── */
-        .blog-tags .badge {
-            background: #eef3ff;
-            color: #1a6ef5;
-            border: 1px solid #c7d8ff;
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 13px;
-            font-weight: 500;
-            text-decoration: none;
-            transition: background 0.2s;
-        }
-        .blog-tags .badge:hover {
-            background: #1a6ef5;
-            color: #fff;
-        }
-
-        /* ── Sidebar Cards ────────────────────────────── */
-        .sidebar-right .card {
-            border-radius: 12px;
-            border: 1px solid #eaeaea;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.04);
-        }
-        .sidebar-right .card-body {
-            padding: 18px;
-        }
-        .sidebar-right .card h5 {
-            font-size: 16px;
-            font-weight: 700;
-            color: #1a1a2e;
-        }
-
-        /* Search widget */
-        .search-widget .input-group .form-control {
-            border-radius: 8px 0 0 8px;
-            border-right: none;
-            font-size: 14px;
-        }
-        .search-widget .input-group .btn {
-            border-radius: 0 8px 8px 0;
-        }
-
-        /* Categories widget */
-        .categories {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        .categories li {
-            border-bottom: 1px solid #f2f2f2;
-        }
-        .categories li:last-child {
-            border-bottom: none;
-        }
-        .categories li a {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 9px 4px;
-            font-size: 14px;
-            color: #444;
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-        .categories li a:hover {
-            color: #1a6ef5;
-        }
-        .categories li a span {
-            font-size: 12px;
-            color: #999;
-            background: #f5f5f5;
-            border-radius: 10px;
-            padding: 2px 8px;
-        }
-
-        /* Latest posts widget */
-        .latest-posts {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        .latest-posts li {
-            display: flex;
-            gap: 12px;
-            align-items: flex-start;
-            padding: 10px 0;
-            border-bottom: 1px solid #f2f2f2;
-        }
-        .latest-posts li:last-child {
-            border-bottom: none;
-            padding-bottom: 0;
-        }
-        .post-thumb {
-            flex-shrink: 0;
-        }
-        .post-thumb img {
-            width: 70px;
-            height: 60px;
-            object-fit: cover;
-            border-radius: 8px;
-        }
-        .post-info p {
-            font-size: 12px;
-            color: #999;
-            margin-bottom: 3px;
-        }
-        .post-info h4 {
-            font-size: 13px;
-            font-weight: 600;
-            margin: 0;
-            line-height: 1.4;
-        }
-        .post-info h4 a {
-            color: #1a1a2e;
-            text-decoration: none;
-        }
-        .post-info h4 a:hover {
-            color: #1a6ef5;
-        }
-
-        /* Tags widget */
-        .tags {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-        .tags .tag {
-            background: #eef3ff;
-            color: #1a6ef5;
-            border: 1px solid #c7d8ff;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 13px;
-            text-decoration: none;
-            transition: background 0.2s, color 0.2s;
-        }
-        .tags .tag:hover {
-            background: #1a6ef5;
-            color: #fff;
-        }
-
-        /* Consultation card */
-        .consultation-card {
-            background: linear-gradient(135deg, #1a6ef5, #0a4fc4) !important;
-            border: none !important;
-        }
-
-        /* =============================================
-           RESPONSIVE BREAKPOINTS
-           ============================================= */
-
-        /* Tablet (768px - 991px) */
-        @media (max-width: 991px) {
-            .sidebar-right {
-                margin-top: 30px;
-            }
-            .blog-view h3 {
-                font-size: 1.4rem;
-            }
-            .about-author {
-                flex-direction: row;
-                align-items: flex-start;
-            }
-            .about-author-img .author-img-wrap img {
-                width: 65px;
-                height: 65px;
-            }
-        }
-
-        /* Mobile (max 767px) */
-        @media (max-width: 767px) {
-            .content {
-                padding-top: 16px;
-                padding-bottom: 30px;
-            }
-            .content .container {
-                padding-left: 14px;
-                padding-right: 14px;
-            }
-            .content .row {
-                margin-left: 0;
-                margin-right: 0;
-            }
-            .content .row > [class*="col-"] {
-                padding-left: 0;
-                padding-right: 0;
-            }
-            .blog-view h3 {
-                font-size: 1.2rem;
-                margin-bottom: 0.75rem;
-                padding: 0;
-            }
-
-            /* Meta info stacks on mobile */
-            .blog-info {
-                flex-direction: column;
-                align-items: flex-start !important;
-                gap: 8px;
-                padding: 10px 0;
-            }
-            .blog-info .post-left ul {
-                gap: 8px 12px;
-            }
-            .blog-views {
-                margin-top: 0;
-                justify-content: flex-start !important;
-            }
-
-            /* Author box stacks */
-            .about-author {
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-                padding: 16px;
-            }
-            .about-author-img .author-img-wrap img {
-                width: 70px;
-                height: 70px;
-            }
-
-            /* Sidebar comes below on mobile */
-            .sidebar-right {
-                margin-top: 24px;
-            }
-
-            /* Latest post thumbs smaller */
-            .post-thumb img {
-                width: 60px;
-                height: 52px;
-            }
-
-            /* Blog content font adjust */
-            .blog-content {
-                font-size: 14.5px;
-            }
-
-            /* Blog content inner images */
-            .blog-content img {
-                max-width: 100% !important;
-                width: 100% !important;
-                height: auto !important;
-            }
-        }
-
-        /* Small phones (max 480px) */
-        @media (max-width: 480px) {
-            .content .container {
-                padding-left: 12px;
-                padding-right: 12px;
-            }
-            .blog-view h3 {
-                font-size: 1.1rem;
-            }
-            .blog-content {
-                font-size: 14px;
-            }
-            .about-author-img .author-img-wrap img {
-                width: 60px;
-                height: 60px;
-            }
-            .blog-info .post-left ul {
-                gap: 6px 10px;
-            }
-            .blog-tags .badge {
-                font-size: 12px;
-                padding: 5px 11px;
-            }
-        }
+@media (max-width: 768px) {
+    .blog-detail-hero h1 { font-size: 26px; }
+    .blog-content-box { padding: 24px 20px; }
+    .blog-prev-next { grid-template-columns: 1fr; }
+    .blog-tags-share { flex-direction: column; align-items: flex-start; }
+}
     </style>
 </head>
+<body class="homepage4-body">
 
-<body>
-    <div class="main-wrapper">
+<?php include 'include/header.php'; ?>
 
-        <?php $headerClass = 'header-default inner-header'; include 'include/header.php'; ?>
+<!-- ===== HERO / TOP ===== -->
+<section class="blog-detail-hero">
+    <div class="container">
+        <nav class="breadcrumb-nav">
+            <a href="<?php echo $base_url; ?>index.php">Home</a>
+            <i class="fa-solid fa-chevron-right"></i>
+            <a href="<?php echo $base_url; ?>blogs.php">Blogs</a>
+            <i class="fa-solid fa-chevron-right"></i>
+            <span><?php echo htmlspecialchars(mb_strimwidth($blog['title'], 0, 50, '...')); ?></span>
+        </nav>
+        <span class="hero-cat">
+            <i class="fa-solid fa-tag"></i>
+            <?php echo htmlspecialchars($blog['cat_name'] ?? 'General'); ?>
+        </span>
+        <h1><?php echo htmlspecialchars($blog['title']); ?></h1>
+        <div class="blog-meta-strip">
+            <div class="meta-item"><i class="fa-regular fa-calendar"></i> <?php echo date('d M Y', strtotime($blog['published_at'])); ?></div>
+            <div class="meta-item"><i class="fa-regular fa-clock"></i> <?php echo $blog['reading_time']; ?> min read</div>
+            <div class="meta-item"><i class="fa-regular fa-eye"></i> <?php echo number_format($blog['views']); ?> views</div>
+            <div class="meta-item"><i class="fa-regular fa-comment"></i> <?php echo $blog['comments']; ?> comments</div>
+        </div>
+    </div>
+</section>
 
-        <div class="content">
-            <div class="container">
-                <div class="row">
+<!-- ===== MAIN CONTENT ===== -->
+<section class="blog-detail-area">
+    <div class="container">
+        <div class="row g-4">
 
-                    <!-- ── Main Blog Content ─────────────────────────── -->
-                    <div class="col-lg-8 col-md-12">
-                        <div class="blog-view">
+            <!-- LEFT: Article -->
+            <div class="col-lg-8">
 
-                            <h3 class="mb-3"><?= htmlspecialchars($blog['title']) ?></h3>
+                <!-- Featured Image -->
+                <div class="blog-featured-img" data-aos="fade-up" data-aos-duration="700">
+                    <img src="<?php echo $base_url . htmlspecialchars($blog['image']); ?>"
+                         alt="<?php echo htmlspecialchars($blog['image_alt'] ?? $blog['title']); ?>"
+                         onerror="this.src='<?php echo $base_url; ?>assets/img/blog/blog-01.jpg'">
+                </div>
 
-                            <div class="blog blog-single-post">
+                <!-- Content -->
+                <div class="blog-content-box" data-aos="fade-up" data-aos-duration="700" data-aos-delay="100">
+                    <div class="blog-body">
+                        <?php echo $blog['content']; ?>
+                    </div>
+                </div>
 
-                                <!-- Blog Hero Image -->
-                                <div class="blog-image mb-3">
-                                    <img
-                                        alt="<?= htmlspecialchars($blog['title']) ?>"
-                                        src="<?= asset($blog['image']) ?>"
-                                        class="img-fluid w-100"
-                                    >
+                <!-- Tags & Share -->
+                <div class="blog-tags-share" data-aos="fade-up" data-aos-duration="700">
+                    <?php if (!empty($tags_arr)): ?>
+                    <div class="tags-row">
+                        <span class="label"><i class="fa-solid fa-tags"></i> Tags:</span>
+                        <?php foreach ($tags_arr as $tag): ?>
+                        <a href="<?php echo $base_url; ?>blogs.php?search=<?php echo urlencode($tag); ?>" class="tag-chip">
+                            <?php echo htmlspecialchars($tag); ?>
+                        </a>
+                        <?php endforeach; ?>
+                    </div>
+                    <?php endif; ?>
+                    <div class="share-row">
+                        <span class="label">Share:</span>
+                        <?php $share_url = urlencode($base_url . 'blog-details.php?slug=' . $blog['slug']); ?>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $share_url; ?>" target="_blank" class="share-btn fb"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="https://twitter.com/intent/tweet?url=<?php echo $share_url; ?>&text=<?php echo urlencode($blog['title']); ?>" target="_blank" class="share-btn tw"><i class="fa-brands fa-x-twitter"></i></a>
+                        <a href="https://www.linkedin.com/sharing/share-offsite/?url=<?php echo $share_url; ?>" target="_blank" class="share-btn li"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="https://wa.me/?text=<?php echo urlencode($blog['title'] . ' ' . $base_url . 'blog-details.php?slug=' . $blog['slug']); ?>" target="_blank" class="share-btn wa"><i class="fa-brands fa-whatsapp"></i></a>
+                    </div>
+                </div>
+
+                <!-- Prev / Next -->
+                <?php if ($prev_post || $next_post): ?>
+                <div class="blog-prev-next" data-aos="fade-up" data-aos-duration="700">
+                    <?php if ($prev_post): ?>
+                    <a href="<?php echo $base_url; ?>blog-details.php?slug=<?php echo urlencode($prev_post['slug']); ?>" class="prev-next-card">
+                        <span class="nav-label"><i class="fa-solid fa-arrow-left"></i> Previous Article</span>
+                        <span class="nav-title"><?php echo htmlspecialchars($prev_post['title']); ?></span>
+                    </a>
+                    <?php else: ?>
+                    <div></div>
+                    <?php endif; ?>
+                    <?php if ($next_post): ?>
+                    <a href="<?php echo $base_url; ?>blog-details.php?slug=<?php echo urlencode($next_post['slug']); ?>" class="prev-next-card next-card">
+                        <span class="nav-label">Next Article <i class="fa-solid fa-arrow-right"></i></span>
+                        <span class="nav-title"><?php echo htmlspecialchars($next_post['title']); ?></span>
+                    </a>
+                    <?php endif; ?>
+                </div>
+                <?php endif; ?>
+
+                <!-- Related Posts -->
+                <?php if (!empty($related_posts)): ?>
+                <div class="related-section" data-aos="fade-up" data-aos-duration="700">
+                    <div class="section-head">Related Articles</div>
+                    <div class="row g-3">
+                        <?php foreach ($related_posts as $rp): ?>
+                        <div class="col-md-4">
+                            <div class="related-card">
+                                <div class="related-card-img">
+                                    <img src="<?php echo $base_url . htmlspecialchars($rp['image']); ?>"
+                                         alt="<?php echo htmlspecialchars($rp['title']); ?>"
+                                         onerror="this.src='<?php echo $base_url; ?>assets/img/blog/blog-01.jpg'">
                                 </div>
-
-                                <!-- Blog Meta -->
-                                <div class="blog-info d-flex align-items-center justify-content-between flex-wrap">
-                                    <div class="post-left">
-                                        <ul>
-                                            <li>
-                                                <span class="badge badge-dark fs-14 fw-medium">
-                                                    <?= htmlspecialchars($blog['category_name']) ?>
-                                                </span>
-                                            </li>
-                                            <li>
-                                                <i class="isax isax-calendar"></i>
-                                                <?= formatDate($blog['published_at']) ?>
-                                            </li>
-                                            <li>
-                                                <div class="post-author">
-                                                    <a href="<?= htmlspecialchars($blog['author_url']) ?>">
-                                                        <img
-                                                            src="<?= asset($blog['author_photo']) ?>"
-                                                            alt="<?= htmlspecialchars($blog['author_name']) ?>"
-                                                        >
-                                                        <span><?= htmlspecialchars($blog['author_name']) ?></span>
-                                                    </a>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="blog-views">
-                                        <span class="badge badge-outline-dark me-1">
-                                            <i class="isax isax-message-text me-1"></i>
-                                            <?= (int)$blog['comments'] ?>
-                                        </span>
-                                        <span class="badge badge-outline-primary">
-                                            <i class="isax isax-eye me-1"></i>
-                                            <?= (int)$blog['views'] ?>
-                                        </span>
-                                    </div>
+                                <div class="related-card-body">
+                                    <span class="related-card-cat"><?php echo htmlspecialchars($rp['cat_name']); ?></span>
+                                    <h5><a href="<?php echo $base_url; ?>blog-details.php?slug=<?php echo urlencode($rp['slug']); ?>"><?php echo htmlspecialchars($rp['title']); ?></a></h5>
+                                    <p><?php echo htmlspecialchars($rp['excerpt']); ?></p>
                                 </div>
-
-                                <!-- Blog Body Content -->
-                                <div class="blog-content">
-                                    <?= $blog['content'] ?>
+                                <div class="related-card-footer">
+                                    <span><i class="fa-regular fa-clock"></i> <?php echo $rp['reading_time']; ?> min</span>
+                                    <a href="<?php echo $base_url; ?>blog-details.php?slug=<?php echo urlencode($rp['slug']); ?>">Read More <i class="fa-solid fa-arrow-right"></i></a>
                                 </div>
-
                             </div>
-
-                            <!-- About Author -->
-                            <h4 class="mb-3 mt-4">About the Author</h4>
-                            <div class="about-author">
-                                <div class="about-author-img">
-                                    <div class="author-img-wrap">
-                                        <a href="<?= htmlspecialchars($blog['author_url']) ?>">
-                                            <img
-                                                class="img-fluid"
-                                                alt="<?= htmlspecialchars($blog['author_name']) ?>"
-                                                src="<?= asset($blog['author_photo']) ?>"
-                                            >
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="author-details">
-                                    <h5 class="mb-1"><?= htmlspecialchars($blog['author_name']) ?></h5>
-                                    <p class="text-muted mb-2"><?= htmlspecialchars($blog['author_designation']) ?></p>
-                                    <p class="mb-0"><?= htmlspecialchars($blog['author_bio']) ?></p>
-                                </div>
-                            </div>
-
-                            <!-- Tags (below content) -->
-                            <?php if (!empty($tags)): ?>
-                            <h4 class="mb-3 mt-4">Tags</h4>
-                            <div class="d-flex align-items-center flex-wrap blog-tags gap-2 mb-4">
-                                <?php foreach ($tags as $tag): ?>
-                                <a href="<?= SITE_URL ?>/blogs/<?= urlencode($tag) ?>" class="badge">
-                                    <?= htmlspecialchars($tag) ?>
-                                </a>
-                                <?php endforeach; ?>
-                            </div>
-                            <?php endif; ?>
-
                         </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+                <?php endif; ?>
+
+            </div>
+
+            <!-- RIGHT: Sidebar -->
+            <div class="col-lg-4">
+                <div class="blog-sidebar">
+
+                    <!-- Search -->
+                    <div class="sidebar-widget">
+                        <div class="sidebar-widget-title"><i class="fa-solid fa-magnifying-glass"></i> Search Articles</div>
+                        <form method="GET" action="<?php echo $base_url; ?>blogs.php">
+                            <div class="sidebar-search">
+                                <input type="text" name="search" placeholder="Search articles...">
+                                <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                            </div>
+                        </form>
                     </div>
 
-                    <!-- ── Sidebar ───────────────────────────────────── -->
-                    <div class="col-lg-4 col-md-12 sidebar-right theiaStickySidebar">
-
-                        <!-- Search -->
-                        <div class="card search-widget">
-                            <div class="card-body">
-                                <form method="GET" action="<?= SITE_URL ?>/blogs.php">
-                                    <div class="input-group">
-                                        <input
-                                            type="text"
-                                            name="search"
-                                            placeholder="Search articles..."
-                                            class="form-control"
-                                        >
-                                        <button type="submit" class="btn btn-primary">
-                                            <i class="isax isax-search-normal"></i>
-                                        </button>
-                                    </div>
-                                </form>
+                    <!-- Latest Posts -->
+                    <?php if (!empty($latest_posts)): ?>
+                    <div class="sidebar-widget">
+                        <div class="sidebar-widget-title"><i class="fa-solid fa-fire"></i> Latest News</div>
+                        <?php foreach ($latest_posts as $lp): ?>
+                        <a href="<?php echo $base_url; ?>blog-details.php?slug=<?php echo urlencode($lp['slug']); ?>" class="latest-post-item">
+                            <div class="latest-post-img">
+                                <img src="<?php echo $base_url . htmlspecialchars($lp['image']); ?>"
+                                     alt="<?php echo htmlspecialchars($lp['title']); ?>"
+                                     onerror="this.src='<?php echo $base_url; ?>assets/img/blog/blog-01.jpg'">
                             </div>
-                        </div>
-
-                        <!-- Categories -->
-                        <div class="card category-widget">
-                            <div class="card-body">
-                                <h5 class="mb-3">Categories</h5>
-                                <ul class="categories">
-                                    <?php
-                                    if ($categories_res) {
-                                        $categories_res->data_seek(0);
-                                        while ($cat = $categories_res->fetch_assoc()):
-                                            $is_active = ($blog['category_slug'] === $cat['slug']);
-                                    ?>
-                                    <li>
-                                        <a
-                                            href="<?= SITE_URL ?>/blogs/<?= urlencode($cat['slug']) ?>"
-                                            <?= $is_active ? 'style="font-weight:700;color:#1a6ef5;"' : '' ?>
-                                        >
-                                            <?= htmlspecialchars($cat['name']) ?>
-                                            <span>(<?= $cat['blog_count'] ?>)</span>
-                                        </a>
-                                    </li>
-                                    <?php endwhile; } ?>
-                                </ul>
+                            <div class="latest-post-info">
+                                <span><i class="fa-regular fa-calendar"></i> <?php echo date('d M Y', strtotime($lp['published_at'])); ?></span>
+                                <h6><?php echo htmlspecialchars($lp['title']); ?></h6>
                             </div>
-                        </div>
-
-                        <!-- Latest Articles -->
-                        <div class="card post-widget">
-                            <div class="card-body">
-                                <h5 class="mb-3">Latest Articles</h5>
-                                <ul class="latest-posts">
-                                    <?php if ($latest_res) { while ($latest = $latest_res->fetch_assoc()): ?>
-                                    <li>
-                                        <div class="post-thumb">
-                                            <a href="<?= SITE_URL ?>/blog/<?= htmlspecialchars($latest['slug']) ?>">
-                                                <img
-                                                    src="<?= asset($latest['image']) ?>"
-                                                    alt="<?= htmlspecialchars($latest['title']) ?>"
-                                                >
-                                            </a>
-                                        </div>
-                                        <div class="post-info">
-                                            <p><?= formatDate($latest['published_at']) ?></p>
-                                            <h4>
-                                                <a href="<?= SITE_URL ?>/blog/<?= htmlspecialchars($latest['slug']) ?>">
-                                                    <?= htmlspecialchars($latest['title']) ?>
-                                                </a>
-                                            </h4>
-                                        </div>
-                                    </li>
-                                    <?php endwhile; } ?>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <!-- Tags Sidebar -->
-                        <?php if (!empty($tags)): ?>
-                        <div class="card tags-widget">
-                            <div class="card-body">
-                                <h5 class="mb-3">Tags</h5>
-                                <ul class="tags">
-                                    <?php foreach ($tags as $tag): ?>
-                                    <li>
-                                        <a href="<?= SITE_URL ?>/blogs/<?= urlencode($tag) ?>" class="tag">
-                                            <?= htmlspecialchars($tag) ?>
-                                        </a>
-                                    </li>
-                                    <?php endforeach; ?>
-                                </ul>
-                            </div>
-                        </div>
-                        <?php endif; ?>
-
-                        <!-- Consultation CTA -->
-                        <div class="card consultation-card">
-                            <div class="card-body text-center text-white p-4">
-                                <i class="isax isax-hospital" style="font-size:36px;display:block;margin-bottom:12px;"></i>
-                                <h5 class="text-white mb-2">Need a Consultation?</h5>
-                                <p class="mb-3" style="font-size:14px;opacity:0.9;color:white;">
-                                    Book an appointment with our specialist doctors at R.K. Hospital, Nagpur.
-                                </p>
-                                <a href="contact-us" class="btn btn-light fw-semibold w-100">
-                                    <i class="isax isax-calendar-add me-2"></i>Book Appointment
-                                </a>
-                                <p class="mt-2 mb-0" style="font-size:13px;opacity:0.85;color:wheat;">
-                                    <i class="fa-solid fa-phone me-1"></i> 097660 57372
-                                </p>
-                            </div>
-                        </div>
-
+                        </a>
+                        <?php endforeach; ?>
                     </div>
-                    <!-- ── End Sidebar ───────────────────────────────── -->
+                    <?php endif; ?>
+
+                    <!-- Categories -->
+                    <?php if (!empty($all_categories)): ?>
+                    <div class="sidebar-widget">
+                        <div class="sidebar-widget-title"><i class="fa-solid fa-layer-group"></i> Categories</div>
+                        <a href="<?php echo $base_url; ?>blogs.php" class="cat-list-item">
+                            <span><i class="fa-solid fa-circle"></i> All Posts</span>
+                        </a>
+                        <?php foreach ($all_categories as $cat): ?>
+                        <a href="<?php echo $base_url; ?>blogs.php?category=<?php echo $cat['id']; ?>" class="cat-list-item">
+                            <span><i class="fa-solid fa-chevron-right"></i> <?php echo htmlspecialchars($cat['name']); ?></span>
+                            <span class="count"><?php echo $cat['post_count']; ?></span>
+                        </a>
+                        <?php endforeach; ?>
+                    </div>
+                    <?php endif; ?>
+
+                    <!-- Tags -->
+                    <?php if (!empty($tags_arr)): ?>
+                    <div class="sidebar-widget">
+                        <div class="sidebar-widget-title"><i class="fa-solid fa-tags"></i> Tags</div>
+                        <div class="tags-cloud">
+                            <?php foreach ($tags_arr as $tag): ?>
+                            <a href="<?php echo $base_url; ?>blogs.php?search=<?php echo urlencode($tag); ?>" class="tag-chip">
+                                <?php echo htmlspecialchars($tag); ?>
+                            </a>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+                    <?php endif; ?>
+
+                    <!-- CTA -->
+                    <div class="sidebar-widget" style="background: linear-gradient(135deg, var(--blue) 0%, var(--blue-mid) 100%); border: none; text-align: center; padding: 30px 24px;">
+                        <i class="fa-solid fa-phone-volume" style="font-size:32px; color: var(--yellow); margin-bottom:12px; display:block;"></i>
+                        <h5 style="color:#fff; font-weight:800; font-size:18px; margin-bottom:8px;">Need Bulk Quote?</h5>
+                        <p style="color:rgba(255,255,255,.75); font-size:13px; margin-bottom:16px;">Get competitive pricing for all commercial products.</p>
+                        <a href="<?php echo $base_url; ?>contact-us.php" class="header-btn2-h4" style="width:100%; justify-content:center;">
+                            Contact Us <span><i class="fa-solid fa-arrow-right"></i></span>
+                        </a>
+                    </div>
 
                 </div>
             </div>
         </div>
+    </div>
+</section>
 
-        <?php include 'include/footer.php'; ?>
+<?php include 'include/footer.php'; ?>
 
-    </div><!-- .main-wrapper -->
-
-    <script src="<?= asset('assets/js/jquery-3.7.1.min.js') ?>"></script>
-    <script src="<?= asset('assets/js/bootstrap.bundle.min.js') ?>"></script>
-    <script src="<?= asset('assets/plugins/theia-sticky-sidebar/ResizeSensor.js') ?>"></script>
-    <script src="<?= asset('assets/plugins/theia-sticky-sidebar/theia-sticky-sidebar.js') ?>"></script>
-    <script src="<?= asset('assets/plugins/fancybox/jquery.fancybox.min.js') ?>"></script>
-    <script src="<?= asset('assets/js/script.js') ?>"></script>
-
+<script src="<?php echo $base_url; ?>assets/js/plugins/bootstrap.min.js"></script>
+<script src="<?php echo $base_url; ?>assets/js/plugins/fontawesome.js"></script>
+<script src="<?php echo $base_url; ?>assets/js/plugins/aos.js"></script>
+<script src="<?php echo $base_url; ?>assets/js/plugins/gsap.min.js"></script>
+<script src="<?php echo $base_url; ?>assets/js/plugins/ScrollTrigger.min.js"></script>
+<script src="<?php echo $base_url; ?>assets/js/plugins/Splitetext.js"></script>
+<script src="<?php echo $base_url; ?>assets/js/plugins/sidebar.js"></script>
+<script src="<?php echo $base_url; ?>assets/js/plugins/mobilemenu.js"></script>
+<script src="<?php echo $base_url; ?>assets/js/plugins/gsap-animation.js"></script>
+<script src="<?php echo $base_url; ?>assets/js/main.js"></script>
+<script>
+$(document).ready(function () {
+    if (typeof AOS !== 'undefined') { AOS.init({ duration: 700, once: true }); }
+});
+</script>
 </body>
 </html>
-<?php $conn->close(); ?>
