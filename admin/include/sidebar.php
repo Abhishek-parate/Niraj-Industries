@@ -2,19 +2,11 @@
 $activePage = isset($activePage) ? $activePage : '';
 $adminBase  = defined('SITE_URL') ? SITE_URL . '/admin/' : '/nirajindustries/admin/';
 
-/**
- * Exact match — used on submenu <li> items.
- * $also: additional page keys that should also make this item active
- *        (e.g. edit page → highlight the "All X" list item)
- */
 function sbActive(string $key, string $active, array $also = []): string {
     return ($active === $key || in_array($active, $also, true))
         ? ' class="active"' : '';
 }
 
-/**
- * Prefix match — used on parent <li> to keep it open when any child is active.
- */
 function sbParent(string $prefix, string $active): string {
     return ' class="submenu"';
 }
@@ -37,26 +29,7 @@ function sbOpen(string $prefix, string $active): string {
                     </a>
                 </li>
 
-                <li class="menu-title"><span>Hospital</span></li>
-
-                <?php if (canAccess('doctors')): ?>
-                <li<?= sbParent('doctors', $activePage) ?>>
-                    <a href="#">
-                        <i class="fe fe-user-plus"></i> <span>Doctors</span>
-                        <span class="menu-arrow"></span>
-                    </a>
-                    <ul style="display:<?= sbOpen('doctors', $activePage) ?>;">
-                        <li<?= sbActive('doctors-index', $activePage, ['doctors-edit']) ?>>
-                            <a href="<?= $adminBase ?>doctors/">All Doctors</a>
-                        </li>
-                        <?php if (!hasRole('viewer')): ?>
-                        <li<?= sbActive('doctors-add', $activePage) ?>>
-                            <a href="<?= $adminBase ?>doctors/add">Add Doctor</a>
-                        </li>
-                        <?php endif; ?>
-                    </ul>
-                </li>
-                <?php endif; ?>
+                <li class="menu-title"><span>Manage</span></li>
 
                 <?php if (canAccess('users')): ?>
                 <li<?= sbParent('users', $activePage) ?>>
@@ -77,40 +50,19 @@ function sbOpen(string $prefix, string $active): string {
                 </li>
                 <?php endif; ?>
 
-                <li class="menu-title"><span>Content</span></li>
-
-                <?php if (canAccess('blogs')): ?>
-                <li<?= sbParent('blogs', $activePage) ?>>
+                <?php if (canAccess('products')): ?>
+                <li<?= sbParent('products', $activePage) ?>>
                     <a href="#">
-                        <i class="fe fe-edit"></i> <span>Blogs</span>
+                        <i class="fe fe-box"></i> <span>Products</span>
                         <span class="menu-arrow"></span>
                     </a>
-                    <ul style="display:<?= sbOpen('blogs', $activePage) ?>;">
-                        <li<?= sbActive('blogs-index', $activePage, ['blogs-edit']) ?>>
-                            <a href="<?= $adminBase ?>blog/">All Blogs</a>
+                    <ul style="display:<?= sbOpen('products', $activePage) ?>;">
+                        <li<?= sbActive('products-index', $activePage, ['products-edit']) ?>>
+                            <a href="<?= $adminBase ?>products/">All Products</a>
                         </li>
                         <?php if (!hasRole('viewer')): ?>
-                        <li<?= sbActive('blogs-add', $activePage) ?>>
-                            <a href="<?= $adminBase ?>blog/add">Add Blog</a>
-                        </li>
-                        <?php endif; ?>
-                    </ul>
-                </li>
-                <?php endif; ?>
-
-                <?php if (canAccess('services')): ?>
-                <li<?= sbParent('services', $activePage) ?>>
-                    <a href="#">
-                        <i class="fe fe-layout"></i> <span>Services</span>
-                        <span class="menu-arrow"></span>
-                    </a>
-                    <ul style="display:<?= sbOpen('services', $activePage) ?>;">
-                        <li<?= sbActive('services-index', $activePage, ['services-edit']) ?>>
-                            <a href="<?= $adminBase ?>services/">All Services</a>
-                        </li>
-                        <?php if (!hasRole('viewer')): ?>
-                        <li<?= sbActive('services-add', $activePage) ?>>
-                            <a href="<?= $adminBase ?>services/add">Add Service</a>
+                        <li<?= sbActive('products-add', $activePage) ?>>
+                            <a href="<?= $adminBase ?>products/add">Add Product</a>
                         </li>
                         <?php endif; ?>
                     </ul>

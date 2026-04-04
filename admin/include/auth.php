@@ -18,9 +18,9 @@ if (empty($_SESSION['admin_id'])) {
 
 // ── Role → allowed modules map ────────────────────────────────────────────────
 $_ROLE_PERMS = [
-    'superadmin' => ['dashboard','users','doctors','blogs','services','settings','logs'],
-    'admin'      => ['dashboard','users','doctors','blogs','services'],
-    'editor'     => ['dashboard','doctors','blogs','services'],
+    'superadmin' => ['dashboard', 'users', 'products', 'settings', 'logs'],
+    'admin'      => ['dashboard', 'users', 'products'],
+    'editor'     => ['dashboard', 'products'],
     'viewer'     => ['dashboard'],
 ];
 
@@ -34,7 +34,7 @@ function hasRole($roles): bool {
 
 /**
  * Check if logged-in admin can access a module.
- * @param  string $module  e.g. 'users', 'doctors', 'blogs'
+ * @param  string $module  e.g. 'users', 'products'
  */
 function canAccess(string $module): bool {
     global $_ROLE_PERMS;
@@ -55,8 +55,8 @@ function requireAccess(string $module): void {
 
 // ── Convenience shorthand for templates ──────────────────────────────────────
 $_ADMIN = [
-    'id'    => (int)($_SESSION['admin_id']    ?? 0),
-    'name'  => $_SESSION['admin_name']         ?? 'Admin',
-    'email' => $_SESSION['admin_email']        ?? '',
-    'role'  => $_SESSION['admin_role']         ?? 'admin',
+    'id'    => (int)($_SESSION['admin_id'] ?? 0),
+    'name'  => $_SESSION['admin_name']      ?? 'Admin',
+    'email' => $_SESSION['admin_email']     ?? '',
+    'role'  => $_SESSION['admin_role']      ?? 'admin',
 ];

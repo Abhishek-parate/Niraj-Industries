@@ -246,5 +246,4 @@
      </div>
   </div>
 </div>
-</header>
 <!--===== MOBILE HEADER STARTS =======-->

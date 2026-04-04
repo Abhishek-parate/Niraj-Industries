@@ -2,120 +2,64 @@
 require_once __DIR__ . '/../include/config.php';
 require_once __DIR__ . '/include/auth.php';
 
-// ── Doctors ───────────────────────────────────────────────────────────────────
-$totalDoctors     = (int)$conn->query("SELECT COUNT(*) AS c FROM doctors")->fetch_assoc()['c'];
-$publishedDoctors = (int)$conn->query("SELECT COUNT(*) AS c FROM doctors WHERE is_published=1")->fetch_assoc()['c'];
-$totalDoctorViews = (int)$conn->query("SELECT COALESCE(SUM(views),0) AS c FROM doctors")->fetch_assoc()['c'];
+// ── Products Stats ────────────────────────────────────────────────────────────
+$totalProducts  = (int)$conn->query("SELECT COUNT(*) AS c FROM products")->fetch_assoc()['c'];
+$activeProducts = (int)$conn->query("SELECT COUNT(*) AS c FROM products WHERE is_active=1")->fetch_assoc()['c'];
+$inactiveProducts = $totalProducts - $activeProducts;
 
-// ── Blogs ─────────────────────────────────────────────────────────────────────
-$totalBlogs      = (int)$conn->query("SELECT COUNT(*) AS c FROM blogs")->fetch_assoc()['c'];
-$publishedBlogs  = (int)$conn->query("SELECT COUNT(*) AS c FROM blogs WHERE is_published=1")->fetch_assoc()['c'];
-$draftBlogs      = $totalBlogs - $publishedBlogs;
-$engRow          = $conn->query("SELECT COALESCE(SUM(views),0) AS v, COALESCE(SUM(comments),0) AS c FROM blogs")->fetch_assoc();
-$totalBlogViews  = (int)$engRow['v'];
-$totalComments   = (int)$engRow['c'];
-
-// ── Services ──────────────────────────────────────────────────────────────────
-$totalServices     = (int)$conn->query("SELECT COUNT(*) AS c FROM services")->fetch_assoc()['c'];
-$publishedServices = (int)$conn->query("SELECT COUNT(*) AS c FROM services WHERE is_published=1")->fetch_assoc()['c'];
-
-// ── Categories ────────────────────────────────────────────────────────────────
-$totalCategories = (int)$conn->query("SELECT COUNT(*) AS c FROM categories")->fetch_assoc()['c'];
-
-// ── Admin Users ───────────────────────────────────────────────────────────────
-$totalUsers      = (int)$conn->query("SELECT COUNT(*) AS c FROM admin_users")->fetch_assoc()['c'];
-$activeUsers     = (int)$conn->query("SELECT COUNT(*) AS c FROM admin_users WHERE status=1")->fetch_assoc()['c'];
-
-// ── Doctor specialty breakdown ────────────────────────────────────────────────
-$specialties = [];
-$res = $conn->query("SELECT specialty, COUNT(*) AS total FROM doctors WHERE specialty != '' GROUP BY specialty ORDER BY total DESC LIMIT 5");
-if ($res) while ($r = $res->fetch_assoc()) $specialties[] = $r;
-
-// ── Blogs per category ────────────────────────────────────────────────────────
+// ── Products by Category ──────────────────────────────────────────────────────
 $catStats = [];
-$res = $conn->query("
-    SELECT c.name, COUNT(b.id) AS total,
-           SUM(b.is_published) AS published,
-           COALESCE(SUM(b.views),0) AS views
-    FROM categories c
-    LEFT JOIN blogs b ON b.category_id = c.id
-    GROUP BY c.id, c.name
-    ORDER BY total DESC
-");
+$res = $conn->query("SELECT category, COUNT(*) AS total FROM products WHERE is_active=1 GROUP BY category ORDER BY total DESC");
 if ($res) while ($r = $res->fetch_assoc()) $catStats[] = $r;
 
-// ── Top 5 blogs by views ──────────────────────────────────────────────────────
-$topBlogs = [];
-$res = $conn->query("
-    SELECT b.id, b.title, b.views, b.comments, b.is_published,
-           c.name AS category, d.name AS doctor
-    FROM blogs b
-    LEFT JOIN categories c ON c.id = b.category_id
-    LEFT JOIN doctors d ON d.id = b.doctor_id
-    ORDER BY b.views DESC
-    LIMIT 5
-");
-if ($res) while ($r = $res->fetch_assoc()) $topBlogs[] = $r;
+// ── In Stock vs Out of Stock ──────────────────────────────────────────────────
+$inStock    = (int)$conn->query("SELECT COUNT(*) AS c FROM products WHERE in_stock=1 AND is_active=1")->fetch_assoc()['c'];
+$outOfStock = (int)$conn->query("SELECT COUNT(*) AS c FROM products WHERE in_stock=0 AND is_active=1")->fetch_assoc()['c'];
 
-// ── Recent blogs ──────────────────────────────────────────────────────────────
-$recentBlogs = [];
-$res = $conn->query("
-    SELECT b.id, b.title, b.is_published, b.views, b.comments,
-           b.created_at, c.name AS category, d.name AS doctor
-    FROM blogs b
-    LEFT JOIN categories c ON c.id = b.category_id
-    LEFT JOIN doctors d ON d.id = b.doctor_id
-    ORDER BY b.created_at DESC
-    LIMIT 6
-");
-if ($res) while ($r = $res->fetch_assoc()) $recentBlogs[] = $r;
+// ── Admin Users ───────────────────────────────────────────────────────────────
+$totalUsers  = (int)$conn->query("SELECT COUNT(*) AS c FROM admin_users")->fetch_assoc()['c'];
+$activeUsers = (int)$conn->query("SELECT COUNT(*) AS c FROM admin_users WHERE status=1")->fetch_assoc()['c'];
 
-// ── Doctor activity (blogs written + views) ────────────────────────────────────
-$doctorActivity = [];
+// ── Recent Products ───────────────────────────────────────────────────────────
+$recentProducts = [];
 $res = $conn->query("
-    SELECT d.id, d.name, d.photo, d.specialty, d.satisfaction_rate,
-           d.feedback_count, d.is_published,
-           COUNT(b.id) AS blog_count,
-           COALESCE(SUM(b.views),0) AS blog_views
-    FROM doctors d
-    LEFT JOIN blogs b ON b.doctor_id = d.id
-    GROUP BY d.id, d.name, d.photo, d.specialty, d.satisfaction_rate, d.feedback_count, d.is_published
-    ORDER BY d.id DESC
-    LIMIT 6
+    SELECT id, name, category, image, badge, badge_type, moq, rating, reviews, in_stock, is_active, created_at
+    FROM products
+    ORDER BY created_at DESC
+    LIMIT 8
 ");
-if ($res) while ($r = $res->fetch_assoc()) $doctorActivity[] = $r;
+if ($res) while ($r = $res->fetch_assoc()) $recentProducts[] = $r;
 
-// ── Recent activity log ───────────────────────────────────────────────────────
+// ── Recent Activity Log ───────────────────────────────────────────────────────
 $activityLog = [];
 $res = $conn->query("
     SELECT l.action, l.detail, l.ip, l.created_at, u.name AS user_name
     FROM admin_activity_log l
     LEFT JOIN admin_users u ON u.id = l.user_id
     ORDER BY l.created_at DESC
-    LIMIT 6
+    LIMIT 8
 ");
 if ($res) while ($r = $res->fetch_assoc()) $activityLog[] = $r;
 
-// ── Admin users with role ─────────────────────────────────────────────────────
+// ── Admin Users List ──────────────────────────────────────────────────────────
 $adminUsers = [];
-$res = $conn->query("SELECT id, name, email, role, status, login_count, last_login, created_at FROM admin_users ORDER BY created_at DESC");
+$res = $conn->query("SELECT id, name, email, role, status, login_count, last_login FROM admin_users ORDER BY created_at DESC");
 if ($res) while ($r = $res->fetch_assoc()) $adminUsers[] = $r;
 
-// ── Page meta ─────────────────────────────────────────────────────────────────
+// ── Page Meta ─────────────────────────────────────────────────────────────────
 $pageTitle  = 'Dashboard';
 $activePage = 'dashboard';
-$assetBase  = '';
 require_once __DIR__ . '/include/head.php';
 ?>
 
     <?php require_once __DIR__ . '/include/header.php'; ?>
     <?php require_once __DIR__ . '/include/sidebar.php'; ?>
 
-    <div class="page-wrapper">
-        <div class="content container-fluid">
+    <div class="page-wrapper" style="background:#f4f6f9;min-height:100vh;">
+        <div class="content container-fluid pt-4 pb-5">
 
             <?php if (isset($_GET['err']) && $_GET['err'] === 'noperm'): ?>
-            <div class="alert alert-danger alert-dismissible fade show border-0 shadow-sm" role="alert">
+            <div class="alert alert-danger alert-dismissible fade show border-0 shadow-sm rounded-3" role="alert">
                 <i class="fa fa-lock me-2"></i>
                 <strong>Access Denied.</strong> You don't have permission to access that section.
                 <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
@@ -123,291 +67,212 @@ require_once __DIR__ . '/include/head.php';
             <?php endif; ?>
 
             <!-- Page Header -->
-            <div class="page-header">
-                <div class="row align-items-center">
-                    <div class="col">
-                        <h3 class="page-title">Welcome, <?= htmlspecialchars($_ADMIN['name']) ?>!</h3>
-                        <ul class="breadcrumb">
-                            <li class="breadcrumb-item active">Dashboard</li>
-                        </ul>
-                    </div>
-                    <div class="col-auto text-muted" style="font-size:13px;">
-                        <i class="fe fe-calendar me-1"></i><?= date('l, d M Y') ?>
-                    </div>
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <div>
+                    <h3 class="fw-bold text-dark mb-1" style="font-size:1.5rem;">
+                        Welcome back, <?= htmlspecialchars($_ADMIN['name']) ?>! 👋
+                    </h3>
+                    <p class="text-muted mb-0" style="font-size:.85rem;">
+                        <i class="fa fa-calendar-alt me-1"></i><?= date('l, d M Y') ?>
+                    </p>
                 </div>
+                <?php if (canAccess('products') && !hasRole('viewer')): ?>
+                <a href="<?= SITE_URL ?>/admin/products/add" class="btn btn-warning fw-semibold px-4" style="border-radius:10px;background:#f5c518;border:none;color:#1a1a1a;">
+                    <i class="fa fa-plus me-2"></i>Add Product
+                </a>
+                <?php endif; ?>
             </div>
 
             <!-- ── Row 1: Stat Cards ── -->
-            <div class="row">
+            <div class="row g-3 mb-4">
 
-                <div class="col-xl-3 col-sm-6 col-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="dash-widget-header">
-                                <span class="dash-widget-icon text-primary border-primary">
-                                    <i class="fe fe-user-plus"></i>
+                <!-- Total Products -->
+                <div class="col-xl-3 col-sm-6">
+                    <div class="card border-0 shadow-sm h-100" style="border-radius:14px;">
+                        <div class="card-body p-4">
+                            <div class="d-flex align-items-center justify-content-between mb-3">
+                                <div style="width:48px;height:48px;background:#fffbeb;border-radius:12px;display:flex;align-items:center;justify-content:center;">
+                                    <i class="fa fa-box" style="color:#f5c518;font-size:1.2rem;"></i>
+                                </div>
+                                <span class="badge rounded-pill" style="background:#fffbeb;color:#d4a017;font-size:.72rem;font-weight:600;">
+                                    <?= $activeProducts ?> active
                                 </span>
-                                <div class="dash-count">
-                                    <h3><?= $totalDoctors ?></h3>
-                                </div>
                             </div>
-                            <div class="dash-widget-info">
-                                <h6 class="text-muted">
-                                    Doctors
-                                    <span class="badge bg-success ms-1" style="font-size:10px;"><?= $publishedDoctors ?> active</span>
-                                </h6>
-                                <div class="progress progress-sm">
-                                    <div class="progress-bar bg-primary" style="width:<?= $totalDoctors > 0 ? round(($publishedDoctors/$totalDoctors)*100) : 0 ?>%"></div>
-                                </div>
+                            <h2 class="fw-bold mb-1" style="font-size:2rem;color:#1a1a1a;"><?= $totalProducts ?></h2>
+                            <p class="text-muted mb-2" style="font-size:.82rem;">Total Products</p>
+                            <div class="progress" style="height:4px;border-radius:4px;background:#f0f0f0;">
+                                <div class="progress-bar" style="width:<?= $totalProducts > 0 ? round(($activeProducts/$totalProducts)*100) : 0 ?>%;background:#f5c518;border-radius:4px;"></div>
                             </div>
+                            <p class="text-muted mt-1 mb-0" style="font-size:.72rem;"><?= $totalProducts > 0 ? round(($activeProducts/$totalProducts)*100) : 0 ?>% active</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-xl-3 col-sm-6 col-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="dash-widget-header">
-                                <span class="dash-widget-icon text-success">
-                                    <i class="fe fe-edit"></i>
+                <!-- Active Products -->
+                <div class="col-xl-3 col-sm-6">
+                    <div class="card border-0 shadow-sm h-100" style="border-radius:14px;">
+                        <div class="card-body p-4">
+                            <div class="d-flex align-items-center justify-content-between mb-3">
+                                <div style="width:48px;height:48px;background:#f0fdf4;border-radius:12px;display:flex;align-items:center;justify-content:center;">
+                                    <i class="fa fa-check-circle" style="color:#22c55e;font-size:1.2rem;"></i>
+                                </div>
+                                <span class="badge rounded-pill" style="background:#f0fdf4;color:#16a34a;font-size:.72rem;font-weight:600;">
+                                    in stock
                                 </span>
-                                <div class="dash-count">
-                                    <h3><?= $totalBlogs ?></h3>
-                                </div>
                             </div>
-                            <div class="dash-widget-info">
-                                <h6 class="text-muted">
-                                    Blogs
-                                    <span class="badge bg-success ms-1" style="font-size:10px;"><?= $publishedBlogs ?> live</span>
-                                    <?php if ($draftBlogs > 0): ?>
-                                    <span class="badge bg-secondary ms-1" style="font-size:10px;"><?= $draftBlogs ?> draft</span>
-                                    <?php endif; ?>
-                                </h6>
-                                <div class="progress progress-sm">
-                                    <div class="progress-bar bg-success" style="width:<?= $totalBlogs > 0 ? round(($publishedBlogs/$totalBlogs)*100) : 0 ?>%"></div>
-                                </div>
+                            <h2 class="fw-bold mb-1" style="font-size:2rem;color:#1a1a1a;"><?= $inStock ?></h2>
+                            <p class="text-muted mb-2" style="font-size:.82rem;">In Stock</p>
+                            <div class="progress" style="height:4px;border-radius:4px;background:#f0f0f0;">
+                                <div class="progress-bar" style="width:<?= $activeProducts > 0 ? round(($inStock/$activeProducts)*100) : 0 ?>%;background:#22c55e;border-radius:4px;"></div>
                             </div>
+                            <p class="text-muted mt-1 mb-0" style="font-size:.72rem;"><?= $outOfStock ?> out of stock</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-xl-3 col-sm-6 col-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="dash-widget-header">
-                                <span class="dash-widget-icon text-warning border-warning">
-                                    <i class="fe fe-layout"></i>
+                <!-- Categories -->
+                <div class="col-xl-3 col-sm-6">
+                    <div class="card border-0 shadow-sm h-100" style="border-radius:14px;">
+                        <div class="card-body p-4">
+                            <div class="d-flex align-items-center justify-content-between mb-3">
+                                <div style="width:48px;height:48px;background:#eff6ff;border-radius:12px;display:flex;align-items:center;justify-content:center;">
+                                    <i class="fa fa-tags" style="color:#3b82f6;font-size:1.2rem;"></i>
+                                </div>
+                                <span class="badge rounded-pill" style="background:#eff6ff;color:#1d4ed8;font-size:.72rem;font-weight:600;">
+                                    categories
                                 </span>
-                                <div class="dash-count">
-                                    <h3><?= $totalServices ?></h3>
-                                </div>
                             </div>
-                            <div class="dash-widget-info">
-                                <h6 class="text-muted">
-                                    Services
-                                    <span class="badge bg-success ms-1" style="font-size:10px;"><?= $publishedServices ?> live</span>
-                                </h6>
-                                <div class="progress progress-sm">
-                                    <div class="progress-bar bg-warning" style="width:<?= $totalServices > 0 ? round(($publishedServices/$totalServices)*100) : 0 ?>%"></div>
-                                </div>
+                            <h2 class="fw-bold mb-1" style="font-size:2rem;color:#1a1a1a;"><?= count($catStats) ?></h2>
+                            <p class="text-muted mb-2" style="font-size:.82rem;">Product Categories</p>
+                            <div class="progress" style="height:4px;border-radius:4px;background:#f0f0f0;">
+                                <div class="progress-bar" style="width:100%;background:#3b82f6;border-radius:4px;"></div>
                             </div>
+                            <p class="text-muted mt-1 mb-0" style="font-size:.72rem;">across all products</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-xl-3 col-sm-6 col-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="dash-widget-header">
-                                <span class="dash-widget-icon text-danger border-danger">
-                                    <i class="fe fe-eye"></i>
+                <!-- Admin Users -->
+                <div class="col-xl-3 col-sm-6">
+                    <div class="card border-0 shadow-sm h-100" style="border-radius:14px;">
+                        <div class="card-body p-4">
+                            <div class="d-flex align-items-center justify-content-between mb-3">
+                                <div style="width:48px;height:48px;background:#fdf4ff;border-radius:12px;display:flex;align-items:center;justify-content:center;">
+                                    <i class="fa fa-users" style="color:#a855f7;font-size:1.2rem;"></i>
+                                </div>
+                                <span class="badge rounded-pill" style="background:#fdf4ff;color:#7e22ce;font-size:.72rem;font-weight:600;">
+                                    <?= $activeUsers ?> active
                                 </span>
-                                <div class="dash-count">
-                                    <h3><?= number_format($totalBlogViews) ?></h3>
-                                </div>
                             </div>
-                            <div class="dash-widget-info">
-                                <h6 class="text-muted">
-                                    Blog Views
-                                    <span class="badge bg-info ms-1" style="font-size:10px;"><?= number_format($totalComments) ?> comments</span>
-                                </h6>
-                                <div class="progress progress-sm">
-                                    <div class="progress-bar bg-danger" style="width:<?= min(100, round($totalBlogViews / 10)) ?>%"></div>
-                                </div>
+                            <h2 class="fw-bold mb-1" style="font-size:2rem;color:#1a1a1a;"><?= $totalUsers ?></h2>
+                            <p class="text-muted mb-2" style="font-size:.82rem;">Admin Users</p>
+                            <div class="progress" style="height:4px;border-radius:4px;background:#f0f0f0;">
+                                <div class="progress-bar" style="width:<?= $totalUsers > 0 ? round(($activeUsers/$totalUsers)*100) : 0 ?>%;background:#a855f7;border-radius:4px;"></div>
                             </div>
+                            <p class="text-muted mt-1 mb-0" style="font-size:.72rem;"><?= $totalUsers > 0 ? round(($activeUsers/$totalUsers)*100) : 0 ?>% active</p>
                         </div>
                     </div>
                 </div>
 
             </div>
 
-            <!-- ── Row 2: Top Blogs + Category Breakdown ── -->
-            <div class="row">
+            <!-- ── Row 2: Recent Products + Category Breakdown ── -->
+            <div class="row g-3 mb-4">
 
-                <div class="col-md-7 d-flex">
-                    <div class="card card-table flex-fill">
-                        <div class="card-header">
-                            <h4 class="card-title">Top Blogs by Views</h4>
-                            <a href="<?= SITE_URL ?>/admin/blog/add" class="btn btn-sm btn-primary float-end">+ New Blog</a>
+                <!-- Recent Products Table -->
+                <div class="col-xl-8">
+                    <div class="card border-0 shadow-sm h-100" style="border-radius:14px;">
+                        <div class="card-header bg-white border-0 px-4 pt-4 pb-3 d-flex align-items-center justify-content-between" style="border-radius:14px 14px 0 0;">
+                            <div>
+                                <h5 class="fw-bold mb-0 text-dark">Recent Products</h5>
+                                <p class="text-muted mb-0" style="font-size:.78rem;">Latest added products</p>
+                            </div>
+                            <a href="<?= SITE_URL ?>/admin/products/" class="btn btn-sm fw-semibold" style="background:#fffbeb;color:#d4a017;border:1px solid #fcd34d;border-radius:8px;font-size:.8rem;">
+                                View All <i class="fa fa-arrow-right ms-1"></i>
+                            </a>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body p-0">
                             <div class="table-responsive">
-                                <table class="table table-hover table-center mb-0">
-                                    <thead>
+                                <table class="table table-hover mb-0" style="font-size:.85rem;">
+                                    <thead style="background:#f8f9fa;">
                                         <tr>
-                                            <th>#</th>
-                                            <th>Title</th>
-                                            <th>Doctor</th>
-                                            <th>Views</th>
-                                            <th>Comments</th>
-                                            <th>Status</th>
+                                            <th class="px-4 py-3 text-muted fw-semibold" style="font-size:.72rem;letter-spacing:.05em;text-transform:uppercase;border:none;">Product</th>
+                                            <th class="py-3 text-muted fw-semibold" style="font-size:.72rem;letter-spacing:.05em;text-transform:uppercase;border:none;">Category</th>
+                                            <th class="py-3 text-muted fw-semibold" style="font-size:.72rem;letter-spacing:.05em;text-transform:uppercase;border:none;">MOQ</th>
+                                            <th class="py-3 text-muted fw-semibold" style="font-size:.72rem;letter-spacing:.05em;text-transform:uppercase;border:none;">Rating</th>
+                                            <th class="py-3 text-muted fw-semibold" style="font-size:.72rem;letter-spacing:.05em;text-transform:uppercase;border:none;">Stock</th>
+                                            <th class="py-3 text-muted fw-semibold" style="font-size:.72rem;letter-spacing:.05em;text-transform:uppercase;border:none;">Status</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php if (empty($topBlogs)): ?>
-                                        <tr><td colspan="6" class="text-center text-muted">No blogs found.</td></tr>
-                                        <?php else: foreach ($topBlogs as $i => $b): ?>
+                                        <?php if (empty($recentProducts)): ?>
                                         <tr>
-                                            <td><span class="badge bg-primary"><?= $i+1 ?></span></td>
-                                            <td style="max-width:190px;">
-                                                <a href="<?= SITE_URL ?>/admin/blog/edit?id=<?= $b['id'] ?>" class="text-dark" style="font-size:13px;font-weight:500;">
-                                                    <?= htmlspecialchars(mb_strimwidth($b['title'],0,42,'…')) ?>
-                                                </a>
-                                                <div><span class="badge bg-info" style="font-size:10px;"><?= htmlspecialchars($b['category'] ?? '—') ?></span></div>
-                                            </td>
-                                            <td style="font-size:12px;color:#6c757d;"><?= htmlspecialchars($b['doctor'] ?? '—') ?></td>
-                                            <td><i class="fe fe-eye text-warning me-1" style="font-size:12px;"></i><strong><?= number_format($b['views']) ?></strong></td>
-                                            <td><i class="fe fe-message-square text-info me-1" style="font-size:12px;"></i><?= number_format($b['comments']) ?></td>
-                                            <td>
-                                                <?= $b['is_published']
-                                                    ? '<span class="badge bg-success-light text-success">Published</span>'
-                                                    : '<span class="badge bg-danger-light text-danger">Draft</span>' ?>
+                                            <td colspan="6" class="text-center text-muted py-5">
+                                                <i class="fa fa-box-open fa-2x mb-2 d-block" style="color:#e5e7eb;"></i>
+                                                No products found.
                                             </td>
                                         </tr>
-                                        <?php endforeach; endif; ?>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-5 d-flex">
-                    <div class="card flex-fill">
-                        <div class="card-header">
-                            <h4 class="card-title">Blogs by Category</h4>
-                        </div>
-                        <div class="card-body">
-                            <?php
-                            $colors  = ['primary','success','warning','danger','info','secondary'];
-                            $maxBlogs = max(array_column($catStats,'total') ?: [1]);
-                            foreach ($catStats as $ci => $cat):
-                                $pct = $maxBlogs > 0 ? round(($cat['total']/$maxBlogs)*100) : 0;
-                                $col = $colors[$ci % count($colors)];
-                            ?>
-                            <div class="mb-3">
-                                <div class="d-flex justify-content-between mb-1">
-                                    <span style="font-size:13px;font-weight:500;"><?= htmlspecialchars($cat['name']) ?></span>
-                                    <span style="font-size:12px;color:#6c757d;">
-                                        <?= $cat['total'] ?> blog<?= $cat['total'] != 1 ? 's' : '' ?>
-                                        &nbsp;·&nbsp;
-                                        <i class="fe fe-eye" style="font-size:11px;"></i> <?= number_format($cat['views']) ?>
-                                    </span>
-                                </div>
-                                <div class="progress progress-sm">
-                                    <div class="progress-bar bg-<?= $col ?>" style="width:<?= $pct ?>%"></div>
-                                </div>
-                            </div>
-                            <?php endforeach; ?>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-            <!-- ── Row 3: Doctors Table ── -->
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card card-table">
-                        <div class="card-header">
-                            <h4 class="card-title">Doctors</h4>
-                            <a href="<?= SITE_URL ?>/admin/doctors/add" class="btn btn-sm btn-primary float-end">+ Add Doctor</a>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-hover table-center mb-0">
-                                    <thead>
-                                        <tr>
-                                            <th>Doctor</th>
-                                            <th>Specialty</th>
-                                            <th>Satisfaction</th>
-                                            <th>Feedbacks</th>
-                                            <th>Blogs</th>
-                                            <th>Blog Views</th>
-                                            <th>Status</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php if (empty($doctorActivity)): ?>
-                                        <tr><td colspan="8" class="text-center text-muted">No doctors found.</td></tr>
-                                        <?php else: foreach ($doctorActivity as $doc):
-                                            $photo = !empty($doc['photo'])
-                                                ? (str_starts_with($doc['photo'],'http') ? $doc['photo'] : SITE_URL.'/'.$doc['photo'])
-                                                : SITE_URL.'/assets/img/patients/default.jpg';
+                                        <?php else: foreach ($recentProducts as $p):
+                                            $imgUrl = !empty($p['image'])
+                                                ? SITE_URL . '/' . ltrim($p['image'], '/')
+                                                : SITE_URL . '/assets/img/all-images/service/service-img13.png';
+                                            $badgeColors = [
+                                                'new'  => ['#eff6ff','#1d4ed8'],
+                                                'hot'  => ['#fef2f2','#dc2626'],
+                                                'best' => ['#fffbeb','#d4a017'],
+                                                'sale' => ['#f0fdf4','#16a34a'],
+                                            ];
+                                            $bc = $badgeColors[$p['badge_type']] ?? ['#f3f4f6','#6b7280'];
                                         ?>
                                         <tr>
-                                            <td>
-                                                <h2 class="table-avatar">
-                                                    <a href="<?= SITE_URL ?>/admin/doctors/edit?id=<?= $doc['id'] ?>" class="avatar avatar-sm me-2">
-                                                        <img class="avatar-img rounded-circle" src="<?= htmlspecialchars($photo) ?>"
-                                                             onerror="this.src='<?= SITE_URL ?>/assets/img/patients/default.jpg'" alt="">
-                                                    </a>
-                                                    <a href="<?= SITE_URL ?>/admin/doctors/edit?id=<?= $doc['id'] ?>" class="text-dark">
-                                                        <?= htmlspecialchars($doc['name']) ?>
-                                                    </a>
-                                                </h2>
-                                            </td>
-                                            <td>
-                                                <?php if (!empty($doc['specialty'])): ?>
-                                                    <span class="badge bg-info"><?= htmlspecialchars($doc['specialty']) ?></span>
-                                                <?php else: ?>
-                                                    <span class="text-muted" style="font-size:12px;">—</span>
-                                                <?php endif; ?>
-                                            </td>
-                                            <td>
-                                                <?php if ($doc['satisfaction_rate'] > 0): ?>
-                                                <div style="min-width:80px;">
-                                                    <div class="progress progress-sm mb-1">
-                                                        <div class="progress-bar bg-success" style="width:<?= $doc['satisfaction_rate'] ?>%"></div>
+                                            <td class="px-4 py-3" style="border:none;">
+                                                <div class="d-flex align-items-center gap-3">
+                                                    <img src="<?= htmlspecialchars($imgUrl) ?>"
+                                                         alt="<?= htmlspecialchars($p['name']) ?>"
+                                                         onerror="this.src='<?= SITE_URL ?>/assets/img/all-images/service/service-img13.png'"
+                                                         style="width:44px;height:44px;object-fit:cover;border-radius:10px;border:1px solid #f0f0f0;">
+                                                    <div>
+                                                        <div class="fw-semibold text-dark" style="font-size:.85rem;line-height:1.3;">
+                                                            <?= htmlspecialchars(mb_strimwidth($p['name'], 0, 32, '…')) ?>
+                                                        </div>
+                                                        <?php if (!empty($p['badge'])): ?>
+                                                        <span style="font-size:.65rem;font-weight:700;background:<?= $bc[0] ?>;color:<?= $bc[1] ?>;padding:2px 7px;border-radius:20px;">
+                                                            <?= htmlspecialchars($p['badge']) ?>
+                                                        </span>
+                                                        <?php endif; ?>
                                                     </div>
-                                                    <small class="text-muted"><?= $doc['satisfaction_rate'] ?>%</small>
                                                 </div>
+                                            </td>
+                                            <td class="py-3" style="border:none;">
+                                                <span style="font-size:.75rem;background:#f3f4f6;color:#374151;padding:3px 10px;border-radius:20px;font-weight:500;">
+                                                    <?= ucfirst(htmlspecialchars($p['category'])) ?>
+                                                </span>
+                                            </td>
+                                            <td class="py-3 text-muted" style="border:none;font-size:.82rem;"><?= htmlspecialchars($p['moq']) ?></td>
+                                            <td class="py-3" style="border:none;">
+                                                <div class="d-flex align-items-center gap-1">
+                                                    <i class="fa fa-star" style="color:#f5c518;font-size:.75rem;"></i>
+                                                    <span style="font-size:.82rem;font-weight:600;"><?= number_format($p['rating'], 1) ?></span>
+                                                    <span class="text-muted" style="font-size:.72rem;">(<?= $p['reviews'] ?>)</span>
+                                                </div>
+                                            </td>
+                                            <td class="py-3" style="border:none;">
+                                                <?php if ($p['in_stock']): ?>
+                                                <span style="font-size:.72rem;background:#f0fdf4;color:#16a34a;padding:3px 8px;border-radius:20px;font-weight:600;">
+                                                    <i class="fa fa-circle me-1" style="font-size:.45rem;"></i>In Stock
+                                                </span>
                                                 <?php else: ?>
-                                                    <span class="text-muted" style="font-size:12px;">—</span>
+                                                <span style="font-size:.72rem;background:#fef2f2;color:#dc2626;padding:3px 8px;border-radius:20px;font-weight:600;">
+                                                    <i class="fa fa-circle me-1" style="font-size:.45rem;"></i>Out
+                                                </span>
                                                 <?php endif; ?>
                                             </td>
-                                            <td><?= number_format($doc['feedback_count']) ?></td>
-                                            <td>
-                                                <?php if ($doc['blog_count'] > 0): ?>
-                                                    <span class="badge bg-primary"><?= $doc['blog_count'] ?></span>
+                                            <td class="py-3" style="border:none;">
+                                                <?php if ($p['is_active']): ?>
+                                                <span style="font-size:.72rem;background:#fffbeb;color:#d4a017;padding:3px 8px;border-radius:20px;font-weight:600;">Active</span>
                                                 <?php else: ?>
-                                                    <span class="text-muted" style="font-size:12px;">0</span>
+                                                <span style="font-size:.72rem;background:#f3f4f6;color:#6b7280;padding:3px 8px;border-radius:20px;font-weight:600;">Inactive</span>
                                                 <?php endif; ?>
-                                            </td>
-                                            <td>
-                                                <i class="fe fe-eye text-warning me-1" style="font-size:12px;"></i>
-                                                <?= number_format($doc['blog_views']) ?>
-                                            </td>
-                                            <td>
-                                                <?= $doc['is_published']
-                                                    ? '<span class="badge bg-success-light text-success">Active</span>'
-                                                    : '<span class="badge bg-danger-light text-danger">Inactive</span>' ?>
-                                            </td>
-                                            <td>
-                                                <a href="<?= SITE_URL ?>/admin/doctors/edit?id=<?= $doc['id'] ?>" class="btn btn-sm btn-white me-1">
-                                                    <i class="fe fe-pencil text-primary"></i>
-                                                </a>
                                             </td>
                                         </tr>
                                         <?php endforeach; endif; ?>
@@ -417,86 +282,84 @@ require_once __DIR__ . '/include/head.php';
                         </div>
                     </div>
                 </div>
+
+                <!-- Category Breakdown -->
+                <div class="col-xl-4">
+                    <div class="card border-0 shadow-sm h-100" style="border-radius:14px;">
+                        <div class="card-header bg-white border-0 px-4 pt-4 pb-3" style="border-radius:14px 14px 0 0;">
+                            <h5 class="fw-bold mb-0 text-dark">By Category</h5>
+                            <p class="text-muted mb-0" style="font-size:.78rem;">Active products per category</p>
+                        </div>
+                        <div class="card-body px-4">
+                            <?php
+                            $catColors = ['#f5c518','#3b82f6','#22c55e','#a855f7','#ef4444','#f97316','#06b6d4'];
+                            $maxCat = max(array_column($catStats,'total') ?: [1]);
+                            foreach ($catStats as $ci => $cat):
+                                $pct = $maxCat > 0 ? round(($cat['total']/$maxCat)*100) : 0;
+                                $col = $catColors[$ci % count($catColors)];
+                            ?>
+                            <div class="mb-3">
+                                <div class="d-flex justify-content-between align-items-center mb-1">
+                                    <span style="font-size:.83rem;font-weight:600;color:#1a1a1a;">
+                                        <?= ucfirst(htmlspecialchars($cat['category'])) ?>
+                                    </span>
+                                    <span style="font-size:.75rem;color:#6b7280;font-weight:500;">
+                                        <?= $cat['total'] ?> product<?= $cat['total'] != 1 ? 's' : '' ?>
+                                    </span>
+                                </div>
+                                <div style="height:6px;background:#f0f0f0;border-radius:4px;overflow:hidden;">
+                                    <div style="width:<?= $pct ?>%;height:100%;background:<?= $col ?>;border-radius:4px;transition:width .6s;"></div>
+                                </div>
+                            </div>
+                            <?php endforeach;
+                            if (empty($catStats)): ?>
+                            <p class="text-muted text-center py-4" style="font-size:.85rem;">No categories found.</p>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
-            <!-- ── Row 4: Recent Blogs + Activity Log ── -->
-            <div class="row">
+            <!-- ── Row 3: Activity Log + Admin Users ── -->
+            <div class="row g-3">
 
-                <!-- Recent Blogs -->
-                <div class="col-md-8 d-flex">
-                    <div class="card card-table flex-fill">
-                        <div class="card-header">
-                            <h4 class="card-title">Recent Blogs</h4>
-                            <a href="<?= SITE_URL ?>/admin/blog/" class="btn btn-sm btn-primary float-end">View All</a>
+                <!-- Recent Activity -->
+                <div class="col-xl-5">
+                    <div class="card border-0 shadow-sm h-100" style="border-radius:14px;">
+                        <div class="card-header bg-white border-0 px-4 pt-4 pb-3" style="border-radius:14px 14px 0 0;">
+                            <h5 class="fw-bold mb-0 text-dark">Recent Activity</h5>
+                            <p class="text-muted mb-0" style="font-size:.78rem;">Latest admin actions</p>
                         </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-hover table-center mb-0">
-                                    <thead>
-                                        <tr>
-                                            <th>Title</th>
-                                            <th>Doctor</th>
-                                            <th>Category</th>
-                                            <th>Views</th>
-                                            <th>Status</th>
-                                            <th>Date</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php if (empty($recentBlogs)): ?>
-                                        <tr><td colspan="6" class="text-center text-muted">No blogs found.</td></tr>
-                                        <?php else: foreach ($recentBlogs as $b): ?>
-                                        <tr>
-                                            <td style="max-width:180px;">
-                                                <a href="<?= SITE_URL ?>/admin/blog/edit?id=<?= $b['id'] ?>" class="text-dark" style="font-size:13px;font-weight:500;">
-                                                    <?= htmlspecialchars(mb_strimwidth($b['title'],0,38,'…')) ?>
-                                                </a>
-                                            </td>
-                                            <td style="font-size:12px;color:#6c757d;"><?= htmlspecialchars($b['doctor'] ?? '—') ?></td>
-                                            <td><span class="badge bg-info" style="font-size:10px;"><?= htmlspecialchars($b['category'] ?? '—') ?></span></td>
-                                            <td><?= number_format($b['views']) ?></td>
-                                            <td>
-                                                <?= $b['is_published']
-                                                    ? '<span class="badge bg-success-light text-success">Published</span>'
-                                                    : '<span class="badge bg-danger-light text-danger">Draft</span>' ?>
-                                            </td>
-                                            <td style="font-size:12px;color:#6c757d;"><?= date('d M Y', strtotime($b['created_at'])) ?></td>
-                                        </tr>
-                                        <?php endforeach; endif; ?>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Activity Log -->
-                <div class="col-md-4 d-flex">
-                    <div class="card flex-fill">
-                        <div class="card-header">
-                            <h4 class="card-title">Recent Activity</h4>
-                        </div>
-                        <div class="card-body" style="padding:0;">
+                        <div class="card-body p-0">
                             <?php if (empty($activityLog)): ?>
-                            <p class="text-muted text-center p-3">No activity yet.</p>
-                            <?php else: foreach ($activityLog as $log): ?>
-                            <div style="padding:12px 20px;border-bottom:1px solid #f5f5f5;">
-                                <div class="d-flex align-items-start gap-2">
-                                    <span class="badge bg-primary-light text-primary mt-1" style="font-size:10px;flex-shrink:0;">
-                                        <?= htmlspecialchars(str_replace('_',' ', $log['action'])) ?>
-                                    </span>
-                                    <div>
-                                        <div style="font-size:12px;color:#333;font-weight:500;">
-                                            <?= htmlspecialchars(mb_strimwidth($log['detail'] ?? '', 0, 55, '…')) ?>
-                                        </div>
-                                        <div style="font-size:11px;color:#9ca3af;margin-top:2px;">
-                                            <?= htmlspecialchars($log['user_name'] ?? 'System') ?>
-                                            &nbsp;·&nbsp;
-                                            <?= date('d M, H:i', strtotime($log['created_at'])) ?>
-                                            <?php if (!empty($log['ip'])): ?>
-                                            &nbsp;·&nbsp; <span style="font-family:monospace;"><?= htmlspecialchars($log['ip']) ?></span>
-                                            <?php endif; ?>
-                                        </div>
+                            <p class="text-muted text-center py-5" style="font-size:.85rem;">No activity yet.</p>
+                            <?php else:
+                            $actionColors = [
+                                'login'           => ['#f0fdf4','#16a34a'],
+                                'logout'          => ['#f3f4f6','#6b7280'],
+                                'user_created'    => ['#eff6ff','#1d4ed8'],
+                                'user_updated'    => ['#eff6ff','#1d4ed8'],
+                                'product_created' => ['#fffbeb','#d4a017'],
+                                'product_updated' => ['#fffbeb','#d4a017'],
+                            ];
+                            foreach ($activityLog as $log):
+                                $ac = $actionColors[$log['action']] ?? ['#f3f4f6','#374151'];
+                            ?>
+                            <div class="d-flex align-items-start gap-3 px-4 py-3" style="border-bottom:1px solid #f8f9fa;">
+                                <span style="font-size:.68rem;font-weight:700;background:<?= $ac[0] ?>;color:<?= $ac[1] ?>;padding:3px 8px;border-radius:20px;white-space:nowrap;margin-top:2px;">
+                                    <?= htmlspecialchars(str_replace('_', ' ', $log['action'])) ?>
+                                </span>
+                                <div style="min-width:0;">
+                                    <div style="font-size:.82rem;color:#1a1a1a;font-weight:500;line-height:1.3;">
+                                        <?= htmlspecialchars(mb_strimwidth($log['detail'] ?? '', 0, 50, '…')) ?>
+                                    </div>
+                                    <div style="font-size:.72rem;color:#9ca3af;margin-top:2px;">
+                                        <?= htmlspecialchars($log['user_name'] ?? 'System') ?>
+                                        &nbsp;·&nbsp;<?= date('d M, H:i', strtotime($log['created_at'])) ?>
+                                        <?php if (!empty($log['ip'])): ?>
+                                        &nbsp;·&nbsp;<span style="font-family:monospace;"><?= htmlspecialchars($log['ip']) ?></span>
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                             </div>
@@ -505,64 +368,71 @@ require_once __DIR__ . '/include/head.php';
                     </div>
                 </div>
 
-            </div>
-
-            <!-- ── Row 5: Admin Users ── -->
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card card-table">
-                        <div class="card-header">
-                            <h4 class="card-title">Admin Users</h4>
-                            <a href="<?= SITE_URL ?>/admin/users/add" class="btn btn-sm btn-primary float-end">+ Add User</a>
+                <!-- Admin Users -->
+                <div class="col-xl-7">
+                    <div class="card border-0 shadow-sm h-100" style="border-radius:14px;">
+                        <div class="card-header bg-white border-0 px-4 pt-4 pb-3 d-flex align-items-center justify-content-between" style="border-radius:14px 14px 0 0;">
+                            <div>
+                                <h5 class="fw-bold mb-0 text-dark">Admin Users</h5>
+                                <p class="text-muted mb-0" style="font-size:.78rem;"><?= $totalUsers ?> total, <?= $activeUsers ?> active</p>
+                            </div>
+                            <?php if (canAccess('users') && hasRole(['superadmin','admin'])): ?>
+                            <a href="<?= SITE_URL ?>/admin/users/add" class="btn btn-sm fw-semibold" style="background:#fffbeb;color:#d4a017;border:1px solid #fcd34d;border-radius:8px;font-size:.8rem;">
+                                + Add User
+                            </a>
+                            <?php endif; ?>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body p-0">
                             <div class="table-responsive">
-                                <table class="table table-hover table-center mb-0">
-                                    <thead>
+                                <table class="table table-hover mb-0" style="font-size:.84rem;">
+                                    <thead style="background:#f8f9fa;">
                                         <tr>
-                                            <th>#</th>
-                                            <th>Name</th>
-                                            <th>Email</th>
-                                            <th>Role</th>
-                                            <th>Logins</th>
-                                            <th>Last Login</th>
-                                            <th>Status</th>
-                                            <th>Action</th>
+                                            <th class="px-4 py-3 text-muted fw-semibold" style="font-size:.72rem;letter-spacing:.05em;text-transform:uppercase;border:none;">Name</th>
+                                            <th class="py-3 text-muted fw-semibold" style="font-size:.72rem;letter-spacing:.05em;text-transform:uppercase;border:none;">Role</th>
+                                            <th class="py-3 text-muted fw-semibold" style="font-size:.72rem;letter-spacing:.05em;text-transform:uppercase;border:none;">Logins</th>
+                                            <th class="py-3 text-muted fw-semibold" style="font-size:.72rem;letter-spacing:.05em;text-transform:uppercase;border:none;">Last Login</th>
+                                            <th class="py-3 text-muted fw-semibold" style="font-size:.72rem;letter-spacing:.05em;text-transform:uppercase;border:none;">Status</th>
+                                            <th class="py-3" style="border:none;"></th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php if (empty($adminUsers)): ?>
-                                        <tr><td colspan="8" class="text-center text-muted">No users found.</td></tr>
+                                        <tr><td colspan="6" class="text-center text-muted py-5">No users found.</td></tr>
                                         <?php else:
                                         $roleBadge = [
-                                            'superadmin' => 'bg-danger',
-                                            'admin'      => 'bg-primary',
-                                            'editor'     => 'bg-info',
-                                            'viewer'     => 'bg-secondary',
+                                            'superadmin' => ['#fef2f2','#dc2626'],
+                                            'admin'      => ['#fffbeb','#d4a017'],
+                                            'editor'     => ['#eff6ff','#1d4ed8'],
+                                            'viewer'     => ['#f3f4f6','#6b7280'],
                                         ];
-                                        foreach ($adminUsers as $i => $u): ?>
+                                        foreach ($adminUsers as $u):
+                                            $rb = $roleBadge[$u['role']] ?? ['#f3f4f6','#6b7280'];
+                                        ?>
                                         <tr>
-                                            <td><?= $i+1 ?></td>
-                                            <td style="font-weight:500;"><?= htmlspecialchars($u['name']) ?></td>
-                                            <td style="font-size:13px;color:#6c757d;"><?= htmlspecialchars($u['email']) ?></td>
-                                            <td>
-                                                <span class="badge <?= $roleBadge[$u['role']] ?? 'bg-secondary' ?>">
+                                            <td class="px-4 py-3" style="border:none;">
+                                                <div class="fw-semibold text-dark" style="font-size:.85rem;"><?= htmlspecialchars($u['name']) ?></div>
+                                                <div class="text-muted" style="font-size:.72rem;"><?= htmlspecialchars($u['email']) ?></div>
+                                            </td>
+                                            <td class="py-3" style="border:none;">
+                                                <span style="font-size:.72rem;font-weight:700;background:<?= $rb[0] ?>;color:<?= $rb[1] ?>;padding:3px 10px;border-radius:20px;">
                                                     <?= ucfirst(htmlspecialchars($u['role'])) ?>
                                                 </span>
                                             </td>
-                                            <td><?= number_format($u['login_count']) ?></td>
-                                            <td style="font-size:12px;color:#6c757d;">
-                                                <?= $u['last_login'] ? date('d M Y, H:i', strtotime($u['last_login'])) : '<span class="text-muted">Never</span>' ?>
+                                            <td class="py-3 text-muted" style="border:none;font-size:.82rem;"><?= number_format($u['login_count']) ?></td>
+                                            <td class="py-3 text-muted" style="border:none;font-size:.78rem;">
+                                                <?= $u['last_login'] ? date('d M, H:i', strtotime($u['last_login'])) : '<span class="text-muted">Never</span>' ?>
                                             </td>
-                                            <td>
+                                            <td class="py-3" style="border:none;">
                                                 <?= $u['status']
-                                                    ? '<span class="badge bg-success-light text-success">Active</span>'
-                                                    : '<span class="badge bg-danger-light text-danger">Inactive</span>' ?>
+                                                    ? '<span style="font-size:.72rem;background:#f0fdf4;color:#16a34a;padding:3px 8px;border-radius:20px;font-weight:600;">Active</span>'
+                                                    : '<span style="font-size:.72rem;background:#fef2f2;color:#dc2626;padding:3px 8px;border-radius:20px;font-weight:600;">Inactive</span>' ?>
                                             </td>
-                                            <td>
-                                                <a href="<?= SITE_URL ?>/admin/users/edit?id=<?= $u['id'] ?>" class="btn btn-sm btn-white">
-                                                    <i class="fe fe-pencil text-primary"></i>
+                                            <td class="py-3 pe-4" style="border:none;">
+                                                <?php if (canAccess('users')): ?>
+                                                <a href="<?= SITE_URL ?>/admin/users/edit?id=<?= $u['id'] ?>" class="btn btn-sm" style="background:#f8f9fa;border:1px solid #e5e7eb;border-radius:8px;padding:4px 10px;">
+                                                    <i class="fa fa-pencil" style="color:#6b7280;font-size:.75rem;"></i>
                                                 </a>
+                                                <?php endif; ?>
                                             </td>
                                         </tr>
                                         <?php endforeach; endif; ?>
@@ -572,6 +442,7 @@ require_once __DIR__ . '/include/head.php';
                         </div>
                     </div>
                 </div>
+
             </div>
 
         </div>

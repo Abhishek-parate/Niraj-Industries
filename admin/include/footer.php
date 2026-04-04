@@ -1,6 +1,4 @@
-<!-- C:\xamppnew\htdocs\nirajindustries\admin\include\footer.php -->
 <?php
-
 // Usage: set $extraJS before including this file for page-specific scripts
 // Example: $extraJS = '<script src="..."></script>';
 ?>
@@ -22,11 +20,10 @@
             var input   = document.getElementById('menuSearch');
             var results = document.getElementById('menuSearchResults');
             var menu    = window.ADMIN_MENU || [];
-            var active  = -1; // keyboard nav index
+            var active  = -1;
 
             if (!input || !results) return;
 
-            // ── Render dropdown ───────────────────────────────────
             function render(q) {
                 q = q.trim().toLowerCase();
                 if (!q) { close(); return; }
@@ -46,7 +43,6 @@
                     return;
                 }
 
-                // Group by section
                 var sections = {};
                 filtered.forEach(function (item) {
                     if (!sections[item.section]) sections[item.section] = [];
@@ -58,7 +54,7 @@
                     html += '<div style="padding:6px 14px 2px;font-size:.65rem;font-weight:700;' +
                             'color:#94a3b8;text-transform:uppercase;letter-spacing:.8px;' +
                             'border-top:1px solid #f1f5f9;">' + escHtml(sec) + '</div>';
-                    sections[sec].forEach(function (item, idx) {
+                    sections[sec].forEach(function (item) {
                         var hi = highlight(item.label, q);
                         html += '<a href="' + escHtml(item.url) + '" class="search-result-item" ' +
                                 'style="display:flex;align-items:center;gap:10px;padding:9px 16px;' +
@@ -78,7 +74,6 @@
                 active = -1;
             }
 
-            // ── Highlight matched text ────────────────────────────
             function highlight(text, q) {
                 if (!q) return escHtml(text);
                 var idx = text.toLowerCase().indexOf(q);
@@ -100,7 +95,6 @@
                 active = -1;
             }
 
-            // ── Keyboard navigation ───────────────────────────────
             input.addEventListener('keydown', function (e) {
                 var items = results.querySelectorAll('a.search-result-item');
                 if (!items.length) return;
@@ -122,11 +116,9 @@
                 }
             });
 
-            // ── Input handler ─────────────────────────────────────
             input.addEventListener('input', function () { render(this.value); });
             input.addEventListener('focus', function () { if (this.value.trim()) render(this.value); });
 
-            // ── Close on outside click ────────────────────────────
             document.addEventListener('click', function (e) {
                 if (!input.contains(e.target) && !results.contains(e.target)) close();
             });

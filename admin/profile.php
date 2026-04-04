@@ -24,7 +24,6 @@ if (!$user) {
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $action = $_POST['action'] ?? '';
 
-    // ── Update Profile ────────────────────────────────────────────────────────
     if ($action === 'update_profile') {
         $name  = trim($_POST['name']  ?? '');
         $phone = trim($_POST['phone'] ?? '');
@@ -34,7 +33,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (!empty($phone) && !preg_match('/^[0-9+\-\s()]{7,20}$/', $phone))
             $errors[] = 'Enter a valid phone number.';
 
-        // Avatar upload
         $avatarPath = $user['avatar'];
         if (!empty($_FILES['avatar']['name'])) {
             $allowed = ['image/jpeg','image/png','image/webp','image/gif'];
@@ -46,7 +44,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             } else {
                 $dir = __DIR__ . '/assets/img/avatars/';
                 if (!is_dir($dir)) mkdir($dir, 0755, true);
-                // Delete old avatar if exists
                 if ($avatarPath && file_exists(__DIR__ . '/' . $avatarPath)) {
                     @unlink(__DIR__ . '/' . $avatarPath);
                 }
@@ -75,17 +72,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt = $conn->prepare("UPDATE admin_users SET name=?, phone=?, notes=?, avatar=?, updated_at=NOW() WHERE id=?");
             $stmt->bind_param("ssssi", $name, $phone, $notes, $avatarPath, $adminId);
             if ($stmt->execute()) {
-                // Update session
                 $_SESSION['admin_name'] = $name;
                 $success = 'Profile updated successfully.';
-                // Re-fetch user
                 $s2 = $conn->prepare("SELECT * FROM admin_users WHERE id = ? LIMIT 1");
                 $s2->bind_param("i", $adminId);
                 $s2->execute();
                 $user = $s2->get_result()->fetch_assoc();
                 $s2->close();
-                // Log
-                $ip  = $conn->real_escape_string($_SERVER['REMOTE_ADDR'] ?? '0.0.0.0');
+                $ip = $conn->real_escape_string($_SERVER['REMOTE_ADDR'] ?? '0.0.0.0');
                 $conn->query("INSERT INTO admin_activity_log (user_id, action, detail, ip, created_at)
                     VALUES ($adminId, 'user_updated', 'Profile updated', '$ip', NOW())");
             } else {
@@ -95,7 +89,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
-    // ── Change Password ───────────────────────────────────────────────────────
     if ($action === 'change_password') {
         $current = $_POST['current_password'] ?? '';
         $newpw   = $_POST['new_password']     ?? '';
@@ -125,7 +118,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-// ── Activity log for this user ────────────────────────────────────────────────
+// ── Activity log ──────────────────────────────────────────────────────────────
 $myActivity = [];
 $res = $conn->query("SELECT action, detail, ip, created_at FROM admin_activity_log
     WHERE user_id = $adminId ORDER BY created_at DESC LIMIT 10");
@@ -140,7 +133,6 @@ $roleBadge = ['superadmin'=>'danger','admin'=>'primary','editor'=>'success','vie
 
 $pageTitle  = 'My Profile';
 $activePage = 'profile';
-$assetBase  = '';
 
 $extraCSS = '
 <style>
@@ -166,7 +158,6 @@ require_once __DIR__ . '/include/head.php';
     <div class="page-wrapper" style="background:#f4f6f9;min-height:100vh;">
         <div class="content container-fluid pt-4 pb-5">
 
-            <!-- Breadcrumb -->
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <div>
                     <h3 class="fw-bolder text-dark mb-1">My Profile</h3>
@@ -196,10 +187,7 @@ require_once __DIR__ . '/include/head.php';
 
             <div class="row g-4">
 
-                <!-- ── LEFT: Profile card + Stats ─────────────────── -->
                 <div class="col-xl-4 col-lg-4">
-
-                    <!-- Profile Card -->
                     <div class="card border-0 shadow-sm profile-card mb-4">
                         <div class="profile-cover"></div>
                         <div class="card-body text-center pt-0">
@@ -233,7 +221,6 @@ require_once __DIR__ . '/include/head.php';
                         </div>
                     </div>
 
-                    <!-- Activity Log -->
                     <div class="card border-0 shadow-sm rounded-4">
                         <div class="card-header bg-white border-bottom py-3 px-4 d-flex align-items-center gap-3">
                             <div class="section-icon bg-info-subtle text-info"><i class="fa fa-history"></i></div>
@@ -259,13 +246,9 @@ require_once __DIR__ . '/include/head.php';
                             <?php endif; ?>
                         </div>
                     </div>
-
                 </div>
 
-                <!-- ── RIGHT: Edit forms ───────────────────────────── -->
                 <div class="col-xl-8 col-lg-8">
-
-                    <!-- Edit Profile -->
                     <div class="card border-0 shadow-sm rounded-4 mb-4">
                         <div class="card-header bg-white border-bottom py-3 px-4 d-flex align-items-center gap-3">
                             <div class="section-icon bg-primary-subtle text-primary"><i class="fa fa-user-edit"></i></div>
@@ -323,7 +306,6 @@ require_once __DIR__ . '/include/head.php';
                         </div>
                     </div>
 
-                    <!-- Change Password -->
                     <div class="card border-0 shadow-sm rounded-4">
                         <div class="card-header bg-white border-bottom py-3 px-4 d-flex align-items-center gap-3">
                             <div class="section-icon bg-danger-subtle text-danger"><i class="fa fa-lock"></i></div>
@@ -365,24 +347,22 @@ require_once __DIR__ . '/include/head.php';
                             </form>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
     </div>
 
 <script>
-// Avatar preview
 document.getElementById('avatarInput').addEventListener('change', function () {
     const file = this.files[0]; if (!file) return;
     const reader = new FileReader();
     reader.onload = e => {
         document.getElementById('avatarThumb').src = e.target.result;
+        document.getElementById('profileAvatarPreview').src = e.target.result;
     };
     reader.readAsDataURL(file);
 });
 
-// Toggle password visibility
 function togglePw(inputId, iconId) {
     const inp = document.getElementById(inputId);
     const ico = document.getElementById(iconId);
@@ -391,7 +371,6 @@ function togglePw(inputId, iconId) {
     ico.className = show ? 'fa fa-eye-slash text-muted' : 'fa fa-eye text-muted';
 }
 
-// Password strength
 document.getElementById('newPw').addEventListener('input', function () {
     const v = this.value;
     const score = [v.length >= 8, /[A-Z]/.test(v), /[0-9]/.test(v), /[^A-Za-z0-9]/.test(v)].filter(Boolean).length;

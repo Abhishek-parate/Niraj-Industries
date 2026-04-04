@@ -3,7 +3,6 @@ require_once '../include/config.php';
 
 if (session_status() === PHP_SESSION_NONE) session_start();
 
-// Log the logout action
 if (!empty($_SESSION['admin_id'])) {
     $uid = (int)$_SESSION['admin_id'];
     $ip  = $conn->real_escape_string($_SERVER['REMOTE_ADDR'] ?? '0.0.0.0');

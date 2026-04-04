@@ -45,15 +45,12 @@ $_hRoleBadge = [
 // ── Action icon map ───────────────────────────────────────────────────────────
 function _notifIcon(string $action): string {
     $map = [
-        'login'          => ['fa-sign-in-alt',  'bg-success'],
-        'logout'         => ['fa-sign-out-alt', 'bg-secondary'],
-        'user_created'   => ['fa-user-plus',    'bg-primary'],
-        'user_updated'   => ['fa-user-edit',    'bg-info'],
-        'doctor_created' => ['fa-user-md',      'bg-teal'],
-        'doctor_updated' => ['fa-user-md',      'bg-info'],
-        'blog_created'   => ['fa-pen-nib',      'bg-warning'],
-        'blog_updated'   => ['fa-pen-nib',      'bg-warning'],
-        'service_added'  => ['fa-briefcase',    'bg-primary'],
+        'login'            => ['fa-sign-in-alt',  'bg-success'],
+        'logout'           => ['fa-sign-out-alt', 'bg-secondary'],
+        'user_created'     => ['fa-user-plus',    'bg-primary'],
+        'user_updated'     => ['fa-user-edit',    'bg-info'],
+        'product_created'  => ['fa-box',          'bg-warning'],
+        'product_updated'  => ['fa-box',          'bg-info'],
     ];
     $v = $map[$action] ?? ['fa-bell', 'bg-secondary'];
     return "<span class=\"avatar avatar-xs flex-shrink-0\">
@@ -215,38 +212,24 @@ $_base = defined('SITE_URL') ? SITE_URL . '/admin/' : '/nirajindustries/admin/';
 $_menuItems = [];
 
 // Dashboard (everyone)
-$_menuItems[] = ['section'=>'Main',     'icon'=>'fe fe-home',      'label'=>'Dashboard',    'url'=>$_base];
-
-// Doctors
-if (canAccess('doctors')) {
-    $_menuItems[] = ['section'=>'Doctors',  'icon'=>'fe fe-user-plus', 'label'=>'All Doctors',  'url'=>$_base.'doctors/'];
-    if (!hasRole('viewer'))
-        $_menuItems[] = ['section'=>'Doctors', 'icon'=>'fe fe-user-plus', 'label'=>'Add Doctor', 'url'=>$_base.'doctors/add'];
-}
+$_menuItems[] = ['section' => 'Main', 'icon' => 'fe fe-home', 'label' => 'Dashboard', 'url' => $_base];
 
 // Users
 if (canAccess('users')) {
-    $_menuItems[] = ['section'=>'Users',    'icon'=>'fe fe-users',     'label'=>'All Users',    'url'=>$_base.'users/'];
-    if (hasRole(['superadmin','admin']))
-        $_menuItems[] = ['section'=>'Users', 'icon'=>'fe fe-users',    'label'=>'Add User',     'url'=>$_base.'users/add'];
+    $_menuItems[] = ['section' => 'Users', 'icon' => 'fe fe-users', 'label' => 'All Users', 'url' => $_base . 'users/'];
+    if (hasRole(['superadmin', 'admin']))
+        $_menuItems[] = ['section' => 'Users', 'icon' => 'fe fe-users', 'label' => 'Add User', 'url' => $_base . 'users/add'];
 }
 
-// Blogs
-if (canAccess('blogs')) {
-    $_menuItems[] = ['section'=>'Blogs',    'icon'=>'fe fe-edit',      'label'=>'All Blogs',    'url'=>$_base.'blog/'];
+// Products
+if (canAccess('products')) {
+    $_menuItems[] = ['section' => 'Products', 'icon' => 'fe fe-box', 'label' => 'All Products', 'url' => $_base . 'products/'];
     if (!hasRole('viewer'))
-        $_menuItems[] = ['section'=>'Blogs', 'icon'=>'fe fe-edit',     'label'=>'Add Blog',     'url'=>$_base.'blog/add'];
-}
-
-// Services
-if (canAccess('services')) {
-    $_menuItems[] = ['section'=>'Services', 'icon'=>'fe fe-layout', 'label'=>'All Services', 'url'=>$_base.'services/'];
-    if (!hasRole('viewer'))
-        $_menuItems[] = ['section'=>'Services','icon'=>'fe fe-layout','label'=>'Add Service', 'url'=>$_base.'services/add'];
+        $_menuItems[] = ['section' => 'Products', 'icon' => 'fe fe-box', 'label' => 'Add Product', 'url' => $_base . 'products/add'];
 }
 
 // Profile (always)
-$_menuItems[] = ['section'=>'Account',  'icon'=>'fa fa-user-circle','label'=>'My Profile',   'url'=>$_base.'profile'];
+$_menuItems[] = ['section' => 'Account', 'icon' => 'fa fa-user-circle', 'label' => 'My Profile', 'url' => $_base . 'profile'];
 ?>
 <script>
 window.ADMIN_MENU = <?= json_encode($_menuItems, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) ?>;
