@@ -697,7 +697,7 @@ img[src*="check"] {
 
 <!--===== HERO AREA STARTS =======-->
 <div class="hero3-section-area">
-    <img src="<?php echo $base_url; ?>assets/img/elements/elements3.png" alt="" class="elements3">
+    <img src="<?php echo $base_url; ?>" alt="" class="elements3">
     <div class="container">
         <div class="row">
             <div class="col-lg-6">
