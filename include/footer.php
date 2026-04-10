@@ -1,4 +1,4 @@
-<?php if (!isset($base_url)) { $base_url = "http://localhost/nirajindustries/"; } ?>
+<?php if (!isset($base_url)) { $base_url = "https://nirajindustry.com/"; } ?>
 
 <!--===== FOOTER AREA STARTS =======-->
 <footer class="footer1-section-area">

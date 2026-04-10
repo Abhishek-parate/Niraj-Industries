@@ -9,25 +9,25 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>http://localhost/nirajindustries/about-us</loc>
+    <loc>https://nirajindustry.com/about-us</loc>
     <lastmod>2026-04-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>http://localhost/nirajindustries/products</loc>
+    <loc>https://nirajindustry.com/products</loc>
     <lastmod>2026-04-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>http://localhost/nirajindustries/blogs</loc>
+    <loc>https://nirajindustry.com/blogs</loc>
     <lastmod>2026-04-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>http://localhost/nirajindustries/contact-us</loc>
+    <loc>https://nirajindustry.com/contact-us</loc>
     <lastmod>2026-04-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -35,19 +35,19 @@
 
   <!-- ═══ LEGAL PAGES ═══ -->
   <url>
-    <loc>http://localhost/nirajindustries/terms-conditions</loc>
+    <loc>https://nirajindustry.com/terms-conditions</loc>
     <lastmod>2026-04-07</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
-    <loc>http://localhost/nirajindustries/privacy-policy</loc>
+    <loc>https://nirajindustry.com/privacy-policy</loc>
     <lastmod>2026-04-07</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
-    <loc>http://localhost/nirajindustries/cancellation-policy</loc>
+    <loc>https://nirajindustry.com/cancellation-policy</loc>
     <lastmod>2026-04-07</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>

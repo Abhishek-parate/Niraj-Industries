@@ -4,7 +4,7 @@
  * PVC Pipe Manufacturer in Nagpur
  * SEO-Optimized | E-E-A-T Ready | Local SEO
  */
-$base_url = "http://localhost/nirajindustries/";
+$base_url = "https://nirajindustry.com/";
 include 'include/config.php';
 
 $page_title       = "Niraj Industries | PVC Pipe Manufacturer in Nagpur";

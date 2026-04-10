@@ -1,5 +1,5 @@
 <?php
-$base_url = "http://localhost/nirajindustries/";
+$base_url = "https://nirajindustry.com/";
 include 'include/config.php';
 
 $slug = isset($_GET['slug']) ? trim($conn->real_escape_string($_GET['slug'])) : '';

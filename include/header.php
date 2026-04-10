@@ -1,4 +1,4 @@
-<?php if (!isset($base_url)) { $base_url = "http://localhost/nirajindustries/"; } ?>
+<?php if (!isset($base_url)) { $base_url = "https://nirajindustry.com/"; } ?>
 
 <!--=====HEADER START=======-->
 <header>

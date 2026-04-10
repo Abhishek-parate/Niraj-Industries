@@ -1,5 +1,5 @@
 <?php
-$base_url = "http://localhost/nirajindustries/";
+$base_url = "https://nirajindustry.com/";
 include 'include/config.php';
 
 $page_title       = "Privacy Policy | Niraj Industries";
