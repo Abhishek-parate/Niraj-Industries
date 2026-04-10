@@ -83,7 +83,7 @@ if (!empty($blog['tags'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $page_title; ?></title>
     <meta name="description" content="<?php echo $meta_description; ?>">
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
@@ -96,18 +96,10 @@ if (!empty($blog['tags'])) {
     <script src="<?php echo $base_url; ?>assets/js/plugins/jquery-3-6-0.min.js"></script>
 
 <style>
-/* ============================================================
-/* ============================================================
-   NIRAJ INDUSTRIES — BLOG DETAIL PAGE THEME
-   Primary Red:  #B5100E
-   Dark Charcoal:#242223
-   ============================================================ */
-
 :root {
     --ni-red:        #B5100E;
     --ni-red-dk:     #8f0b0a;
     --ni-red-soft:   #fdf0f0;
-    --ni-red-mid:    rgba(181,16,14,0.12);
     --ni-dark:       #242223;
     --ni-dark-2:     #2e2c2c;
     --ni-white:      #ffffff;
@@ -135,69 +127,134 @@ html, body { overflow-x: hidden; }
     color: var(--ni-text);
 }
 
-/* ── BREADCRUMB BAR ── */
-.ni-breadcrumb-bar {
-    background: var(--ni-white);
-    border-bottom: 1px solid var(--ni-border);
-    padding: 13px 0;
-}
-.ni-breadcrumb-bar .inner {
-    display: flex; align-items: center; gap: 8px;
-    font-size: 12.5px; color: var(--ni-text3); flex-wrap: wrap;
-}
-.ni-breadcrumb-bar a {
-    color: var(--ni-text3); text-decoration: none; transition: color .2s;
-}
-.ni-breadcrumb-bar a:hover { color: var(--ni-red); }
-.ni-breadcrumb-bar i { font-size: 9px; opacity: .7; }
-.ni-breadcrumb-bar .current {
-    color: var(--ni-text2); font-weight: 500;
-    white-space: nowrap; overflow: hidden;
-    text-overflow: ellipsis; max-width: 280px;
+/* ══════════════════════════════════════════
+   HERO BANNER — full width, image as bg
+══════════════════════════════════════════ */
+.ni-blog-hero {
+    position: relative;
+    width: 100%;
+    height: 520px;
+    overflow: hidden;
+    margin-top: 80px; /* header height offset */
 }
 
-/* ── ARTICLE TITLE BLOCK ── */
-.ni-article-titleblock {
-    background: var(--ni-white);
-    border-bottom: 3px solid var(--ni-red);
-    padding: 36px 0 32px;
-    position: relative;
-    overflow: hidden;
+.ni-blog-hero .hero-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
 }
-.ni-article-titleblock::before {
+
+/* dark overlay — bottom heavy so text is readable */
+.ni-blog-hero .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.18) 0%,
+        rgba(0,0,0,0.30) 40%,
+        rgba(0,0,0,0.82) 100%
+    );
+    z-index: 1;
+}
+
+/* all text content sits above overlay */
+.ni-blog-hero .hero-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    padding: 0 0 36px;
+}
+
+/* breadcrumb inside banner */
+.ni-blog-hero .hero-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 12px;
+    color: rgba(255,255,255,0.70);
+    flex-wrap: wrap;
+    margin-bottom: 14px;
+    padding: 0 0 0 2px;
+}
+.ni-blog-hero .hero-breadcrumb a {
+    color: rgba(255,255,255,0.70);
+    text-decoration: none;
+    transition: color .2s;
+}
+.ni-blog-hero .hero-breadcrumb a:hover { color: #fff; }
+.ni-blog-hero .hero-breadcrumb i { font-size: 8px; opacity: .7; }
+.ni-blog-hero .hero-breadcrumb .current {
+    color: rgba(255,255,255,0.95);
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 300px;
+}
+
+/* category badge */
+.ni-blog-hero .cat-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--ni-red);
+    color: #fff;
+    font-size: 10px;
+    font-weight: 800;
+    padding: 5px 14px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 14px;
+}
+
+/* main title */
+.ni-blog-hero .hero-title {
+    font-family: var(--ni-font-head);
+    font-size: 38px;
+    color: #ffffff;
+    line-height: 1.25;
+    margin-bottom: 18px;
+    letter-spacing: -.3px;
+    max-width: 820px;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.4);
+}
+
+/* meta row */
+.ni-blog-hero .meta-strip {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 20px;
+}
+.ni-blog-hero .meta-item {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 12.5px;
+    color: rgba(255,255,255,0.80);
+}
+.ni-blog-hero .meta-item i {
+    color: rgba(255,255,255,0.60);
+    font-size: 12px;
+}
+
+/* red bottom border on banner */
+.ni-blog-hero::after {
     content: '';
     position: absolute;
-    right: -80px; top: -80px;
-    width: 280px; height: 280px;
-    background: radial-gradient(circle, rgba(181,16,14,0.05) 0%, transparent 70%);
-    border-radius: 50%;
-    pointer-events: none;
-}
-.ni-article-titleblock .cat-badge {
-    display: inline-flex; align-items: center; gap: 6px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
     background: var(--ni-red);
-    color: var(--ni-white);
-    font-size: 10px; font-weight: 800;
-    padding: 5px 14px; border-radius: 20px;
-    text-transform: uppercase; letter-spacing: 1px;
-    margin-bottom: 16px;
-}
-.ni-article-titleblock h1 {
-    font-family: var(--ni-font-head);
-    font-size: 36px; color: var(--ni-dark);
-    line-height: 1.25; margin-bottom: 20px;
-    letter-spacing: -.3px; max-width: 820px;
-}
-.ni-article-titleblock .meta-strip {
-    display: flex; flex-wrap: wrap;
-    align-items: center; gap: 6px 20px;
-}
-.ni-article-titleblock .meta-item {
-    display: flex; align-items: center;
-    gap: 7px; font-size: 12.5px; color: var(--ni-text3);
-}
-.ni-article-titleblock .meta-item i {
-    color: var(--ni-red); font-size: 12px;
+    z-index: 3;
 }
 
 /* ── MAIN LAYOUT ── */
@@ -205,21 +262,6 @@ html, body { overflow-x: hidden; }
     padding: 40px 0 80px;
     background: var(--ni-bg);
 }
-
-/* ── FEATURED IMAGE ── */
-.ni-featured-img {
-    border-radius: var(--ni-radius);
-    overflow: hidden;
-    margin-bottom: 24px;
-    box-shadow: var(--ni-shadow-md);
-    position: relative;
-}
-.ni-featured-img img {
-    width: 100%; height: 440px;
-    object-fit: cover; display: block;
-    transition: transform .6s ease;
-}
-.ni-featured-img:hover img { transform: scale(1.02); }
 
 /* ── CONTENT BOX ── */
 .ni-content-box {
@@ -242,160 +284,89 @@ html, body { overflow-x: hidden; }
     border-bottom: 2px solid var(--ni-border);
     letter-spacing: -.1px;
 }
-.ni-blog-body h3 {
-    font-size: 19px; font-weight: 700;
-    color: var(--ni-text); margin: 26px 0 11px;
-}
-.ni-blog-body h4 {
-    font-size: 16px; font-weight: 700;
-    color: var(--ni-text); margin: 20px 0 9px;
-}
+.ni-blog-body h3 { font-size: 19px; font-weight: 700; color: var(--ni-text); margin: 26px 0 11px; }
+.ni-blog-body h4 { font-size: 16px; font-weight: 700; color: var(--ni-text); margin: 20px 0 9px; }
 .ni-blog-body p { margin-bottom: 18px; }
-.ni-blog-body ul,
-.ni-blog-body ol { padding-left: 22px; margin-bottom: 18px; }
-.ni-blog-body ul li,
-.ni-blog-body ol li {
-    margin-bottom: 9px; color: var(--ni-text2); line-height: 1.7;
-}
+.ni-blog-body ul, .ni-blog-body ol { padding-left: 22px; margin-bottom: 18px; }
+.ni-blog-body ul li, .ni-blog-body ol li { margin-bottom: 9px; color: var(--ni-text2); line-height: 1.7; }
 .ni-blog-body ul li::marker { color: var(--ni-red); }
 .ni-blog-body ol li::marker { color: var(--ni-red); font-weight: 700; }
-
 .ni-blog-body blockquote {
-    background: var(--ni-red-soft);
-    border-left: 4px solid var(--ni-red);
-    padding: 18px 24px;
-    border-radius: 0 var(--ni-radius-sm) var(--ni-radius-sm) 0;
-    margin: 26px 0;
-    font-style: italic;
-    color: var(--ni-text);
+    background: var(--ni-red-soft); border-left: 4px solid var(--ni-red);
+    padding: 18px 24px; border-radius: 0 var(--ni-radius-sm) var(--ni-radius-sm) 0;
+    margin: 26px 0; font-style: italic; color: var(--ni-text);
     font-size: 15px; line-height: 1.75;
 }
 .ni-blog-body blockquote::before {
-    content: '\201C';
-    font-size: 48px; color: var(--ni-red);
-    font-family: var(--ni-font-head);
-    line-height: 0; vertical-align: -18px;
-    margin-right: 6px; opacity: .5;
+    content: '\201C'; font-size: 48px; color: var(--ni-red);
+    font-family: var(--ni-font-head); line-height: 0;
+    vertical-align: -18px; margin-right: 6px; opacity: .5;
 }
 .ni-blog-body img {
     width: 100%; border-radius: var(--ni-radius);
     margin: 22px 0; box-shadow: var(--ni-shadow); display: block;
 }
 .ni-blog-body strong { color: var(--ni-dark); font-weight: 700; }
-.ni-blog-body a {
-    color: var(--ni-red);
-    text-decoration: underline; text-underline-offset: 3px; transition: color .2s;
-}
+.ni-blog-body a { color: var(--ni-red); text-decoration: underline; text-underline-offset: 3px; transition: color .2s; }
 .ni-blog-body a:hover { color: var(--ni-red-dk); }
-
-.ni-blog-body table {
-    width: 100%; border-collapse: collapse;
-    margin: 22px 0; font-size: 14px;
-}
-.ni-blog-body table th {
-    background: var(--ni-dark); color: var(--ni-white);
-    padding: 11px 14px; text-align: left; font-weight: 600;
-}
-.ni-blog-body table td {
-    padding: 10px 14px;
-    border-bottom: 1px solid var(--ni-border); color: var(--ni-text2);
-}
+.ni-blog-body table { width: 100%; border-collapse: collapse; margin: 22px 0; font-size: 14px; }
+.ni-blog-body table th { background: var(--ni-dark); color: var(--ni-white); padding: 11px 14px; text-align: left; font-weight: 600; }
+.ni-blog-body table td { padding: 10px 14px; border-bottom: 1px solid var(--ni-border); color: var(--ni-text2); }
 .ni-blog-body table tr:nth-child(even) td { background: var(--ni-off-white); }
 .ni-blog-body code {
     background: var(--ni-off-white); border: 1px solid var(--ni-border);
-    padding: 2px 7px; border-radius: 4px;
-    font-size: 13.5px; color: var(--ni-red);
+    padding: 2px 7px; border-radius: 4px; font-size: 13.5px; color: var(--ni-red);
 }
 
 /* ── TAGS & SHARE ── */
 .ni-tags-share {
-    background: var(--ni-white);
-    border-radius: var(--ni-radius);
-    border: 1px solid var(--ni-border);
-    padding: 20px 26px;
-    display: flex; align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap; gap: 14px;
-    margin-bottom: 22px; box-shadow: var(--ni-shadow);
+    background: var(--ni-white); border-radius: var(--ni-radius);
+    border: 1px solid var(--ni-border); padding: 20px 26px;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 14px; margin-bottom: 22px; box-shadow: var(--ni-shadow);
 }
-.ni-tags-share .tags-row {
-    display: flex; align-items: center; flex-wrap: wrap; gap: 8px;
-}
-.ni-tags-share .tags-label {
-    font-size: 12.5px; font-weight: 700; color: var(--ni-text);
-    display: flex; align-items: center; gap: 5px;
-}
+.ni-tags-share .tags-row { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
+.ni-tags-share .tags-label { font-size: 12.5px; font-weight: 700; color: var(--ni-text); display: flex; align-items: center; gap: 5px; }
 .ni-tags-share .tags-label i { color: var(--ni-red); }
 .ni-tag-chip {
     background: var(--ni-off-white); border: 1px solid var(--ni-border);
     color: var(--ni-text2); font-size: 11.5px; font-weight: 500;
-    padding: 5px 13px; border-radius: 20px;
-    text-decoration: none; transition: var(--ni-trans);
+    padding: 5px 13px; border-radius: 20px; text-decoration: none; transition: var(--ni-trans);
 }
-.ni-tag-chip:hover {
-    background: var(--ni-red); border-color: var(--ni-red);
-    color: var(--ni-white); transform: translateY(-1px);
-}
-.ni-tags-share .share-row {
-    display: flex; align-items: center; gap: 9px;
-}
-.ni-tags-share .share-label {
-    font-size: 12.5px; font-weight: 700; color: var(--ni-text);
-}
+.ni-tag-chip:hover { background: var(--ni-red); border-color: var(--ni-red); color: var(--ni-white); transform: translateY(-1px); }
+.ni-tags-share .share-row { display: flex; align-items: center; gap: 9px; }
+.ni-tags-share .share-label { font-size: 12.5px; font-weight: 700; color: var(--ni-text); }
 .ni-share-btn {
-    width: 36px; height: 36px;
-    display: flex; align-items: center; justify-content: center;
-    border-radius: 50%; font-size: 14px;
-    color: var(--ni-white); text-decoration: none; transition: var(--ni-trans);
+    width: 36px; height: 36px; display: flex; align-items: center; justify-content: center;
+    border-radius: 50%; font-size: 14px; color: var(--ni-white); text-decoration: none; transition: var(--ni-trans);
 }
-.ni-share-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 18px rgba(0,0,0,.15);
-    color: var(--ni-white);
-}
+.ni-share-btn:hover { transform: translateY(-3px); box-shadow: 0 6px 18px rgba(0,0,0,.15); color: var(--ni-white); }
 .ni-share-btn.fb { background: #1877f2; }
 .ni-share-btn.tw { background: #000; }
 .ni-share-btn.li { background: #0077b5; }
 .ni-share-btn.wa { background: #25d366; }
 
 /* ── PREV / NEXT ── */
-.ni-prev-next {
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 14px; margin-bottom: 36px;
-}
+.ni-prev-next { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 36px; }
 .ni-pn-card {
-    background: var(--ni-white);
-    border: 1px solid var(--ni-border);
-    border-radius: var(--ni-radius);
-    padding: 18px 20px; text-decoration: none;
+    background: var(--ni-white); border: 1px solid var(--ni-border);
+    border-radius: var(--ni-radius); padding: 18px 20px; text-decoration: none;
     display: flex; flex-direction: column; gap: 7px;
-    transition: var(--ni-trans); box-shadow: var(--ni-shadow);
-    position: relative; overflow: hidden;
+    transition: var(--ni-trans); box-shadow: var(--ni-shadow); position: relative; overflow: hidden;
 }
 .ni-pn-card::before {
-    content: ''; position: absolute;
-    bottom: 0; left: 0; right: 0; height: 3px;
-    background: var(--ni-red);
-    transform: scaleX(0); transition: transform .3s ease;
+    content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+    background: var(--ni-red); transform: scaleX(0); transition: transform .3s ease;
 }
-.ni-pn-card:hover {
-    border-color: rgba(181,16,14,0.25);
-    box-shadow: var(--ni-shadow-md);
-    transform: translateY(-2px);
-}
+.ni-pn-card:hover { border-color: rgba(181,16,14,0.25); box-shadow: var(--ni-shadow-md); transform: translateY(-2px); }
 .ni-pn-card:hover::before { transform: scaleX(1); }
 .ni-pn-card .pn-dir {
-    font-size: 10.5px; font-weight: 800;
-    color: var(--ni-red);
-    text-transform: uppercase; letter-spacing: .7px;
-    display: flex; align-items: center; gap: 5px;
+    font-size: 10.5px; font-weight: 800; color: var(--ni-red);
+    text-transform: uppercase; letter-spacing: .7px; display: flex; align-items: center; gap: 5px;
 }
 .ni-pn-card .pn-title {
-    font-size: 13.5px; font-weight: 600; color: var(--ni-text);
-    line-height: 1.45;
-    display: -webkit-box; -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical; overflow: hidden;
-    transition: color .2s;
+    font-size: 13.5px; font-weight: 600; color: var(--ni-text); line-height: 1.45;
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; transition: color .2s;
 }
 .ni-pn-card:hover .pn-title { color: var(--ni-red); }
 .ni-pn-card.next { text-align: right; align-items: flex-end; }
@@ -403,94 +374,60 @@ html, body { overflow-x: hidden; }
 /* ── RELATED POSTS ── */
 .ni-related-section { margin-top: 6px; }
 .ni-related-head {
-    font-family: var(--ni-font-head);
-    font-size: 22px; color: var(--ni-dark);
-    margin-bottom: 20px;
-    display: flex; align-items: center; gap: 12px;
+    font-family: var(--ni-font-head); font-size: 22px; color: var(--ni-dark);
+    margin-bottom: 20px; display: flex; align-items: center; gap: 12px;
 }
 .ni-related-head::after {
     content: ''; flex: 1; height: 2px;
     background: linear-gradient(to right, var(--ni-border) 0%, transparent 100%);
 }
 .ni-related-card {
-    background: var(--ni-white);
-    border-radius: var(--ni-radius);
-    overflow: hidden;
-    border: 1px solid var(--ni-border);
-    box-shadow: var(--ni-shadow);
-    transition: var(--ni-trans);
-    height: 100%; display: flex; flex-direction: column;
+    background: var(--ni-white); border-radius: var(--ni-radius); overflow: hidden;
+    border: 1px solid var(--ni-border); box-shadow: var(--ni-shadow);
+    transition: var(--ni-trans); height: 100%; display: flex; flex-direction: column;
 }
-.ni-related-card:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--ni-shadow-md);
-    border-color: rgba(181,16,14,0.3);
-}
-.ni-related-card .rc-img {
-    height: 165px; overflow: hidden;
-    background: var(--ni-red-soft); position: relative;
-}
-.ni-related-card .rc-img img {
-    width: 100%; height: 100%;
-    object-fit: cover; transition: transform .45s ease; display: block;
-}
+.ni-related-card:hover { transform: translateY(-5px); box-shadow: var(--ni-shadow-md); border-color: rgba(181,16,14,0.3); }
+.ni-related-card .rc-img { height: 165px; overflow: hidden; background: var(--ni-red-soft); position: relative; }
+.ni-related-card .rc-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .45s ease; display: block; }
 .ni-related-card:hover .rc-img img { transform: scale(1.07); }
 .ni-related-card .rc-img .rc-cat-badge {
     position: absolute; top: 10px; left: 10px;
     background: var(--ni-red); color: var(--ni-white);
-    font-size: 9.5px; font-weight: 800;
-    padding: 3px 10px; border-radius: 20px;
+    font-size: 9.5px; font-weight: 800; padding: 3px 10px; border-radius: 20px;
     text-transform: uppercase; letter-spacing: .6px;
 }
-.ni-related-card .rc-body {
-    padding: 16px 18px; flex: 1; display: flex; flex-direction: column;
-}
+.ni-related-card .rc-body { padding: 16px 18px; flex: 1; display: flex; flex-direction: column; }
 .ni-related-card .rc-body h5 {
-    font-size: 14px; font-weight: 700; color: var(--ni-dark);
-    line-height: 1.45; margin-bottom: 8px;
-    display: -webkit-box; -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical; overflow: hidden;
+    font-size: 14px; font-weight: 700; color: var(--ni-dark); line-height: 1.45; margin-bottom: 8px;
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
 }
-.ni-related-card .rc-body h5 a {
-    color: inherit; text-decoration: none; transition: color .2s;
-}
+.ni-related-card .rc-body h5 a { color: inherit; text-decoration: none; transition: color .2s; }
 .ni-related-card .rc-body h5 a:hover { color: var(--ni-red); }
 .ni-related-card .rc-body p {
-    font-size: 12.5px; color: var(--ni-text3);
-    line-height: 1.6; flex: 1;
-    display: -webkit-box; -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical; overflow: hidden;
+    font-size: 12.5px; color: var(--ni-text3); line-height: 1.6; flex: 1;
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
 }
 .ni-related-card .rc-footer {
     padding: 11px 18px; border-top: 1px solid var(--ni-border);
     display: flex; align-items: center; justify-content: space-between;
 }
-.ni-related-card .rc-footer span {
-    font-size: 11.5px; color: var(--ni-text3);
-    display: flex; align-items: center; gap: 4px;
-}
+.ni-related-card .rc-footer span { font-size: 11.5px; color: var(--ni-text3); display: flex; align-items: center; gap: 4px; }
 .ni-related-card .rc-footer span i { color: var(--ni-red); }
 .ni-related-card .rc-footer a {
-    font-size: 12px; font-weight: 700; color: var(--ni-dark);
-    text-decoration: none; display: flex; align-items: center;
-    gap: 4px; transition: var(--ni-trans);
+    font-size: 12px; font-weight: 700; color: var(--ni-dark); text-decoration: none;
+    display: flex; align-items: center; gap: 4px; transition: var(--ni-trans);
 }
 .ni-related-card .rc-footer a:hover { color: var(--ni-red); }
 .ni-related-card .rc-footer a i { font-size: 9px; }
 
 /* ── SIDEBAR WIDGETS ── */
 .ni-widget {
-    background: var(--ni-white);
-    border-radius: var(--ni-radius);
-    border: 1px solid var(--ni-border);
-    padding: 22px; margin-bottom: 20px;
-    box-shadow: var(--ni-shadow);
+    background: var(--ni-white); border-radius: var(--ni-radius);
+    border: 1px solid var(--ni-border); padding: 22px; margin-bottom: 20px; box-shadow: var(--ni-shadow);
 }
 .ni-widget-title {
-    font-family: var(--ni-font-head);
-    font-size: 17px; color: var(--ni-dark);
-    margin-bottom: 16px; padding-bottom: 13px;
-    border-bottom: 2.5px solid var(--ni-red);
+    font-family: var(--ni-font-head); font-size: 17px; color: var(--ni-dark);
+    margin-bottom: 16px; padding-bottom: 13px; border-bottom: 2.5px solid var(--ni-red);
     display: flex; align-items: center; gap: 8px;
 }
 .ni-widget-title i { color: var(--ni-red); font-size: 14px; }
@@ -502,35 +439,28 @@ html, body { overflow-x: hidden; }
 }
 .ni-search-box:focus-within { border-color: var(--ni-red); }
 .ni-search-box input {
-    flex: 1; border: none; outline: none;
-    padding: 10px 13px; font-size: 13px;
-    font-family: var(--ni-font-body);
-    background: transparent; color: var(--ni-text);
+    flex: 1; border: none; outline: none; padding: 10px 13px; font-size: 13px;
+    font-family: var(--ni-font-body); background: transparent; color: var(--ni-text);
 }
 .ni-search-box input::placeholder { color: var(--ni-text3); }
 .ni-search-box button {
-    background: var(--ni-red); border: none;
-    padding: 0 15px; color: var(--ni-white);
-    font-size: 13px; cursor: pointer; transition: background .2s;
+    background: var(--ni-red); border: none; padding: 0 15px;
+    color: var(--ni-white); font-size: 13px; cursor: pointer; transition: background .2s;
 }
 .ni-search-box button:hover { background: var(--ni-red-dk); }
 
 /* Latest Posts */
 .ni-latest-item {
     display: flex; gap: 12px; padding: 12px 0;
-    border-bottom: 1px solid var(--ni-border);
-    text-decoration: none; transition: var(--ni-trans);
+    border-bottom: 1px solid var(--ni-border); text-decoration: none; transition: var(--ni-trans);
 }
 .ni-latest-item:first-child { padding-top: 0; }
 .ni-latest-item:last-child { border-bottom: none; padding-bottom: 0; }
 .ni-latest-item .li-thumb {
-    width: 64px; height: 52px;
-    border-radius: var(--ni-radius-sm); overflow: hidden;
+    width: 64px; height: 52px; border-radius: var(--ni-radius-sm); overflow: hidden;
     flex-shrink: 0; background: var(--ni-red-soft);
 }
-.ni-latest-item .li-thumb img {
-    width: 100%; height: 100%; object-fit: cover; transition: transform .3s;
-}
+.ni-latest-item .li-thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform .3s; }
 .ni-latest-item:hover .li-thumb img { transform: scale(1.1); }
 .ni-latest-item .li-info { flex: 1; }
 .ni-latest-item .li-date {
@@ -538,10 +468,8 @@ html, body { overflow-x: hidden; }
     display: flex; align-items: center; gap: 4px; margin-bottom: 4px;
 }
 .ni-latest-item .li-info h6 {
-    font-size: 12.5px; font-weight: 600;
-    color: var(--ni-text); line-height: 1.45; margin: 0;
-    transition: color .2s;
-    display: -webkit-box; -webkit-line-clamp: 2;
+    font-size: 12.5px; font-weight: 600; color: var(--ni-text); line-height: 1.45; margin: 0;
+    transition: color .2s; display: -webkit-box; -webkit-line-clamp: 2;
     -webkit-box-orient: vertical; overflow: hidden;
 }
 .ni-latest-item:hover .li-info h6 { color: var(--ni-red); }
@@ -550,46 +478,34 @@ html, body { overflow-x: hidden; }
 .ni-cat-item {
     display: flex; align-items: center; justify-content: space-between;
     padding: 9px 11px; border-radius: var(--ni-radius-sm);
-    text-decoration: none; font-size: 13px;
-    color: var(--ni-text2); transition: var(--ni-trans); margin-bottom: 3px;
+    text-decoration: none; font-size: 13px; color: var(--ni-text2);
+    transition: var(--ni-trans); margin-bottom: 3px;
 }
 .ni-cat-item:last-child { margin-bottom: 0; }
 .ni-cat-item .cat-left { display: flex; align-items: center; gap: 9px; }
-.ni-cat-item .dot {
-    width: 7px; height: 7px; border-radius: 50%;
-    background: var(--ni-border); transition: background .2s; flex-shrink: 0;
-}
+.ni-cat-item .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--ni-border); transition: background .2s; flex-shrink: 0; }
 .ni-cat-item .cat-count {
-    font-size: 10.5px; font-weight: 700;
-    background: var(--ni-border); color: var(--ni-text3);
-    padding: 2px 8px; border-radius: 20px; transition: var(--ni-trans);
+    font-size: 10.5px; font-weight: 700; background: var(--ni-border);
+    color: var(--ni-text3); padding: 2px 8px; border-radius: 20px; transition: var(--ni-trans);
 }
-.ni-cat-item:hover,
-.ni-cat-item.active-cat { background: var(--ni-red-soft); color: var(--ni-red); }
-.ni-cat-item:hover .dot,
-.ni-cat-item.active-cat .dot { background: var(--ni-red); }
-.ni-cat-item:hover .cat-count,
-.ni-cat-item.active-cat .cat-count { background: var(--ni-red); color: var(--ni-white); }
+.ni-cat-item:hover, .ni-cat-item.active-cat { background: var(--ni-red-soft); color: var(--ni-red); }
+.ni-cat-item:hover .dot, .ni-cat-item.active-cat .dot { background: var(--ni-red); }
+.ni-cat-item:hover .cat-count, .ni-cat-item.active-cat .cat-count { background: var(--ni-red); color: var(--ni-white); }
 
 /* Tags */
 .ni-tags-wrap { display: flex; flex-wrap: wrap; gap: 8px; }
 .ni-tag {
-    font-size: 12px; font-weight: 500;
-    background: var(--ni-off-white); border: 1px solid var(--ni-border);
-    color: var(--ni-text2); padding: 5px 13px; border-radius: 20px;
-    text-decoration: none; transition: var(--ni-trans);
+    font-size: 12px; font-weight: 500; background: var(--ni-off-white);
+    border: 1px solid var(--ni-border); color: var(--ni-text2);
+    padding: 5px 13px; border-radius: 20px; text-decoration: none; transition: var(--ni-trans);
 }
-.ni-tag:hover {
-    background: var(--ni-red); border-color: var(--ni-red); color: var(--ni-white);
-}
+.ni-tag:hover { background: var(--ni-red); border-color: var(--ni-red); color: var(--ni-white); }
 
 /* CTA Widget */
 .ni-cta-widget {
-    background: var(--ni-dark);
-    border-radius: var(--ni-radius);
-    padding: 28px 22px; text-align: center;
-    position: relative; overflow: hidden; margin-bottom: 20px;
-    border: 1px solid rgba(181,16,14,0.2);
+    background: var(--ni-dark); border-radius: var(--ni-radius);
+    padding: 28px 22px; text-align: center; position: relative;
+    overflow: hidden; margin-bottom: 20px; border: 1px solid rgba(181,16,14,0.2);
 }
 .ni-cta-widget::before {
     content: ''; position: absolute; right: -30px; top: -30px;
@@ -598,114 +514,114 @@ html, body { overflow-x: hidden; }
     border-radius: 50%;
 }
 .ni-cta-widget .cta-icon {
-    width: 54px; height: 54px;
-    background: rgba(181,16,14,0.15); border-radius: 50%;
+    width: 54px; height: 54px; background: rgba(181,16,14,0.15); border-radius: 50%;
     display: flex; align-items: center; justify-content: center;
     margin: 0 auto 13px; border: 1.5px solid rgba(181,16,14,0.3);
     font-size: 22px; color: var(--ni-red); position: relative;
 }
-.ni-cta-widget h5 {
-    color: var(--ni-white); font-family: var(--ni-font-head);
-    font-size: 18px; margin-bottom: 7px;
-}
-.ni-cta-widget p {
-    color: rgba(255,255,255,.6); font-size: 12.5px;
-    line-height: 1.65; margin-bottom: 16px;
-}
+.ni-cta-widget h5 { color: var(--ni-white); font-family: var(--ni-font-head); font-size: 18px; margin-bottom: 7px; }
+.ni-cta-widget p { color: rgba(255,255,255,.6); font-size: 12.5px; line-height: 1.65; margin-bottom: 16px; }
 .ni-cta-btn {
     display: flex; align-items: center; justify-content: center; gap: 7px;
-    background: var(--ni-red); color: var(--ni-white);
-    font-size: 13px; font-weight: 700;
-    padding: 11px 20px; border-radius: 30px;
-    text-decoration: none; transition: var(--ni-trans);
-    border: 2px solid var(--ni-red); font-family: var(--ni-font-body);
+    background: var(--ni-red); color: var(--ni-white); font-size: 13px; font-weight: 700;
+    padding: 11px 20px; border-radius: 30px; text-decoration: none;
+    transition: var(--ni-trans); border: 2px solid var(--ni-red); font-family: var(--ni-font-body);
 }
 .ni-cta-btn:hover { background: transparent; color: var(--ni-red); }
 .ni-cta-btn i { font-size: 11px; }
 
 /* ── AOS FIX ── */
-[data-aos] {
-    opacity: 1 !important; transform: none !important;
-    transition: none !important; visibility: visible !important;
-}
+[data-aos] { opacity: 1 !important; transform: none !important; transition: none !important; visibility: visible !important; }
 
 /* ── RESPONSIVE ── */
 @media (max-width: 992px) {
-    .ni-article-titleblock h1 { font-size: 28px; }
+    .ni-blog-hero { height: 420px; }
+    .ni-blog-hero .hero-title { font-size: 28px; }
     .ni-content-box { padding: 28px 26px; }
 }
 @media (max-width: 768px) {
-    .ni-article-titleblock { padding: 24px 0 20px; }
-    .ni-article-titleblock h1 { font-size: 22px; }
+    .ni-blog-hero { height: 340px; margin-top: 70px; }
+    .ni-blog-hero .hero-title { font-size: 22px; }
+    .ni-blog-hero .hero-content { padding-bottom: 24px; }
     .ni-content-box { padding: 22px 18px; }
     .ni-blog-body { font-size: 14.5px; }
     .ni-blog-body h2 { font-size: 20px; }
-    .ni-featured-img img { height: 240px; }
     .ni-prev-next { grid-template-columns: 1fr; }
     .ni-tags-share { flex-direction: column; align-items: flex-start; }
-    .ni-breadcrumb-bar .current { max-width: 180px; }
+    .ni-blog-hero .hero-breadcrumb .current { max-width: 180px; }
 }
 @media (max-width: 480px) {
-    .ni-article-titleblock h1 { font-size: 20px; }
-    .ni-featured-img img { height: 200px; }
+    .ni-blog-hero { height: 280px; }
+    .ni-blog-hero .hero-title { font-size: 19px; }
 }
 </style>
 </head>
-<body class="homepage4-body ni-blog-detail-page" >
+<body class="homepage4-body ni-blog-detail-page">
 
 <?php include 'include/header.php'; ?>
 
-<!-- ══ BREADCRUMB BAR ══════════════════════════════════════ -->
-<div class="ni-breadcrumb-bar" style="margin-top:100px;">
-    <div class="container">
-        <div class="inner">
-            <a href="<?php echo $base_url; ?>/"><i class="fa-solid fa-house"></i></a>
-            <i class="fa-solid fa-chevron-right"></i>
-            <a href="<?php echo $base_url; ?>blogs">Blogs &amp; News</a>
-            <i class="fa-solid fa-chevron-right"></i>
+<!-- ══ HERO BANNER — full width image ══════════════════════ -->
+<div class="ni-blog-hero">
+
+    <?php if (!empty($blog['image'])): ?>
+    <img class="hero-img"
+         src="<?php echo $base_url . htmlspecialchars($blog['image']); ?>"
+         alt="<?php echo htmlspecialchars($blog['image_alt'] ?? $blog['title']); ?>"
+         onerror="this.style.background='#242223'">
+    <?php else: ?>
+    <div style="position:absolute;inset:0;background:#242223;"></div>
+    <?php endif; ?>
+
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+        <div class="container">
+
+            <!-- Breadcrumb inside banner -->
+            <div class="hero-breadcrumb">
+                <a href="<?php echo $base_url; ?>"><i class="fa-solid fa-house"></i></a>
+                <i class="fa-solid fa-chevron-right"></i>
+                <a href="<?php echo $base_url; ?>blogs">Blogs &amp; News</a>
+                <?php if (!empty($blog['cat_name'])): ?>
+                <i class="fa-solid fa-chevron-right"></i>
+                <a href="<?php echo $base_url; ?>blogs?category=<?php echo $blog['categories']; ?>"><?php echo htmlspecialchars($blog['cat_name']); ?></a>
+                <?php endif; ?>
+                <i class="fa-solid fa-chevron-right"></i>
+                <span class="current"><?php echo htmlspecialchars(mb_strimwidth($blog['title'], 0, 55, '...')); ?></span>
+            </div>
+
+            <!-- Category badge -->
             <?php if (!empty($blog['cat_name'])): ?>
-            <a href="<?php echo $base_url; ?>blogs?category=<?php echo $blog['categories']; ?>"><?php echo htmlspecialchars($blog['cat_name']); ?></a>
-            <i class="fa-solid fa-chevron-right"></i>
+            <div class="cat-badge">
+                <i class="fa-solid fa-tag"></i>
+                <?php echo htmlspecialchars($blog['cat_name']); ?>
+            </div>
             <?php endif; ?>
-            <span class="current"><?php echo htmlspecialchars(mb_strimwidth($blog['title'], 0, 55, '...')); ?></span>
+
+            <!-- Title -->
+            <h1 class="hero-title"><?php echo htmlspecialchars($blog['title']); ?></h1>
+
+            <!-- Meta -->
+            <div class="meta-strip">
+                <div class="meta-item">
+                    <i class="fa-regular fa-calendar"></i>
+                    <?php echo date('d M Y', strtotime($blog['published_at'])); ?>
+                </div>
+                <div class="meta-item">
+                    <i class="fa-regular fa-clock"></i>
+                    <?php echo $blog['reading_time']; ?> min read
+                </div>
+                <div class="meta-item">
+                    <i class="fa-regular fa-eye"></i>
+                    <?php echo number_format($blog['views']); ?> views
+                </div>
+            </div>
+
         </div>
     </div>
 </div>
 
-<!-- ══ ARTICLE TITLE BLOCK ════════════════════════════════ -->
-<div class="ni-article-titleblock">
-    <div class="container">
-        <?php if (!empty($blog['cat_name'])): ?>
-        <div class="cat-badge">
-            <i class="fa-solid fa-tag"></i>
-            <?php echo htmlspecialchars($blog['cat_name']); ?>
-        </div>
-        <?php endif; ?>
-        <h1><?php echo htmlspecialchars($blog['title']); ?></h1>
-        <div class="meta-strip">
-            <div class="meta-item">
-                <i class="fa-regular fa-calendar"></i>
-                <?php echo date('d M Y', strtotime($blog['published_at'])); ?>
-            </div>
-            <div class="meta-item">
-                <i class="fa-regular fa-clock"></i>
-                <?php echo $blog['reading_time']; ?> min read
-            </div>
-            <div class="meta-item">
-                <i class="fa-regular fa-eye"></i>
-                <?php echo number_format($blog['views']); ?> views
-            </div>
-            <?php if (!empty($blog['comments']) && $blog['comments'] > 0): ?>
-            <div class="meta-item">
-                <i class="fa-regular fa-comment"></i>
-                <?php echo $blog['comments']; ?> comments
-            </div>
-            <?php endif; ?>
-        </div>
-    </div>
-</div>
-
-<!-- ══ MAIN CONTENT ════════════════════════════════════════ -->
+<!-- ══ MAIN CONTENT ═══════════════════════════════════════ -->
 <section class="ni-detail-area">
     <div class="container">
         <div class="row g-4">
@@ -713,34 +629,24 @@ html, body { overflow-x: hidden; }
             <!-- ── LEFT: ARTICLE ── -->
             <div class="col-lg-8">
 
-                <!-- Featured Image -->
-                <?php if (!empty($blog['image'])): ?>
-                <div class="ni-featured-img" data-aos="fade-up" data-aos-duration="700">
-                    <img src="<?php echo $base_url . htmlspecialchars($blog['image']); ?>"
-                         alt="<?php echo htmlspecialchars($blog['image_alt'] ?? $blog['title']); ?>"
-                         onerror="this.style.display='none'">
-                </div>
-                <?php endif; ?>
-
-                <!-- Content -->
-                <div class="ni-content-box" data-aos="fade-up" data-aos-duration="700" data-aos-delay="80">
+                <!-- Content Box -->
+                <div class="ni-content-box">
                     <div class="ni-blog-body" style="text-align:justify;">
                         <?php
-$content = $blog['content'];
-// Split by double newline = paragraphs
-$paragraphs = preg_split('/\n\s*\n/', trim($content));
-foreach ($paragraphs as $para) {
-    $para = trim($para);
-    if (!empty($para)) {
-        echo '<p>' . nl2br(htmlspecialchars($para)) . '</p>';
-    }
-}
-?>
+                        $content = $blog['content'];
+                        $paragraphs = preg_split('/\n\s*\n/', trim($content));
+                        foreach ($paragraphs as $para) {
+                            $para = trim($para);
+                            if (!empty($para)) {
+                                echo '<p>' . nl2br(htmlspecialchars($para)) . '</p>';
+                            }
+                        }
+                        ?>
                     </div>
                 </div>
 
                 <!-- Tags & Share -->
-                <div class="ni-tags-share" data-aos="fade-up" data-aos-duration="700">
+                <div class="ni-tags-share">
                     <?php if (!empty($tags_arr)): ?>
                     <div class="tags-row">
                         <span class="tags-label"><i class="fa-solid fa-tags"></i> Tags:</span>
@@ -754,29 +660,22 @@ foreach ($paragraphs as $para) {
                     <div class="share-row">
                         <span class="share-label">Share:</span>
                         <?php $share_url = urlencode($base_url . 'blog-details?slug=' . $blog['slug']); ?>
-                        <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $share_url; ?>"
-                           target="_blank" class="ni-share-btn fb"><i class="fa-brands fa-facebook-f"></i></a>
-                        <a href="https://twitter.com/intent/tweet?url=<?php echo $share_url; ?>&text=<?php echo urlencode($blog['title']); ?>"
-                           target="_blank" class="ni-share-btn tw"><i class="fa-brands fa-x-twitter"></i></a>
-                        <a href="https://www.linkedin.com/sharing/share-offsite/?url=<?php echo $share_url; ?>"
-                           target="_blank" class="ni-share-btn li"><i class="fa-brands fa-linkedin-in"></i></a>
-                      <a href="https://wa.me/919579179996?text=<?php echo urlencode('Hello, I want to inquire about PVC pipes.'); ?>" 
-   target="_blank" class="ni-share-btn wa">
-   <i class="fa-brands fa-whatsapp"></i>
-</a>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $share_url; ?>" target="_blank" class="ni-share-btn fb"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="https://twitter.com/intent/tweet?url=<?php echo $share_url; ?>&text=<?php echo urlencode($blog['title']); ?>" target="_blank" class="ni-share-btn tw"><i class="fa-brands fa-x-twitter"></i></a>
+                        <a href="https://www.linkedin.com/sharing/share-offsite/?url=<?php echo $share_url; ?>" target="_blank" class="ni-share-btn li"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="https://wa.me/919579179996?text=<?php echo urlencode('Hello, I want to inquire about PVC pipes.'); ?>" target="_blank" class="ni-share-btn wa"><i class="fa-brands fa-whatsapp"></i></a>
                     </div>
                 </div>
 
                 <!-- Prev / Next -->
                 <?php if ($prev_post || $next_post): ?>
-                <div class="ni-prev-next" data-aos="fade-up" data-aos-duration="700">
+                <div class="ni-prev-next">
                     <?php if ($prev_post): ?>
                     <a href="<?php echo $base_url; ?>blog-details?slug=<?php echo urlencode($prev_post['slug']); ?>" class="ni-pn-card">
                         <span class="pn-dir"><i class="fa-solid fa-arrow-left"></i> Previous</span>
                         <span class="pn-title"><?php echo htmlspecialchars($prev_post['title']); ?></span>
                     </a>
                     <?php else: ?><div></div><?php endif; ?>
-
                     <?php if ($next_post): ?>
                     <a href="<?php echo $base_url; ?>blog-details?slug=<?php echo urlencode($next_post['slug']); ?>" class="ni-pn-card next">
                         <span class="pn-dir">Next <i class="fa-solid fa-arrow-right"></i></span>
@@ -788,7 +687,7 @@ foreach ($paragraphs as $para) {
 
                 <!-- Related Posts -->
                 <?php if (!empty($related_posts)): ?>
-                <div class="ni-related-section" data-aos="fade-up" data-aos-duration="700">
+                <div class="ni-related-section">
                     <div class="ni-related-head">Related Articles</div>
                     <div class="row g-3">
                         <?php foreach ($related_posts as $rp): ?>
@@ -812,9 +711,7 @@ foreach ($paragraphs as $para) {
                                 </div>
                                 <div class="rc-footer">
                                     <span><i class="fa-regular fa-clock"></i> <?php echo $rp['reading_time']; ?> min</span>
-                                    <a href="<?php echo $base_url; ?>blog-details?slug=<?php echo urlencode($rp['slug']); ?>">
-                                        Read More <i class="fa-solid fa-arrow-right"></i>
-                                    </a>
+                                    <a href="<?php echo $base_url; ?>blog-details?slug=<?php echo urlencode($rp['slug']); ?>">Read More <i class="fa-solid fa-arrow-right"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -830,9 +727,7 @@ foreach ($paragraphs as $para) {
 
                 <!-- Search -->
                 <div class="ni-widget">
-                    <div class="ni-widget-title">
-                        <i class="fa-solid fa-magnifying-glass"></i> Search Articles
-                    </div>
+                    <div class="ni-widget-title"><i class="fa-solid fa-magnifying-glass"></i> Search Articles</div>
                     <form method="GET" action="<?php echo $base_url; ?>blogs">
                         <div class="ni-search-box">
                             <input type="text" name="search" placeholder="Type to search...">
@@ -844,9 +739,7 @@ foreach ($paragraphs as $para) {
                 <!-- Latest Posts -->
                 <?php if (!empty($latest_posts)): ?>
                 <div class="ni-widget">
-                    <div class="ni-widget-title">
-                        <i class="fa-solid fa-fire-flame-curved"></i> Latest Posts
-                    </div>
+                    <div class="ni-widget-title"><i class="fa-solid fa-fire-flame-curved"></i> Latest Posts</div>
                     <?php foreach ($latest_posts as $lp): ?>
                     <a href="<?php echo $base_url; ?><?php echo urlencode($lp['slug']); ?>" class="ni-latest-item">
                         <div class="li-thumb">
@@ -855,43 +748,32 @@ foreach ($paragraphs as $para) {
                                  onerror="this.style.display='none'">
                         </div>
                         <div class="li-info">
-                            <span class="li-date">
-                                <i class="fa-regular fa-calendar"></i>
-                                <?php echo date('d M Y', strtotime($lp['published_at'])); ?>
-                            </span>
+                            <span class="li-date"><i class="fa-regular fa-calendar"></i><?php echo date('d M Y', strtotime($lp['published_at'])); ?></span>
                             <h6><?php echo htmlspecialchars($lp['title']); ?></h6>
                         </div>
                     </a>
                     <?php endforeach; ?>
                 </div>
                 <?php endif; ?>
- <!-- Categories -->
-                    <?php if (!empty($all_categories)): ?>
-                    <div class="ni-widget">
-                        <div class="ni-widget-title">
-                            <i class="fa-solid fa-layer-group"></i> Categories
-                        </div>
-            
-                        <?php foreach ($all_categories as $cat): ?>
-                        <a href="<?php echo $base_url; ?>blogs?category=<?php echo $cat['id']; ?>"
-                           class="ni-cat-item <?php echo $active_cat == $cat['id'] ? 'active-cat' : ''; ?>">
-                            <span class="cat-left">
-                                <span class="dot"></span>
-                                <?php echo htmlspecialchars($cat['name']); ?>
-                            </span>
-                            <span class="cat-count"><?php echo $cat['post_count']; ?></span>
-                        </a>
-                        <?php endforeach; ?>
-                    </div>
-                    <?php endif; ?>
 
+                <!-- Categories -->
+                <?php if (!empty($all_categories)): ?>
+                <div class="ni-widget">
+                    <div class="ni-widget-title"><i class="fa-solid fa-layer-group"></i> Categories</div>
+                    <?php foreach ($all_categories as $cat): ?>
+                    <a href="<?php echo $base_url; ?>blogs?category=<?php echo $cat['id']; ?>"
+                       class="ni-cat-item <?php echo (isset($active_cat) && $active_cat == $cat['id']) ? 'active-cat' : ''; ?>">
+                        <span class="cat-left"><span class="dot"></span><?php echo htmlspecialchars($cat['name']); ?></span>
+                        <span class="cat-count"><?php echo $cat['post_count']; ?></span>
+                    </a>
+                    <?php endforeach; ?>
+                </div>
+                <?php endif; ?>
 
                 <!-- Tags -->
                 <?php if (!empty($tags_arr)): ?>
                 <div class="ni-widget">
-                    <div class="ni-widget-title">
-                        <i class="fa-solid fa-tags"></i> Tags
-                    </div>
+                    <div class="ni-widget-title"><i class="fa-solid fa-tags"></i> Tags</div>
                     <div class="ni-tags-wrap">
                         <?php foreach ($tags_arr as $tag): ?>
                         <a href="<?php echo $base_url; ?>blogs?search=<?php echo urlencode($tag); ?>" class="ni-tag">
@@ -907,12 +789,10 @@ foreach ($paragraphs as $para) {
                     <div class="cta-icon"><i class="fa-solid fa-phone-volume"></i></div>
                     <h5>Need a Bulk Quote?</h5>
                     <p>Get competitive pricing for all commercial &amp; industrial products.</p>
-                    <a href="<?php echo $base_url; ?>contact-us" class="ni-cta-btn">
-                        Contact Us <i class="fa-solid fa-arrow-right"></i>
-                    </a>
+                    <a href="<?php echo $base_url; ?>contact-us" class="ni-cta-btn">Contact Us <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
 
-            </div><!-- /sidebar col -->
+            </div>
         </div>
     </div>
 </section>
