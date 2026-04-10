@@ -78,7 +78,7 @@ while ($row = $tags_result->fetch_assoc()) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo htmlspecialchars($page_title); ?></title>
     <meta name="description" content="<?php echo htmlspecialchars($meta_description); ?>">
-    <link rel="shortcut icon" href="<?php echo $base_url; ?>assets/img/logo/fav-logo4.png" type="image/x-icon">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
@@ -92,32 +92,38 @@ while ($row = $tags_result->fetch_assoc()) {
 
 <style>
 /* ============================================================
-   NIRAJ INDUSTRIES — BLOG PAGE  (Horizontal Cards)
+   NIRAJ INDUSTRIES — BLOG PAGE THEME
+   Primary Red:  #B5100E
+   Dark Charcoal:#242223
+   Accent used sparingly — not laal-laal!
    ============================================================ */
+
 :root {
-    --ni-blue:       #0B3D6E;
-    --ni-blue-mid:   #1A5FA0;
-    --ni-blue-soft:  #EBF4FF;
-    --ni-yellow:     #F5A623;
-    --ni-yellow-dk:  #D4891A;
-    --ni-yellow-lt:  #FFF8EC;
-    --ni-dark:       #0D1B2A;
-    --ni-text:       #1E293B;
-    --ni-text2:      #475569;
-    --ni-text3:      #94A3B8;
-    --ni-border:     #E2E8F0;
-    --ni-bg:         #F8FAFC;
-    --ni-white:      #FFFFFF;
+    --ni-red:        #B5100E;
+    --ni-red-dk:     #8f0b0a;
+    --ni-red-soft:   #fdf0f0;
+    --ni-red-mid:    rgba(181,16,14,0.12);
+    --ni-dark:       #242223;
+    --ni-dark-2:     #2e2c2c;
+    --ni-dark-3:     #3d3a3a;
+    --ni-white:      #ffffff;
+    --ni-off-white:  #f8f6f6;
+    --ni-text:       #242223;
+    --ni-text2:      #4a4646;
+    --ni-text3:      #888080;
+    --ni-border:     #e8e4e4;
+    --ni-bg:         #f5f3f3;
     --ni-radius:     14px;
     --ni-radius-sm:  8px;
-    --ni-shadow:     0 2px 16px rgba(11,61,110,.07);
-    --ni-shadow-md:  0 8px 32px rgba(11,61,110,.12);
+    --ni-shadow:     0 2px 16px rgba(36,34,35,0.07);
+    --ni-shadow-md:  0 8px 32px rgba(36,34,35,0.13);
     --ni-font-head:  'DM Serif Display', serif;
     --ni-font-body:  'Sora', sans-serif;
     --ni-trans:      all .25s cubic-bezier(.4,0,.2,1);
 }
 
 *, *::before, *::after { box-sizing: border-box; }
+html, body { overflow-x: hidden; overflow-y: auto; }
 
 .ni-blog-page {
     font-family: var(--ni-font-body);
@@ -125,94 +131,151 @@ while ($row = $tags_result->fetch_assoc()) {
     color: var(--ni-text);
 }
 
-/* ── PAGE TITLE BAR ──────────────────────────────────────── */
+/* ── HEADER — no sticky override ── */
+header,
+.header-area,
+.header-sticky,
+.header-wrap,
+.sticky-header,
+nav.navbar {
+    position: relative !important;
+    top: auto !important;
+    z-index: 100 !important;
+}
+
+/* ── PAGE TITLE BAR ── */
 .ni-page-titlebar {
     padding: 32px 0 28px;
-    background: var(--ni-white);
-    border-bottom: 1px solid var(--ni-border);
+    background: #ffffff;
+    border-bottom: 3px solid var(--ni-red);
+    margin-top: 0 !important;
+    position: relative;
+    overflow: hidden;
+}
+.ni-page-titlebar::before {
+    content: '';
+    position: absolute;
+    right: -80px; top: -80px;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(181,16,14,0.1) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
 }
 .ni-page-titlebar .breadcrumb-wrap {
     display: flex; align-items: center; gap: 7px;
-    font-size: 12.5px; color: var(--ni-text3); margin-bottom: 8px;
+    font-size: 12.5px; color: var(--ni-text3);
+    margin-bottom: 8px;
 }
 .ni-page-titlebar .breadcrumb-wrap a {
-    color: var(--ni-text3); text-decoration: none; transition: color .2s;
+    color: var(--ni-text3);
+    text-decoration: none; transition: color .2s;
 }
-.ni-page-titlebar .breadcrumb-wrap a:hover { color: var(--ni-yellow); }
+.ni-page-titlebar .breadcrumb-wrap a:hover { color: var(--ni-red); }
 .ni-page-titlebar .breadcrumb-wrap i { font-size: 9px; }
+.ni-page-titlebar .breadcrumb-wrap span { color: rgba(255,255,255,0.8); }
+
 .ni-page-titlebar h1 {
     font-family: var(--ni-font-head);
     font-size: 36px; color: var(--ni-dark);
     margin: 0; line-height: 1.15; letter-spacing: -.3px;
 }
-.ni-page-titlebar h1 em { font-style: italic; color: var(--ni-blue-mid); }
-.ni-page-titlebar .subtitle { font-size: 14px; color: var(--ni-text2); margin-top: 6px; }
+.ni-page-titlebar h1 em { font-style: italic; color: var(--ni-red); }
+.ni-page-titlebar .subtitle {
+    font-size: 14px; color: var(--ni-text2); margin-top: 6px;
+}
 .ni-page-titlebar .titlebar-right {
     display: flex; align-items: flex-end; justify-content: flex-end; height: 100%;
 }
 .ni-page-titlebar .stat-pill {
     display: inline-flex; align-items: center; gap: 6px;
-    background: var(--ni-blue-soft); color: var(--ni-blue-mid);
+    background: var(--ni-red-soft);
+    color: var(--ni-red);
+    border: 1px solid rgba(181,16,14,0.3);
     font-size: 13px; font-weight: 600;
-    padding: 8px 16px; border-radius: 30px; border: 1px solid #C7DEFF;
+    padding: 8px 16px; border-radius: 30px;
 }
-.ni-page-titlebar .stat-pill i { color: var(--ni-yellow); }
+.ni-page-titlebar .stat-pill i { color: var(--ni-red); }
 
-/* ── FILTER BAR ──────────────────────────────────────────── */
+/* ── FILTER BAR — STICKY ── */
 .ni-filter-bar {
-    background: var(--ni-white);
-    border-bottom: 1px solid var(--ni-border);
-    padding: 0; position: sticky; top: 0; z-index: 100;
-    box-shadow: 0 2px 12px rgba(11,61,110,.06);
+    background: var(--ni-dark);
+    border-bottom: 2px solid var(--ni-red);
+    padding: 0;
+    position: fixed;
+    left: 0; right: 0; width: 100%;
+    z-index: 99999;
+    box-shadow: 0 3px 18px rgba(0,0,0,0.35);
+    display: block !important;
+    top: -60px;
+    transition: top 0.28s cubic-bezier(.4,0,.2,1);
 }
+.ni-filter-bar-spacer { display: block; height: 0; transition: height 0.28s; }
 .ni-filter-bar .inner {
-    display: flex; align-items: center;
-    gap: 0; overflow-x: auto; scrollbar-width: none;
+    display: flex; align-items: center; gap: 0;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    scroll-snap-type: x proximity;
 }
 .ni-filter-bar .inner::-webkit-scrollbar { display: none; }
+
 .ni-filter-btn {
     display: inline-flex; align-items: center; gap: 6px;
-    padding: 14px 20px;
-    font-size: 13px; font-weight: 600; font-family: var(--ni-font-body);
-    color: var(--ni-text2); text-decoration: none;
+    padding: 18px 18px;
+    font-size: 13px; font-weight: 600;
+    font-family: var(--ni-font-body);
+    color: rgba(255,255,255,0.65);
+    text-decoration: none;
     border: none; background: transparent;
     border-bottom: 2.5px solid transparent;
-    white-space: nowrap; transition: var(--ni-trans); cursor: pointer;
+    white-space: nowrap; flex-shrink: 0;
+    transition: var(--ni-trans);
+    cursor: pointer;
+    scroll-snap-align: start;
 }
-.ni-filter-btn:hover { color: var(--ni-blue); border-bottom-color: var(--ni-blue-soft); }
+.ni-filter-btn:hover {
+    color: var(--ni-white);
+    border-bottom-color: rgba(181,16,14,0.4);
+    background: rgba(255,255,255,0.05);
+}
 .ni-filter-btn.active {
-    color: var(--ni-blue);
-    border-bottom-color: var(--ni-yellow);
-    background: var(--ni-blue-soft);
+    color: var(--ni-white);
+    border-bottom-color: var(--ni-red);
+    background: rgba(181,16,14,0.2);
 }
 .ni-filter-btn .count-badge {
-    background: var(--ni-border); color: var(--ni-text3);
+    background: rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.6);
     font-size: 10px; font-weight: 700;
-    padding: 2px 7px; border-radius: 20px; transition: var(--ni-trans);
+    padding: 2px 7px; border-radius: 20px;
+    transition: var(--ni-trans);
 }
 .ni-filter-btn.active .count-badge,
-.ni-filter-btn:hover .count-badge { background: var(--ni-yellow); color: var(--ni-white); }
+.ni-filter-btn:hover .count-badge {
+    background: var(--ni-red);
+    color: var(--ni-white);
+}
 
-/* ── MAIN SECTION ────────────────────────────────────────── */
-.ni-blogs-section { padding: 52px 0 80px; background: var(--ni-bg); }
+/* ── MAIN SECTION ── */
+.ni-blogs-section { padding: 40px 0 80px; background: var(--ni-bg); }
 
-/* ── RESULT BAR ──────────────────────────────────────────── */
+/* ── RESULT BAR ── */
 .ni-result-bar {
     display: flex; align-items: center;
     justify-content: space-between;
     padding: 10px 0 20px;
     font-size: 13.5px; color: var(--ni-text2);
 }
-.ni-result-bar strong { color: var(--ni-blue); font-weight: 700; }
+.ni-result-bar strong { color: var(--ni-red); font-weight: 700; }
 .ni-clear-filter {
     display: inline-flex; align-items: center; gap: 6px;
     font-size: 12.5px; color: var(--ni-text3);
     text-decoration: none; background: var(--ni-border);
     border-radius: 20px; padding: 5px 13px; transition: var(--ni-trans);
 }
-.ni-clear-filter:hover { background: #FECACA; color: #DC2626; }
+.ni-clear-filter:hover { background: #fde8e8; color: var(--ni-red); }
 
-/* ── FEATURED CARD ───────────────────────────────────────── */
+/* ── FEATURED CARD ── */
 .ni-featured-card {
     background: var(--ni-white);
     border-radius: var(--ni-radius);
@@ -224,9 +287,14 @@ while ($row = $tags_result->fetch_assoc()) {
     display: grid;
     grid-template-columns: 1.1fr 1fr;
 }
-.ni-featured-card:hover { box-shadow: var(--ni-shadow-md); transform: translateY(-3px); }
+.ni-featured-card:hover {
+    box-shadow: var(--ni-shadow-md);
+    transform: translateY(-3px);
+    border-color: rgba(181,16,14,0.25);
+}
 .ni-featured-card .feat-img {
-    position: relative; overflow: hidden; min-height: 320px;
+    position: relative; overflow: hidden;
+    min-height: 300px; width: 100%;
 }
 .ni-featured-card .feat-img img {
     width: 100%; height: 100%; object-fit: cover;
@@ -235,152 +303,164 @@ while ($row = $tags_result->fetch_assoc()) {
 .ni-featured-card:hover .feat-img img { transform: scale(1.04); }
 .ni-featured-card .feat-img .feat-label {
     position: absolute; top: 16px; left: 16px;
-    background: var(--ni-yellow); color: var(--ni-white);
+    background: var(--ni-red); color: var(--ni-white);
     font-size: 10px; font-weight: 800;
     letter-spacing: 1.2px; text-transform: uppercase;
     padding: 5px 12px; border-radius: 20px;
 }
 .ni-featured-card .feat-img .cat-label {
     position: absolute; bottom: 16px; left: 16px;
-    background: rgba(11,61,110,.85); backdrop-filter: blur(6px);
+    background: rgba(36,34,35,0.85); backdrop-filter: blur(6px);
     color: var(--ni-white); font-size: 11px; font-weight: 600;
     padding: 5px 14px; border-radius: 20px;
 }
 .ni-featured-card .feat-img .no-img-placeholder {
-    width: 100%; height: 100%; min-height: 320px;
+    width: 100%; height: 100%; min-height: 300px;
     display: flex; align-items: center; justify-content: center;
-    background: linear-gradient(135deg, var(--ni-blue-soft), #C7DEFF);
+    background: linear-gradient(135deg, var(--ni-red-soft), #f5d5d5);
 }
-.ni-featured-card .feat-img .no-img-placeholder i { font-size: 60px; color: #C7DEFF; }
+.ni-featured-card .feat-img .no-img-placeholder i {
+    font-size: 60px; color: rgba(181,16,14,0.2);
+}
 .ni-featured-card .feat-body {
-    padding: 36px 32px;
+    padding: 28px;
     display: flex; flex-direction: column; justify-content: center;
 }
 .ni-featured-card .feat-meta {
     display: flex; align-items: center; gap: 16px;
-    font-size: 12px; color: var(--ni-text3); margin-bottom: 14px; flex-wrap: wrap;
+    font-size: 12px; color: var(--ni-text3);
+    margin-bottom: 12px; flex-wrap: wrap;
 }
-.ni-featured-card .feat-meta i { color: var(--ni-yellow); margin-right: 4px; }
+.ni-featured-card .feat-meta i { color: var(--ni-red); margin-right: 4px; }
 .ni-featured-card .feat-body h2 {
     font-family: var(--ni-font-head);
-    font-size: 26px; color: var(--ni-dark);
-    line-height: 1.35; margin-bottom: 12px; letter-spacing: -.2px;
+    font-size: 22px; color: var(--ni-dark);
+    line-height: 1.35; margin-bottom: 10px; letter-spacing: -.2px;
 }
-.ni-featured-card .feat-body h2 a { color: inherit; text-decoration: none; transition: color .2s; }
-.ni-featured-card .feat-body h2 a:hover { color: var(--ni-blue-mid); }
+.ni-featured-card .feat-body h2 a {
+    color: inherit; text-decoration: none; transition: color .2s;
+}
+.ni-featured-card .feat-body h2 a:hover { color: var(--ni-red); }
 .ni-featured-card .feat-body .excerpt {
     font-size: 14px; color: var(--ni-text2);
-    line-height: 1.7; margin-bottom: 24px;
+    line-height: 1.7; margin-bottom: 20px;
     display: -webkit-box; -webkit-line-clamp: 3;
     -webkit-box-orient: vertical; overflow: hidden;
 }
 
-/* ── HORIZONTAL BLOG CARD ────────────────────────────────── */
-.ni-blog-list { display: flex; flex-direction: column; gap: 18px; }
+/* ── BLOG GRID — VERTICAL CARDS ── */
+.ni-blog-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
 
-.ni-hcard {
+/* ── VERTICAL BLOG CARD ── */
+.ni-vcard {
     background: var(--ni-white);
     border-radius: var(--ni-radius);
     border: 1px solid var(--ni-border);
     box-shadow: var(--ni-shadow);
     overflow: hidden;
-    display: grid;
-    grid-template-columns: 240px 1fr;
+    display: flex; flex-direction: column;
     transition: var(--ni-trans);
 }
-.ni-hcard:hover {
-    transform: translateY(-4px);
+.ni-vcard:hover {
+    transform: translateY(-5px);
     box-shadow: var(--ni-shadow-md);
-    border-color: #C7DEFF;
+    border-color: rgba(181,16,14,0.3);
 }
-
-/* Image side */
-.ni-hcard .hcard-img {
-    position: relative;
-    overflow: hidden;
-    height: 210px;
+.ni-vcard .vcard-img {
+    position: relative; overflow: hidden;
+    height: 200px; width: 100%; flex-shrink: 0;
 }
-.ni-hcard .hcard-img img {
+.ni-vcard .vcard-img img {
     width: 100%; height: 100%;
     object-fit: cover; display: block;
     transition: transform .5s ease;
 }
-.ni-hcard:hover .hcard-img img { transform: scale(1.06); }
-.ni-hcard .hcard-img .cat-tag {
+.ni-vcard:hover .vcard-img img { transform: scale(1.06); }
+.ni-vcard .vcard-img .cat-tag {
     position: absolute; top: 12px; left: 12px;
-    background: var(--ni-yellow); color: var(--ni-white);
+    background: var(--ni-red); color: var(--ni-white);
     font-size: 10px; font-weight: 800;
     letter-spacing: .8px; text-transform: uppercase;
     padding: 4px 11px; border-radius: 20px; z-index: 2;
 }
-.ni-hcard .hcard-img .no-img-ph {
+.ni-vcard .vcard-img .no-img-ph {
     width: 100%; height: 100%;
     display: flex; align-items: center; justify-content: center;
-    background: linear-gradient(135deg, var(--ni-blue-soft) 0%, #D6EAFF 100%);
+    background: linear-gradient(135deg, var(--ni-red-soft) 0%, #f5d5d5 100%);
 }
-.ni-hcard .hcard-img .no-img-ph i { font-size: 40px; color: #C7DEFF; }
-
-/* Content side */
-.ni-hcard .hcard-body {
-    padding: 20px 24px;
-    display: flex; flex-direction: column; justify-content: space-between;
+.ni-vcard .vcard-img .no-img-ph i {
+    font-size: 40px; color: rgba(181,16,14,0.2);
 }
-.ni-hcard .hcard-meta {
+.ni-vcard .vcard-body {
+    padding: 18px 20px 20px;
+    display: flex; flex-direction: column; flex: 1;
+}
+.ni-vcard .vcard-meta {
     display: flex; align-items: center;
-    flex-wrap: wrap; gap: 12px;
-    font-size: 12px; color: var(--ni-text3);
-    margin-bottom: 10px;
+    flex-wrap: wrap; gap: 10px;
+    font-size: 11.5px; color: var(--ni-text3);
+    margin-bottom: 9px;
 }
-.ni-hcard .hcard-meta i { color: var(--ni-yellow); margin-right: 3px; }
-.ni-hcard .hcard-body h3 {
+.ni-vcard .vcard-meta i { color: var(--ni-red); margin-right: 3px; }
+.ni-vcard .vcard-body h3 {
     font-family: var(--ni-font-head);
-    font-size: 18px; color: var(--ni-dark);
-    line-height: 1.4; margin-bottom: 9px; letter-spacing: -.1px;
+    font-size: 16px; color: var(--ni-dark);
+    line-height: 1.45; margin-bottom: 8px; letter-spacing: -.1px;
 }
-.ni-hcard .hcard-body h3 a { color: inherit; text-decoration: none; transition: color .2s; }
-.ni-hcard .hcard-body h3 a:hover { color: var(--ni-blue-mid); }
-.ni-hcard .hcard-body p {
-    font-size: 13.5px; color: var(--ni-text2);
+.ni-vcard .vcard-body h3 a {
+    color: inherit; text-decoration: none; transition: color .2s;
+}
+.ni-vcard .vcard-body h3 a:hover { color: var(--ni-red); }
+.ni-vcard .vcard-body p {
+    font-size: 13px; color: var(--ni-text2);
     line-height: 1.65; flex: 1;
     display: -webkit-box; -webkit-line-clamp: 2;
     -webkit-box-orient: vertical; overflow: hidden;
     margin-bottom: 0;
 }
-.ni-hcard .hcard-footer {
+.ni-vcard .vcard-footer {
     display: flex; align-items: center;
     justify-content: space-between;
     padding-top: 14px; margin-top: 14px;
     border-top: 1px solid var(--ni-border);
 }
-.ni-hcard .hcard-footer .read-time {
-    font-size: 12px; color: var(--ni-text3);
+.ni-vcard .vcard-footer .read-time {
+    font-size: 11.5px; color: var(--ni-text3);
     display: flex; align-items: center; gap: 5px;
 }
-.ni-hcard .hcard-footer .read-time i { color: var(--ni-yellow); }
+.ni-vcard .vcard-footer .read-time i { color: var(--ni-red); }
 
-/* ── BUTTONS ─────────────────────────────────────────────── */
+/* ── BUTTONS ── */
 .ni-read-btn {
     display: inline-flex; align-items: center; gap: 8px;
-    background: var(--ni-blue); color: var(--ni-white);
+    background: var(--ni-dark); color: var(--ni-white);
     font-size: 13px; font-weight: 700;
     padding: 11px 24px; border-radius: 30px;
     text-decoration: none; transition: var(--ni-trans);
-    align-self: flex-start; border: 2px solid var(--ni-blue);
+    align-self: flex-start; border: 2px solid var(--ni-dark);
 }
 .ni-read-btn i { font-size: 11px; transition: transform .2s; }
-.ni-read-btn:hover { background: transparent; color: var(--ni-blue); }
+.ni-read-btn:hover {
+    background: var(--ni-red);
+    border-color: var(--ni-red);
+    color: var(--ni-white);
+}
 .ni-read-btn:hover i { transform: translateX(3px); }
 
 .ni-link-arrow {
     display: inline-flex; align-items: center; gap: 5px;
-    font-size: 13px; font-weight: 700; color: var(--ni-blue);
+    font-size: 13px; font-weight: 700; color: var(--ni-dark);
     text-decoration: none; transition: var(--ni-trans);
 }
 .ni-link-arrow i { font-size: 10px; transition: transform .2s; }
-.ni-link-arrow:hover { color: var(--ni-yellow-dk); }
+.ni-link-arrow:hover { color: var(--ni-red); }
 .ni-link-arrow:hover i { transform: translateX(4px); }
 
-/* ── NO RESULTS ──────────────────────────────────────────── */
+/* ── NO RESULTS ── */
 .ni-no-results {
     text-align: center; padding: 72px 20px;
     background: var(--ni-white); border-radius: var(--ni-radius);
@@ -388,18 +468,19 @@ while ($row = $tags_result->fetch_assoc()) {
 }
 .ni-no-results .icon-wrap {
     width: 80px; height: 80px; border-radius: 50%;
-    background: var(--ni-yellow-lt);
+    background: var(--ni-red-soft);
     display: flex; align-items: center; justify-content: center;
     margin: 0 auto 18px;
+    border: 1px solid rgba(181,16,14,0.15);
 }
-.ni-no-results .icon-wrap i { font-size: 32px; color: var(--ni-yellow); }
+.ni-no-results .icon-wrap i { font-size: 32px; color: var(--ni-red); }
 .ni-no-results h4 {
     font-family: var(--ni-font-head);
     font-size: 22px; color: var(--ni-dark); margin-bottom: 8px;
 }
 .ni-no-results p { font-size: 14px; color: var(--ni-text2); }
 
-/* ── PAGINATION ──────────────────────────────────────────── */
+/* ── PAGINATION ── */
 .ni-pagination {
     display: flex; align-items: center;
     justify-content: center; gap: 6px; margin-top: 44px;
@@ -413,42 +494,56 @@ while ($row = $tags_result->fetch_assoc()) {
     color: var(--ni-text2); background: var(--ni-white);
     transition: var(--ni-trans);
 }
-.ni-pagination a:hover { background: var(--ni-blue-soft); border-color: #C7DEFF; color: var(--ni-blue); }
-.ni-pagination .active { background: var(--ni-blue); border-color: var(--ni-blue); color: var(--ni-white); }
+.ni-pagination a:hover {
+    background: var(--ni-red-soft);
+    border-color: rgba(181,16,14,0.3);
+    color: var(--ni-red);
+}
+.ni-pagination .active {
+    background: var(--ni-red);
+    border-color: var(--ni-red);
+    color: var(--ni-white);
+}
 
-/* ── SIDEBAR ─────────────────────────────────────────────── */
+/* ── SIDEBAR WIDGETS ── */
 .ni-widget {
     background: var(--ni-white);
-    border-radius: var(--ni-radius); border: 1px solid var(--ni-border);
-    padding: 24px; margin-bottom: 22px; box-shadow: var(--ni-shadow);
+    border-radius: var(--ni-radius);
+    border: 1px solid var(--ni-border);
+    padding: 24px; margin-bottom: 22px;
+    box-shadow: var(--ni-shadow);
 }
 .ni-widget-title {
     font-family: var(--ni-font-head);
     font-size: 17px; color: var(--ni-dark);
     margin-bottom: 18px; padding-bottom: 14px;
-    border-bottom: 2px solid var(--ni-yellow);
+    border-bottom: 2px solid var(--ni-red);
     display: flex; align-items: center; gap: 9px;
 }
-.ni-widget-title i { color: var(--ni-yellow); font-size: 15px; }
+.ni-widget-title i { color: var(--ni-red); font-size: 15px; }
 
+/* Search box */
 .ni-search-box {
     display: flex; border: 1.5px solid var(--ni-border);
-    border-radius: var(--ni-radius-sm); overflow: hidden; transition: border-color .2s;
+    border-radius: var(--ni-radius-sm); overflow: hidden;
+    transition: border-color .2s;
 }
-.ni-search-box:focus-within { border-color: var(--ni-blue); }
+.ni-search-box:focus-within { border-color: var(--ni-red); }
 .ni-search-box input {
     flex: 1; border: none; outline: none;
     padding: 10px 14px; font-size: 13.5px;
-    font-family: var(--ni-font-body); background: transparent; color: var(--ni-text);
+    font-family: var(--ni-font-body);
+    background: transparent; color: var(--ni-text);
 }
 .ni-search-box input::placeholder { color: var(--ni-text3); }
 .ni-search-box button {
-    background: var(--ni-yellow); border: none;
+    background: var(--ni-red); border: none;
     padding: 0 16px; color: var(--ni-white);
     font-size: 14px; cursor: pointer; transition: background .2s;
 }
-.ni-search-box button:hover { background: var(--ni-yellow-dk); }
+.ni-search-box button:hover { background: var(--ni-red-dk); }
 
+/* Latest posts */
 .ni-latest-item {
     display: flex; gap: 12px; padding: 12px 0;
     border-bottom: 1px solid var(--ni-border);
@@ -458,11 +553,12 @@ while ($row = $tags_result->fetch_assoc()) {
 .ni-latest-item:first-child { padding-top: 0; }
 .ni-latest-item .li-thumb {
     width: 66px; height: 54px; flex-shrink: 0;
-    border-radius: var(--ni-radius-sm); overflow: hidden; background: var(--ni-blue-soft);
+    border-radius: var(--ni-radius-sm); overflow: hidden;
+    background: var(--ni-red-soft);
 }
 .ni-latest-item .li-thumb img { width: 100%; height: 100%; object-fit: cover; }
 .ni-latest-item .li-date {
-    font-size: 11px; color: var(--ni-yellow-dk);
+    font-size: 11px; color: var(--ni-red);
     font-weight: 600; margin-bottom: 4px; display: block;
 }
 .ni-latest-item .li-info h6 {
@@ -472,8 +568,9 @@ while ($row = $tags_result->fetch_assoc()) {
     display: -webkit-box; -webkit-line-clamp: 2;
     -webkit-box-orient: vertical; overflow: hidden;
 }
-.ni-latest-item:hover .li-info h6 { color: var(--ni-blue-mid); }
+.ni-latest-item:hover .li-info h6 { color: var(--ni-red); }
 
+/* Categories */
 .ni-cat-item {
     display: flex; align-items: center; justify-content: space-between;
     padding: 10px 12px; border-radius: var(--ni-radius-sm);
@@ -491,78 +588,126 @@ while ($row = $tags_result->fetch_assoc()) {
     background: var(--ni-border); color: var(--ni-text3);
     padding: 2px 8px; border-radius: 20px; transition: var(--ni-trans);
 }
-.ni-cat-item:hover, .ni-cat-item.active-cat { background: var(--ni-blue-soft); color: var(--ni-blue); }
-.ni-cat-item:hover .dot, .ni-cat-item.active-cat .dot { background: var(--ni-yellow); }
-.ni-cat-item:hover .cat-count, .ni-cat-item.active-cat .cat-count { background: var(--ni-yellow); color: var(--ni-white); }
+.ni-cat-item:hover,
+.ni-cat-item.active-cat {
+    background: var(--ni-red-soft); color: var(--ni-red);
+}
+.ni-cat-item:hover .dot,
+.ni-cat-item.active-cat .dot { background: var(--ni-red); }
+.ni-cat-item:hover .cat-count,
+.ni-cat-item.active-cat .cat-count {
+    background: var(--ni-red); color: var(--ni-white);
+}
 
+/* Tags */
 .ni-tags-wrap { display: flex; flex-wrap: wrap; gap: 8px; }
 .ni-tag {
     font-size: 12px; font-weight: 500;
-    background: var(--ni-bg); border: 1px solid var(--ni-border);
+    background: var(--ni-off-white); border: 1px solid var(--ni-border);
     color: var(--ni-text2); padding: 5px 13px; border-radius: 20px;
     text-decoration: none; transition: var(--ni-trans);
 }
-.ni-tag:hover { background: var(--ni-yellow); border-color: var(--ni-yellow); color: var(--ni-white); }
+.ni-tag:hover {
+    background: var(--ni-red); border-color: var(--ni-red);
+    color: var(--ni-white);
+}
 
+/* CTA Widget */
 .ni-cta-widget {
-    background: linear-gradient(145deg, var(--ni-blue) 0%, #1A5FA0 100%);
-    border-radius: var(--ni-radius); padding: 28px 24px;
-    text-align: center; position: relative; overflow: hidden; margin-bottom: 22px;
+    background: var(--ni-dark);
+    border-radius: var(--ni-radius);
+    padding: 28px 24px;
+    text-align: center;
+    position: relative; overflow: hidden; margin-bottom: 22px;
+    border: 1px solid rgba(181,16,14,0.2);
 }
 .ni-cta-widget::before {
     content: ''; position: absolute; right: -30px; top: -30px;
-    width: 140px; height: 140px; background: rgba(245,166,35,.1); border-radius: 50%;
+    width: 140px; height: 140px;
+    background: radial-gradient(circle, rgba(181,16,14,0.15) 0%, transparent 70%);
+    border-radius: 50%;
 }
 .ni-cta-widget .cta-icon {
-    width: 54px; height: 54px; background: rgba(245,166,35,.15);
-    border-radius: 50%; display: flex; align-items: center; justify-content: center;
-    margin: 0 auto 14px; border: 1.5px solid rgba(245,166,35,.3);
+    width: 54px; height: 54px;
+    background: var(--ni-red-soft);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 14px;
+    border: 1.5px solid rgba(181,16,14,0.3);
 }
-.ni-cta-widget .cta-icon i { font-size: 22px; color: var(--ni-yellow); }
+.ni-cta-widget .cta-icon i { font-size: 22px; color: var(--ni-red); }
 .ni-cta-widget h5 {
-    color: var(--ni-white); font-weight: 800; font-size: 17px; margin-bottom: 7px;
-    font-family: var(--ni-font-head);
+    color: var(--ni-white); font-weight: 800; font-size: 17px;
+    margin-bottom: 7px; font-family: var(--ni-font-head);
 }
-.ni-cta-widget p { color: rgba(255,255,255,.72); font-size: 13px; line-height: 1.6; margin-bottom: 18px; }
+.ni-cta-widget p {
+    color: rgba(255,255,255,0.6); font-size: 13px;
+    line-height: 1.6; margin-bottom: 18px;
+}
 .ni-cta-btn {
     display: inline-flex; align-items: center; gap: 8px;
-    background: var(--ni-yellow); color: var(--ni-white);
+    background: var(--ni-red); color: var(--ni-white);
     font-size: 13px; font-weight: 700;
     padding: 11px 24px; border-radius: 30px;
     text-decoration: none; transition: var(--ni-trans);
-    width: 100%; justify-content: center; border: 2px solid var(--ni-yellow);
+    width: 100%; justify-content: center;
+    border: 2px solid var(--ni-red);
 }
-.ni-cta-btn:hover { background: transparent; color: var(--ni-yellow); }
+.ni-cta-btn:hover {
+    background: transparent;
+    color: var(--ni-red);
+}
 .ni-cta-btn i { font-size: 11px; }
 
-/* ── RESPONSIVE ──────────────────────────────────────────── */
+/* ── AOS FIX ── */
+[data-aos] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    visibility: visible !important;
+}
+.ni-vcard, .ni-featured-card {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+}
+
+/* ── RESPONSIVE ── */
 @media (max-width: 992px) {
     .ni-featured-card { grid-template-columns: 1fr; }
     .ni-featured-card .feat-img { min-height: 240px; }
-    .ni-featured-card .feat-body { padding: 24px 22px; }
-    .ni-featured-card .feat-body h2 { font-size: 22px; }
-    .ni-filter-bar { display: none; }
-    .ni-hcard { grid-template-columns: 180px 1fr; }
-    .ni-hcard .hcard-img { height: 180px; }
+    .ni-featured-card .feat-body { padding: 20px; }
+    .ni-featured-card .feat-body h2 { font-size: 20px; }
+    .ni-blog-list { grid-template-columns: repeat(2, 1fr); gap: 16px; }
 }
 @media (max-width: 640px) {
-    .ni-hcard { grid-template-columns: 1fr; }
-    .ni-hcard .hcard-img { height: 200px; }
-    .ni-page-titlebar h1 { font-size: 28px; }
+    .ni-blog-list { grid-template-columns: 1fr; gap: 14px; }
+    .ni-page-titlebar h1 { font-size: 26px; }
+    .ni-page-titlebar { padding: 20px 0 16px; margin-top: 50px !important; }
+    .ni-filter-btn { padding: 18px 16px; font-size: 12px; }
+}
+@media (max-width: 768px) {
+    .ni-filter-bar::after {
+        content: '';
+        position: absolute; right: 0; top: 0; bottom: 0; width: 32px;
+        background: linear-gradient(to right, transparent, rgba(36,34,35,0.95));
+        pointer-events: none;
+    }
 }
 </style>
 </head>
 <body class="homepage4-body ni-blog-page">
 
 <?php include 'include/header.php'; ?>
-
+<div class="inner-hero-area" style="background-image: url(<?php echo $base_url; ?>assets/img/all-images/home/two.webp);" role="banner" aria-label="About Us Banner">
+</div>
 <!-- ══ PAGE TITLE BAR ══════════════════════════════════════════ -->
-<div class="ni-page-titlebar" style="margin-top:80px;">
+<div class="ni-page-titlebar">
     <div class="container">
         <div class="row align-items-end">
             <div class="col-lg-8">
                 <nav class="breadcrumb-wrap">
-                    <a href="<?php echo $base_url; ?>index.php">Home</a>
+                    <a href="<?php echo $base_url;  ?>/">Home</a>
                     <i class="fa-solid fa-chevron-right"></i>
                     <span>Blogs & News</span>
                 </nav>
@@ -579,17 +724,17 @@ while ($row = $tags_result->fetch_assoc()) {
     </div>
 </div>
 
-<!-- ══ FILTER BAR ══════════════════════════════════════════════ -->
+<!-- ══ FILTER BAR (sticky, always visible, mobile scrollable) ══ -->
 <div class="ni-filter-bar">
     <div class="container">
         <div class="inner">
-            <a href="<?php echo $base_url; ?>blogs.php"
+            <a href="<?php echo $base_url; ?>blogs"
                class="ni-filter-btn <?php echo $active_cat == 0 && !$search_query ? 'active' : ''; ?>">
                 <i class="fa-solid fa-border-all"></i> All Posts
                 <span class="count-badge"><?php echo $total_blogs; ?></span>
             </a>
             <?php foreach ($all_categories as $cat): ?>
-            <a href="<?php echo $base_url; ?>blogs.php?category=<?php echo $cat['id']; ?>"
+            <a href="<?php echo $base_url; ?>blogs?category=<?php echo $cat['id']; ?>"
                class="ni-filter-btn <?php echo $active_cat == $cat['id'] ? 'active' : ''; ?>">
                 <?php echo htmlspecialchars($cat['name']); ?>
                 <span class="count-badge"><?php echo $cat['post_count']; ?></span>
@@ -599,7 +744,8 @@ while ($row = $tags_result->fetch_assoc()) {
     </div>
 </div>
 
-<!-- ══ MAIN CONTENT ════════════════════════════════════════════ -->
+<div class="ni-filter-bar-spacer"></div>
+
 <section class="ni-blogs-section">
     <div class="container">
         <div class="row g-4">
@@ -616,7 +762,7 @@ while ($row = $tags_result->fetch_assoc()) {
                         <?php if ($search_query): echo ' for <strong>&ldquo;' . htmlspecialchars($search_query) . '&rdquo;</strong>'; endif; ?>
                     </span>
                     <?php if ($active_cat > 0 || $search_query): ?>
-                    <a href="<?php echo $base_url; ?>blogs.php" class="ni-clear-filter">
+                    <a href="<?php echo $base_url; ?>blogs" class="ni-clear-filter">
                         <i class="fa-solid fa-xmark"></i> Clear
                     </a>
                     <?php endif; ?>
@@ -632,7 +778,7 @@ while ($row = $tags_result->fetch_assoc()) {
 
                 <?php else: ?>
 
-                <!-- ── FEATURED POST (page 1, no filter/search only) ── -->
+                <!-- ── FEATURED POST ── -->
                 <?php if ($featured_blog): ?>
                 <div class="ni-featured-card" data-aos="fade-up" data-aos-duration="700">
                     <div class="feat-img">
@@ -659,26 +805,28 @@ while ($row = $tags_result->fetch_assoc()) {
                             <?php endif; ?>
                         </div>
                         <h2>
-                            <a href="<?php echo $base_url; ?>blog-details.php?slug=<?php echo urlencode($featured_blog['slug']); ?>">
+                            <!-- ✅ CLEAN URL -->
+                            <a href="<?php echo $base_url . htmlspecialchars($featured_blog['slug']); ?>">
                                 <?php echo htmlspecialchars($featured_blog['title']); ?>
                             </a>
                         </h2>
                         <p class="excerpt"><?php echo htmlspecialchars($featured_blog['excerpt']); ?></p>
-                        <a href="<?php echo $base_url; ?>blog-details.php?slug=<?php echo urlencode($featured_blog['slug']); ?>" class="ni-read-btn">
+                        <!-- ✅ CLEAN URL -->
+                        <a href="<?php echo $base_url . htmlspecialchars($featured_blog['slug']); ?>" class="ni-read-btn">
                             Read Article <i class="fa-solid fa-arrow-right"></i>
                         </a>
                     </div>
                 </div>
                 <?php endif; ?>
 
-                <!-- ── HORIZONTAL BLOG LIST ── -->
+                <!-- ── VERTICAL BLOG GRID ── -->
                 <?php if (!empty($display_blogs)): ?>
                 <div class="ni-blog-list">
                     <?php foreach ($display_blogs as $i => $blog): ?>
-                    <div class="ni-hcard" data-aos="fade-up" data-aos-duration="600" data-aos-delay="<?php echo min($i * 80, 300); ?>">
+                    <div class="ni-vcard" data-aos="fade-up" data-aos-duration="600" data-aos-delay="<?php echo min($i * 80, 300); ?>">
 
-                        <!-- Image Left -->
-                        <div class="hcard-img">
+                        <!-- Image — TOP -->
+                        <div class="vcard-img">
                             <?php if (!empty($blog['cat_name'])): ?>
                             <span class="cat-tag"><?php echo htmlspecialchars($blog['cat_name']); ?></span>
                             <?php endif; ?>
@@ -693,10 +841,10 @@ while ($row = $tags_result->fetch_assoc()) {
                             <?php endif; ?>
                         </div>
 
-                        <!-- Content Right -->
-                        <div class="hcard-body">
+                        <!-- Content — BOTTOM -->
+                        <div class="vcard-body">
                             <div>
-                                <div class="hcard-meta">
+                                <div class="vcard-meta">
                                     <span><i class="fa-regular fa-calendar"></i><?php echo date('d M Y', strtotime($blog['published_at'])); ?></span>
                                     <span><i class="fa-regular fa-eye"></i><?php echo number_format($blog['views']); ?> views</span>
                                     <?php if (!empty($blog['comments'])): ?>
@@ -704,18 +852,20 @@ while ($row = $tags_result->fetch_assoc()) {
                                     <?php endif; ?>
                                 </div>
                                 <h3>
-                                    <a href="<?php echo $base_url; ?>blog-details.php?slug=<?php echo urlencode($blog['slug']); ?>">
+                                    <!-- ✅ CLEAN URL — FIXED -->
+                                    <a href="<?php echo $base_url . htmlspecialchars($blog['slug']); ?>">
                                         <?php echo htmlspecialchars($blog['title']); ?>
                                     </a>
                                 </h3>
                                 <p><?php echo htmlspecialchars($blog['excerpt']); ?></p>
                             </div>
-                            <div class="hcard-footer">
+                            <div class="vcard-footer">
                                 <span class="read-time">
                                     <i class="fa-regular fa-clock"></i>
                                     <?php echo !empty($blog['reading_time']) ? $blog['reading_time'] : 1; ?> min read
                                 </span>
-                                <a href="<?php echo $base_url; ?>blog-details.php?slug=<?php echo urlencode($blog['slug']); ?>" class="ni-link-arrow">
+                                <!-- ✅ CLEAN URL — FIXED -->
+                                <a href="<?php echo $base_url . htmlspecialchars($blog['slug']); ?>" class="ni-link-arrow">
                                     Read More <i class="fa-solid fa-arrow-right"></i>
                                 </a>
                             </div>
@@ -748,7 +898,7 @@ while ($row = $tags_result->fetch_assoc()) {
                 </nav>
                 <?php endif; ?>
 
-                <?php endif; // end blogs check ?>
+                <?php endif; ?>
             </div>
 
             <!-- ── RIGHT: SIDEBAR ── -->
@@ -780,7 +930,8 @@ while ($row = $tags_result->fetch_assoc()) {
                             <i class="fa-solid fa-fire-flame-curved"></i> Latest Posts
                         </div>
                         <?php foreach ($latest_posts as $lp): ?>
-                        <a href="<?php echo $base_url; ?>blog-details.php?slug=<?php echo urlencode($lp['slug']); ?>" class="ni-latest-item">
+                        <!-- ✅ CLEAN URL -->
+                        <a href="<?php echo $base_url . htmlspecialchars($lp['slug']); ?>" class="ni-latest-item">
                             <div class="li-thumb">
                                 <img src="<?php echo $base_url . htmlspecialchars($lp['image'] ?? ''); ?>"
                                      alt="<?php echo htmlspecialchars($lp['title']); ?>"
@@ -804,13 +955,13 @@ while ($row = $tags_result->fetch_assoc()) {
                         <div class="ni-widget-title">
                             <i class="fa-solid fa-layer-group"></i> Categories
                         </div>
-                        <a href="<?php echo $base_url; ?>blogs.php"
+                        <a href="<?php echo $base_url; ?>blogs"
                            class="ni-cat-item <?php echo $active_cat == 0 ? 'active-cat' : ''; ?>">
                             <span class="cat-left"><span class="dot"></span> All Posts</span>
                             <span class="cat-count"><?php echo $total_blogs; ?></span>
                         </a>
                         <?php foreach ($all_categories as $cat): ?>
-                        <a href="<?php echo $base_url; ?>blogs.php?category=<?php echo $cat['id']; ?>"
+                        <a href="<?php echo $base_url; ?>blogs?category=<?php echo $cat['id']; ?>"
                            class="ni-cat-item <?php echo $active_cat == $cat['id'] ? 'active-cat' : ''; ?>">
                             <span class="cat-left">
                                 <span class="dot"></span>
@@ -830,7 +981,7 @@ while ($row = $tags_result->fetch_assoc()) {
                         </div>
                         <div class="ni-tags-wrap">
                             <?php foreach ($all_tags as $tag): ?>
-                            <a href="<?php echo $base_url; ?>blogs.php?search=<?php echo urlencode($tag); ?>" class="ni-tag">
+                            <a href="<?php echo $base_url; ?>blogs?search=<?php echo urlencode($tag); ?>" class="ni-tag">
                                 <?php echo htmlspecialchars($tag); ?>
                             </a>
                             <?php endforeach; ?>
@@ -845,13 +996,13 @@ while ($row = $tags_result->fetch_assoc()) {
                         </div>
                         <h5>Need a Bulk Quote?</h5>
                         <p>Get competitive pricing for all commercial &amp; industrial products.</p>
-                        <a href="<?php echo $base_url; ?>contact-us.php" class="ni-cta-btn">
+                        <a href="<?php echo $base_url; ?>contact-us" class="ni-cta-btn">
                             Contact Us <i class="fa-solid fa-arrow-right"></i>
                         </a>
                     </div>
 
                 </div>
-            </div><!-- /sidebar col -->
+            </div>
 
         </div>
     </div>
@@ -872,6 +1023,68 @@ while ($row = $tags_result->fetch_assoc()) {
 <script>
 $(document).ready(function () {
     if (typeof AOS !== 'undefined') { AOS.init({ duration: 700, once: true, offset: 60 }); }
+
+    var $filterBar = $('.ni-filter-bar');
+    var $spacer    = $('.ni-filter-bar-spacer');
+    var $titleBar  = $('.ni-page-titlebar');
+
+    // Find header height (fixed/sticky headers)
+    function getHeaderHeight() {
+        var h = 0;
+        $('header, .header-area, .header-wrap, .header-sticky, .sticky-header, nav.navbar, #header').each(function () {
+            var pos = $(this).css('position');
+            if (pos === 'fixed' || pos === 'sticky') {
+                h = Math.max(h, $(this).outerHeight() || 0);
+            }
+        });
+        return h;
+    }
+
+    var headerH = getHeaderHeight();
+    var filterH = 0;
+
+    // Set correct top immediately
+    $filterBar.css('top', headerH + 'px');
+
+    // After DOM ready, measure filter bar height
+    setTimeout(function() {
+        filterH = $filterBar.outerHeight(true) || 48;
+    }, 100);
+
+    function onScroll() {
+        headerH = getHeaderHeight();
+        filterH = filterH || $filterBar.outerHeight(true) || 48;
+
+        // titleBar bottom = when to show tabs
+        var titleBottom = $titleBar.offset().top + $titleBar.outerHeight(true);
+        var scrollTop   = $(window).scrollTop();
+
+        if (scrollTop >= titleBottom - headerH) {
+            // Scrolled past title — show filter bar
+            $filterBar.css('top', headerH + 'px');   // slide to correct position
+            $filterBar.addClass('is-stuck');
+            $spacer.css('height', filterH + 'px');
+        } else {
+            // Back at top — hide filter bar above screen
+            $filterBar.css('top', '-60px');
+            $filterBar.removeClass('is-stuck');
+            $spacer.css('height', '0px');
+        }
+    }
+
+    $(window).on('scroll', onScroll);
+    $(window).on('resize', function() {
+        headerH = getHeaderHeight();
+        $filterBar.css('top', headerH + 'px');
+    });
+
+    // Scroll active tab into view on page load
+    var activeBtn = document.querySelector('.ni-filter-btn.active');
+    if (activeBtn) {
+        setTimeout(function() {
+            activeBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        }, 300);
+    }
 });
 </script>
 </body>

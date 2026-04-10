@@ -1,30 +1,27 @@
 <?php
-
 $base_url = "http://localhost/nirajindustries/";
 include 'include/config.php';
 
-$page_title       = "About Us - Rebuilders Construction Company | Trusted Construction Partner";
-$meta_description = "Learn about Rebuilders Construction Company — trusted construction partner with 20+ years of experience. Expert team, proven quality, and commitment to excellence in every project we build.";
-$meta_keywords    = "about rebuilders construction, construction company history, trusted construction partner, construction team, construction values, best construction company, rebuilders construction nagpur";
+$page_title       = "About Niraj Industries | PVC Pipe Manufacturer in Nagpur";
+$meta_description = "Learn about Niraj Industries — a trusted PVC pipe manufacturer in Nagpur. We produce high-quality UPVC, SWR, agriculture and plumbing pipes with reliable supply and competitive pricing across Maharashtra.";
+$meta_keywords    = "about niraj industries, pvc pipe manufacturer nagpur, upvc pipe manufacturer nagpur, swr pipe nagpur, agriculture pvc pipes nagpur, plumbing pipes supplier maharashtra, pvc pipe company nagpur india, industrial pipe manufacturer nagpur";
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Primary SEO -->
     <title><?php echo htmlspecialchars($page_title); ?></title>
     <meta name="description" content="<?php echo htmlspecialchars($meta_description); ?>">
     <meta name="keywords" content="<?php echo htmlspecialchars($meta_keywords); ?>">
-    <meta name="author" content="Rebuilders Construction Company">
+    <meta name="author" content="Niraj Industries, Nagpur">
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
     <meta name="googlebot" content="index, follow">
-
-    <!-- Canonical -->
+    <meta name="geo.region" content="IN-MH">
+    <meta name="geo.placename" content="Nagpur, Maharashtra, India">
+    <meta name="geo.position" content="21.1458;79.0882">
+    <meta name="ICBM" content="21.1458, 79.0882">
     <link rel="canonical" href="<?php echo $base_url; ?>about-us">
-
-    <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="<?php echo $base_url; ?>about-us">
     <meta property="og:title" content="<?php echo htmlspecialchars($page_title); ?>">
@@ -32,22 +29,15 @@ $meta_keywords    = "about rebuilders construction, construction company history
     <meta property="og:image" content="<?php echo $base_url; ?>assets/img/all-images/about/about-img1.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Rebuilders Construction Company — Trusted Construction Partner">
+    <meta property="og:image:alt" content="Niraj Industries PVC Pipe Manufacturing Nagpur">
     <meta property="og:locale" content="en_IN">
-    <meta property="og:site_name" content="Rebuilders Construction Company">
-
-    <!-- Twitter Card -->
+    <meta property="og:site_name" content="Niraj Industries">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="<?php echo htmlspecialchars($page_title); ?>">
     <meta name="twitter:description" content="<?php echo htmlspecialchars($meta_description); ?>">
     <meta name="twitter:image" content="<?php echo $base_url; ?>assets/img/all-images/about/about-img1.png">
-    <meta name="twitter:image:alt" content="Rebuilders Construction Company">
+    <meta name="twitter:image:alt" content="Niraj Industries PVC Pipes Nagpur">
 
-    <!--===== FAV ICON =======-->
-    <link rel="shortcut icon" href="<?php echo $base_url; ?>assets/img/logo/fav-logo4.png" type="image/x-icon">
-    <link rel="apple-touch-icon" sizes="180x180" href="<?php echo $base_url; ?>assets/img/logo/fav-logo4.png">
-
-    <!--===== CSS LINKS =======-->
     <link rel="stylesheet" href="<?php echo $base_url; ?>assets/css/plugins/bootstrap.min.css">
     <link rel="stylesheet" href="<?php echo $base_url; ?>assets/css/plugins/fontawesome.css">
     <link rel="stylesheet" href="<?php echo $base_url; ?>assets/css/plugins/swiper.bundle.css">
@@ -59,22 +49,184 @@ $meta_keywords    = "about rebuilders construction, construction company history
     <link rel="stylesheet" href="<?php echo $base_url; ?>assets/css/plugins/slick-slider.css">
     <link rel="stylesheet" href="<?php echo $base_url; ?>assets/css/plugins/nice-select.css">
     <link rel="stylesheet" href="<?php echo $base_url; ?>assets/css/main.css">
-
-    <!--===== jQuery (must be first) =======-->
     <script src="<?php echo $base_url; ?>assets/js/plugins/jquery-3-6-0.min.js"></script>
+
+    <style>
+        /* Counter box */
+        .counter-text {
+            background-color: #B5100E !important;
+        }
+        .counter-text h2,
+        .counter-text p {
+            color: #FFFFFF !important;
+        }
+
+        /* ===== NEW VALUES SECTION ===== */
+        .niraj-values-wrap {
+            display: flex;
+            gap: 0;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid #e0ddd8;
+            min-height: 480px;
+        }
+
+        /* LEFT — Image column */
+        .niraj-values-img {
+            position: relative;
+            width: 58%;
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+        .niraj-values-img img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+        }
+        .niraj-values-img-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(160deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.78) 100%);
+            z-index: 1;
+        }
+        .niraj-values-img-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 32px;
+            z-index: 2;
+        }
+        .niraj-values-img-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(181,16,14,0.92);
+            color: #fff;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 5px 14px;
+            border-radius: 4px;
+            margin-bottom: 14px;
+        }
+        .niraj-values-img-tag::before {
+            content: '';
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #fff;
+        }
+        .niraj-values-img-content h3 {
+            color: #ffffff;
+            font-size: 22px;
+            font-weight: 700;
+            line-height: 1.35;
+            margin: 0 0 12px;
+            text-shadow: 0 1px 4px rgba(0,0,0,0.4);
+        }
+        .niraj-values-img-content p {
+            color: rgba(255,255,255,0.85);
+            font-size: 14px;
+            line-height: 1.65;
+            margin: 0 0 20px;
+        }
+        .niraj-values-img-content .btn-area1 a {
+            background: #B5100E;
+            color: #fff;
+        }
+        .niraj-values-img-content .btn-area1 a span {
+            background: #fff;
+            color: #B5100E;
+        }
+
+        /* RIGHT — Mission & Vision cards */
+        .niraj-values-cards {
+            width: 42%;
+            display: flex;
+            flex-direction: column;
+            background: #ffffff;
+        }
+        .niraj-val-card {
+            flex: 1;
+            padding: 36px 30px;
+        }
+        .niraj-val-card:first-child {
+            border-bottom: 1px solid #e8e5e0;
+        }
+        .niraj-val-card-icon {
+            width: 46px;
+            height: 46px;
+            border-radius: 10px;
+            background: #B5100E;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 18px;
+        }
+        .niraj-val-card-icon svg {
+            width: 22px;
+            height: 22px;
+        }
+        .niraj-val-card-accent {
+            width: 32px;
+            height: 3px;
+            background: #B5100E;
+            border-radius: 2px;
+            margin-bottom: 14px;
+        }
+        .niraj-val-card h4 {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin: 0 0 8px;
+        }
+        .niraj-val-card .tagline {
+            font-size: 14px;
+            font-weight: 600;
+            color: black;
+            margin: 0 0 10px;
+            line-height: 1.45;
+        }
+        .niraj-val-card p {
+            font-size: 14px;
+            color: #555555;
+            line-height: 1.65;
+            margin: 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .niraj-values-wrap {
+                flex-direction: column;
+                border-radius: 12px;
+            }
+            .niraj-values-img {
+                width: 100%;
+                min-height: 300px;
+                position: relative;
+            }
+            .niraj-values-img img {
+                position: relative;
+                width: 100%;
+                height: 300px;
+                object-fit: cover;
+            }
+            .niraj-values-cards {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 <body class="homepage4-body">
 
-<!--===== PRELOADER STARTS =======-->
-<div class="preloader preloader4">
-    <div class="loading-container">
-        <div class="loading"></div>
-        <div id="loading-icon"><img src="<?php echo $base_url; ?>assets/img/logo/preloader3.png" alt="Rebuilders Construction"></div>
-    </div>
-</div>
-<!--===== PRELOADER ENDS =======-->
-
-<!--===== PROGRESS STARTS =======-->
 <div class="paginacontainer">
     <div class="progress-wrap">
         <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
@@ -82,49 +234,32 @@ $meta_keywords    = "about rebuilders construction, construction company history
         </svg>
     </div>
 </div>
-<!--===== PROGRESS ENDS =======-->
 
 <?php include 'include/header.php'; ?>
-<!--===== MOBILE HEADER ENDS =======-->
 
 <!--===== HERO / INNER BANNER AREA STARTS =======-->
-<div class="inner-hero-area" style="background-image: url(<?php echo $base_url; ?>assets/img/all-images/hero/hero-img14.png);">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-4">
-                <div class="header-area">
-                    <h2>About Us</h2>
-                    <div class="space32"></div>
-                    <a href="<?php echo $base_url; ?>index.php">Home</a>
-                    <i class="fa-solid fa-angle-right"></i>
-                    <a href="<?php echo $base_url; ?>about-us.php"><span>About Us</span></a>
-                </div>
-            </div>
-        </div>
-    </div>
+<div class="inner-hero-area" style="background-image: url(<?php echo $base_url; ?>assets/img/all-images/home/five.webp);" role="banner" aria-label="About Us Banner">
 </div>
 <!--===== HERO / INNER BANNER AREA ENDS =======-->
 
 <!--===== ABOUT AREA STARTS =======-->
-<section class="about1-section-area sp1" aria-labelledby="about-rebuilders">
+<section class="about1-section-area sp1" aria-labelledby="about-niraj">
     <div class="container">
         <div class="row">
             <div class="col-lg-5">
                 <div class="about-header heading2">
-                    <h5 data-aos="fade-left" data-aos-duration="800">
-                        <img src="<?php echo $base_url; ?>assets/img/icons/sub-logo4.svg" alt="">About Us
+                    <h5 data-aos="fade-left" data-aos-duration="800" style="color:#B5100E;">
+                        <img src="<?php echo $base_url; ?>assets/img/icons/sub-logo4.svg" alt="" style="filter:invert(14%) sepia(94%) saturate(4000%) hue-rotate(350deg) brightness(88%);">About Us
                     </h5>
                     <div class="space16"></div>
-                    <h2 class="text-anime-style-3" id="about-rebuilders">Trusted Rebuilders Construction Partner</h2>
+                    <h2 class="text-anime-style-3" id="about-niraj">Trusted PVC Pipe Manufacturer in Nagpur</h2>
                     <div class="space70 d-lg-block d-none"></div>
                     <div class="space30 d-lg-none d-block"></div>
                     <div class="images-area text-center">
                         <div class="img1 reveal image-anime">
-                            <img src="<?php echo $base_url; ?>assets/img/all-images/about/about-img1.png" alt="Rebuilders Construction Engineer — Expert Team">
+                            <img src="<?php echo $base_url; ?>assets/img/all-images/about/About-section1.webp" alt="Niraj Industries PVC Pipe Manufacturing Unit Nagpur">
                         </div>
-                        <div class="text">
-                            <p>Engineer</p>
-                        </div>
+                        <div class="text"><p>Our Facility</p></div>
                     </div>
                 </div>
             </div>
@@ -132,35 +267,33 @@ $meta_keywords    = "about rebuilders construction, construction company history
                 <div class="sucess-text">
                     <div class="images-area2">
                         <div class="img2 reveal image-anime">
-                            <img src="<?php echo $base_url; ?>assets/img/all-images/about/about-img2.png" alt="Rebuilders Active Construction Site — Quality Workmanship">
+                            <img src="<?php echo $base_url; ?>assets/img/all-images/about/About-section2.webp" alt="PVC Pipe Production Process Niraj Industries Nagpur">
                         </div>
-                        <div class="text">
-                            <p>Engineer</p>
-                        </div>
+                        <div class="text"><p>Our Process</p></div>
                     </div>
                     <div class="counter-text">
                         <h2 class="text-anime-style-3"><span class="counter">100</span>%</h2>
                         <div class="space16"></div>
-                        <p>Success Rate</p>
+                        <p>Quality Assurance</p>
                     </div>
                 </div>
             </div>
             <div class="col-lg-3">
                 <div class="peragraph heading2">
-                    <p data-aos="fade-left" data-aos-duration="1000">Welcome to Rebuilders Construction Company, where quality craftsmanship and unwavering integrity are the foundations of business. With over 12 years of experience in the construction industry, we have been dedicated to transforming vision.</p>
+                    <p data-aos="fade-left" data-aos-duration="1000" style="text-align: justify;">
+                        Welcome to Niraj Industries, a leading PVC pipe manufacturer in Nagpur known for delivering high-quality UPVC, SWR and agriculture pipes. With years of industry experience, we focus on durability, precision manufacturing and reliable supply across Maharashtra for contractors, builders and dealers.
+                    </p>
                     <div class="space24"></div>
                     <div class="btn-area1" data-aos="fade-left" data-aos-duration="1200">
-                        <a href="<?php echo $base_url; ?>contact-us.php" class="header-btn2-h4">Learn More <span><i class="fa-solid fa-arrow-right"></i></span></a>
+                        <a href="<?php echo $base_url; ?>contact-us" class="header-btn2-h4" style="background:#B5100E; color:#fff;">Learn More <span style="background:#fff; color:#B5100E;"><i class="fa-solid fa-arrow-right"></i></span></a>
                     </div>
                     <div class="space80 d-lg-block d-none"></div>
                     <div class="space30 d-lg-none d-block"></div>
                     <div class="images-area text-center">
                         <div class="img1 reveal image-anime">
-                            <img src="<?php echo $base_url; ?>assets/img/all-images/about/about-img3.png" alt="Best Construction Workers — Skilled Professional Team">
+                            <img src="<?php echo $base_url; ?>assets/img/all-images/about/About-section3.webp" alt="PVC Pipe Quality Testing Team Niraj Industries">
                         </div>
-                        <div class="text">
-                            <p>Best Workers</p>
-                        </div>
+                        <div class="text"><p>Our Strength</p></div>
                     </div>
                 </div>
             </div>
@@ -172,66 +305,76 @@ $meta_keywords    = "about rebuilders construction, construction company history
 <!--===== VALUE AREA STARTS =======-->
 <section class="value-section-area bg1 sp1" aria-labelledby="value-heading">
     <div class="container">
+
+        <!-- Section Header -->
         <div class="row">
             <div class="col-lg-10 m-auto">
                 <div class="value-header text-center heading2 space-margin60">
-                    <h5><img src="<?php echo $base_url; ?>assets/img/icons/sub-logo4.svg" alt="">Our Value</h5>
+                    <h5 style="color:#B5100E;">
+                        <img src="<?php echo $base_url; ?>assets/img/icons/sub-logo4.svg" alt="" style="filter:invert(14%) sepia(94%) saturate(4000%) hue-rotate(350deg) brightness(88%);">Our Values
+                    </h5>
                     <div class="space16"></div>
-                    <h2 id="value-heading">The Values That Shape Our Approach to Rebuilding Lives &amp; Strengthening Communities</h2>
+                    <h2 id="value-heading">Core Values That Drive Our PVC Pipe Manufacturing Excellence in Nagpur</h2>
                 </div>
             </div>
         </div>
+
+        <!-- New Values Layout -->
         <div class="row">
-            <div class="col-lg-7">
-                <div class="value-details-box">
-                    <div class="img1">
-                        <img src="<?php echo $base_url; ?>assets/img/all-images/others/value-img1.png" alt="Rebuilders Core Values — Integrity, Quality, Transparency">
-                    </div>
-                    <div class="content-area heading1">
-                        <h5>Our Value</h5>
-                        <div class="space16"></div>
-                        <h3>We approach each individual with compassion and understanding,</h3>
-                        <div class="space16"></div>
-                        <p>We are committed to honesty, transparency, and ethical practices in all our interactions and services. We believe in empowering individuals with the tools and resources.</p>
-                        <div class="space16"></div>
-                        <div class="btn-area1">
-                            <a href="<?php echo $base_url; ?>contact-us.php" class="header-btn2-h4">Learn More <span><i class="fa-solid fa-arrow-right"></i></span></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-5">
-                <div class="value-boxs-area">
-                    <div class="row">
-                        <div class="col-lg-12 col-md-6">
-                            <div class="value-box">
-                                <div class="arrow">
-                                    <a href="<?php echo $base_url; ?>contact-us.php" aria-label="Learn about Our Mission"><i class="fa-solid fa-arrow-right"></i></a>
-                                </div>
-                                <h5>Our Mission</h5>
-                                <div class="space16"></div>
-                                <a href="<?php echo $base_url; ?>contact-us.php">Our mission is to provide comprehensive support and resources to those in need.</a>
-                                <div class="space16"></div>
-                                <p>Helping them overcome challenges and achieve their full potential. We are dedicated empowering individuals through education advocacy &amp; direct.</p>
-                            </div>
-                            <div class="space30"></div>
-                        </div>
-                        <div class="col-lg-12 col-md-6">
-                            <div class="value-box2">
-                                <div class="arrow">
-                                    <a href="<?php echo $base_url; ?>contact-us.php" aria-label="Learn about Our Vision"><i class="fa-solid fa-arrow-right"></i></a>
-                                </div>
-                                <h5>Our Vision</h5>
-                                <div class="space16"></div>
-                                <a href="<?php echo $base_url; ?>contact-us.php">Our vision is to provide comprehensive support and resources to those in need.</a>
-                                <div class="space16"></div>
-                                <p>Helping them overcome challenges and achieve their full potential. We are dedicated empowering individuals through education advocacy &amp; direct.</p>
+            <div class="col-12">
+                <div class="niraj-values-wrap">
+
+                    <!-- LEFT: Image with overlay text -->
+                    <div class="niraj-values-img">
+                        <img src="<?php echo $base_url; ?>assets/img/all-images/about/our_values.webp" alt="Niraj Industries Core Values Quality Innovation Reliability">
+                        <div class="niraj-values-img-overlay"></div>
+                        <div class="niraj-values-img-content">
+                            <div class="niraj-values-img-tag">Our Values</div>
+                            <h3>We focus on quality manufacturing, consistency and long-term customer trust</h3>
+                            <p>At Niraj Industries, we follow strict quality standards in PVC pipe manufacturing to ensure durability, strength and performance. Our commitment to reliable supply, transparent business practices and continuous improvement helps us serve contractors, builders and dealers across Nagpur and Maharashtra.</p>
+                            <div class="btn-area1">
+                                <a href="<?php echo $base_url; ?>contact-us" class="header-btn2-h4" style="background:#B5100E; color:#fff;">Learn More <span style="background:#fff; color:#B5100E;"><i class="fa-solid fa-arrow-right"></i></span></a>
                             </div>
                         </div>
+                    </div>
+
+                    <!-- RIGHT: Mission & Vision cards -->
+                    <div class="niraj-values-cards">
+
+                        <!-- Mission Card -->
+                        <div class="niraj-val-card">
+                            <div class="niraj-val-card-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                                    <path d="M2 17l10 5 10-5"/>
+                                    <path d="M2 12l10 5 10-5"/>
+                                </svg>
+                            </div>
+                            <div class="niraj-val-card-accent"></div>
+                            <h4>Our Mission</h4>
+                            <p class="tagline">To manufacture high-quality PVC, UPVC and SWR pipes that meet industry standards and support efficient plumbing, drainage and agricultural systems.</p>
+                            <p>We aim to deliver consistent product quality, timely supply and cost-effective solutions to our clients across Nagpur and nearby regions.</p>
+                        </div>
+
+                        <!-- Vision Card -->
+                        <div class="niraj-val-card">
+                            <div class="niraj-val-card-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <path d="M12 6v6l4 2"/>
+                                </svg>
+                            </div>
+                            <div class="niraj-val-card-accent"></div>
+                            <h4>Our Vision</h4>
+                            <p class="tagline">To become a trusted PVC pipe manufacturer in Nagpur and a preferred supplier across Maharashtra for quality and reliability.</p>
+                            <p>Our vision is to expand with innovation, maintain high manufacturing standards and build long-term relationships with customers and partners.</p>
+                        </div>
+
                     </div>
                 </div>
             </div>
         </div>
+
     </div>
 </section>
 <!--===== VALUE AREA ENDS =======-->
@@ -242,9 +385,11 @@ $meta_keywords    = "about rebuilders construction, construction company history
         <div class="row">
             <div class="col-lg-6 m-auto">
                 <div class="history-header heading2 text-center space-margin60">
-                    <h5><img src="<?php echo $base_url; ?>assets/img/icons/sub-logo4.svg" alt="">Rebuilders History</h5>
+                    <h5 style="color:#B5100E;">
+                        <img src="<?php echo $base_url; ?>assets/img/icons/sub-logo4.svg" alt="" style="filter:invert(14%) sepia(94%) saturate(4000%) hue-rotate(350deg) brightness(88%);">Our Journey
+                    </h5>
                     <div class="space16"></div>
-                    <h2 id="history-heading">A Journey of Innovation: The Rebuilders Story Year by Year</h2>
+                    <h2 id="history-heading">From Local Supplier to Nagpur's Most Trusted PVC Pipe Manufacturer — Our Story</h2>
                 </div>
             </div>
         </div>
@@ -254,68 +399,62 @@ $meta_keywords    = "about rebuilders construction, construction company history
                     <div class="row">
                         <div class="col-lg-6 col-md-6">
                             <div class="history-boxes">
-                                <span>2019</span>
+                                <span>2009</span>
                                 <div class="space16"></div>
-                                <a href="#">Founding Year</a>
+                                <a href="#">The Foundation</a>
                                 <div class="space16"></div>
-                                <p>Briefly explain the inspiration behind starting the company, its initial goals, and any challenges faced.</p>
+                                <p>Niraj Industries was established in Nagpur with a clear vision — to manufacture reliable, affordable PVC pipes for the growing construction and agriculture sector across Vidarbha.</p>
                                 <div class="space16"></div>
-                                <a href="#" class="readmore">Read More <i class="fa-solid fa-arrow-right"></i></a>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6">
                             <div class="history-boxes">
-                                <span>2020</span>
+                                <span>2012</span>
                                 <div class="space16"></div>
-                                <a href="#">Expansion and Growth</a>
+                                <a href="#">Expanding the Product Range</a>
                                 <div class="space16"></div>
-                                <p>Discuss how the company began to grow, any new markets it entered, or significant hires made.</p>
+                                <p>We expanded beyond standard PVC pipes and introduced UPVC and SWR drainage pipes to meet the rising demand from builders, plumbers and housing projects in Nagpur and surrounding districts.</p>
                                 <div class="space16"></div>
-                                <a href="#" class="readmore">Read More <i class="fa-solid fa-arrow-right"></i></a>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6">
                             <div class="history-boxes">
-                                <span>2021</span>
+                                <span>2015</span>
                                 <div class="space16"></div>
-                                <a href="#">Significant Milestone</a>
+                                <a href="#">Agriculture Pipe Supply Growth</a>
                                 <div class="space16"></div>
-                                <p>Provide context on why this milestone was important and how it impacted the company's trajectory.</p>
+                                <p>Niraj Industries became a trusted name among farmers across Vidarbha. Our agriculture-grade PVC pipes gained strong demand in Wardha, Amravati, Yavatmal and Chandrapur for borewell and irrigation use.</p>
                                 <div class="space16"></div>
-                                <a href="#" class="readmore">Read More <i class="fa-solid fa-arrow-right"></i></a>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6">
                             <div class="history-boxes">
-                                <span>2022</span>
+                                <span>2018</span>
                                 <div class="space16"></div>
-                                <a href="#">Innovation &amp; Development</a>
+                                <a href="#">Manufacturing Capacity Upgraded</a>
                                 <div class="space16"></div>
-                                <p>Highlight the innovation, how it set the company apart, and its impact on customers or the industry.</p>
+                                <p>To meet the growing bulk order demand from contractors and dealers, we upgraded our production facility at Mahalgaon, Bhandra Road, Nagpur — enabling faster dispatch and consistent quality across every batch.</p>
                                 <div class="space16"></div>
-                                <a href="#" class="readmore">Read More <i class="fa-solid fa-arrow-right"></i></a>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6">
                             <div class="history-boxes" style="padding: 0; border: none;">
-                                <span>2023</span>
+                                <span>2021</span>
                                 <div class="space16"></div>
-                                <a href="#">Community &amp; Culture</a>
+                                <a href="#">Pan-Maharashtra Dealer Network</a>
                                 <div class="space16"></div>
-                                <p>Discuss efforts to build company culture, community involvement, or social responsibility initiatives.</p>
+                                <p>Niraj Industries established a strong dealer and distributor network spanning 20+ districts across Maharashtra — making quality PVC, UPVC and SWR pipes accessible to contractors and builders statewide.</p>
                                 <div class="space16"></div>
-                                <a href="#" class="readmore">Read More <i class="fa-solid fa-arrow-right"></i></a>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6">
                             <div class="history-boxes" style="padding: 0; border: none;">
                                 <span>2024</span>
                                 <div class="space16"></div>
-                                <a href="#">Present and Future</a>
+                                <a href="#">5000+ Clients & Growing</a>
                                 <div class="space16"></div>
-                                <p>Conclude with the current state of the company and a forward-looking statement about where it's headed.</p>
+                                <p>Today, Niraj Industries proudly serves 5000+ satisfied clients across Nagpur and Maharashtra. We continue to grow as Vidarbha's preferred PVC pipe manufacturer — delivering quality, reliability and competitive wholesale pricing.</p>
                                 <div class="space16"></div>
-                                <a href="#" class="readmore">Read More <i class="fa-solid fa-arrow-right"></i></a>
                             </div>
                         </div>
                     </div>
@@ -323,7 +462,7 @@ $meta_keywords    = "about rebuilders construction, construction company history
             </div>
             <div class="col-lg-6">
                 <div class="img1 image-anime reveal">
-                    <img src="<?php echo $base_url; ?>assets/img/all-images/others/history-img1.png" alt="Rebuilders Construction Company History — 2019 to 2024">
+                    <img src="<?php echo $base_url; ?>assets/img/all-images/about/history.webp" alt="Niraj Industries PVC Pipe Manufacturer Nagpur — Company Journey Since 2009">
                 </div>
             </div>
         </div>
@@ -340,79 +479,81 @@ $meta_keywords    = "about rebuilders construction, construction company history
                     <div class="row">
                         <div class="col-lg-6 col-md-6">
                             <div class="img1 reveal image-anime">
-                                <img src="<?php echo $base_url; ?>assets/img/all-images/choose/choose-img1.png" alt="Rebuilders Construction Project — Commercial Building">
+                                <img src="<?php echo $base_url; ?>assets/img/all-images/about/why-choose-us1.webp" alt="PVC Pipe Manufacturing Process Niraj Industries Nagpur">
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6">
                             <div class="space30 d-md-none d-block"></div>
                             <div class="img1 reveal image-anime">
-                                <img src="<?php echo $base_url; ?>assets/img/all-images/choose/choose-img2.png" alt="Rebuilders Construction Project — Residential Complex">
+                                <img src="<?php echo $base_url; ?>assets/img/all-images/about/why-choose-us2.webp" alt="High Quality UPVC Pipe Production Nagpur Maharashtra">
                             </div>
                         </div>
                         <div class="space30"></div>
                         <div class="img1 reveal image-anime">
-                            <img src="<?php echo $base_url; ?>assets/img/all-images/choose/choose-img3.png" alt="Rebuilders Construction Project — Infrastructure Work">
+                            <img src="<?php echo $base_url; ?>assets/img/all-images/about/why-choose-us3.webp" alt="Durable PVC Pipes for Plumbing Agriculture and Drainage Systems">
                         </div>
                     </div>
                     <div class="others-area">
                         <div class="widget-text">
                             <div class="icons">
-                                <img src="<?php echo $base_url; ?>assets/img/icons/choose10.svg" alt="Concept Icon">
+                                <img src="<?php echo $base_url; ?>assets/img/icons/choose10.svg" alt="Quality Icon" style="filter:invert(14%) sepia(94%) saturate(4000%) hue-rotate(350deg) brightness(88%);">
                             </div>
-                            <p>Concept</p>
+                            <p>Quality</p>
                         </div>
                         <div class="widget-text">
                             <div class="icons">
-                                <img src="<?php echo $base_url; ?>assets/img/icons/choose11.svg" alt="Plan Icon">
+                                <img src="<?php echo $base_url; ?>assets/img/icons/choose11.svg" alt="Process Icon" style="filter:invert(14%) sepia(94%) saturate(4000%) hue-rotate(350deg) brightness(88%);">
                             </div>
-                            <p>Plan</p>
+                            <p>Precision</p>
                         </div>
                         <div class="widget-text" style="border: none;">
                             <div class="icons">
-                                <img src="<?php echo $base_url; ?>assets/img/icons/choose12.svg" alt="Build Icon">
+                                <img src="<?php echo $base_url; ?>assets/img/icons/choose12.svg" alt="Delivery Icon" style="filter:invert(14%) sepia(94%) saturate(4000%) hue-rotate(350deg) brightness(88%);">
                             </div>
-                            <p>Build</p>
+                            <p>Supply</p>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-lg-6">
                 <div class="choose-header heading4">
-                    <h5 data-aos="fade-left" data-aos-duration="800">
-                        <img src="<?php echo $base_url; ?>assets/img/icons/sub-logo4.svg" alt=""> Why Choose Us
+                    <h5 data-aos="fade-left" data-aos-duration="800" style="color:#B5100E;">
+                        <img src="<?php echo $base_url; ?>assets/img/icons/sub-logo4.svg" alt="" style="filter:invert(14%) sepia(94%) saturate(4000%) hue-rotate(350deg) brightness(88%);"> Why Choose Us
                     </h5>
                     <div class="space16"></div>
-                    <h2 class="text-anime-style-3" id="choose-heading">You Dream It We Build It</h2>
+                    <h2 class="text-anime-style-3" id="choose-heading">Reliable PVC Pipe Manufacturer in Nagpur You Can Trust</h2>
                     <div class="space20"></div>
-                    <p data-aos="fade-left" data-aos-duration="900">At Rebuilders Construction Company, we pride ourselves on delivering the highest quality workmanship in every project we undertake. Our attention to detail and commitment to using only the finest materials ensure that your construction project stands the test of time.</p>
+                    <p data-aos="fade-left" data-aos-duration="900">
+                        At Niraj Industries, we are committed to manufacturing high-quality PVC, UPVC and SWR pipes that meet industry standards. Our focus on durability, precision production and consistent supply ensures that contractors, builders and dealers receive reliable products for plumbing, drainage and agricultural applications.
+                    </p>
                     <div class="space24"></div>
                     <div class="list-area" data-aos="fade-left" data-aos-duration="1000">
                         <div class="icons">
-                            <img src="<?php echo $base_url; ?>assets/img/icons/check4.svg" alt="Check">
+                            <img src="<?php echo $base_url; ?>assets/img/icons/check4.svg" alt="Check" style="filter:invert(14%) sepia(94%) saturate(4000%) hue-rotate(350deg) brightness(88%);">
                         </div>
                         <div class="text">
-                            <a href="#">Experienced and Skilled Team</a>
-                            <p>Our team is composed of highly skilled professionals, including architects, engineers, project managers.</p>
+                            <a href="#">High Quality Manufacturing Standards</a>
+                            <p>We use advanced production techniques and strict quality checks to ensure durable and long-lasting PVC pipes for every application.</p>
                         </div>
                     </div>
                     <div class="space24"></div>
                     <div class="list-area" data-aos="fade-left" data-aos-duration="1100">
                         <div class="icons">
-                            <img src="<?php echo $base_url; ?>assets/img/icons/check4.svg" alt="Check">
+                            <img src="<?php echo $base_url; ?>assets/img/icons/check4.svg" alt="Check" style="filter:invert(14%) sepia(94%) saturate(4000%) hue-rotate(350deg) brightness(88%);">
                         </div>
                         <div class="text">
-                            <a href="#">Customer-Centric Approach</a>
-                            <p>Your satisfaction is our top priority. We take the time to understand your needs &amp; preferences, providing personalized service.</p>
+                            <a href="#">Trusted by Contractors & Dealers</a>
+                            <p>We have built strong relationships by consistently supplying reliable pipes to builders, contractors and distributors across Nagpur and Maharashtra.</p>
                         </div>
                     </div>
                     <div class="space24"></div>
                     <div class="list-area" data-aos="fade-left" data-aos-duration="1200">
                         <div class="icons">
-                            <img src="<?php echo $base_url; ?>assets/img/icons/check4.svg" alt="Check">
+                            <img src="<?php echo $base_url; ?>assets/img/icons/check4.svg" alt="Check" style="filter:invert(14%) sepia(94%) saturate(4000%) hue-rotate(350deg) brightness(88%);">
                         </div>
                         <div class="text">
-                            <a href="#">Timely and Efficient Delivery</a>
-                            <p>We understand the importance of completing projects on time and within every budget, keeping everything on track.</p>
+                            <a href="#">Timely Bulk Supply & Competitive Pricing</a>
+                            <p>We ensure fast delivery and cost-effective pricing for bulk orders, making us a preferred PVC pipe supplier for large and small projects.</p>
                         </div>
                     </div>
                 </div>
@@ -422,218 +563,12 @@ $meta_keywords    = "about rebuilders construction, construction company history
 </section>
 <!--===== CHOOSE AREA ENDS =======-->
 
-<!--===== COST CALCULATOR AREA STARTS =======-->
-<section class="cost4-calculator-area sp1" aria-labelledby="cost-heading">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-4 m-auto">
-                <div class="cost-header text-center space-margin60 heading1">
-                    <h5 data-aos="fade-left" data-aos-duration="800">
-                        <img src="<?php echo $base_url; ?>assets/img/icons/sub-logo4.svg" alt="">Estimated Price
-                    </h5>
-                    <div class="space16"></div>
-                    <h3 class="text-anime-style-3" id="cost-heading">Cost Calculator</h3>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-10 m-auto">
-                <div class="cost-section-boxarea">
-                    <div class="row">
-                        <div class="col-lg-8">
-                            <div class="row">
-                                <div class="col-lg-6" data-aos="fade-up" data-aos-duration="800">
-                                    <div class="slider-area">
-                                        <h3>Home Size:</h3>
-                                        <div class="space16"></div>
-                                        <div class="slider-container">
-                                            <div id="slider-value" class="slider-value">150</div>
-                                            <input type="range" min="0" max="300" value="150" id="slider" aria-label="Home Size Slider">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6" data-aos="fade-up" data-aos-duration="900">
-                                    <div class="slider-area">
-                                        <h3>Number Of Floors:</h3>
-                                        <div class="space16"></div>
-                                        <div class="slider-container">
-                                            <div id="slider-value2" class="slider-value2">5</div>
-                                            <input type="range" min="0" max="10" value="5" id="slider2" aria-label="Number of Floors Slider">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="space32"></div>
-                                    <div class="select-area">
-                                        <h3>Energetic Class:</h3>
-                                        <div class="space16"></div>
-                                        <select aria-label="Select Energetic Class">
-                                            <option value="1">Option 01</option>
-                                            <option value="2">Option 02</option>
-                                            <option value="3">Option 03</option>
-                                            <option value="4">Option 04</option>
-                                            <option value="5">Option 05</option>
-                                            <option value="6">Option 06</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="space32"></div>
-                                    <div class="select-area">
-                                        <h3>Bathroom:</h3>
-                                        <div class="space16"></div>
-                                        <select aria-label="Select Number of Bathrooms">
-                                            <option value="1">Option 01</option>
-                                            <option value="2">Option 02</option>
-                                            <option value="3">Option 03</option>
-                                            <option value="4">Option 04</option>
-                                            <option value="5">Option 05</option>
-                                            <option value="6">Option 06</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4" data-aos="fade-up" data-aos-duration="1200">
-                                    <div class="space32"></div>
-                                    <div class="select-area">
-                                        <h3>Terrace:</h3>
-                                        <div class="space16"></div>
-                                        <div class="btn-area1">
-                                            <a href="javascript:void(0);" class="yes active-size" aria-label="Terrace Yes">Yes</a>
-                                            <a href="javascript:void(0);" class="no" aria-label="Terrace No">No</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="space32"></div>
-                                <div class="col-lg-12" data-aos="fade-up" data-aos-duration="1000">
-                                    <div class="materials-area">
-                                        <h3>Building Materials:</h3>
-                                        <ul>
-                                            <li><a href="#">Cellular Concrete</a></li>
-                                            <li><a href="#">Ventilated Bricks</a></li>
-                                            <li><a href="#">Wood</a></li>
-                                            <li><a href="#" style="margin: 16px 0 0 0;">Prefabricated</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="space32"></div>
-                                    <h2 class="text-anime-style-3">$<span class="counter">32,500</span></h2>
-                                    <div class="space16"></div>
-                                    <p>Estimated Price</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="cost-head">
-                                <h4 data-aos="fade-left" data-aos-duration="800">Terms &amp; Condition</h4>
-                                <div class="space16"></div>
-                                <p data-aos="fade-left" data-aos-duration="900">By accessing or using our website, you agree to comply with and be bound by the following terms and conditions.</p>
-                                <div class="space16"></div>
-                                <ul data-aos="fade-left" data-aos-duration="1000">
-                                    <li><img src="<?php echo $base_url; ?>assets/img/icons/check4.svg" alt="Check"> Planning and Budget</li>
-                                    <li><img src="<?php echo $base_url; ?>assets/img/icons/check4.svg" alt="Check"> Start For New Construction</li>
-                                    <li><img src="<?php echo $base_url; ?>assets/img/icons/check4.svg" alt="Check"> Interior Quality Finishes</li>
-                                </ul>
-                                <div class="space32"></div>
-                                <div class="btn-area" data-aos="fade-left" data-aos-duration="1200">
-                                    <a href="<?php echo $base_url; ?>contact-us.php" class="header-btn2-h4">Request It Now <span><i class="fa-solid fa-arrow-right"></i></span></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!--===== COST CALCULATOR AREA ENDS =======-->
-
-<!--===== PROJECT AREA STARTS =======-->
-<section class="project1-section-area sp1" aria-labelledby="project-heading">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-4 m-auto">
-                <div class="project-header text-center heading2 space-margin60">
-                    <h5 data-aos="fade-left" data-aos-duration="800">
-                        <img src="<?php echo $base_url; ?>assets/img/icons/sub-logo4.svg" alt=""> Our Project
-                    </h5>
-                    <div class="space16"></div>
-                    <h2 class="text-anime-style-3" id="project-heading">Our Latest Projects</h2>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="swiper" role="region" aria-label="Latest Construction Projects Slider">
-        <div class="swiper-wrapper">
-            <div class="swiper-slide">
-                <div class="img1">
-                    <img src="<?php echo $base_url; ?>assets/img/all-images/project/project-img1.png" alt="Downtown Office Building Project by Rebuilders Construction">
-                </div>
-                <div class="content-area">
-                    <a href="<?php echo $base_url; ?>contact-us.php">Downtown Office Building</a>
-                    <div class="space16"></div>
-                    <p>This upscale condominium complex features multiple residential units with modern amenities.</p>
-                    <div class="space16"></div>
-                    <a href="<?php echo $base_url; ?>contact-us.php" class="readmore">Read More <i class="fa-solid fa-arrow-right"></i></a>
-                </div>
-            </div>
-            <div class="swiper-slide">
-                <div class="img1">
-                    <img src="<?php echo $base_url; ?>assets/img/all-images/project/project-img2.png" alt="Residential Complex Project by Rebuilders Construction">
-                </div>
-                <div class="content-area">
-                    <a href="<?php echo $base_url; ?>contact-us.php">Residential Complex</a>
-                    <div class="space16"></div>
-                    <p>This upscale condominium complex features multiple residential units with modern amenities.</p>
-                    <div class="space16"></div>
-                    <a href="<?php echo $base_url; ?>contact-us.php" class="readmore">Read More <i class="fa-solid fa-arrow-right"></i></a>
-                </div>
-            </div>
-            <div class="swiper-slide">
-                <div class="img1">
-                    <img src="<?php echo $base_url; ?>assets/img/all-images/project/project-img3.png" alt="Commercial Building Project by Rebuilders Construction">
-                </div>
-                <div class="content-area">
-                    <a href="<?php echo $base_url; ?>contact-us.php">Commercial Building</a>
-                    <div class="space16"></div>
-                    <p>This upscale condominium complex features multiple residential units with modern amenities.</p>
-                    <div class="space16"></div>
-                    <a href="<?php echo $base_url; ?>contact-us.php" class="readmore">Read More <i class="fa-solid fa-arrow-right"></i></a>
-                </div>
-            </div>
-        </div>
-        <div class="swiper-pagination"></div>
-        <div class="swiper-scrollbar"></div>
-    </div>
-</section>
-<!--===== PROJECT AREA ENDS =======-->
-
 <div class="space50 d-lg-block d-none"></div>
 
-<!--===== CTA AREA STARTS =======-->
-<section class="cta1-section-area sp4" aria-labelledby="cta-heading">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-6">
-                <div class="cta-header">
-                    <h2 class="text-anime-style-3" id="cta-heading">Get in Touch with Rebuilders Construction Company</h2>
-                </div>
-            </div>
-            <div class="col-lg-2"></div>
-            <div class="col-lg-4">
-                <div class="btn-area" data-aos="zoom-in" data-aos-duration="1000">
-                    <a href="<?php echo $base_url; ?>contact-us.php" class="header-btn2-h4">Get Started <span><i class="fa-solid fa-arrow-right"></i></span></a>
-                    <a href="<?php echo $base_url; ?>contact-us.php" class="header-btn2-h4">Schedule Now <span><i class="fa-solid fa-arrow-right"></i></span></a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
 <!--===== CTA AREA ENDS =======-->
 
-<!--===== FOOTER AREA STARTS =======-->
 <?php include 'include/footer.php'; ?>
-<!--===== FOOTER AREA ENDS =======-->
 
-<!--===== JS SCRIPT LINKS =======-->
 <script src="<?php echo $base_url; ?>assets/js/plugins/bootstrap.min.js"></script>
 <script src="<?php echo $base_url; ?>assets/js/plugins/fontawesome.js"></script>
 <script src="<?php echo $base_url; ?>assets/js/plugins/aos.js"></script>

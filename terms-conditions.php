@@ -1,1372 +1,1127 @@
-<?php $base_url = "http://localhost/nirajindustries/"; ?>
-<?php include 'include/config.php'; ?>
+<?php
+$base_url = "http://localhost/nirajindustries/";
+include 'include/config.php';
+
+$page_title       = "Terms & Conditions | Niraj Industries";
+$meta_description = "Read Niraj Industries' Terms and Conditions governing the use of our website, products, and services. Transparent, fair, and easy to understand.";
+?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Terms and Conditions of Dr. Agrawal's R.K. Hospital Nagpur. Read our policies on appointments, medical services, patient rights, and more.">
-    <meta name="keywords" content="RK Hospital Terms Conditions, Hospital Policy Nagpur, Patient Rights RK Hospital">
-    <meta name="author" content="Dr. Agrawal's R.K. Hospital Nagpur">
-    <title>Terms & Conditions | Dr. Agrawal's R.K. Hospital Nagpur</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><?php echo htmlspecialchars($page_title); ?></title>
+    <meta name="description" content="<?php echo htmlspecialchars($meta_description); ?>">
 
-    <!-- Favicon -->
-    <link rel="shortcut icon" href="<?php echo $base_url; ?>assets/img/RK-Logo.png" type="image/x-icon">
-    <link rel="apple-touch-icon" sizes="180x180" href="<?php echo $base_url; ?>assets/img/RK-Logo.png">
 
-    <!-- Theme Settings Js -->
-    <script src="assets/js/theme-script.js"></script>
+    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/css/plugins/bootstrap.min.css">
+    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/css/plugins/fontawesome.css">
+    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/css/plugins/aos.css">
+    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/css/plugins/mobile.css">
+    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/css/plugins/sidebar.css">
+    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/css/main.css">
+    <script src="<?php echo $base_url; ?>assets/js/plugins/jquery-3-6-0.min.js"></script>
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/css/animate.css">
+    <!-- Google Fonts: DM Serif Display + Sora -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <!-- Fontawesome CSS -->
-    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/plugins/fontawesome/css/fontawesome.min.css">
-    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/plugins/fontawesome/css/all.min.css">
-
-    <!-- Iconsax CSS -->
-    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/css/iconsax.css">
-
-    <!-- Feathericon CSS -->
-    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/css/feather.css">
-
-    <!-- Slick CSS -->
-    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/plugins/slick/slick.css">
-    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/plugins/slick/slick-theme.css">
-
-    <!-- Wow CSS -->
-    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/plugins/wow/css/animate.css">
-
-    <!-- select CSS -->
-    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/plugins/select2/css/select2.min.css">
-
-    <!-- Fancybox CSS -->
-    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/plugins/fancybox/jquery.fancybox.min.css">
-
-    <!-- Main CSS -->
-    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/css/style.css">
-
-    <style>
-        /* ═══════════════════════════════════════════
-           THEME VARIABLES — matches homepage red/white
-        ═══════════════════════════════════════════ */
-       /* ═══════════════════════════════════════════
-   THEME VARIABLES — matches homepage red/white
-═══════════════════════════════════════════ */
+<style>
+/* ══════════════════════════════════════════════
+   NIRAJ INDUSTRIES — TERMS & CONDITIONS PAGE
+   Theme: #B5100E red + #242223 dark
+   Font: DM Serif Display (headings) + Sora (body)
+   ══════════════════════════════════════════════ */
 :root {
-    --red: #d32f2f;
-    --red-dark: #b71c1c;
-    --red-light: #ef5350;
-    --red-bg: #fff5f5;
-    --red-border: #fecaca;
-    --text-dark: #1a1a2e;
-    --text-mid: #374151;
-    --text-soft: #6b7280;
-    --white: #ffffff;
-    --off-white: #f9fafb;
-    --border: #e5e7eb;
-    --shadow-sm: 0 2px 12px rgba(211, 47, 47, 0.08);
-    --shadow-md: 0 6px 28px rgba(211, 47, 47, 0.13);
-    --shadow-lg: 0 20px 60px rgba(211, 47, 47, 0.18);
-    --primary: #316dff;
-    --blue-dark: #1a3fa3;
-    --blue-bg: #eef3ff;
-    --blue-border: #c3d0f8;
+    --ni-red:        #B5100E;
+    --ni-red-dk:     #8f0b0a;
+    --ni-red-soft:   #fdf0f0;
+    --ni-red-mid:    rgba(181,16,14,0.12);
+    --ni-dark:       #242223;
+    --ni-dark-2:     #2e2c2c;
+    --ni-dark-3:     #3d3a3a;
+    --ni-white:      #ffffff;
+    --ni-off-white:  #f8f6f6;
+    --ni-text:       #242223;
+    --ni-text2:      #4a4646;
+    --ni-text3:      #888080;
+    --ni-border:     #e8e4e4;
+    --ni-bg:         #f5f3f3;
+    --ni-radius:     14px;
+    --ni-radius-sm:  8px;
+    --ni-shadow:     0 2px 16px rgba(36,34,35,0.07);
+    --ni-shadow-md:  0 8px 32px rgba(36,34,35,0.13);
+    --ni-font-head:  'DM Serif Display', serif;
+    --ni-font-body:  'Sora', sans-serif;
+    --ni-trans:      all .25s cubic-bezier(.4,0,.2,1);
 }
 
+.ni-tc-section {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
 
-/* ─── HERO BREADCRUMB OVERRIDE ─── */
-.tc-hero {
-    background: linear-gradient(135deg, #0d1b4b 0%, #1a1a2e 40%, #7f0000 100%);
-    padding: 72px 0 80px;
+[data-aos] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html, body { overflow-x: hidden; }
+
+.ni-tc-page {
+    font-family: var(--ni-font-body);
+    background: var(--ni-white);
+    color: var(--ni-text);
+}
+
+/* ── HERO BANNER ─────────────────────────────── */
+.ni-tc-hero {
+    background: var(--ni-dark);
     position: relative;
     overflow: hidden;
+    padding: 80px 0 70px;
 }
-
-.tc-hero::before {
+.ni-tc-hero::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    background:
+        radial-gradient(ellipse 60% 80% at 90% 50%, rgba(181,16,14,0.15) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 60% at 10% 80%, rgba(181,16,14,0.07) 0%, transparent 50%);
+    pointer-events: none;
 }
-
-.tc-hero .deco-circle {
+.ni-tc-hero::after {
+    content: '';
     position: absolute;
-    border-radius: 50%;
-    border: 1px solid rgba(255,255,255,0.06);
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(181,16,14,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(181,16,14,0.05) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
 }
-.tc-hero .deco-circle.c1 { width:420px; height:420px; top:-150px; right:-100px; }
-.tc-hero .deco-circle.c2 { width:260px; height:260px; bottom:-100px; left:-60px; }
-.tc-hero .deco-circle.c3 { width:160px; height:160px; top:40px; left:30%; background: rgba(211,47,47,0.07); border:none; }
+.ni-tc-hero .container { position: relative; z-index: 2; }
 
-.tc-hero-inner { position: relative; z-index: 2; text-align: center; }
+/* Breadcrumb */
+.ni-tc-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12.5px;
+    color: rgba(255,255,255,0.45);
+    margin-bottom: 28px;
+    font-family: var(--ni-font-body);
+}
+.ni-tc-breadcrumb a { color: rgba(255,255,255,0.45); text-decoration: none; transition: color 0.2s; }
+.ni-tc-breadcrumb a:hover { color: var(--ni-red); }
+.ni-tc-breadcrumb i { font-size: 9px; }
+.ni-tc-breadcrumb span { color: var(--ni-red); }
 
-.tc-hero-eyebrow {
+/* Hero Label */
+.ni-tc-hero-label {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background: rgba(255,255,255,0.1);
-    border: 1px solid rgba(255,255,255,0.18);
-    color: #fff;
-    font-size: 11.5px;
+    background: rgba(181,16,14,0.15);
+    border: 1px solid rgba(181,16,14,0.3);
+    color: #f87171;
+    font-size: 11px;
     font-weight: 700;
     letter-spacing: 2px;
     text-transform: uppercase;
-    padding: 6px 20px;
-    border-radius: 100px;
-    margin-bottom: 22px;
-}
-.tc-hero-eyebrow i { color: var(--red-light); }
-
-.tc-hero h1 {
-    font-size: clamp(2rem, 4vw, 3rem);
-    font-weight: 800;
-    color: #fff;
-    margin-bottom: 14px;
-    line-height: 1.18;
-}
-.tc-hero h1 span { color: var(--red-light); }
-
-.tc-hero p {
-    color: rgba(255,255,255,0.72);
-    font-size: 15.5px;
-    max-width: 560px;
-    margin: 0 auto 28px;
+    padding: 6px 16px;
+    border-radius: 30px;
+    margin-bottom: 20px;
+    font-family: var(--ni-font-body);
 }
 
-.tc-breadcrumb {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 13px;
-    color: rgba(255,255,255,0.55);
+.ni-tc-hero h1 {
+    font-family: var(--ni-font-head);
+    font-size: clamp(32px, 4.5vw, 52px);
+    font-weight: 400;
+    color: var(--ni-white);
+    line-height: 1.1;
+    letter-spacing: -0.5px;
+    margin: 0 0 16px;
 }
-.tc-breadcrumb a { color: rgba(255,255,255,0.75); text-decoration: none; }
-.tc-breadcrumb a:hover { color: var(--red-light); }
-.tc-breadcrumb .sep { color: rgba(255,255,255,0.3); }
-.tc-breadcrumb .current { color: var(--red-light); font-weight: 600; }
-
-/* ─── META BAR ─── */
-.tc-meta-bar {
-    background: var(--off-white);
-    border-bottom: 1px solid var(--border);
-    padding: 14px 0;
-}
-
-.tc-meta-inner {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
+.ni-tc-hero h1 span { color: var(--ni-red); }
+.ni-tc-hero p {
+    font-family: var(--ni-font-body);
+    font-size: 15px;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.8;
+    max-width: 520px;
+    margin: 0 0 32px;
 }
 
-/* ─── UPDATED BADGE ─── */
-.tc-updated-badge {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 6px 8px;
-    font-size: 12.5px;
-    color: var(--text-soft);
-    line-height: 1.6;
-}
-.tc-updated-badge i { color: var(--primary); flex-shrink: 0; }
-.tc-updated-badge strong { color: var(--text-dark); }
-.tc-updated-badge .sep-pipe { color: var(--border); }
-
-.tc-print-btn {
+/* Hero Pills */
+.ni-tc-hero-pills { display: flex; flex-wrap: wrap; gap: 10px; }
+.ni-tc-hero-pills .pill {
     display: inline-flex;
     align-items: center;
     gap: 7px;
-    font-size: 12.5px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    color: rgba(255,255,255,0.8);
+    font-size: 12px;
     font-weight: 600;
-    color: var(--text-mid);
-    background: none;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 6px 16px;
-    cursor: pointer;
-    transition: all 0.2s;
-    white-space: nowrap;
+    padding: 8px 16px;
+    border-radius: 30px;
+    font-family: var(--ni-font-body);
 }
-.tc-print-btn:hover { background: var(--white); border-color: var(--red); color: var(--red); }
+.ni-tc-hero-pills .pill i { color: var(--ni-red); }
 
-/* Desktop meta bar — row layout */
-@media (min-width: 768px) {
-    .tc-meta-inner {
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-    }
-    .tc-updated-badge .sep-pipe {
-        display: inline;
-    }
+/* Hero Right Card */
+.ni-tc-hero-right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    height: 100%;
+}
+.ni-tc-update-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(181,16,14,0.25);
+    border-radius: 20px;
+    padding: 28px;
+    text-align: center;
+    min-width: 220px;
+}
+.ni-tc-update-card .uc-icon {
+    width: 60px; height: 60px;
+    background: rgba(181,16,14,0.12);
+    border: 1.5px solid rgba(181,16,14,0.3);
+    border-radius: 16px;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 16px;
+}
+.ni-tc-update-card .uc-icon i { font-size: 24px; color: #f87171; }
+.ni-tc-update-card h5 {
+    font-size: 13px; font-weight: 700;
+    color: rgba(255,255,255,0.9); margin: 0 0 6px;
+    font-family: var(--ni-font-body);
+}
+.ni-tc-update-card p {
+    font-size: 12px; color: rgba(255,255,255,0.45);
+    margin: 0 0 16px;
+    font-family: var(--ni-font-body);
+}
+.ni-tc-update-card .uc-date {
+    display: inline-block;
+    background: var(--ni-red);
+    color: var(--ni-white);
+    font-size: 12px;
+    font-weight: 700;
+    padding: 5px 16px;
+    border-radius: 20px;
+    font-family: var(--ni-font-body);
 }
 
-/* Hide pipes on small mobile, show as new line break via flex wrap */
-@media (max-width: 767px) {
-    .tc-updated-badge .sep-pipe {
-        display: none;
-    }
-    .tc-print-btn {
-        width: 100%;
-        justify-content: center;
-    }
+/* ── QUICK SUMMARY STRIP ─────────────────────── */
+.ni-tc-strip { background: var(--ni-red); padding: 0; }
+.ni-tc-strip-inner {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+.ni-tc-strip-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 20px 24px;
+    border-right: 1px solid rgba(255,255,255,0.15);
+}
+.ni-tc-strip-item:last-child { border-right: none; }
+.ni-tc-strip-item .si-icon {
+    width: 44px; height: 44px;
+    background: rgba(255,255,255,0.12);
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+}
+.ni-tc-strip-item .si-icon i { font-size: 18px; color: var(--ni-white); }
+.ni-tc-strip-item .si-text h6 {
+    font-size: 13px; font-weight: 700;
+    color: var(--ni-white); margin: 0 0 2px;
+    font-family: var(--ni-font-body);
+}
+.ni-tc-strip-item .si-text p {
+    font-size: 11.5px; color: rgba(255,255,255,0.7);
+    margin: 0; line-height: 1.4;
+    font-family: var(--ni-font-body);
 }
 
-/* ─── MAIN LAYOUT ─── */
-.tc-wrapper {
-    padding: 60px 0 80px;
-    background: #fff;
-}
+/* ── MAIN LAYOUT ─────────────────────────────── */
+.ni-tc-body { padding: 60px 0 90px; background: var(--ni-bg); }
 
-/* ─── STICKY SIDEBAR TOC ─── */
-.tc-sidebar {
-    position: sticky;
-    top: 90px;
-        overflow: hidden;
-}
+/* ── SIDEBAR ─────────────────────────────────── */
+.ni-tc-sidebar { position: sticky; top: 90px; }
 
-.tc-toc {
-    background: var(--white);
-    border: 1px solid var(--border);
-    border-radius: 18px;
+.ni-toc-card {
+    background: var(--ni-white);
+    border-radius: 16px;
+    border: 1px solid var(--ni-border);
     overflow: hidden;
-    box-shadow: var(--shadow-sm);
+    box-shadow: var(--ni-shadow);
+    margin-bottom: 20px;
 }
-
-.tc-toc-header {
-    background: linear-gradient(135deg, var(--red-dark), var(--red));
+.ni-toc-head {
+    background: var(--ni-dark);
     padding: 18px 22px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
+    display: flex; align-items: center; gap: 10px;
 }
-.tc-toc-header i { color: #fff; font-size: 16px; }
-.tc-toc-header h5 {
-    margin: 0;
-    color: #fff;
-    font-size: 14px;
-    font-weight: 700;
-    letter-spacing: 0.5px;
+.ni-toc-head i { color: var(--ni-red); font-size: 15px; }
+.ni-toc-head h5 {
+    margin: 0; color: var(--ni-white);
+    font-size: 13.5px; font-weight: 700;
+    font-family: var(--ni-font-body);
 }
 
-.tc-toc-list { padding: 14px 0; }
-.tc-toc-list a {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 9px 22px;
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--text-mid);
+.ni-toc-list { padding: 10px 0; }
+.ni-toc-list a {
+    display: flex; align-items: center; gap: 10px;
+    padding: 9px 20px;
+    font-size: 13px; font-weight: 500;
+    color: var(--ni-text2);
     text-decoration: none;
-    transition: all 0.2s;
     border-left: 3px solid transparent;
+    transition: var(--ni-trans);
+    font-family: var(--ni-font-body);
 }
-.tc-toc-list a .toc-num {
-    min-width: 22px;
-    height: 22px;
+.ni-toc-list a .tnum {
+    min-width: 22px; height: 22px;
     border-radius: 50%;
-    background: var(--off-white);
-    color: var(--red);
-    font-size: 10.5px;
-    font-weight: 700;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid var(--red-border);
-    transition: all 0.2s;
+    background: var(--ni-bg);
+    color: var(--ni-red-dk);
+    font-size: 10px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    border: 1px solid rgba(181,16,14,0.25);
+    transition: var(--ni-trans);
+    flex-shrink: 0;
+    font-family: var(--ni-font-body);
 }
-.tc-toc-list a:hover {
-    color: var(--red);
-    background: var(--red-bg);
-    border-left-color: var(--red);
+.ni-toc-list a:hover,
+.ni-toc-list a.active {
+    color: var(--ni-dark);
+    background: var(--ni-red-soft);
+    border-left-color: var(--ni-red);
 }
-.tc-toc-list a:hover .toc-num {
-    background: var(--red);
-    color: #fff;
-    border-color: var(--red);
+.ni-toc-list a:hover .tnum,
+.ni-toc-list a.active .tnum {
+    background: var(--ni-red);
+    color: var(--ni-white);
+    border-color: var(--ni-red);
 }
-.tc-toc-list a.active {
-    color: var(--red);
-    background: var(--red-bg);
-    border-left-color: var(--red);
-    font-weight: 700;
-}
-.tc-toc-list a.active .toc-num {
-    background: var(--red);
-    color: #fff;
-}
+.ni-toc-list a.active { font-weight: 700; }
 
-/* Contact Card in Sidebar */
-.tc-contact-card {
-    background: linear-gradient(135deg, #0d1b4b 0%, #1a3fa3 100%);
-    border-radius: 18px;
+/* Contact Sidebar */
+.ni-contact-widget {
+    background: var(--ni-dark);
+    border-radius: 16px;
     padding: 26px 22px;
-    margin-top: 20px;
     text-align: center;
 }
-.tc-contact-card i { font-size: 28px; color: rgba(255,255,255,0.8); margin-bottom: 12px; display: block; }
-.tc-contact-card h6 { color: #fff; font-size: 14px; font-weight: 700; margin-bottom: 6px; }
-.tc-contact-card p { color: rgba(255,255,255,0.7); font-size: 12.5px; margin-bottom: 16px; }
-.tc-contact-card a {
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
-    background: var(--red);
-    color: #fff;
-    font-size: 13px;
-    font-weight: 700;
-    padding: 10px 22px;
-    border-radius: 100px;
-    text-decoration: none;
-    transition: all 0.22s;
-}
-.tc-contact-card a:hover { background: var(--red-dark); transform: translateY(-1px); color: #fff; }
-
-/* ─── CONTENT SECTIONS ─── */
-.tc-section {
-    margin-bottom: 48px;
-    scroll-margin-top: 100px;
-}
-
-.tc-section-header {
-    display: flex;
-    align-items: flex-start;
-    gap: 16px;
-    margin-bottom: 22px;
-    padding-bottom: 18px;
-    border-bottom: 2px solid var(--border);
-}
-
-.tc-section-icon {
-    width: 52px;
-    height: 52px;
+.ni-contact-widget .cw-icon {
+    width: 52px; height: 52px;
+    background: rgba(181,16,14,0.15);
+    border: 1.5px solid rgba(181,16,14,0.3);
     border-radius: 14px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 20px;
-    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 14px;
 }
-.tc-section-icon.red { background: var(--red-bg); color: var(--red); border: 1px solid var(--red-border); }
-.tc-section-icon.blue { background: var(--blue-bg); color: var(--primary); border: 1px solid var(--blue-border); }
+.ni-contact-widget .cw-icon i { font-size: 22px; color: #f87171; }
+.ni-contact-widget h6 {
+    color: var(--ni-white); font-size: 14px; font-weight: 700;
+    margin: 0 0 6px; font-family: var(--ni-font-body);
+}
+.ni-contact-widget p {
+    color: rgba(255,255,255,0.55); font-size: 12.5px;
+    margin: 0 0 18px; line-height: 1.6;
+    font-family: var(--ni-font-body);
+}
+.ni-contact-widget a {
+    display: inline-flex; align-items: center; gap: 7px;
+    background: var(--ni-red);
+    color: var(--ni-white);
+    font-size: 13px; font-weight: 700;
+    padding: 11px 24px;
+    border-radius: 30px;
+    text-decoration: none;
+    transition: var(--ni-trans);
+    width: 100%; justify-content: center;
+    font-family: var(--ni-font-body);
+}
+.ni-contact-widget a:hover {
+    background: var(--ni-red-dk);
+    color: var(--ni-white);
+    transform: translateY(-2px);
+}
 
-.tc-section-header-text { flex: 1; }
-.tc-section-num {
-    font-size: 10.5px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--red);
-    margin-bottom: 3px;
+/* ── CONTENT SECTIONS ────────────────────────── */
+.ni-tc-section {
+    background: var(--ni-white);
+    border-radius: 16px;
+    border: 1px solid var(--ni-border);
+    padding: 32px 36px;
+    margin-bottom: 20px;
+    scroll-margin-top: 100px;
+    box-shadow: var(--ni-shadow);
+    transition: box-shadow 0.2s;
 }
-.tc-section-title {
-    font-size: 1.25rem;
-    font-weight: 800;
-    color: var(--text-dark);
-    margin: 0;
+.ni-tc-section:hover { box-shadow: var(--ni-shadow-md); }
+
+.ni-tc-section-head {
+    display: flex; align-items: flex-start; gap: 16px;
+    padding-bottom: 20px;
+    margin-bottom: 22px;
+    border-bottom: 2px solid var(--ni-border);
+}
+.ni-tc-section-icon {
+    width: 50px; height: 50px;
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; flex-shrink: 0;
+    background: var(--ni-red-soft);
+    border: 1.5px solid rgba(181,16,14,0.2);
+    color: var(--ni-red);
+}
+.ni-tc-sec-num {
+    font-size: 10.5px; font-weight: 700;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: var(--ni-red); margin-bottom: 3px;
+    font-family: var(--ni-font-body);
+}
+.ni-tc-sec-title {
+    font-family: var(--ni-font-head);
+    font-size: 22px; font-weight: 400;
+    color: var(--ni-dark); margin: 0;
+    line-height: 1.2;
 }
 
-.tc-prose {
+.ni-tc-prose {
+    font-family: var(--ni-font-body);
     font-size: 14.5px;
-    color: var(--text-mid);
+    color: var(--ni-text2);
     line-height: 1.85;
 }
+.ni-tc-prose p + p { margin-top: 12px; }
 
-/* List style */
-.tc-list {
-    list-style: none;
-    padding: 0;
-    margin: 14px 0 0;
+/* List */
+.ni-tc-list {
+    list-style: none; padding: 0; margin: 16px 0 0;
 }
-.tc-list li {
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-    padding: 11px 0;
-    border-bottom: 1px solid var(--border);
-    font-size: 14px;
-    color: var(--text-mid);
-    line-height: 1.65;
+.ni-tc-list li {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--ni-border);
+    font-size: 14px; color: var(--ni-text2);
+    line-height: 1.7;
+    font-family: var(--ni-font-body);
 }
-.tc-list li:last-child { border-bottom: none; }
-.tc-list li .li-icon {
-    width: 22px;
-    height: 22px;
+.ni-tc-list li:last-child { border-bottom: none; }
+.ni-tc-list li .li-dot {
+    width: 22px; height: 22px;
     border-radius: 50%;
-    background: var(--red-bg);
-    color: var(--red);
-    font-size: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    margin-top: 2px;
-    border: 1px solid var(--red-border);
-    transition: all 0.2s;
+    background: var(--ni-red-soft);
+    border: 1.5px solid rgba(181,16,14,0.2);
+    color: var(--ni-red);
+    font-size: 9px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; margin-top: 2px;
 }
-.tc-list li .li-icon.blue { background: var(--blue-bg); color: var(--primary); border-color: var(--blue-border); }
 
-/* Highlight box */
-.tc-highlight {
-    background: var(--red-bg);
-    border: 1px solid var(--red-border);
-    border-left: 4px solid var(--red);
+/* Highlight Boxes */
+.ni-highlight {
+    background: var(--ni-red-soft);
+    border: 1px solid rgba(181,16,14,0.18);
+    border-left: 4px solid var(--ni-red);
     border-radius: 10px;
     padding: 16px 20px;
-    margin-top: 16px;
+    margin-top: 18px;
     font-size: 13.5px;
-    color: var(--text-mid);
+    color: var(--ni-text);
     line-height: 1.75;
+    font-family: var(--ni-font-body);
 }
-.tc-highlight.blue {
-    background: var(--blue-bg);
-    border-color: var(--blue-border);
-    border-left-color: var(--primary);
-}
-.tc-highlight strong { color: var(--text-dark); }
+.ni-highlight strong { color: var(--ni-dark); }
 
-/* Info grid */
-.tc-info-grid {
+.ni-highlight.dark {
+    background: var(--ni-dark);
+    border-color: rgba(181,16,14,0.35);
+    border-left-color: var(--ni-red);
+    color: rgba(255,255,255,0.75);
+}
+.ni-highlight.dark strong { color: #f87171; }
+
+/* Info Grid */
+.ni-info-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 14px;
     margin-top: 18px;
 }
-.tc-info-card {
-    background: var(--off-white);
-    border: 1px solid var(--border);
+.ni-info-card {
+    background: var(--ni-bg);
+    border: 1px solid var(--ni-border);
     border-radius: 12px;
     padding: 16px 18px;
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
+    display: flex; align-items: flex-start; gap: 12px;
 }
-.tc-info-card i {
-    font-size: 18px;
-    color: var(--primary);
-    margin-top: 2px;
-    flex-shrink: 0;
+.ni-info-card i { font-size: 18px; color: var(--ni-red); margin-top: 2px; flex-shrink: 0; }
+.ni-info-card h6 {
+    font-size: 13px; font-weight: 700;
+    color: var(--ni-dark); margin: 0 0 3px;
+    font-family: var(--ni-font-body);
 }
-.tc-info-card h6 { font-size: 13px; font-weight: 700; color: var(--text-dark); margin-bottom: 4px; }
-.tc-info-card p { font-size: 12.5px; color: var(--text-soft); margin: 0; line-height: 1.5; }
+.ni-info-card p {
+    font-size: 12.5px; color: var(--ni-text3);
+    margin: 0; line-height: 1.5;
+    font-family: var(--ni-font-body);
+}
 
-/* ─── AGREEMENT FOOTER BANNER ─── */
-.tc-agreement-banner {
-    background: linear-gradient(135deg, #0d1b4b 0%, #1a1a2e 50%, #7f0000 100%);
+/* ── BOTTOM CTA ──────────────────────────────── */
+.ni-tc-cta {
+    background: var(--ni-dark);
     border-radius: 20px;
-    padding: 48px 40px;
+    padding: 48px 44px;
     text-align: center;
     position: relative;
     overflow: hidden;
-    margin-top: 16px;
+    margin-top: 10px;
 }
-.tc-agreement-banner::before {
+.ni-tc-cta::before {
     content: '';
-    position: absolute;
-    inset: 0;
-    background: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M20 20.5V18H0v5h5v5H0v5h20v-2.5h-5V20.5h5zM15 45V20H0v5h5v5H0v5h5v5H0v5h15v-5H5v-5h5v-5H5v-5h10z'/%3E%3C/g%3E%3C/svg%3E");
+    position: absolute; inset: 0;
+    background:
+        radial-gradient(ellipse 50% 80% at 100% 50%, rgba(181,16,14,0.15) 0%, transparent 55%),
+        radial-gradient(ellipse 40% 60% at 0% 50%, rgba(181,16,14,0.08) 0%, transparent 50%);
+    pointer-events: none;
 }
-.tc-agreement-banner i {
-    font-size: 42px;
-    color: rgba(255,255,255,0.35);
-    display: block;
-    margin-bottom: 16px;
-    position: relative;
-    z-index: 1;
+.ni-tc-cta::after {
+    content: '';
+    position: absolute; inset: 0;
+    background-image: radial-gradient(circle, rgba(181,16,14,0.08) 1px, transparent 1px);
+    background-size: 28px 28px;
+    pointer-events: none;
 }
-.tc-agreement-banner h3 {
-    color: #fff;
-    font-size: 1.55rem;
-    font-weight: 800;
-    margin-bottom: 10px;
-    position: relative;
-    z-index: 1;
+.ni-tc-cta .cta-inner { position: relative; z-index: 1; }
+.ni-tc-cta h3 {
+    font-family: var(--ni-font-head);
+    font-size: 32px; font-weight: 400;
+    color: var(--ni-white); margin: 0 0 10px; line-height: 1.2;
 }
-.tc-agreement-banner p {
-    color: rgba(255,255,255,0.7);
-    font-size: 14.5px;
-    max-width: 540px;
-    margin: 0 auto 26px;
-    position: relative;
-    z-index: 1;
+.ni-tc-cta h3 span { color: var(--ni-red); }
+.ni-tc-cta p {
+    font-family: var(--ni-font-body);
+    font-size: 15px; color: rgba(255,255,255,0.6);
+    max-width: 500px; margin: 0 auto 28px; line-height: 1.7;
 }
-.tc-agreement-actions {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 14px;
-    flex-wrap: wrap;
-    position: relative;
-    z-index: 1;
+.ni-tc-cta-btns { display: flex; align-items: center; justify-content: center; gap: 14px; flex-wrap: wrap; }
+
+.ni-cta-btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--ni-red); color: var(--ni-white);
+    font-size: 14px; font-weight: 700;
+    padding: 14px 32px; border-radius: 50px;
+    text-decoration: none; transition: var(--ni-trans);
+    border: 2px solid var(--ni-red);
+    font-family: var(--ni-font-body);
 }
-.btn-tc-primary {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: linear-gradient(135deg, var(--red-dark), var(--red-light));
-    color: #fff;
-    font-size: 14px;
-    font-weight: 700;
-    padding: 13px 30px;
-    border-radius: 100px;
-    text-decoration: none;
-    transition: all 0.22s;
-    box-shadow: 0 5px 20px rgba(183,28,28,0.4);
-}
-.btn-tc-primary:hover {
-    background: linear-gradient(135deg, #7f0000, var(--red-dark));
+.ni-cta-btn-primary:hover {
+    background: var(--ni-red-dk);
+    border-color: var(--ni-red-dk);
+    color: var(--ni-white);
     transform: translateY(-2px);
-    box-shadow: 0 8px 28px rgba(183,28,28,0.55);
-    color: #fff;
 }
-.btn-tc-outline {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    border: 2px solid rgba(255,255,255,0.35);
-    color: rgba(255,255,255,0.85);
-    font-size: 14px;
-    font-weight: 700;
-    padding: 13px 30px;
-    border-radius: 100px;
-    text-decoration: none;
-    transition: all 0.22s;
+.ni-cta-btn-outline {
+    display: inline-flex; align-items: center; gap: 8px;
+    border: 2px solid rgba(255,255,255,0.25);
+    color: rgba(255,255,255,0.8);
+    font-size: 14px; font-weight: 700;
+    padding: 14px 32px; border-radius: 50px;
+    text-decoration: none; transition: var(--ni-trans);
+    font-family: var(--ni-font-body);
 }
-.btn-tc-outline:hover {
-    border-color: #fff;
-    color: #fff;
-    background: rgba(255,255,255,0.08);
-}
+.ni-cta-btn-outline:hover { border-color: var(--ni-red); color: #f87171; }
 
-/* ═══════════════════════════════════════════
-   RESPONSIVE BREAKPOINTS
-═══════════════════════════════════════════ */
-
-/* ─── TABLET (max 991px) ─── */
+/* ── RESPONSIVE ──────────────────────────────── */
 @media (max-width: 991px) {
-    .tc-sidebar {
-        position: static;
-        margin-bottom: 32px;
-    }
-    .tc-toc {
-        position: static;
-    }
+    .ni-tc-sidebar { position: static; margin-bottom: 28px; }
+    .ni-tc-strip-inner { grid-template-columns: repeat(2, 1fr); }
+    .ni-tc-strip-item:nth-child(2) { border-right: none; }
+    .ni-tc-hero-right { justify-content: flex-start; margin-top: 40px; }
 }
-
-/* ─── MOBILE LARGE (max 768px) ─── */
-@media (max-width: 768px) {
-    .tc-hero {
-        padding: 50px 0 60px;
-    }
-    .tc-info-grid {
-        grid-template-columns: 1fr;
-    }
-    .tc-agreement-banner {
-        padding: 36px 24px;
-    }
-    .tc-agreement-banner h3 {
-        font-size: 1.25rem;
-    }
-    .tc-wrapper {
-        padding: 40px 0 60px;
-    }
+@media (max-width: 767px) {
+    .ni-tc-hero { padding: 60px 0 50px; }
+    .ni-tc-section { padding: 24px 20px; }
+    .ni-tc-cta { padding: 36px 24px; }
+    .ni-tc-cta h3 { font-size: 26px; }
+    .ni-info-grid { grid-template-columns: 1fr; }
+    .ni-cta-btn-primary, .ni-cta-btn-outline { width: 100%; justify-content: center; }
+    .ni-tc-cta-btns { flex-direction: column; }
 }
-
-/* ─── MOBILE SMALL (max 576px) ─── */
-@media (max-width: 576px) {
-    .tc-section-header {
-        flex-direction: column;
-        gap: 12px;
-    }
-    .tc-section-title {
-        font-size: 1.1rem;
-    }
-    .tc-prose {
-        font-size: 14px;
-    }
-    .tc-highlight {
-        font-size: 13px;
-        padding: 14px 16px;
-    }
-    .tc-info-card {
-        padding: 14px 14px;
-    }
-    .tc-agreement-banner {
-        padding: 28px 18px;
-    }
-    .btn-tc-primary,
-    .btn-tc-outline {
-        width: 100%;
-        justify-content: center;
-        padding: 13px 20px;
-    }
-    .tc-agreement-actions {
-        flex-direction: column;
-        gap: 10px;
-    }
-    .tc-section {
-        margin-bottom: 36px;
-    }
+@media (max-width: 480px) {
+    .ni-tc-strip-inner { grid-template-columns: 1fr; }
+    .ni-tc-strip-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.15); }
+    .ni-tc-strip-item:last-child { border-bottom: none; }
 }
-.contact-hero-banner {
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-    width: 100% !important;
-    max-width: 100% !important;
-}
-    </style>
+</style>
 </head>
+<body class="homepage4-body ni-tc-page">
 
-<body>
-    <!-- Main Wrapper -->
-    <div class="main-wrapper">
+<?php include 'include/header.php'; ?>
 
-        <?php include 'include/header.php'; ?>
-
-         <section class="contact-hero-banner">
-            <img src="assets/img/home/image-crousel1.webp" alt="RK Hospital Nagpur Contact" class="banner-img">
-            <div class="banner-grid-pattern"></div>
-            <div class="banner-overlay"></div>
-
-            <!-- Floating Stat Badges -->
-            <div class="banner-stat-badge badge-left">
-                <div class="badge-icon"><i class="fa-solid fa-star"></i></div>
-                <div class="badge-text">
-                    <div class="num">5.0 ★</div>
-                    <div class="label">496+ Reviews</div>
+<!-- ══ HERO BANNER ══════════════════════════════ -->
+<section class="ni-tc-hero">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-8">
+                <nav class="ni-tc-breadcrumb" style="margin-top:20px;">
+                    <a href="<?php echo $base_url; ?>">Home</a>
+                    <i class="fa-solid fa-chevron-right"></i>
+                    <span>Terms &amp; Conditions</span>
+                </nav>
+                <div class="ni-tc-hero-label">
+                    <i class="fa-solid fa-scale-balanced"></i>
+                    Legal &amp; Policy
+                </div>
+                <h1>Terms &amp;<br><span>Conditions</span></h1>
+                <p>Please read these terms carefully before using our website or placing an order with Niraj Industries. These terms govern your relationship with us — written to be clear, not complex.</p>
+                <div class="ni-tc-hero-pills">
+                    <div class="pill"><i class="fa-solid fa-check"></i> Website Use</div>
+                    <div class="pill"><i class="fa-solid fa-check"></i> Product Orders</div>
+                    <div class="pill"><i class="fa-solid fa-check"></i> Intellectual Property</div>
+                    <div class="pill"><i class="fa-solid fa-check"></i> Governing Law</div>
                 </div>
             </div>
-
-            <div class="banner-stat-badge badge-right">
-                <div class="badge-icon"><i class="fa-solid fa-clock"></i></div>
-                <div class="badge-text">
-                    <div class="num">24/7</div>
-                    <div class="label">Emergency Care</div>
-                </div>
-            </div>
-
-            <div class="banner-content">
-                <div class="banner-eyebrow">
-                    <i class="fa-solid fa-hospital"></i>
-                    Dr. Agrawal's R.K. Hospital, Nagpur
-                </div>
-                <h1 class="banner-heading">
-                      Legal & Policy Documents<br>
-                    <span>Terms and Conditions</span>
-                </h1>
-                <p class="banner-sub">
-                    Please read these terms carefully before using our hospital services, booking appointments, or accessing any medical treatment at Dr. Agrawal's R.K. Hospital, Nagpur.
-                </p>
-                <div class="banner-cta-group">
-                    <a href="tel:+919766057372" class="banner-btn-primary">
-                        <i class="fa-solid fa-phone"></i>
-                        Call Now: +91 97660 57372
-                    </a>
-                    <a href="#contact-form" class="banner-btn-outline">
-                        <i class="fa-solid fa-calendar-check"></i>
-                        Book Appointment
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <!-- ═══ META BAR ═══ -->
-        <div class="tc-meta-bar">
-            <div class="container">
-                <div class="tc-meta-inner">
-                    <div class="tc-updated-badge">
-                        <i class="fa-regular fa-calendar-check"></i>
-                        Last Updated: <strong>January 1, 2026</strong>
-                        &nbsp;|&nbsp;
-                        <i class="fa-solid fa-file-lines"></i>
-                        Version: <strong>2.0</strong>
-                        &nbsp;|&nbsp;
-                        <i class="fa-solid fa-globe"></i>
-                        Applicable: <strong>R.K. Hospital, Nagpur</strong>
+            <div class="col-lg-4">
+                <div class="ni-tc-hero-right">
+                    <div class="ni-tc-update-card">
+                        <div class="uc-icon">
+                            <i class="fa-solid fa-calendar-check"></i>
+                        </div>
+                        <h5>Last Updated</h5>
+                        <p>These terms were last reviewed and updated on:</p>
+                        <span class="uc-date">April 01, 2025</span>
                     </div>
-                    <button class="tc-print-btn" onclick="window.print()">
-                        <i class="fa-solid fa-print"></i> Print / Save PDF
-                    </button>
                 </div>
             </div>
         </div>
-
-        <!-- ═══ MAIN CONTENT ═══ -->
-        <section class="tc-wrapper">
-            <div class="container">
-                <div class="row g-5">
-
-                    <!-- ── SIDEBAR ── -->
-                    <div class="col-lg-4 col-xl-3 d-none d-lg-block">
-                        <div class="tc-sidebar">
-
-                            <!-- Table of Contents -->
-                            <div class="tc-toc">
-                                <div class="tc-toc-header">
-                                    <i class="fa-solid fa-list-ul"></i>
-                                    <h5>Table of Contents</h5>
-                                </div>
-                                <div class="tc-toc-list">
-                                    <a href="#tc-1" class="active">
-                                        <span class="toc-num">01</span> Introduction
-                                    </a>
-                                    <a href="#tc-2">
-                                        <span class="toc-num">02</span> Eligibility & Registration
-                                    </a>
-                                    <a href="#tc-3">
-                                        <span class="toc-num">03</span> Appointment Booking
-                                    </a>
-                                    <a href="#tc-4">
-                                        <span class="toc-num">04</span> Cancellation & Refund
-                                    </a>
-                                    <a href="#tc-5">
-                                        <span class="toc-num">05</span> Medical Disclaimer
-                                    </a>
-                                    <a href="#tc-6">
-                                        <span class="toc-num">06</span> Patient Rights & Duties
-                                    </a>
-                                    <a href="#tc-7">
-                                        <span class="toc-num">07</span> Privacy & Data Protection
-                                    </a>
-                                    <a href="#tc-8">
-                                        <span class="toc-num">08</span> Payment & Billing
-                                    </a>
-                                    <a href="#tc-9">
-                                        <span class="toc-num">09</span> Prohibited Conduct
-                                    </a>
-                                    <a href="#tc-10">
-                                        <span class="toc-num">10</span> Governing Law
-                                    </a>
-                                </div>
-                            </div>
-
-                            <!-- Contact Card -->
-                            <div class="tc-contact-card">
-                                <i class="fa-solid fa-headset"></i>
-                                <h6>Have Questions?</h6>
-                                <p>Our team is available 24/7 to help you with any queries.</p>
-                                <a href="contact-us">
-                                    <i class="fa-solid fa-phone"></i> Contact Us
-                                </a>
-                            </div>
-
-                        </div>
-                    </div>
-
-                    <!-- ── MAIN CONTENT ── -->
-                    <div class="col-lg-8 col-xl-9">
-
-                        <!-- SECTION 01 — Introduction -->
-                        <div class="tc-section" id="tc-1">
-                            <div class="tc-section-header">
-                                <div class="tc-section-icon red">
-                                    <i class="fa-solid fa-hospital"></i>
-                                </div>
-                                <div class="tc-section-header-text">
-                                    <div class="tc-section-num">Section 01</div>
-                                    <h2 class="tc-section-title">Introduction</h2>
-                                </div>
-                            </div>
-                            <div class="tc-prose">
-                                <p>
-                                    Welcome to <strong>Dr. Agrawal's R.K. Hospital</strong>, one of the leading orthopedic and gynecology hospitals in Nagpur, Maharashtra. These Terms and Conditions ("Terms") govern your access to and use of our medical services, website, appointment booking system, and all associated healthcare facilities operated by R.K. Hospital.
-                                </p>
-                                <p style="margin-top:12px;">
-                                    By visiting our hospital, booking an appointment, using our website, or availing any of our medical services, you acknowledge that you have read, understood, and agree to be bound by these Terms. If you do not agree, please do not use our services.
-                                </p>
-                                <div class="tc-highlight">
-                                    <strong>Note:</strong> These terms apply to all patients, attendants, visitors, and any individual accessing the services of Dr. Agrawal's R.K. Hospital,27 Chandrashekhar, Azad Square, Central Ave, Ladpura, Itwari, Nagpur, Maharashtra 440002
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- SECTION 02 — Eligibility -->
-                        <div class="tc-section" id="tc-2">
-                            <div class="tc-section-header">
-                                <div class="tc-section-icon blue">
-                                    <i class="fa-solid fa-user-check"></i>
-                                </div>
-                                <div class="tc-section-header-text">
-                                    <div class="tc-section-num">Section 02</div>
-                                    <h2 class="tc-section-title">Eligibility & Registration</h2>
-                                </div>
-                            </div>
-                            <div class="tc-prose">
-                                <p>To access our medical services and online appointment system, the following eligibility criteria apply:</p>
-                                <ul class="tc-list">
-                                    <li>
-                                        <span class="li-icon"><i class="fa-solid fa-check"></i></span>
-                                        Patients below 18 years must be accompanied by a parent or legal guardian who shall be responsible for consent and payment.
-                                    </li>
-                                    <li>
-                                        <span class="li-icon"><i class="fa-solid fa-check"></i></span>
-                                        All information provided during registration must be accurate, complete, and up-to-date, including name, age, contact number, and medical history.
-                                    </li>
-                                    <li>
-                                        <span class="li-icon"><i class="fa-solid fa-check"></i></span>
-                                        You are responsible for maintaining the confidentiality of your registered account and any OTP or login credentials shared with you.
-                                    </li>
-                                    <li>
-                                        <span class="li-icon"><i class="fa-solid fa-check"></i></span>
-                                        R.K. Hospital reserves the right to refuse services to anyone who provides false information or behaves in a manner that disrupts hospital operations.
-                                    </li>
-                                    <li>
-                                        <span class="li-icon"><i class="fa-solid fa-check"></i></span>
-                                        Emergency cases are accepted without registration requirements. Emergency services are available 24/7 at our Nagpur facility.
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <!-- SECTION 03 — Appointments -->
-                        <div class="tc-section" id="tc-3">
-                            <div class="tc-section-header">
-                                <div class="tc-section-icon red">
-                                    <i class="fa-solid fa-calendar-check"></i>
-                                </div>
-                                <div class="tc-section-header-text">
-                                    <div class="tc-section-num">Section 03</div>
-                                    <h2 class="tc-section-title">Appointment Booking Policy</h2>
-                                </div>
-                            </div>
-                            <div class="tc-prose">
-                                <p>Appointments at R.K. Hospital can be booked via call, walk-in, or our online appointment form. The following conditions apply:</p>
-                                <ul class="tc-list">
-                                    <li>
-                                        <span class="li-icon"><i class="fa-solid fa-check"></i></span>
-                                         Timings are <strong>Opens 24 Hours</strong> Monday to Sunday . Emergency services are available 24/7.
-                                    </li>
-                                    <li>
-                                        <span class="li-icon"><i class="fa-solid fa-check"></i></span>
-                                        Appointments are subject to doctor availability and are confirmed only upon receipt of acknowledgment from our staff.
-                                    </li>
-                                    <li>
-                                        <span class="li-icon"><i class="fa-solid fa-check"></i></span>
-                                        Patients are advised to arrive at least 15 minutes before their scheduled appointment with all relevant medical records and reports.
-                                    </li>
-                                    <li>
-                                        <span class="li-icon"><i class="fa-solid fa-check"></i></span>
-                                        Walk-in patients are treated on a first-come, first-served basis subject to doctor availability.
-                                    </li>
-                                    <li>
-                                        <span class="li-icon"><i class="fa-solid fa-check"></i></span>
-                                        The hospital reserves the right to reschedule appointments due to medical emergencies, doctor unavailability, or force majeure events.
-                                    </li>
-                                </ul>
-                                <div class="tc-info-grid">
-                                   
-                                    <div class="tc-info-card">
-                                        <i class="fa-regular fa-clock"></i>
-                                        <div>
-                                            <h6>OPD Hours</h6>
-                                            <p>11AM–4PM & 7PM–9PM<br>Mon – Saturday</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- SECTION 04 — Cancellation & Refund -->
-                        <div class="tc-section" id="tc-4">
-                            <div class="tc-section-header">
-                                <div class="tc-section-icon blue">
-                                    <i class="fa-solid fa-rotate-left"></i>
-                                </div>
-                                <div class="tc-section-header-text">
-                                    <div class="tc-section-num">Section 04</div>
-                                    <h2 class="tc-section-title">Cancellation & Refund Policy</h2>
-                                </div>
-                            </div>
-                            <div class="tc-prose">
-                                <p>We understand that medical plans can change. Our cancellation and refund policy is designed to be fair and transparent:</p>
-                                <ul class="tc-list">
-                                    <li>
-                                        <span class="li-icon blue"><i class="fa-solid fa-check"></i></span>
-                                        Appointment cancellations must be communicated at least <strong>2 hours before</strong> the scheduled time by calling our helpline.
-                                    </li>
-                                    <li>
-                                        <span class="li-icon blue"><i class="fa-solid fa-check"></i></span>
-                                        Consultation fees paid in advance are non-refundable but may be adjusted for rescheduled appointments within 30 days.
-                                    </li>
-                                    <li>
-                                        <span class="li-icon blue"><i class="fa-solid fa-check"></i></span>
-                                        Surgical procedure deposits are refundable only in the case of surgery cancellation by the hospital due to medical reasons.
-                                    </li>
-                                    <li>
-                                        <span class="li-icon blue"><i class="fa-solid fa-check"></i></span>
-                                        No-show patients without prior cancellation notice will forfeit the consultation fee.
-                                    </li>
-                                    <li>
-                                        <span class="li-icon blue"><i class="fa-solid fa-check"></i></span>
-                                        Insurance-covered procedures are subject to the terms and conditions of the respective insurance provider.
-                                    </li>
-                                </ul>
-                                <div class="tc-highlight blue">
-                                    <strong>Insurance & Cashless Treatment:</strong> R.K. Hospital accepts cashless treatment under most major insurance providers. Please contact our billing department for verification before your appointment.
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- SECTION 05 — Medical Disclaimer -->
-                        <div class="tc-section" id="tc-5">
-                            <div class="tc-section-header">
-                                <div class="tc-section-icon red">
-                                    <i class="fa-solid fa-stethoscope"></i>
-                                </div>
-                                <div class="tc-section-header-text">
-                                    <div class="tc-section-num">Section 05</div>
-                                    <h2 class="tc-section-title">Medical Disclaimer</h2>
-                                </div>
-                            </div>
-                            <div class="tc-prose">
-                                <p>All medical services provided at Dr. Agrawal's R.K. Hospital are delivered by licensed and experienced healthcare professionals. However:</p>
-                                <ul class="tc-list">
-                                    <li>
-                                        <span class="li-icon"><i class="fa-solid fa-check"></i></span>
-                                        Medical outcomes can vary from patient to patient. No specific result, recovery timeline, or surgical outcome is guaranteed.
-                                    </li>
-                                    <li>
-                                        <span class="li-icon"><i class="fa-solid fa-check"></i></span>
-                                        Information provided on our website is for general awareness only and does not constitute professional medical advice, diagnosis, or treatment.
-                                    </li>
-                                    <li>
-                                        <span class="li-icon"><i class="fa-solid fa-check"></i></span>
-                                        Always consult a qualified doctor at our hospital before making any health-related decisions.
-                                    </li>
-                                    <li>
-                                        <span class="li-icon"><i class="fa-solid fa-check"></i></span>
-                                        R.K. Hospital is not responsible for complications arising from non-disclosure of pre-existing conditions, allergies, or ongoing medications by the patient.
-                                    </li>
-                                </ul>
-                                <div class="tc-highlight">
-                                    <strong>Important:</strong> In case of a medical emergency, please call our 24/7 emergency line at <strong>+91 97660 57372</strong> or visit the Emergency Department at our Nagpur location immediately.
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- SECTION 06 — Patient Rights -->
-                        <div class="tc-section" id="tc-6">
-                            <div class="tc-section-header">
-                                <div class="tc-section-icon blue">
-                                    <i class="fa-solid fa-hand-holding-medical"></i>
-                                </div>
-                                <div class="tc-section-header-text">
-                                    <div class="tc-section-num">Section 06</div>
-                                    <h2 class="tc-section-title">Patient Rights & Responsibilities</h2>
-                                </div>
-                            </div>
-                            <div class="tc-prose">
-                                <p><strong>Your Rights as a Patient:</strong></p>
-                                <ul class="tc-list">
-                                    <li>
-                                        <span class="li-icon blue"><i class="fa-solid fa-check"></i></span>
-                                        Right to receive respectful and dignified care irrespective of age, gender, religion, or socioeconomic status.
-                                    </li>
-                                    <li>
-                                        <span class="li-icon blue"><i class="fa-solid fa-check"></i></span>
-                                        Right to receive complete information about your diagnosis, treatment options, risks, and expected outcomes in a language you understand.
-                                    </li>
-                                    <li>
-                                        <span class="li-icon blue"><i class="fa-solid fa-check"></i></span>
-                                        Right to informed consent before any surgical procedure or invasive treatment.
-                                    </li>
-                                    <li>
-                                        <span class="li-icon blue"><i class="fa-solid fa-check"></i></span>
-                                        Right to privacy and confidentiality of your medical records and personal information.
-                                    </li>
-                                    <li>
-                                        <span class="li-icon blue"><i class="fa-solid fa-check"></i></span>
-                                        Right to seek a second medical opinion from another doctor without prejudice.
-                                    </li>
-                                </ul>
-                                <p style="margin-top:18px;"><strong>Your Responsibilities as a Patient:</strong></p>
-                                <ul class="tc-list">
-                                    <li>
-                                        <span class="li-icon"><i class="fa-solid fa-check"></i></span>
-                                        Provide accurate and complete medical history, including allergies, medications, and previous surgeries.
-                                    </li>
-                                    <li>
-                                        <span class="li-icon"><i class="fa-solid fa-check"></i></span>
-                                        Follow prescribed treatment plans and doctor's instructions for best recovery outcomes.
-                                    </li>
-                                    <li>
-                                        <span class="li-icon"><i class="fa-solid fa-check"></i></span>
-                                        Treat hospital staff, doctors, and other patients with respect and maintain decorum on hospital premises.
-                                    </li>
-                                    <li>
-                                        <span class="li-icon"><i class="fa-solid fa-check"></i></span>
-                                        Clear all dues before discharge unless a specific payment arrangement has been made with the billing department.
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <!-- SECTION 07 — Privacy -->
-                        <div class="tc-section" id="tc-7">
-                            <div class="tc-section-header">
-                                <div class="tc-section-icon red">
-                                    <i class="fa-solid fa-lock"></i>
-                                </div>
-                                <div class="tc-section-header-text">
-                                    <div class="tc-section-num">Section 07</div>
-                                    <h2 class="tc-section-title">Privacy & Data Protection</h2>
-                                </div>
-                            </div>
-                            <div class="tc-prose">
-                                <p>Dr. Agrawal's R.K. Hospital takes patient data privacy seriously. We are committed to protecting your personal and medical information:</p>
-                                <ul class="tc-list">
-                                    <li>
-                                        <span class="li-icon"><i class="fa-solid fa-check"></i></span>
-                                        Patient medical records are strictly confidential and accessible only to authorized medical personnel directly involved in your treatment.
-                                    </li>
-                                    <li>
-                                        <span class="li-icon"><i class="fa-solid fa-check"></i></span>
-                                        Personal information (name, contact, address) collected during registration is used solely for appointment management and hospital communication.
-                                    </li>
-                                    <li>
-                                        <span class="li-icon"><i class="fa-solid fa-check"></i></span>
-                                        We do not sell, trade, or share your personal data with third parties without your explicit consent, except as required by law.
-                                    </li>
-                                    <li>
-                                        <span class="li-icon"><i class="fa-solid fa-check"></i></span>
-                                        CCTV surveillance is operational throughout the hospital premises for security purposes only.
-                                    </li>
-                                    <li>
-                                        <span class="li-icon"><i class="fa-solid fa-check"></i></span>
-                                        You have the right to request a copy of your medical records. A nominal fee may apply for printed reports.
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <!-- SECTION 08 — Payment -->
-                        <div class="tc-section" id="tc-8">
-                            <div class="tc-section-header">
-                                <div class="tc-section-icon blue">
-                                    <i class="fa-solid fa-indian-rupee-sign"></i>
-                                </div>
-                                <div class="tc-section-header-text">
-                                    <div class="tc-section-num">Section 08</div>
-                                    <h2 class="tc-section-title">Payment & Billing Policy</h2>
-                                </div>
-                            </div>
-                            <div class="tc-prose">
-                                <p>R.K. Hospital accepts multiple payment modes for your convenience:</p>
-                                <div class="tc-info-grid" style="margin-bottom:18px;">
-                                    <div class="tc-info-card">
-                                        <i class="fa-solid fa-money-bill-wave"></i>
-                                        <div>
-                                            <h6>Cash Payment</h6>
-                                            <p>Accepted at the billing counter for all services</p>
-                                        </div>
-                                    </div>
-                                    <div class="tc-info-card">
-                                        <i class="fa-solid fa-credit-card"></i>
-                                        <div>
-                                            <h6>Card / UPI</h6>
-                                            <p>Debit, Credit cards & UPI payments accepted</p>
-                                        </div>
-                                    </div>
-                                    <div class="tc-info-card">
-                                        <i class="fa-solid fa-shield-heart"></i>
-                                        <div>
-                                            <h6>Insurance / Cashless</h6>
-                                            <p>Most major insurance providers accepted</p>
-                                        </div>
-                                    </div>
-                                    <div class="tc-info-card">
-                                        <i class="fa-solid fa-building-columns"></i>
-                                        <div>
-                                            <h6>Bank Transfer / NEFT</h6>
-                                            <p>For pre-operative deposits and large payments</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <ul class="tc-list">
-                                    <li>
-                                        <span class="li-icon blue"><i class="fa-solid fa-check"></i></span>
-                                        A detailed billing statement will be provided upon request or at the time of discharge.
-                                    </li>
-                                    <li>
-                                        <span class="li-icon blue"><i class="fa-solid fa-check"></i></span>
-                                        For surgical procedures, an advance deposit is required at the time of admission.
-                                    </li>
-                                    <li>
-                                        <span class="li-icon blue"><i class="fa-solid fa-check"></i></span>
-                                        All billing disputes must be raised within 7 days of receiving the invoice for resolution.
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <!-- SECTION 09 — Prohibited Conduct -->
-                        <div class="tc-section" id="tc-9">
-                            <div class="tc-section-header">
-                                <div class="tc-section-icon red">
-                                    <i class="fa-solid fa-ban"></i>
-                                </div>
-                                <div class="tc-section-header-text">
-                                    <div class="tc-section-num">Section 09</div>
-                                    <h2 class="tc-section-title">Prohibited Conduct on Hospital Premises</h2>
-                                </div>
-                            </div>
-                            <div class="tc-prose">
-                                <p>To ensure a safe, hygienic, and peaceful environment for all patients, the following are strictly prohibited on R.K. Hospital premises:</p>
-                                <ul class="tc-list">
-                                    <li>
-                                        <span class="li-icon"><i class="fa-solid fa-xmark"></i></span>
-                                        Smoking, alcohol consumption, or use of any form of tobacco or drugs on hospital premises.
-                                    </li>
-                                    <li>
-                                        <span class="li-icon"><i class="fa-solid fa-xmark"></i></span>
-                                        Verbal or physical harassment of doctors, nurses, hospital staff, or other patients.
-                                    </li>
-                                    <li>
-                                        <span class="li-icon"><i class="fa-solid fa-xmark"></i></span>
-                                        Photography or video recording inside OT, ICU, patient wards, or any restricted area without permission.
-                                    </li>
-                                    <li>
-                                        <span class="li-icon"><i class="fa-solid fa-xmark"></i></span>
-                                        Bringing large gatherings or crowds to visit patients (restricted to 2 visitors per patient at a time).
-                                    </li>
-                                    <li>
-                                        <span class="li-icon"><i class="fa-solid fa-xmark"></i></span>
-                                        Tampering with hospital equipment, medical devices, or hospital property.
-                                    </li>
-                                </ul>
-                                <div class="tc-highlight">
-                                    Violation of these conduct rules may result in removal from the premises and legal action as per applicable laws of Maharashtra, India.
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- SECTION 10 — Governing Law -->
-                        <div class="tc-section" id="tc-10">
-                            <div class="tc-section-header">
-                                <div class="tc-section-icon blue">
-                                    <i class="fa-solid fa-scale-balanced"></i>
-                                </div>
-                                <div class="tc-section-header-text">
-                                    <div class="tc-section-num">Section 10</div>
-                                    <h2 class="tc-section-title">Governing Law & Amendments</h2>
-                                </div>
-                            </div>
-                            <div class="tc-prose">
-                                <ul class="tc-list">
-                                    <li>
-                                        <span class="li-icon blue"><i class="fa-solid fa-check"></i></span>
-                                        These Terms and Conditions shall be governed by the laws of the State of Maharashtra, India, and any disputes shall be subject to the exclusive jurisdiction of courts in Nagpur.
-                                    </li>
-                                    <li>
-                                        <span class="li-icon blue"><i class="fa-solid fa-check"></i></span>
-                                        R.K. Hospital reserves the right to amend these Terms at any time without prior notice. Updated terms will be published on our official website.
-                                    </li>
-                                    <li>
-                                        <span class="li-icon blue"><i class="fa-solid fa-check"></i></span>
-                                        Continued use of our services after any amendments constitutes your acceptance of the updated Terms.
-                                    </li>
-                                    <li>
-                                        <span class="li-icon blue"><i class="fa-solid fa-check"></i></span>
-                                        If any provision of these Terms is found to be unenforceable, the remaining provisions shall continue in full effect.
-                                    </li>
-                                </ul>
-                                <div class="tc-highlight blue" style="margin-top:20px;">
-                                    For any queries or concerns regarding these Terms, please contact us at: <br>
-                                    <strong>Dr. Agrawal's R.K. Hospital</strong> | 27, Central Avenue Road, Nagpur – 440002 <br>
-                                    <strong>Phone:</strong> +91 97660 57372 &nbsp;|&nbsp;  <br>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- AGREEMENT BANNER -->
-                        <div class="tc-agreement-banner">
-                            <i class="fa-solid fa-file-contract"></i>
-                            <h3>By Using Our Services, You Agree to These Terms</h3>
-                            <p>
-                                These terms are designed to protect both our patients and our hospital. We are committed to delivering world-class orthopedic and gynecology care to every patient who walks through our doors.
-                            </p>
-                            <div class="tc-agreement-actions">
-                                <a href="contact-us" class="btn-tc-primary">
-                                    <i class="fa-solid fa-calendar-plus"></i> Book an Appointment
-                                </a>
-                                <a href="index.php" class="btn-tc-outline">
-                                    <i class="fa-solid fa-house"></i> Back to Home
-                                </a>
-                            </div>
-                        </div>
-
-                    </div>
-                    <!-- ── END MAIN CONTENT ── -->
-
-                </div>
-            </div>
-        </section>
-
-        <?php include 'include/footer.php'; ?>
-
-        <!-- Cursor -->
-        <div class="mouse-cursor cursor-outer"></div>
-        <div class="mouse-cursor cursor-inner"></div>
     </div>
-    <!-- /Main Wrapper -->
+</section>
 
-    <!-- Offcanvas -->
-    <div class="offcanvas offcanvas-offset offcanvas-end support_popup" tabindex="-1" id="support_item">
-        <div class="offcanvas-header">
-            <a href="index.php"><img src="assets/img/logo.svg" alt="logo" class="img-fluid logo"></a>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close">
-                <i class="isax isax-close-circle"></i>
-            </button>
-        </div>
-        <div class="offcanvas-body">
-            <div class="about-popup-item">
-                <h3 class="title">About R.K. Hospital</h3>
-                <p>Leading Orthopedic & Gynecology Hospital in Nagpur with 25+ years of medical excellence.</p>
-                <div class="about-img d-flex align-items-center gap-2 justify-content-between">
-                    <a href="<?php echo $base_url; ?>assets/img/banner/about-img-1.jpg" data-fancybox="gallery">
-                        <img src="assets/img/banner/about-img-1.jpg" alt="RK Hospital Nagpur" class="img-fluid">
-                    </a>
-                    <a href="<?php echo $base_url; ?>assets/img/banner/about-img-2.jpg" data-fancybox="gallery">
-                        <img src="assets/img/banner/about-img-2.jpg" alt="RK Hospital Nagpur" class="img-fluid">
-                    </a>
-                    <a href="<?php echo $base_url; ?>assets/img/banner/about-img-3.jpg" data-fancybox="gallery">
-                        <img src="assets/img/banner/about-img-3.jpg" alt="RK Hospital Nagpur" class="img-fluid">
-                    </a>
+<!-- ══ QUICK SUMMARY STRIP ══════════════════════ -->
+<div class="ni-tc-strip">
+    <div class="container-fluid px-0">
+        <div class="ni-tc-strip-inner">
+            <div class="ni-tc-strip-item">
+                <div class="si-icon"><i class="fa-solid fa-handshake"></i></div>
+                <div class="si-text">
+                    <h6>Agreement to Terms</h6>
+                    <p>Using our site = accepting these terms</p>
                 </div>
             </div>
-            <div class="about-popup-item">
-                <h3 class="title">Hospital Location</h3>
-                <div class="loction-item mb-3">
-                    <h4 class="title">R.K. Hospital Nagpur</h4>
-                    <p class="location">27, Central Avenue Road, Beside Hotel Al Zam Zam, Gandhibagh, Nagpur – 440002</p>
+            <div class="ni-tc-strip-item">
+                <div class="si-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                <div class="si-text">
+                    <h6>Your Data is Safe</h6>
+                    <p>We respect your privacy always</p>
                 </div>
             </div>
-            <div class="about-popup-item">
-                <h3 class="title">Contact Information</h3>
-                <div class="support-item mb-3">
-                    <div class="avatar avatar-lg bg-primary rounded-circle">
-                        <i class="isax isax-call-calling"></i>
-                    </div>
-                    <div>
-                        <p class="title">24/7 Emergency</p>
-                        <h5 class="link"><a href="tel:+919766057372">+91 97660 57372</a></h5>
-                    </div>
+            <div class="ni-tc-strip-item">
+                <div class="si-icon"><i class="fa-solid fa-indian-rupee-sign"></i></div>
+                <div class="si-text">
+                    <h6>Transparent Pricing</h6>
+                    <p>No hidden charges on any order</p>
                 </div>
-            
             </div>
-            <div class="about-popup-item border-0">
-                <h3 class="title">Follow Us</h3>
-                <ul class="d-flex align-items-center gap-2 social-iyem">
-                    <li><a href="#" class="social-icon"><i class="fa-brands fa-facebook"></i></a></li>
-                    <li><a href="#" class="social-icon"><i class="fa-brands fa-instagram"></i></a></li>
-                    <li><a href="#" class="social-icon"><i class="fa-brands fa-youtube"></i></a></li>
-                </ul>
+            <div class="ni-tc-strip-item">
+                <div class="si-icon"><i class="fa-solid fa-gavel"></i></div>
+                <div class="si-text">
+                    <h6>Indian Law Applies</h6>
+                    <p>Jurisdiction: Nagpur, Maharashtra</p>
+                </div>
             </div>
         </div>
-        <img src="assets/img/bg/offcanvas-bg.png" alt="element" class="element-01">
     </div>
+</div>
 
-    <!-- ScrollToTop -->
-    <div class="progress-wrap active-progress">
-        <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
-            <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"
-                style="transition: stroke-dashoffset 10ms linear 0s; stroke-dasharray: 307.919px, 307.919px; stroke-dashoffset: 228.265px;"></path>
-        </svg>
+<!-- ══ MAIN BODY ════════════════════════════════ -->
+<section class="ni-tc-body">
+    <div class="container">
+        <div class="row g-4">
+
+            <!-- ── SIDEBAR ── -->
+            <div class="col-lg-3 d-none d-lg-block">
+                <div class="ni-tc-sidebar">
+                    <div class="ni-toc-card">
+                        <div class="ni-toc-head">
+                            <i class="fa-solid fa-list-ul"></i>
+                            <h5>Table of Contents</h5>
+                        </div>
+                        <div class="ni-toc-list">
+                            <a href="#tc1" class="active"><span class="tnum">01</span> Introduction</a>
+                            <a href="#tc2"><span class="tnum">02</span> Use of Website</a>
+                            <a href="#tc3"><span class="tnum">03</span> Products & Orders</a>
+                            <a href="#tc4"><span class="tnum">04</span> Pricing & Payment</a>
+                            <a href="#tc5"><span class="tnum">05</span> Delivery & Risk</a>
+                            <a href="#tc6"><span class="tnum">06</span> Intellectual Property</a>
+                            <a href="#tc7"><span class="tnum">07</span> Liability & Disclaimer</a>
+                            <a href="#tc8"><span class="tnum">08</span> Privacy & Data</a>
+                            <a href="#tc9"><span class="tnum">09</span> Governing Law</a>
+                            <a href="#tc10"><span class="tnum">10</span> Changes to Terms</a>
+                        </div>
+                    </div>
+                    <div class="ni-contact-widget">
+                        <div class="cw-icon"><i class="fa-solid fa-phone-volume"></i></div>
+                        <h6>Have a Question?</h6>
+                        <p>If any part of these terms is unclear, our team is happy to explain.</p>
+                        <a href="<?php echo $base_url; ?>contact-us">
+                            <i class="fa-solid fa-arrow-right"></i> Contact Us
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── CONTENT ── -->
+            <div class="col-lg-9">
+
+                <!-- Section 01 — Introduction -->
+                <div class="ni-tc-section" id="tc1" data-aos="fade-up" data-aos-duration="600">
+                    <div class="ni-tc-section-head">
+                        <div class="ni-tc-section-icon">
+                            <i class="fa-solid fa-file-circle-info"></i>
+                        </div>
+                        <div>
+                            <div class="ni-tc-sec-num">Section 01</div>
+                            <h2 class="ni-tc-sec-title">Introduction</h2>
+                        </div>
+                    </div>
+                    <div class="ni-tc-prose">
+                        <p>Welcome to <strong>Niraj Industries</strong>. By accessing or using our website (<strong><?php echo $base_url; ?></strong>) and by placing any order for our products, you agree to be bound by these Terms and Conditions.</p>
+                        <p>These terms apply to all visitors, customers, and users of our website. If you do not agree to any part of these terms, please do not use our website or services.</p>
+                        <p>Niraj Industries is a manufacturer and supplier of high-quality PVC pipes, fittings, and related industrial products, headquartered in Nagpur, Maharashtra, India.</p>
+                        <div class="ni-highlight">
+                            <strong>Plain Language Promise:</strong> We've written these terms to be as clear and straightforward as possible. If you have any questions about what something means, please reach out to us — we're happy to explain.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 02 — Use of Website -->
+                <div class="ni-tc-section" id="tc2" data-aos="fade-up" data-aos-duration="600">
+                    <div class="ni-tc-section-head">
+                        <div class="ni-tc-section-icon">
+                            <i class="fa-solid fa-globe"></i>
+                        </div>
+                        <div>
+                            <div class="ni-tc-sec-num">Section 02</div>
+                            <h2 class="ni-tc-sec-title">Use of Our Website</h2>
+                        </div>
+                    </div>
+                    <div class="ni-tc-prose">
+                        <p>By using this website, you agree to the following conditions of use:</p>
+                        <ul class="ni-tc-list">
+                            <li>
+                                <span class="li-dot"><i class="fa-solid fa-check"></i></span>
+                                You must be at least <strong>18 years of age</strong> or be using the website under the supervision of a parent or legal guardian.
+                            </li>
+                            <li>
+                                <span class="li-dot"><i class="fa-solid fa-check"></i></span>
+                                You agree not to use this website for any <strong>unlawful, fraudulent, or harmful</strong> purpose, or in any way that could damage the reputation or operations of Niraj Industries.
+                            </li>
+                            <li>
+                                <span class="li-dot"><i class="fa-solid fa-check"></i></span>
+                                You must not attempt to gain <strong>unauthorised access</strong> to any part of the website, its servers, or any databases connected to it.
+                            </li>
+                            <li>
+                                <span class="li-dot"><i class="fa-solid fa-check"></i></span>
+                                We reserve the right to <strong>restrict or terminate access</strong> to the website at any time, without notice, if these terms are violated.
+                            </li>
+                            <li>
+                                <span class="li-dot"><i class="fa-solid fa-check"></i></span>
+                                All content on this website is provided for <strong>informational purposes</strong> only. Product specifications, pricing, and availability are subject to change without prior notice.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Section 03 — Products & Orders -->
+                <div class="ni-tc-section" id="tc3" data-aos="fade-up" data-aos-duration="600">
+                    <div class="ni-tc-section-head">
+                        <div class="ni-tc-section-icon">
+                            <i class="fa-solid fa-box-open"></i>
+                        </div>
+                        <div>
+                            <div class="ni-tc-sec-num">Section 03</div>
+                            <h2 class="ni-tc-sec-title">Products &amp; Orders</h2>
+                        </div>
+                    </div>
+                    <div class="ni-tc-prose">
+                        <p>All product orders placed with Niraj Industries — whether via our website, WhatsApp, phone, or through a sales representative — are subject to the following terms:</p>
+                        <ul class="ni-tc-list">
+                            <li>
+                                <span class="li-dot"><i class="fa-solid fa-check"></i></span>
+                                Placing an order constitutes an <strong>offer to purchase</strong> the product at the stated price. The contract is formed upon our written or electronic confirmation of the order.
+                            </li>
+                            <li>
+                                <span class="li-dot"><i class="fa-solid fa-check"></i></span>
+                                We reserve the right to <strong>refuse or cancel any order</strong> at our discretion, including in the event of pricing errors, unavailability of stock, or suspected fraudulent activity.
+                            </li>
+                            <li>
+                                <span class="li-dot"><i class="fa-solid fa-check"></i></span>
+                                Product images, dimensions, and technical specifications shown on the website are <strong>indicative</strong>. Minor variations may occur due to manufacturing tolerances or updated product batches.
+                            </li>
+                            <li>
+                                <span class="li-dot"><i class="fa-solid fa-check"></i></span>
+                                <strong>Bulk and custom orders</strong> are governed by the terms agreed in the Purchase Order or written agreement signed between both parties. Please refer to our Cancellation Policy for further details.
+                            </li>
+                            <li>
+                                <span class="li-dot"><i class="fa-solid fa-check"></i></span>
+                                We do not guarantee continuous availability of all listed products. In case of stock unavailability, we will notify you and offer an alternative or full refund.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Section 04 — Pricing & Payment -->
+                <div class="ni-tc-section" id="tc4" data-aos="fade-up" data-aos-duration="600">
+                    <div class="ni-tc-section-head">
+                        <div class="ni-tc-section-icon">
+                            <i class="fa-solid fa-indian-rupee-sign"></i>
+                        </div>
+                        <div>
+                            <div class="ni-tc-sec-num">Section 04</div>
+                            <h2 class="ni-tc-sec-title">Pricing &amp; Payment</h2>
+                        </div>
+                    </div>
+                    <div class="ni-tc-prose">
+                        <p>All prices on this website are listed in <strong>Indian Rupees (INR)</strong> and are inclusive of applicable GST unless stated otherwise. The following payment terms apply:</p>
+                        <ul class="ni-tc-list">
+                            <li>
+                                <span class="li-dot"><i class="fa-solid fa-check"></i></span>
+                                Prices are subject to change without prior notice. The price confirmed at the <strong>time of order placement</strong> will be the binding price for that transaction.
+                            </li>
+                            <li>
+                                <span class="li-dot"><i class="fa-solid fa-check"></i></span>
+                                Accepted payment methods include <strong>NEFT/RTGS, UPI, credit/debit cards,</strong> and cheques for applicable order values.
+                            </li>
+                            <li>
+                                <span class="li-dot"><i class="fa-solid fa-check"></i></span>
+                                For large or bulk orders, a <strong>50% advance payment</strong> may be required before production or dispatch commences. Balance is due as per agreed terms.
+                            </li>
+                            <li>
+                                <span class="li-dot"><i class="fa-solid fa-check"></i></span>
+                                <strong>GST invoices</strong> are issued for all orders. Ensure your GSTIN is provided at the time of ordering if you require a business invoice.
+                            </li>
+                        </ul>
+                        <div class="ni-info-grid">
+                            <div class="ni-info-card">
+                                <i class="fa-solid fa-receipt"></i>
+                                <div>
+                                    <h6>GST Compliant</h6>
+                                    <p>All invoices issued with valid GST</p>
+                                </div>
+                            </div>
+                            <div class="ni-info-card">
+                                <i class="fa-solid fa-lock"></i>
+                                <div>
+                                    <h6>Secure Payments</h6>
+                                    <p>UPI, NEFT, RTGS, Card accepted</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 05 — Delivery & Risk -->
+                <div class="ni-tc-section" id="tc5" data-aos="fade-up" data-aos-duration="600">
+                    <div class="ni-tc-section-head">
+                        <div class="ni-tc-section-icon">
+                            <i class="fa-solid fa-truck-fast"></i>
+                        </div>
+                        <div>
+                            <div class="ni-tc-sec-num">Section 05</div>
+                            <h2 class="ni-tc-sec-title">Delivery &amp; Risk of Loss</h2>
+                        </div>
+                    </div>
+                    <div class="ni-tc-prose">
+                        <p>Delivery timelines are estimates and may vary based on order size, location, and logistics. The following terms apply to all deliveries:</p>
+                        <ul class="ni-tc-list">
+                            <li>
+                                <span class="li-dot"><i class="fa-solid fa-check"></i></span>
+                                <strong>Risk of loss or damage</strong> passes to the customer upon physical delivery and acceptance of goods at the delivery address.
+                            </li>
+                            <li>
+                                <span class="li-dot"><i class="fa-solid fa-check"></i></span>
+                                If goods are delivered by <strong>our own transport</strong>, Niraj Industries is responsible for safe delivery up to the point of handover.
+                            </li>
+                            <li>
+                                <span class="li-dot"><i class="fa-solid fa-check"></i></span>
+                                Where goods are shipped via a <strong>third-party courier or transporter</strong> nominated by the customer, responsibility passes to the customer upon handover to that transporter.
+                            </li>
+                            <li>
+                                <span class="li-dot"><i class="fa-solid fa-check"></i></span>
+                                Any <strong>damage or discrepancy</strong> must be noted on the delivery receipt and reported to us within 48 hours. Failure to do so may affect your ability to claim a refund or replacement.
+                            </li>
+                            <li>
+                                <span class="li-dot"><i class="fa-solid fa-check"></i></span>
+                                Delivery charges, if applicable, are non-refundable once the order has been dispatched, unless the delivery was not attempted.
+                            </li>
+                        </ul>
+                        <div class="ni-highlight">
+                            <strong>Tip:</strong> Always inspect goods at the time of delivery before signing the receipt. If you notice any visible damage to packaging or products, make a note on the delivery slip and contact us immediately.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 06 — Intellectual Property -->
+                <div class="ni-tc-section" id="tc6" data-aos="fade-up" data-aos-duration="600">
+                    <div class="ni-tc-section-head">
+                        <div class="ni-tc-section-icon">
+                            <i class="fa-solid fa-copyright"></i>
+                        </div>
+                        <div>
+                            <div class="ni-tc-sec-num">Section 06</div>
+                            <h2 class="ni-tc-sec-title">Intellectual Property</h2>
+                        </div>
+                    </div>
+                    <div class="ni-tc-prose">
+                        <p>All content on this website is the intellectual property of Niraj Industries unless otherwise stated:</p>
+                        <ul class="ni-tc-list">
+                            <li>
+                                <span class="li-dot"><i class="fa-solid fa-check"></i></span>
+                                The <strong>Niraj Industries name, logo, brand identity,</strong> product images, technical documents, and all website content are protected under applicable intellectual property laws.
+                            </li>
+                            <li>
+                                <span class="li-dot"><i class="fa-solid fa-check"></i></span>
+                                You may <strong>not reproduce, distribute, republish, or sell</strong> any content from this website without prior written permission from Niraj Industries.
+                            </li>
+                            <li>
+                                <span class="li-dot"><i class="fa-solid fa-check"></i></span>
+                                You may <strong>print or download</strong> content for personal, non-commercial use only, provided you acknowledge the source.
+                            </li>
+                            <li>
+                                <span class="li-dot"><i class="fa-solid fa-check"></i></span>
+                                Any unauthorised use of our brand name, trademarks, or product imagery for commercial purposes may result in <strong>legal action</strong>.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Section 07 — Liability & Disclaimer -->
+                <div class="ni-tc-section" id="tc7" data-aos="fade-up" data-aos-duration="600">
+                    <div class="ni-tc-section-head">
+                        <div class="ni-tc-section-icon">
+                            <i class="fa-solid fa-triangle-exclamation"></i>
+                        </div>
+                        <div>
+                            <div class="ni-tc-sec-num">Section 07</div>
+                            <h2 class="ni-tc-sec-title">Liability &amp; Disclaimer</h2>
+                        </div>
+                    </div>
+                    <div class="ni-tc-prose">
+                        <p>Niraj Industries takes quality seriously, but the following limitations apply:</p>
+                        <ul class="ni-tc-list">
+                            <li>
+                                <span class="li-dot"><i class="fa-solid fa-check"></i></span>
+                                Our website is provided <strong>"as is"</strong> without warranties of any kind, express or implied. We do not guarantee that the website will be error-free or uninterrupted.
+                            </li>
+                            <li>
+                                <span class="li-dot"><i class="fa-solid fa-check"></i></span>
+                                Niraj Industries shall not be liable for any <strong>indirect, consequential, or special damages</strong> arising from the use of our products or website, to the extent permitted by Indian law.
+                            </li>
+                            <li>
+                                <span class="li-dot"><i class="fa-solid fa-check"></i></span>
+                                Our liability in any case shall not exceed the <strong>total value of the order</strong> placed by the customer.
+                            </li>
+                            <li>
+                                <span class="li-dot"><i class="fa-solid fa-check"></i></span>
+                                We are not responsible for damages resulting from <strong>improper installation, incorrect product selection, or misuse</strong> of our products by the buyer.
+                            </li>
+                            <li>
+                                <span class="li-dot"><i class="fa-solid fa-check"></i></span>
+                                Links to <strong>third-party websites</strong> are provided for convenience only. We do not endorse or take responsibility for the content of external sites.
+                            </li>
+                        </ul>
+                        <div class="ni-highlight dark">
+                            <strong>Important:</strong> For product suitability, always consult our technical team before purchase, especially for critical or pressurised applications. Our team will guide you to the correct specification for your project.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 08 — Privacy & Data -->
+                <div class="ni-tc-section" id="tc8" data-aos="fade-up" data-aos-duration="600">
+                    <div class="ni-tc-section-head">
+                        <div class="ni-tc-section-icon">
+                            <i class="fa-solid fa-shield-halved"></i>
+                        </div>
+                        <div>
+                            <div class="ni-tc-sec-num">Section 08</div>
+                            <h2 class="ni-tc-sec-title">Privacy &amp; Data Collection</h2>
+                        </div>
+                    </div>
+                    <div class="ni-tc-prose">
+                        <p>We collect only the data necessary to process your orders and improve your experience:</p>
+                        <ul class="ni-tc-list">
+                            <li>
+                                <span class="li-dot"><i class="fa-solid fa-check"></i></span>
+                                Personal information (name, phone, address, email) collected via enquiry forms or order placement is used <strong>solely for business communication and order fulfilment</strong>.
+                            </li>
+                            <li>
+                                <span class="li-dot"><i class="fa-solid fa-check"></i></span>
+                                We do not <strong>sell, rent, or share</strong> your personal data with third parties for marketing purposes.
+                            </li>
+                            <li>
+                                <span class="li-dot"><i class="fa-solid fa-check"></i></span>
+                                We use standard web analytics to understand how visitors use our site. This data is <strong>anonymous and aggregated</strong> — it is not linked to any individual.
+                            </li>
+                            <li>
+                                <span class="li-dot"><i class="fa-solid fa-check"></i></span>
+                                You may request <strong>deletion or correction</strong> of your personal data by contacting us at any time.
+                            </li>
+                        </ul>
+                        <div class="ni-info-grid">
+                            <div class="ni-info-card">
+                                <i class="fa-solid fa-user-shield"></i>
+                                <div>
+                                    <h6>Data Ownership</h6>
+                                    <p>Your data is never sold to third parties</p>
+                                </div>
+                            </div>
+                            <div class="ni-info-card">
+                                <i class="fa-solid fa-trash-can"></i>
+                                <div>
+                                    <h6>Right to Erasure</h6>
+                                    <p>Request deletion of your data anytime</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 09 — Governing Law -->
+                <div class="ni-tc-section" id="tc9" data-aos="fade-up" data-aos-duration="600">
+                    <div class="ni-tc-section-head">
+                        <div class="ni-tc-section-icon">
+                            <i class="fa-solid fa-gavel"></i>
+                        </div>
+                        <div>
+                            <div class="ni-tc-sec-num">Section 09</div>
+                            <h2 class="ni-tc-sec-title">Governing Law &amp; Jurisdiction</h2>
+                        </div>
+                    </div>
+                    <div class="ni-tc-prose">
+                        <p>These Terms and Conditions are governed by the laws of India. The following jurisdiction terms apply to all disputes:</p>
+                        <ul class="ni-tc-list">
+                            <li>
+                                <span class="li-dot"><i class="fa-solid fa-check"></i></span>
+                                Any disputes arising out of or in connection with these terms shall be subject to the <strong>exclusive jurisdiction of courts in Nagpur, Maharashtra, India</strong>.
+                            </li>
+                            <li>
+                                <span class="li-dot"><i class="fa-solid fa-check"></i></span>
+                                Both parties agree to attempt to resolve any dispute <strong>amicably through negotiation</strong> before initiating formal legal proceedings.
+                            </li>
+                            <li>
+                                <span class="li-dot"><i class="fa-solid fa-check"></i></span>
+                                These terms are governed by the <strong>Indian Contract Act, 1872</strong>, the Sale of Goods Act, 1930, and other applicable Indian legislation.
+                            </li>
+                            <li>
+                                <span class="li-dot"><i class="fa-solid fa-check"></i></span>
+                                If any provision of these terms is found to be <strong>invalid or unenforceable</strong>, the remaining provisions shall continue to be valid and binding.
+                            </li>
+                        </ul>
+                        <div class="ni-highlight">
+                            <strong>Our Approach:</strong> We prefer to resolve all disputes through open and fair communication. Please contact us before escalating any issue — we are committed to finding a reasonable resolution for both parties.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 10 — Changes to Terms -->
+                <div class="ni-tc-section" id="tc10" data-aos="fade-up" data-aos-duration="600">
+                    <div class="ni-tc-section-head">
+                        <div class="ni-tc-section-icon">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                        </div>
+                        <div>
+                            <div class="ni-tc-sec-num">Section 10</div>
+                            <h2 class="ni-tc-sec-title">Changes to These Terms</h2>
+                        </div>
+                    </div>
+                    <div class="ni-tc-prose">
+                        <p>Niraj Industries reserves the right to update or revise these Terms and Conditions at any time:</p>
+                        <ul class="ni-tc-list">
+                            <li>
+                                <span class="li-dot"><i class="fa-solid fa-check"></i></span>
+                                Any changes will be <strong>published on this page</strong> with an updated "Last Updated" date. Continued use of the website after changes constitutes your acceptance of the revised terms.
+                            </li>
+                            <li>
+                                <span class="li-dot"><i class="fa-solid fa-check"></i></span>
+                                We recommend reviewing this page <strong>periodically</strong> to stay informed of any updates.
+                            </li>
+                            <li>
+                                <span class="li-dot"><i class="fa-solid fa-check"></i></span>
+                                For significant changes that may affect existing customers, we will make <strong>reasonable efforts to notify</strong> via email or WhatsApp.
+                            </li>
+                        </ul>
+                        <div class="ni-highlight dark">
+                            <strong>Current Version:</strong> These Terms and Conditions were last updated on <strong>April 01, 2025</strong>. If you are reading a printed or cached version of this page, please visit our website for the most current version.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CTA Banner -->
+                <div class="ni-tc-cta" data-aos="fade-up" data-aos-duration="700">
+                    <div class="cta-inner">
+                        <h3>Questions About <span>Our Terms?</span></h3>
+                        <p>Our team is happy to clarify any part of these terms. We believe in open, honest communication with every customer.</p>
+                        <div class="ni-tc-cta-btns">
+                            <a href="<?php echo $base_url; ?>contact-us" class="ni-cta-btn-primary">
+                                <i class="fa-solid fa-paper-plane"></i> Contact Us
+                            </a>
+                            <a href="<?php echo $base_url; ?>products" class="ni-cta-btn-outline">
+                                <i class="fa-solid fa-boxes-stacked"></i> View Products
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- ── END CONTENT ── -->
+
+        </div>
     </div>
+</section>
 
-    <!-- jQuery -->
-    <script src="assets/js/jquery-3.7.1.min.js"></script>
-    <!-- Bootstrap Bundle JS -->
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
-    <!-- Feather Icon JS -->
-    <script src="assets/js/feather.min.js"></script>
-    <!-- BacktoTop JS -->
-    <script src="assets/js/backToTop.js"></script>
-    <!-- select JS -->
-    <script src="assets/plugins/select2/js/select2.min.js"></script>
-    <!-- Slick Slider -->
-    <script src="assets/plugins/slick/slick.min.js"></script>
-    <!-- Fancybox JS -->
-    <script src="assets/plugins/fancybox/jquery.fancybox.min.js"></script>
-    <!-- Counter JS -->
-    <script src="assets/js/counter.js"></script>
-    <!-- Wow JS -->
-    <script src="assets/plugins/wow/js/wow.min.js"></script>
-    <!-- Custom JS -->
-    <script src="assets/js/script.js"></script>
+<?php include 'include/footer.php'; ?>
 
-    <script>
-        // ── TOC Active State on Scroll ──
-        (function () {
-            const sections = document.querySelectorAll('.tc-section[id]');
-            const tocLinks = document.querySelectorAll('.tc-toc-list a');
+<script src="<?php echo $base_url; ?>assets/js/plugins/bootstrap.min.js"></script>
+<script src="<?php echo $base_url; ?>assets/js/plugins/fontawesome.js"></script>
+<script src="<?php echo $base_url; ?>assets/js/plugins/aos.js"></script>
+<script src="<?php echo $base_url; ?>assets/js/plugins/sidebar.js"></script>
+<script src="<?php echo $base_url; ?>assets/js/plugins/mobilemenu.js"></script>
+<script src="<?php echo $base_url; ?>assets/js/main.js"></script>
+<script>
+if (typeof AOS !== 'undefined') { AOS.init({ duration: 600, once: true, offset: 50 }); }
 
-            function updateActive() {
-                let current = '';
-                sections.forEach(sec => {
-                    const top = sec.getBoundingClientRect().top;
-                    if (top <= 120) current = sec.getAttribute('id');
-                });
-                tocLinks.forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href') === '#' + current) {
-                        link.classList.add('active');
-                    }
-                });
-            }
-
-            window.addEventListener('scroll', updateActive, { passive: true });
-            updateActive();
-        })();
-
-        // ── ScrollToTop Progress ──
-        (function () {
-            const wrap = document.querySelector('.progress-wrap');
-            const path = wrap ? wrap.querySelector('path') : null;
-            if (!wrap || !path) return;
-            const pathLength = path.getTotalLength();
-            path.style.strokeDasharray = pathLength + 'px';
-            path.style.strokeDashoffset = pathLength + 'px';
-            path.style.transition = 'stroke-dashoffset 10ms linear';
-
-            function updateProgress() {
-                const scrollTop = window.scrollY || document.documentElement.scrollTop;
-                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-                const scrolled = scrollTop / docHeight;
-                path.style.strokeDashoffset = (pathLength - pathLength * scrolled) + 'px';
-                wrap.classList.toggle('active-progress', scrollTop > 200);
-            }
-            window.addEventListener('scroll', updateProgress, { passive: true });
-            updateProgress();
-        })();
-    </script>
-    <script>
-    // ── HORIZONTAL SCROLL FIX (sticky-safe) ──
-    (function() {
-        function fixHScroll() {
-            var docW = document.documentElement.scrollWidth;
-            var winW = window.innerWidth;
-            if (docW > winW) {
-                document.documentElement.style.setProperty('--hscroll-fix', 'hidden');
-            }
-        }
-        // Find and clip only the overflowing element
-        document.addEventListener('DOMContentLoaded', function() {
-            var banner = document.querySelector('.contact-hero-banner');
-            if (banner) {
-                banner.style.overflow = 'hidden';
-                banner.style.maxWidth = '100vw';
-            }
-            var badges = document.querySelectorAll('.banner-stat-badge');
-            badges.forEach(function(b) { b.style.display = 'none'; });
+// TOC Active State on Scroll
+(function () {
+    const sections = document.querySelectorAll('.ni-tc-section[id]');
+    const links    = document.querySelectorAll('.ni-toc-list a');
+    function update() {
+        let current = '';
+        sections.forEach(s => {
+            if (s.getBoundingClientRect().top <= 120) current = s.id;
         });
-    })();
+        links.forEach(l => {
+            l.classList.remove('active');
+            if (l.getAttribute('href') === '#' + current) l.classList.add('active');
+        });
+    }
+    window.addEventListener('scroll', update, { passive: true });
+    update();
+})();
 </script>
-
 </body>
 </html>

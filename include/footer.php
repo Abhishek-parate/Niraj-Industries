@@ -1,12 +1,14 @@
+<?php if (!isset($base_url)) { $base_url = "http://localhost/nirajindustries/"; } ?>
+
 <!--===== FOOTER AREA STARTS =======-->
 <footer class="footer1-section-area">
     <div class="container">
         <div class="row">
             <div class="col-lg-3 col-md-6">
                 <div class="footer-logo">
-                    <img src="assets/img/logo/logo2.png" alt="Rebuilders Construction Logo">
+                    <img src="<?php echo $base_url; ?>assets/img/all-images/hero/logo.png" alt="Niraj Industries Logo" style="width:160px; height:auto; object-fit:contain;">
                     <div class="space24"></div>
-                    <p>At Rebuilders Construction Company, we are committed to delivering exceptional quality and unparalleled customer service.</p>
+                    <p>At Niraj Industries, we are committed to delivering exceptional quality and unparalleled customer service.</p>
                     <div class="space32"></div>
                     <ul>
                         <li><a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a></li>
@@ -18,24 +20,25 @@
             </div>
             <div class="col-lg-3 col-md-6 col-6">
                 <div class="footer-content">
-                    <h3>Our Products</h3>
+                    <h3>Quick Links</h3>
                     <div class="space8"></div>
                     <ul>
-                        <li><a href="service2.php">Product One</a></li>
-                        <li><a href="service3.php">Product Two</a></li>
-                        <li><a href="service4.php">Product Three</a></li>
+                        <li><a href="<?php echo $base_url; ?>/">Home</a></li>
+                        <li><a href="<?php echo $base_url; ?>about-us">About Us</a></li>
+                        <li><a href="<?php echo $base_url; ?>products">Products</a></li>
+                        <li><a href="<?php echo $base_url; ?>blogs">Blogs</a></li>
                     </ul>
                 </div>
             </div>
             <div class="col-lg-2 col-md-6 col-6">
                 <div class="footer-content2">
-                    <h3>About Link</h3>
+                    <h3>Help Center</h3>
                     <div class="space8"></div>
                     <ul>
-                        <li><a href="about-us.php">About Us</a></li>
-                        <li><a href="blog.php">Blog</a></li>
-                        <li><a href="service1.php">Products</a></li>
-                        <li><a href="contact-us.php">Contact Us</a></li>
+                        <li><a href="<?php echo $base_url; ?>cancellation-policy">Cancellation Policy</a></li>
+                        <li><a href="<?php echo $base_url; ?>privacy-policy">Privacy Policy</a></li>
+                        <li><a href="<?php echo $base_url; ?>terms-conditions">Terms and Conditions</a></li>
+                        <li><a href="<?php echo $base_url; ?>contact-us">Contact Us</a></li>
                     </ul>
                 </div>
             </div>
@@ -45,7 +48,7 @@
                     <div class="space32"></div>
                     <form action="#" method="post">
                         <input type="email" placeholder="Enter Your Email" required>
-                        <button type="submit" class="header-btn1">Subscribe <i class="fa-solid fa-arrow-right"></i></button>
+                        <button type="submit" class="header-btn1" style="background:#B5100E; border-color:#B5100E; color:#fff;">Subscribe <i class="fa-solid fa-arrow-right"></i></button>
                     </form>
                 </div>
             </div>
@@ -53,9 +56,9 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="copyright-area">
-                    <p style="text-align:center;">&copy; Copyright 2024 Rebuilders. All rights reserved</p>
+                    <p style="text-align:center;">&copy; Copyright 2026 Niraj Industries. All rights reserved</p>
                     <ul>
-                        <li><a href="#">Terms & Condition <span> | </span> Privacy Policy</a></li>
+                        <li><a href="<?php echo $base_url; ?>terms-conditions">Terms & Condition <span> | </span> Privacy Policy</a></li>
                     </ul>
                 </div>
             </div>

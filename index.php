@@ -1,14 +1,15 @@
 <?php
 /**
- * Homepage — Rebuilders Construction Company
+ * Homepage — Niraj Industries
+ * PVC Pipe Manufacturer in Nagpur
  * SEO-Optimized | E-E-A-T Ready | Local SEO
  */
 $base_url = "http://localhost/nirajindustries/";
 include 'include/config.php';
 
-$page_title       = "Rebuilders Construction Company | Building Dreams, Restoring Trust";
-$meta_description = "Rebuilders Construction Company — over 20 years of delivering exceptional quality construction services including design & build, commercial and residential construction. Get a free quote today.";
-$meta_keywords    = "construction company, building construction, renovation, residential construction, commercial construction, design and build, rebuilders construction, construction services";
+$page_title       = "Niraj Industries | PVC Pipe Manufacturer in Nagpur";
+$meta_description = "Niraj Industries — trusted PVC pipe manufacturer in Nagpur. We supply PVC, UPVC, SWR, agriculture & plumbing pipes across Maharashtra. Get bulk pricing & free quote today.";
+$meta_keywords    = "PVC pipe manufacturer in Nagpur, UPVC pipe manufacturer Nagpur, SWR drainage pipe Nagpur, agriculture PVC pipe Nagpur, wholesale PVC pipe Nagpur, plumbing pipe dealer Nagpur";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,9 +21,15 @@ $meta_keywords    = "construction company, building construction, renovation, re
     <title><?php echo htmlspecialchars($page_title); ?></title>
     <meta name="description" content="<?php echo htmlspecialchars($meta_description); ?>">
     <meta name="keywords" content="<?php echo htmlspecialchars($meta_keywords); ?>">
-    <meta name="author" content="Rebuilders Construction Company">
+    <meta name="author" content="Niraj Industries, Nagpur">
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
     <meta name="googlebot" content="index, follow">
+
+    <!-- Local SEO -->
+    <meta name="geo.region" content="IN-MH">
+    <meta name="geo.placename" content="Nagpur, Maharashtra, India">
+    <meta name="geo.position" content="21.1458;79.0882">
+    <meta name="ICBM" content="21.1458, 79.0882">
 
     <!-- Canonical -->
     <link rel="canonical" href="<?php echo $base_url; ?>">
@@ -30,26 +37,23 @@ $meta_keywords    = "construction company, building construction, renovation, re
     <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="<?php echo $base_url; ?>">
-    <meta property="og:title" content="<?php echo htmlspecialchars($page_title); ?>">
-    <meta property="og:description" content="<?php echo htmlspecialchars($meta_description); ?>">
+    <meta property="og:title" content="Niraj Industries | PVC Pipe Manufacturer in Nagpur">
+    <meta property="og:description" content="Nagpur's trusted PVC, UPVC & SWR pipe manufacturer. Wholesale pricing, pan-Maharashtra delivery. Call for bulk orders.">
     <meta property="og:image" content="<?php echo $base_url; ?>assets/img/all-images/hero/hero-img6.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Rebuilders Construction Company — Building Dreams, Restoring Trust">
+    <meta property="og:image:alt" content="Niraj Industries — PVC Pipe Manufacturer in Nagpur">
     <meta property="og:locale" content="en_IN">
-    <meta property="og:site_name" content="Rebuilders Construction Company">
+    <meta property="og:site_name" content="Niraj Industries">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="<?php echo htmlspecialchars($page_title); ?>">
-    <meta name="twitter:description" content="<?php echo htmlspecialchars($meta_description); ?>">
+    <meta name="twitter:title" content="Niraj Industries | PVC Pipe Manufacturer in Nagpur">
+    <meta name="twitter:description" content="PVC, UPVC, SWR & agriculture pipes — manufactured in Nagpur. Wholesale pricing for contractors & dealers across Maharashtra.">
     <meta name="twitter:image" content="<?php echo $base_url; ?>assets/img/all-images/hero/hero-img6.png">
-    <meta name="twitter:image:alt" content="Rebuilders Construction Company">
+    <meta name="twitter:image:alt" content="Niraj Industries PVC Pipes Nagpur">
 
-    <!--===== FAV ICON =======-->
-    <link rel="shortcut icon" href="<?php echo $base_url; ?>assets/img/logo/fav-logo4.png" type="image/x-icon">
-    <link rel="apple-touch-icon" sizes="180x180" href="<?php echo $base_url; ?>assets/img/logo/fav-logo4.png">
-
+  
     <!--===== CSS LINKS =======-->
     <link rel="stylesheet" href="<?php echo $base_url; ?>assets/css/plugins/bootstrap.min.css">
     <link rel="stylesheet" href="<?php echo $base_url; ?>assets/css/plugins/fontawesome.css">
@@ -65,112 +69,673 @@ $meta_keywords    = "construction company, building construction, renovation, re
 
     <!--===== jQuery (must be first) =======-->
     <script src="<?php echo $base_url; ?>assets/js/plugins/jquery-3-6-0.min.js"></script>
+    <style>
+        /*
+ * ============================================================
+ *  NIRAJ INDUSTRIES — BRAND THEME OVERRIDE
+ *  Brand Colors: #B5100E (Primary Red) | #1D1D1E (Near Black)
+ *  Drop this file AFTER main.css in your <head>
+ *  Author: Niraj Industries Dev Team
+ * ============================================================
+ */
+
+/* ============================================================
+   ROOT VARIABLES — Single source of truth
+   ============================================================ */
+:root {
+  --ni-red:          #B5100E;
+  --ni-red-dark:     #8C0C0B;
+  --ni-red-deep:     #6A0907;
+  --ni-red-light:    #D42220;
+  --ni-red-glow:     rgba(181, 16, 14, 0.12);
+  --ni-red-border:   rgba(181, 16, 14, 0.25);
+
+  --ni-black:        #1D1D1E;
+  --ni-black-soft:   #262627;
+  --ni-black-muted:  #2E2E30;
+  --ni-black-card:   #222223;
+
+  --ni-white:        #FFFFFF;
+  --ni-offwhite:     #F9F6F6;
+  --ni-light-bg:     #FBF5F5;
+  --ni-light-bg2:    #F7EFEF;
+
+  --ni-gray-soft:    #E8E0E0;
+  --ni-gray-mid:     #9A8F8F;
+  --ni-gray-text:    #5C5050;
+
+  --ni-gold-accent:  #C8860A;   /* subtle warm accent — used sparingly */
+
+  --ni-shadow-sm:    0 2px 12px rgba(181, 16, 14, 0.08);
+  --ni-shadow-md:    0 6px 28px rgba(181, 16, 14, 0.14);
+  --ni-shadow-lg:    0 12px 48px rgba(181, 16, 14, 0.18);
+  --ni-shadow-dark:  0 4px 20px rgba(0, 0, 0, 0.35);
+
+  --ni-radius-sm:    6px;
+  --ni-radius-md:    10px;
+  --ni-radius-lg:    16px;
+  --ni-radius-pill:  50px;
+
+  --ni-transition:   all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+
+/* ============================================================
+   BODY & GLOBAL BASE
+   ============================================================ */
+body,
+body.homepage4-body {
+  background-color: var(--ni-white) !important;
+  color: var(--ni-black) !important;
+}
+
+/* Smooth scrolling */
+html { scroll-behavior: smooth; }
+
+/* Selection highlight */
+::selection {
+  background: var(--ni-red);
+  color: var(--ni-white);
+}
+
+
+/* ============================================================
+   TYPOGRAPHY — Headings & Text Colors
+   ============================================================ */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--ni-black) !important;
+}
+
+/* Heading accent lines / eyebrow labels */
+.heading1 h5,
+.heading2 h5,
+.heading3 h5,
+.heading4 h5,
+.heading5 h5,
+[class*="heading"] h5 {
+  color: var(--ni-red) !important;
+}
+
+/* Section heading underlines */
+.heading2 h2::after,
+.heading4 h2::after,
+[class*="heading"] h2::after {
+  background: var(--ni-red) !important;
+}
+
+
+
+
+/* ============================================================
+   HERO SECTION
+   ============================================================ */
+.hero3-section-area,
+[class*="hero3-section"],
+[class*="hero-section"] {
+  background-color: var(--ni-offwhite) !important;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle red pattern overlay on hero */
+.hero3-section-area::before {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 55%;
+  height: 100%;
+  background: linear-gradient(135deg, transparent 40%, rgba(181,16,14,0.04) 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Hero sub-label */
+.hero3-section-area .hero-header-area h5,
+[class*="hero"] .heading5 h5 {
+  color: var(--ni-red) !important;
+}
+
+/* Hero H1 */
+.hero3-section-area h1,
+[class*="hero-section"] h1 {
+  color: var(--ni-black) !important;
+}
+
+/* Hero description para */
+.hero3-section-area p,
+[class*="hero-section"] .hero-header-area p {
+  color: var(--ni-gray-text) !important;
+}
+
+/* Hero Counter boxes */
+.counter-box h3,
+.hero-counter-area h3 {
+  color: var(--ni-red) !important;
+}
+
+.counter-box p,
+.hero-counter-area p {
+  color: var(--ni-gray-text) !important;
+}
+
+.hero-counter-area {
+  border-top: 1px solid var(--ni-gray-soft) !important;
+  padding-top: 24px !important;
+}
+
+
+/* ============================================================
+
+
+/* Bootstrap btn-primary */
+.btn-primary,
+.btn.btn-primary {
+  background-color: var(--ni-red) !important;
+  border-color: var(--ni-red) !important;
+  color: var(--ni-white) !important;
+}
+.btn-primary:hover { background-color: var(--ni-red-dark) !important; }
+
+/* View All / generic outline btns */
+.btn-outline,
+.btn-outline-primary,
+[class*="btn-outline"] {
+  border-color: var(--ni-red) !important;
+  color: var(--ni-red) !important;
+}
+[class*="btn-outline"]:hover {
+  background-color: var(--ni-red) !important;
+  color: var(--ni-white) !important;
+}
+
+
+/* ============================================================
+   ABOUT SECTION
+   ============================================================ */
+.about4-section-area,
+[class*="about4-section"],
+[class*="about-section"] {
+  background-color: var(--ni-white) !important;
+}
+
+/* About checklist icons */
+.about4-section-area ul li img,
+[class*="about"] ul li img.check-icon {
+  filter: none !important;
+}
+
+/* Success rate boxes */
+.succes-rate-area,
+.successful,
+.client {
+  background: var(--ni-light-bg) !important;
+  border-left: 3px solid var(--ni-red) !important;
+  border-radius: var(--ni-radius-md) !important;
+  padding: 10px 15px !important;
+}
+
+.succes-rate-area h3,
+.successful h3,
+.client h3 {
+  color: var(--ni-red) !important;
+}
+
+
+
+/* ============================================================
+   PRODUCTS / SERVICES SECTION
+   ============================================================ */
+.service4-section-area,
+[class*="service4-section"],
+[class*="service-section"] {
+  background-color: var(--ni-white) !important;
+}
+
+.service4-section-area h5,
+[class*="service-section"] h5 {
+  color: var(--ni-red) !important;
+}
+
+/* Product card */
+.service4-slider-box,
+[class*="service4-slider-box"],
+[class*="product-card"],
+[class*="service-card"] {
+  background-color: var(--ni-white) !important;
+  border: 1px solid var(--ni-gray-soft) !important;
+  border-radius: var(--ni-radius-lg) !important;
+  overflow: hidden !important;
+  transition: var(--ni-transition) !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05) !important;
+}
+
+.service4-slider-box:hover,
+[class*="service4-slider-box"]:hover {
+  box-shadow: var(--ni-shadow-md) !important;
+  transform: translateY(-4px) !important;
+  border-color: var(--ni-red-border) !important;
+}
+
+/* Product card "View Details" link */
+.service4-slider-box .arrow a,
+[class*="service4-slider-box"] .arrow a {
+  color: var(--ni-red) !important;
+  font-weight: 600 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  transition: var(--ni-transition) !important;
+}
+
+.service4-slider-box .arrow a:hover,
+[class*="service4-slider-box"] .arrow a:hover {
+  color: var(--ni-red-dark) !important;
+  gap: 10px !important;
+}
+
+/* Category tag */
+.product-category-tag {
+  color: var(--ni-gray-mid) !important;
+  font-size: 11px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.8px !important;
+}
+
+/* Owl carousel dots */
+.owl-dots .owl-dot span {
+  background: var(--ni-gray-soft) !important;
+}
+.owl-dots .owl-dot.active span,
+.owl-dots .owl-dot:hover span {
+  background: var(--ni-red) !important;
+}
+
+/* Owl carousel nav arrows */
+.owl-nav button,
+.owl-prev,
+.owl-next {
+  background: var(--ni-white) !important;
+  border: 1.5px solid var(--ni-red) !important;
+  color: var(--ni-red) !important;
+  border-radius: 50% !important;
+  width: 40px !important;
+  height: 40px !important;
+  transition: var(--ni-transition) !important;
+}
+
+.owl-nav button:hover,
+.owl-prev:hover,
+.owl-next:hover {
+  background: var(--ni-red) !important;
+  color: var(--ni-white) !important;
+}
+
+
+/* ============================================================
+   HOW WE WORK / STEPS SECTION
+   ============================================================ */
+.works-section-area,
+[class*="works-section"] {
+  background-color: var(--ni-black) !important;
+  color: var(--ni-white) !important;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle texture on dark section */
+.works-section-area::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(181,16,14,0.03) 0px,
+    rgba(181,16,14,0.03) 1px,
+    transparent 1px,
+    transparent 40px
+  );
+  pointer-events: none;
+}
+
+.works-section-area h5,
+[class*="works-section"] h5 {
+  color: var(--ni-red-light) !important;
+}
+
+.works-section-area h3,
+.works-section-area h2,
+[class*="works-section"] h3 {
+  color: var(--ni-white) !important;
+}
+
+.works-section-area p,
+[class*="works-section"] p {
+  color: rgba(255,255,255,0.65) !important;
+}
+
+/* Step boxes */
+.step-area,
+[class*="step-area"] {
+  background: var(--ni-black-soft) !important;
+  border: 1px solid rgba(181,16,14,0.2) !important;
+  border-top: 3px solid var(--ni-red) !important;
+  border-radius: var(--ni-radius-md) !important;
+  padding: 28px 24px !important;
+  transition: var(--ni-transition) !important;
+  height: 100% !important;
+}
+
+.step-area:hover,
+[class*="step-area"]:hover {
+  background: var(--ni-black-muted) !important;
+  border-color: var(--ni-red) !important;
+  box-shadow: var(--ni-shadow-md) !important;
+  transform: translateY(-3px) !important;
+}
+
+/* Step numbers */
+.step-area h4,
+[class*="step-area"] h4 {
+  color: var(--ni-red) !important;
+  font-size: 2.8rem !important;
+  font-weight: 800 !important;
+  line-height: 1 !important;
+  opacity: 0.9 !important;
+}
+
+.step-area a,
+[class*="step-area"] a {
+  color: var(--ni-white) !important;
+  font-weight: 600 !important;
+  font-size: 1rem !important;
+  display: block !important;
+  margin-bottom: 8px !important;
+}
+
+.step-area p,
+[class*="step-area"] p {
+  color: rgba(255,255,255,0.6) !important;
+  font-size: 0.9rem !important;
+  line-height: 1.7 !important;
+}
+
+
+
+
+/* ============================================================
+   TESTIMONIALS SECTION
+   ============================================================ */
+.testimonial4-section-area,
+[class*="testimonial4-section"],
+[class*="testimonial-section"] {
+  background-color: var(--ni-white) !important;
+}
+
+.testimonial4-section-area h5,
+[class*="testimonial-section"] h5 {
+  color: var(--ni-red) !important;
+}
+
+/* Testimonial card */
+.testimonial4-boxarea,
+[class*="testimonial4-boxarea"],
+[class*="testimonial-box"] {
+  background: var(--ni-light-bg) !important;
+  border: 1px solid var(--ni-gray-soft) !important;
+  border-left: 4px solid var(--ni-red) !important;
+  border-radius: var(--ni-radius-lg) !important;
+  padding: 28px 24px !important;
+  transition: var(--ni-transition) !important;
+}
+
+.testimonial4-boxarea:hover,
+[class*="testimonial4-boxarea"]:hover {
+  box-shadow: var(--ni-shadow-md) !important;
+  transform: translateY(-3px) !important;
+  background: var(--ni-white) !important;
+}
+
+/* Quote icon */
+.testimonial4-boxarea .icons img,
+[class*="testimonial-box"] .icons img {
+  filter: invert(14%) sepia(94%) saturate(4000%) hue-rotate(350deg) brightness(90%) !important;
+}
+
+/* Review text */
+.testimonial4-boxarea p,
+[class*="testimonial-box"] p {
+  color: var(--ni-gray-text) !important;
+  line-height: 1.8 !important;
+  font-style: italic !important;
+}
+
+/* Reviewer name */
+.testimonial4-boxarea .name-area a,
+[class*="testimonial-box"] .name-area a {
+  color: var(--ni-black) !important;
+  font-weight: 700 !important;
+  text-decoration: none !important;
+}
+
+/* Reviewer designation */
+.testimonial4-boxarea .name-area p,
+[class*="testimonial-box"] .name-area p {
+  color: var(--ni-red) !important;
+  font-size: 13px !important;
+  font-style: normal !important;
+  font-weight: 500 !important;
+}
+
+/* Star ratings */
+[class*="testimonial"] .stars i,
+[class*="testimonial"] .rating i {
+  color: var(--ni-red) !important;
+}
+
+
+
+/* ============================================================
+   NICE SELECT (custom dropdown plugin)
+   ============================================================ */
+.nice-select {
+  border: 1.5px solid var(--ni-gray-soft) !important;
+  border-radius: var(--ni-radius-md) !important;
+  color: var(--ni-black) !important;
+}
+
+.nice-select .list {
+  border: 1px solid var(--ni-gray-soft) !important;
+  border-radius: var(--ni-radius-md) !important;
+}
+
+.nice-select .option:hover,
+.nice-select .option.selected {
+  color: var(--ni-red) !important;
+  background: var(--ni-light-bg) !important;
+}
+
+.nice-select::after {
+  border-color: var(--ni-red) !important;
+}
+
+
+/* ============================================================
+   PRELOADER
+   ============================================================ */
+#preloader,
+.preloader {
+  background-color: var(--ni-white) !important;
+}
+
+.preloader .spinner,
+.preloader .loader {
+  border-top-color: var(--ni-red) !important;
+  border-right-color: var(--ni-red) !important;
+}
+
+
+/* ============================================================
+   SCROLL TO TOP BUTTON
+   ============================================================ */
+#scroll-top,
+.scroll-to-top,
+[class*="scroll-top"] {
+  background: var(--ni-red) !important;
+  border-color: var(--ni-red) !important;
+  color: var(--ni-white) !important;
+  border-radius: var(--ni-radius-md) !important;
+  box-shadow: var(--ni-shadow-md) !important;
+  transition: var(--ni-transition) !important;
+}
+
+#scroll-top:hover,
+.scroll-to-top:hover {
+  background: var(--ni-red-dark) !important;
+  transform: translateY(-3px) !important;
+}
+
+
+/* ============================================================
+   AOS ANIMATION — Ensure elements don't flash wrong colors
+   ============================================================ */
+[data-aos] {
+  transition-property: opacity, transform !important;
+}
+
+
+/* ============================================================
+   UTILITY — Force-override any leftover yellow/gold styles
+   These target the template's original accent color
+   ============================================================ */
+[style*="color: #FFD61E"],
+[style*="color:#FFD61E"],
+[style*="color: #ffd61e"],
+[style*="color:#ffd61e"] {
+  color: var(--ni-red) !important;
+}
+
+[style*="background: #FFD61E"],
+[style*="background:#FFD61E"],
+[style*="background-color: #FFD61E"],
+[style*="background-color:#FFD61E"],
+[style*="background: #ffd61e"],
+[style*="background:#ffd61e"] {
+  background-color: var(--ni-red) !important;
+  color: var(--ni-white) !important;
+}
+
+[style*="border-color: #FFD61E"],
+[style*="border-color:#FFD61E"] {
+  border-color: var(--ni-red) !important;
+}
+
+/* SVG icon color overrides (sub-logo icons) */
+img[src*="sub-logo"] {
+  filter: invert(14%) sepia(94%) saturate(4000%) hue-rotate(350deg) brightness(88%) contrast(110%) !important;
+}
+
+/* Checkmark icons — keep them red-tinted */
+img[src*="check"] {
+  filter: invert(14%) sepia(94%) saturate(4000%) hue-rotate(350deg) brightness(88%) !important;
+}
+
+
+/* ============================================================
+   MOBILE RESPONSIVE OVERRIDES
+   ============================================================ */
+@media (max-width: 991px) {
+  /* Mobile nav */
+  .mobile-menu,
+  [class*="mobile-menu"],
+  .sidebar-menu {
+    background: var(--ni-white) !important;
+    border-right: 3px solid var(--ni-red) !important;
+  }
+
+  .mobile-menu a,
+  [class*="mobile-menu"] a {
+    color: var(--ni-black) !important;
+    border-bottom: 1px solid var(--ni-gray-soft) !important;
+    padding: 12px 20px !important;
+  }
+
+  .mobile-menu a:hover,
+  .mobile-menu .active a {
+    color: var(--ni-red) !important;
+    background: var(--ni-light-bg) !important;
+  }
+
+  /* Tighter hero on mobile */
+  .hero3-section-area::before { display: none; }
+}
+
+@media (max-width: 767px) {
+  /* Stack step cards nicely */
+  .step-area {
+    margin-bottom: 16px !important;
+  }
+}
+
+
+/* ============================================================
+   PRINT STYLES — Keep brand colors in print
+   ============================================================ */
+@media print {
+  a, a:visited { color: var(--ni-red) !important; }
+  header, footer { background: var(--ni-white) !important; }
+}
+        </style>
 </head>
 <body class="homepage4-body">
 
 <!--===== PRELOADER STARTS =======-->
-<div class="preloader preloader4">
-    <div class="loading-container">
-        <div class="loading"></div>
-        <div id="loading-icon"><img src="<?php echo $base_url; ?>assets/img/logo/preloader3.png" alt="Rebuilders Construction"></div>
-    </div>
-</div>
+
 <!--===== PRELOADER ENDS =======-->
 
 <?php include 'include/header.php'; ?>
 <!--===== MOBILE HEADER ENDS =======-->
 
 <!--===== HERO AREA STARTS =======-->
-<div class="hero4-slider-area" role="banner" aria-label="Rebuilders Construction Hero Section">
-    <img src="<?php echo $base_url; ?>assets/img/elements/elements4.png" alt="" class="elements4" aria-hidden="true">
-    <img src="<?php echo $base_url; ?>assets/img/all-images/bg/bg3.png" alt="" class="bg3" aria-hidden="true">
+<div class="hero3-section-area">
+    <img src="<?php echo $base_url; ?>assets/img/elements/elements3.png" alt="" class="elements3">
     <div class="container">
         <div class="row">
-            <div class="col-lg-12">
-                <div class="hero-main-slider">
-                    <div class="row">
-                        <div class="col-lg-9">
-                            <div class="slideshow">
-                                <div class="slider">
-                                    <div class="item">
-                                        <div class="main-img">
-                                            <img src="<?php echo $base_url; ?>assets/img/all-images/hero/hero-img6.png" alt="Rebuilders Construction — Building Dreams Restoring Trust" class="hero-img6" loading="eager" fetchpriority="high">
-                                        </div>
-                                        <div class="heading-area heading6">
-                                            <h5><img src="<?php echo $base_url; ?>assets/img/icons/sub-logo4.svg" alt="">Rebuilders Construction Company</h5>
-                                            <div class="space20"></div>
-                                            <h1>Building Dreams Restoring Trust</h1>
-                                            <div class="space16"></div>
-                                            <p>Our team of experienced professionals is dedicated to turning your vision into reality with precision and care.</p>
-                                            <div class="space32"></div>
-                                            <div class="btn-area1">
-                                                <a href="<?php echo $base_url; ?>contact-us.php" class="header-btn2-h4">Contact Us <span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div class="main-img">
-                                            <img src="<?php echo $base_url; ?>assets/img/all-images/hero/hero-img7.png" alt="Quality Construction Services by Rebuilders" class="hero-img6" loading="lazy">
-                                        </div>
-                                        <div class="heading-area heading6">
-                                            <h5><img src="<?php echo $base_url; ?>assets/img/icons/sub-logo4.svg" alt="">Rebuilders Construction Company</h5>
-                                            <div class="space20"></div>
-                                            <h2>Building Dreams Restoring Trust</h2>
-                                            <div class="space16"></div>
-                                            <p>Our team of experienced professionals is dedicated to turning your vision into reality with precision and care.</p>
-                                            <div class="space32"></div>
-                                            <div class="btn-area1">
-                                                <a href="<?php echo $base_url; ?>contact-us.php" class="header-btn2-h4">Contact Us <span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div class="main-img">
-                                            <img src="<?php echo $base_url; ?>assets/img/all-images/hero/hero-img9.png" alt="Expert Construction Team at Rebuilders" class="hero-img6" loading="lazy">
-                                        </div>
-                                        <div class="heading-area heading6">
-                                            <h5><img src="<?php echo $base_url; ?>assets/img/icons/sub-logo4.svg" alt="">Rebuilders Construction Company</h5>
-                                            <div class="space20"></div>
-                                            <h2>Building Dreams Restoring Trust</h2>
-                                            <div class="space16"></div>
-                                            <p>Our team of experienced professionals is dedicated to turning your vision into reality with precision and care.</p>
-                                            <div class="space32"></div>
-                                            <div class="btn-area1">
-                                                <a href="<?php echo $base_url; ?>contact-us.php" class="header-btn2-h4">Contact Us <span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span></a>
-                                            </div>
-                                        </div>
-                                    </div>
+            <div class="col-lg-6">
+                <div class="hero-header-area heading5">
+                    <h5 data-aos="fade-left" data-aos-duration="800">
+                        <img src="<?php echo $base_url; ?>assets/img/icons/sub-logo3.svg" alt="Niraj Industries Nagpur"> Nagpur's Trusted Pipe Manufacturer
+                    </h5>
+                    <div class="space20"></div>
+                    <h1 class="text-anime-style-3">Quality PVC Pipes, <br class="d-lg-block d-none"> Built for Every Project</h1>
+                    <div class="space16"></div>
+                    <p data-aos="fade-left" data-aos-duration="900">Niraj Industries manufactures and supplies PVC, UPVC, SWR, agriculture and plumbing pipes across Nagpur and Maharashtra. Trusted by contractors, builders and dealers for consistent quality and competitive wholesale pricing.</p>
+                    <div class="space32"></div>
+                  <div class="btn-area1" data-aos="fade-left" data-aos-duration="1000">
+    <a href="<?php echo $base_url; ?>products" class="header-btn2-h3" style="background:#B5100E; border-color:#B5100E; color:#fff;">View Our Pipes <span style="background:#fff; color:#B5100E;"><i class="fa-solid fa-arrow-right"></i></span></a>
+    <a href="<?php echo $base_url; ?>contact-us" class="header-btn2-h3 btn2" style="background:transparent; border-color:#B5100E; color:#B5100E;">Get Bulk Quote <span style="background:#B5100E; color:#fff;"><i class="fa-solid fa-arrow-right"></i></span></a>
+</div>
+                    <div class="space50"></div>
+                    <div class="hero-counter-area">
+                        <div class="row">
+                            <div class="col-md-3 col-6" data-aos="fade-up" data-aos-duration="800">
+                                <div class="counter-box">
+                                    <h3><span class="counter">15</span>+</h3>
+                                    <div class="space16"></div>
+                                    <p>Years in Business</p>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-lg-3">
-                            <div class="hero-side-area">
-                                <div class="start-dream">
-                                    <div class="img1">
-                                        <img src="<?php echo $base_url; ?>assets/img/all-images/hero/hero-img8.png" alt="Start Your Dream Construction Project with Rebuilders" loading="lazy">
-                                    </div>
-                                    <div class="text">
-                                        <div class="link">
-                                            <a href="<?php echo $base_url; ?>project.php">Start Your Dream</a>
-                                        </div>
-                                        <div class="arrow">
-                                            <a href="<?php echo $base_url; ?>project.php" aria-label="View Our Projects"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="space30"></div>
-                                <div class="author-area">
-                                    <img src="<?php echo $base_url; ?>assets/img/all-images/others/author-img2.png" alt="Happy Clients of Rebuilders Construction" loading="lazy">
+                            <div class="col-md-3 col-6" data-aos="fade-up" data-aos-duration="1000">
+                                <div class="counter-box">
+                                    <h3><span class="counter">5000</span>+</h3>
                                     <div class="space16"></div>
-                                    <ul aria-label="5 Star Rating">
-                                        <li><i class="fa-solid fa-star" aria-hidden="true"></i></li>
-                                        <li><i class="fa-solid fa-star" aria-hidden="true"></i></li>
-                                        <li><i class="fa-solid fa-star" aria-hidden="true"></i></li>
-                                        <li><i class="fa-solid fa-star" aria-hidden="true"></i></li>
-                                        <li><i class="fa-solid fa-star" aria-hidden="true"></i></li>
-                                    </ul>
-                                    <div class="space8"></div>
-                                    <p>850+ Reviews</p>
+                                    <p>Satisfied Clients</p>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-6" data-aos="fade-up" data-aos-duration="1200">
+                                <div class="counter-box">
+                                    <h3><span class="counter">20</span>+</h3>
+                                    <div class="space16"></div>
+                                    <p>Districts Served</p>
                                 </div>
                             </div>
                         </div>
@@ -179,30 +744,15 @@ $meta_keywords    = "construction company, building construction, renovation, re
             </div>
         </div>
     </div>
+    <div class="img1">
+        <img src="<?php echo $base_url; ?>assets/img/all-images/home/banner.webp"
+             alt="Niraj Industries PVC Pipe Manufacturer Nagpur Maharashtra">
+    </div>
 </div>
 <!--===== HERO AREA ENDS =======-->
 
 <!--===== BRANDS SLIDER STARTS =======-->
-<div class="others4-slider-area1" aria-label="Our Brand Partners" role="region">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="others4-slider-area owl-carousel">
-                    <div class="img1"><img src="<?php echo $base_url; ?>assets/img/elements/brand-img1.png" alt="Brand Partner 1" loading="lazy"></div>
-                    <div class="img1"><img src="<?php echo $base_url; ?>assets/img/elements/brand-img2.png" alt="Brand Partner 2" loading="lazy"></div>
-                    <div class="img1"><img src="<?php echo $base_url; ?>assets/img/elements/brand-img3.png" alt="Brand Partner 3" loading="lazy"></div>
-                    <div class="img1"><img src="<?php echo $base_url; ?>assets/img/elements/brand-img4.png" alt="Brand Partner 4" loading="lazy"></div>
-                    <div class="img1"><img src="<?php echo $base_url; ?>assets/img/elements/brand-img5.png" alt="Brand Partner 5" loading="lazy"></div>
-                    <div class="img1"><img src="<?php echo $base_url; ?>assets/img/elements/brand-img1.png" alt="Brand Partner 1" loading="lazy"></div>
-                    <div class="img1"><img src="<?php echo $base_url; ?>assets/img/elements/brand-img2.png" alt="Brand Partner 2" loading="lazy"></div>
-                    <div class="img1"><img src="<?php echo $base_url; ?>assets/img/elements/brand-img3.png" alt="Brand Partner 3" loading="lazy"></div>
-                    <div class="img1"><img src="<?php echo $base_url; ?>assets/img/elements/brand-img4.png" alt="Brand Partner 4" loading="lazy"></div>
-                    <div class="img1"><img src="<?php echo $base_url; ?>assets/img/elements/brand-img5.png" alt="Brand Partner 5" loading="lazy"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+
 <!--===== BRANDS SLIDER ENDS =======-->
 
 <!--===== ABOUT AREA STARTS =======-->
@@ -213,46 +763,46 @@ $meta_keywords    = "construction company, building construction, renovation, re
                 <div class="space100 d-lg-block d-none"></div>
                 <div class="space20 d-lg-block d-none"></div>
                 <div class="img1 image-anime reveal">
-                    <img src="<?php echo $base_url; ?>assets/img/all-images/about/about-img6.png" alt="Rebuilders Construction Work — Quality Craftsmanship" loading="lazy">
+                    <img src="<?php echo $base_url; ?>assets/img/all-images/home/about_niraj1.webp" alt="Niraj Industries PVC pipe production Nagpur" loading="lazy">
                 </div>
             </div>
             <div class="col-lg-3 col-md-6">
                 <div class="space20 d-lg-none d-block"></div>
                 <div class="img1 image-anime reveal">
-                    <img src="<?php echo $base_url; ?>assets/img/all-images/about/about-img7.png" alt="Rebuilders Construction Project — Expert Team at Work" loading="lazy">
+                    <img src="<?php echo $base_url; ?>assets/img/all-images/home/about_niraj2.webp" alt="Niraj Industries UPVC SWR pipes wholesale Nagpur" loading="lazy">
                 </div>
             </div>
             <div class="col-lg-6">
                 <div class="about-header heading4">
                     <h5 data-aos="fade-left" data-aos-duration="800">
-                        <img src="<?php echo $base_url; ?>assets/img/icons/sub-logo4.svg" alt="">About Rebuilders Company
+                        <img src="<?php echo $base_url; ?>assets/img/icons/sub-logo4.svg" alt="">About Niraj Industries
                     </h5>
                     <div class="space16"></div>
-                    <h2 class="text-anime-style-3" id="about-heading">The Journey, Values, and Vision of Rebuilders Construction Company</h2>
+                    <h2 class="text-anime-style-3" id="about-heading">Nagpur's Reliable PVC & UPVC Pipe Manufacturer — Quality You Can Count On</h2>
                     <div class="space20"></div>
-                    <p data-aos="fade-left" data-aos-duration="1000">Rebuilders Construction Company was founded over 20 years ago with a mission to build exceptional structures and restore properties to their former glory — started as a small family business.</p>
+                    <p data-aos="fade-left" data-aos-duration="1000">Niraj Industries was founded with one goal — to manufacture high-grade PVC pipes that contractors, farmers and builders across Nagpur and Maharashtra can rely on. From a local supplier, we have grown into one of Vidarbha's most trusted pipe manufacturers.</p>
                     <div class="space32"></div>
                     <ul data-aos="fade-left" data-aos-duration="1100">
-                        <li><img src="<?php echo $base_url; ?>assets/img/icons/check4.svg" alt="Check"> First Class Quality Service</li>
-                        <li><img src="<?php echo $base_url; ?>assets/img/icons/check4.svg" alt="Check"> Stylistic Formula Method</li>
-                        <li><img src="<?php echo $base_url; ?>assets/img/icons/check4.svg" alt="Check"> Service With Reasonable Price</li>
-                        <li><img src="<?php echo $base_url; ?>assets/img/icons/check4.svg" alt="Check"> Immediate 24/7 Emergency</li>
+                        <li><img src="<?php echo $base_url; ?>assets/img/icons/check4.svg" alt="Check"> Consistent Quality Across Every Batch</li>
+                        <li><img src="<?php echo $base_url; ?>assets/img/icons/check4.svg" alt="Check"> Wholesale Pricing for Dealers & Contractors</li>
+                        <li><img src="<?php echo $base_url; ?>assets/img/icons/check4.svg" alt="Check"> Pan-Maharashtra Delivery — Fast & Reliable</li>
+                        <li><img src="<?php echo $base_url; ?>assets/img/icons/check4.svg" alt="Check"> Full Range — PVC, UPVC, SWR,pipes</li>
                     </ul>
                     <div class="space32"></div>
                     <div class="btn-area" data-aos="fade-left" data-aos-duration="1200">
-                        <a href="<?php echo $base_url; ?>about-us.php" class="header-btn2-h4">About More <span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span></a>
-                    </div>
-                    <div class="succes-rate-area" data-aos="zoom-in" data-aos-duration="1000">
+    <a href="<?php echo $base_url; ?>about-us" class="header-btn2-h4" style="background:#B5100E; color:#fff;">Know More About Us <span style="background:#fff; color:#B5100E;"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span></a>
+</div>
+                    <div class="succes-rate-area" data-aos="zoom-in" data-aos-duration="1000" >
                         <div class="successful">
                             <h3><span class="counter">100</span>%</h3>
                             <div class="space16"></div>
-                            <p>Success Rate</p>
+                            <p>Quality Assured</p>
                         </div>
                         <div class="space20"></div>
                         <div class="client">
-                            <h3><span class="counter">3592</span>+</h3>
+                            <h3><span class="counter">5000</span>+</h3>
                             <div class="space16"></div>
-                            <p>Satisfied Client</p>
+                            <p>Satisfied Clients</p>
                         </div>
                     </div>
                 </div>
@@ -262,7 +812,83 @@ $meta_keywords    = "construction company, building construction, renovation, re
 </section>
 <!--===== ABOUT AREA ENDS =======-->
 
-<!--===== SERVICE AREA STARTS =======-->
+<!--===== WHY CHOOSE US STARTS =======-->
+<div class="choose3-section-area sp1">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="choose-header heading2 space-margin60">
+                    <h5><img src="assets/img/icons/sub-logo3.svg" alt="">Why Choose Us</h5>
+                    <div class="space16"></div>
+                    <h2 class="text-anime-style-3">Why Contractors & Dealers Across Nagpur Choose Niraj Industries</h2>
+                </div>
+                <div class="images-area">
+                    <div class="img1 image-anime reveal">
+                        <img src="assets/img/all-images/home/why_choose2.webp" alt="Niraj Industries UPVC pipe quality Nagpur">
+                    </div>
+                    <div class="img2 text-end image-anime reveal">
+                        <img src="assets/img/all-images/home/why_choose1.webp" alt="SWR drainage pipe supplier Nagpur Maharashtra">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="choose-pera-area heading2">
+                    <p data-aos="fade-left" data-aos-duration="700">At Niraj Industries, we understand that your project's success depends on the pipes you use. Our commitment to consistent quality, transparent pricing and on-time delivery is what sets us apart as Nagpur's preferred PVC pipe manufacturer. Here's why hundreds of clients trust us.</p>
+                    <div class="space60"></div>
+                    <div class="list-area" data-aos="fade-left" data-aos-duration="800">
+                        <div class="icons">
+                            <img src="assets/img/icons/choose4.svg" alt="">
+                        </div>
+                        <div class="content">
+                            <a href="#">Manufactured in Nagpur — Direct from Plant</a>
+                            <div class="space16"></div>
+                            <p>No middlemen. We manufacture PVC, UPVC and SWR pipes at our own Nagpur facility and supply directly — so you get better pricing and faster delivery.</p>
+                        </div>
+                    </div>
+                    <div class="space30"></div>
+                    <div class="list-area" data-aos="fade-left" data-aos-duration="900">
+                        <div class="icons">
+                            <img src="assets/img/icons/choose5.svg" alt="">
+                        </div>
+                        <div class="content">
+                            <a href="#">Best Wholesale PVC Pipe Price in Nagpur</a>
+                            <div class="space16"></div>
+                            <p>Dealers, contractors and builders get competitive bulk pricing. Whether you need 10 pipes or 10,000 — we quote transparently with no hidden charges.</p>
+                        </div>
+                    </div>
+                    <div class="space30"></div>
+                    <div class="list-area" data-aos="fade-left" data-aos-duration="1000">
+                        <div class="icons">
+                            <img src="assets/img/icons/choose6.svg" alt="">
+                        </div>
+                        <div class="content">
+                            <a href="#">Fast Delivery Across Maharashtra</a>
+                            <div class="space16"></div>
+                            <p>Serving Nagpur, Wardha, Amravati, Chandrapur, Yavatmal and beyond. Bulk orders dispatched within 24–48 hours so your project never faces delays.</p>
+                        </div>
+                    </div>
+                    <div class="space32"></div>
+                   <div class="btn-area1" data-aos="fade-left" data-aos-duration="1200">
+    <a href="<?php echo $base_url; ?>products" class="header-btn2-h3" style="background:#B5100E !important; border-color:#B5100E !important; color:#fff !important;">
+        Explore Our Pipe Range <span style="background:#fff; color:#B5100E;"><i class="fa-solid fa-arrow-right"></i></span>
+    </a>
+</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--===== WHY CHOOSE US ENDS =======-->
+
+<!--===== PRODUCTS AREA STARTS =======-->
+<?php
+$slider_result = $conn->query("SELECT * FROM products WHERE is_active = 1 ORDER BY sort_order ASC LIMIT 7");
+$slider_products = [];
+while ($row = $slider_result->fetch_assoc()) {
+    $slider_products[] = $row;
+}
+?>
+
 <section class="service4-section-area sp1" aria-labelledby="service-heading">
     <div class="container">
         <div class="row">
@@ -270,272 +896,116 @@ $meta_keywords    = "construction company, building construction, renovation, re
                 <div class="service4-header text-center heading2 space-margin60">
                     <h5><img src="<?php echo $base_url; ?>assets/img/icons/sub-logo4.svg" alt="">Our Products</h5>
                     <div class="space16"></div>
-                    <h2 class="text-anime-style-3" id="service-heading">Delivering Quality Construction Services for Over 20 Years</h2>
+                    <h2 class="text-anime-style-3" id="service-heading">PVC, UPVC, SWR, Agriculture & Plumbing Pipes — Manufactured in Nagpur</h2>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-lg-12">
-                <div class="service4-slider-area owl-carousel" role="region" aria-label="Our Construction Services">
+                <div class="service4-slider-area owl-carousel" role="region" aria-label="Niraj Industries Product Range">
+
+                    <?php foreach ($slider_products as $product): ?>
                     <div class="service4-slider-box">
                         <div class="img1">
-                            <img src="<?php echo $base_url; ?>assets/img/all-images/service/service-img13.png" alt="Design & Build Construction Service by Rebuilders" loading="lazy">
+                            <img src="<?php echo $base_url . htmlspecialchars($product['image']); ?>"
+                                 alt="<?php echo htmlspecialchars($product['name']); ?> — Niraj Industries Nagpur"
+                                 loading="lazy"
+                                 onerror="this.src='<?php echo $base_url; ?>assets/img/all-images/service/service-img13.png'">
                         </div>
-                        <div class="heading">
-                            <a href="<?php echo $base_url; ?>service2.php">Design &amp; Build</a>
-                        </div>
-                        <div class="arrow">
-                            <a href="<?php echo $base_url; ?>service2.php">Read More <span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span></a>
-                        </div>
-                    </div>
-                    <div class="service4-slider-box">
-                        <div class="img1">
-                            <img src="<?php echo $base_url; ?>assets/img/all-images/service/service-img14.png" alt="Commercial Construction Service by Rebuilders" loading="lazy">
-                        </div>
-                        <div class="heading">
-                            <a href="<?php echo $base_url; ?>service3.php">Commercial Construction</a>
+                        <div class="product-category-tag" style="font-size:12px; color:#aaa; margin: 4px 0 6px;">
+                            <?php echo ucfirst(htmlspecialchars($product['category'])); ?>
                         </div>
                         <div class="arrow">
-                            <a href="<?php echo $base_url; ?>service3.php">Read More <span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span></a>
+                            <a href="<?php echo $base_url; ?>products/<?php echo htmlspecialchars($product['slug']); ?>">
+                                View Details <span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+                            </a>
                         </div>
                     </div>
-                    <div class="service4-slider-box">
-                        <div class="img1">
-                            <img src="<?php echo $base_url; ?>assets/img/all-images/service/service-img15.png" alt="Residential Construction Service by Rebuilders" loading="lazy">
-                        </div>
-                        <div class="heading">
-                            <a href="<?php echo $base_url; ?>service4.php">Residential Construction</a>
-                        </div>
-                        <div class="arrow">
-                            <a href="<?php echo $base_url; ?>service4.php">Read More <span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span></a>
-                        </div>
-                    </div>
+                    <?php endforeach; ?>
+
                 </div>
                 <div class="space40"></div>
-                <div class="btn-area1 text-center">
-                    <a href="<?php echo $base_url; ?>service1.php" class="header-btn2-h4">View All Products <span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span></a>
-                </div>
+              <div class="btn-area1 text-center">
+    <a href="<?php echo $base_url; ?>products" class="header-btn2-h4" style="background:#B5100E; color:#fff;">
+        View All Products <span style="background:#fff; color:#B5100E;"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+    </a>
+</div>
             </div>
         </div>
     </div>
 </section>
-<!--===== SERVICE AREA ENDS =======-->
+<!--===== PRODUCTS AREA ENDS =======-->
 
-<!--===== COST CALCULATOR AREA STARTS =======-->
-<section class="cost4-calculator-area sp1" aria-labelledby="cost-heading">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-4 m-auto">
-                <div class="cost-header text-center space-margin60 heading1">
-                    <h5 data-aos="fade-left" data-aos-duration="800">
-                        <img src="<?php echo $base_url; ?>assets/img/icons/sub-logo1.svg" alt="">Estimated Price
-                    </h5>
-                    <div class="space16"></div>
-                    <h3 class="text-anime-style-3" id="cost-heading">Cost Calculator</h3>
-                </div>
-            </div>
+<!--===== HOW WE WORK STARTS =======-->
+<div class="works-section-area sp2">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-4">
+        <div class="works-header heading1">
+          <h5 data-aos="fade-left" data-aos-duration="800"><img src="assets/img/icons/sub-logo1.svg" alt=""> How We Work</h5>
+          <div class="space16"></div>
+          <h3 class="text-anime-style-3">How Ordering from Niraj Industries Works</h3>
+          <div class="space16 d-lg-none d-block"></div>
         </div>
-        <div class="row">
-            <div class="col-lg-10 m-auto">
-                <div class="cost-section-boxarea">
-                    <div class="row">
-                        <div class="col-lg-8">
-                            <div class="row">
-                                <div class="col-lg-6" data-aos="fade-up" data-aos-duration="800">
-                                    <div class="slider-area">
-                                        <h3>Home Size:</h3>
-                                        <div class="space16"></div>
-                                        <div class="slider-container">
-                                            <div id="slider-value" class="slider-value">150</div>
-                                            <input type="range" min="0" max="300" value="150" id="slider" aria-label="Home Size Slider">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6" data-aos="fade-up" data-aos-duration="900">
-                                    <div class="slider-area">
-                                        <h3>Number Of Floors:</h3>
-                                        <div class="space16"></div>
-                                        <div class="slider-container">
-                                            <div id="slider-value2" class="slider-value2">5</div>
-                                            <input type="range" min="0" max="10" value="5" id="slider2" aria-label="Number of Floors Slider">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="space32"></div>
-                                    <div class="select-area">
-                                        <h3>Energetic Class:</h3>
-                                        <div class="space16"></div>
-                                        <select aria-label="Select Energetic Class">
-                                            <option value="1">Option 01</option>
-                                            <option value="2">Option 02</option>
-                                            <option value="3">Option 03</option>
-                                            <option value="4">Option 04</option>
-                                            <option value="5">Option 05</option>
-                                            <option value="6">Option 06</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="space32"></div>
-                                    <div class="select-area">
-                                        <h3>Bathroom:</h3>
-                                        <div class="space16"></div>
-                                        <select aria-label="Select Number of Bathrooms">
-                                            <option value="1">Option 01</option>
-                                            <option value="2">Option 02</option>
-                                            <option value="3">Option 03</option>
-                                            <option value="4">Option 04</option>
-                                            <option value="5">Option 05</option>
-                                            <option value="6">Option 06</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4" data-aos="fade-up" data-aos-duration="1200">
-                                    <div class="space32"></div>
-                                    <div class="select-area">
-                                        <h3>Terrace:</h3>
-                                        <div class="space16"></div>
-                                        <div class="btn-area1">
-                                            <a href="javascript:void(0);" class="yes active-size" aria-label="Terrace Yes">Yes</a>
-                                            <a href="javascript:void(0);" class="no" aria-label="Terrace No">No</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="space32"></div>
-                                <div class="col-lg-12" data-aos="fade-up" data-aos-duration="1000">
-                                    <div class="materials-area">
-                                        <h3>Building Materials:</h3>
-                                        <ul>
-                                            <li><a href="#">Cellular Concrete</a></li>
-                                            <li><a href="#">Ventilated Bricks</a></li>
-                                            <li><a href="#">Wood</a></li>
-                                            <li><a href="#" style="margin: 16px 0 0 0;">Prefabricated</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="space32"></div>
-                                    <h2 class="text-anime-style-3">$<span class="counter">32,500</span></h2>
-                                    <div class="space16"></div>
-                                    <p>Estimated Price</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="cost-head">
-                                <h4 data-aos="fade-left" data-aos-duration="800">Terms &amp; Condition</h4>
-                                <div class="space16"></div>
-                                <p data-aos="fade-left" data-aos-duration="900">By accessing or using our website, you agree to comply with and be bound by the following terms and conditions.</p>
-                                <div class="space16"></div>
-                                <ul data-aos="fade-left" data-aos-duration="1000">
-                                    <li><img src="<?php echo $base_url; ?>assets/img/icons/check4.svg" alt="Check"> Planning and Budget</li>
-                                    <li><img src="<?php echo $base_url; ?>assets/img/icons/check4.svg" alt="Check"> Start For New Construction</li>
-                                    <li><img src="<?php echo $base_url; ?>assets/img/icons/check4.svg" alt="Check"> Interior Quality Finishes</li>
-                                </ul>
-                                <div class="space32"></div>
-                                <div class="btn-area" data-aos="fade-left" data-aos-duration="1200">
-                                    <a href="<?php echo $base_url; ?>contact-us.php" class="header-btn2-h4">Request It Now <span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+      </div>
+      <div class="col-lg-2"></div>
+      <div class="col-lg-6">
+        <div class="pera heading1" data-aos="fade-left" data-aos-duration="1000">
+          <p>We have made ordering simple and transparent. Whether you need pipes for a housing project, agricultural setup or drainage system — we guide you through every step and ensure on-time delivery to your site across Maharashtra.</p>
         </div>
+      </div>
     </div>
-</section>
-<!--===== COST CALCULATOR AREA ENDS =======-->
-
-<!--===== TEAM AREA STARTS =======-->
-<section class="team4-section-area sp2" aria-labelledby="team-heading">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6 m-auto">
-                <div class="team-header text-center heading4 space-margin60">
-                    <h5 data-aos="fade-left" data-aos-duration="800">
-                        <img src="<?php echo $base_url; ?>assets/img/icons/sub-logo4.svg" alt="">Our Team
-                    </h5>
-                    <div class="space16"></div>
-                    <h2 class="text-anime-style-3" id="team-heading">Our Professional Team Members</h2>
-                </div>
+    <div class="space60 d-lg-block d-none"></div>
+    <div class="space30 d-lg-none d-block"></div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="step-by-step">
+          <div class="row">
+            <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-duration="800">
+              <div class="step-area">
+                
+                <div class="space24"></div>
+                <a>Share Your Requirement</a>
+                <div class="space16"></div>
+                <p>Tell us your pipe type, size and quantity. Our team confirms availability and gives accurate pricing — no vague estimates.</p>
+              </div>
             </div>
-        </div>
-        <div class="row">
             <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-duration="900">
-                <div class="team-boxarea">
-                    <div class="img1">
-                        <img src="<?php echo $base_url; ?>assets/img/all-images/team/team-img1.png" alt="Annette Zboncak — Founder, Rebuilders Construction Company" loading="lazy">
-                    </div>
-                    <div class="content">
-                        <a href="<?php echo $base_url; ?>team.php">Annette Zboncak</a>
-                        <div class="space12"></div>
-                        <p>Founder</p>
-                    </div>
-                    <ul aria-label="Annette Zboncak Social Links">
-                        <li><a href="#" aria-label="Annette on Twitter"><i class="fa-brands fa-twitter" aria-hidden="true"></i></a></li>
-                        <li><a href="#" aria-label="Annette on Facebook"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a></li>
-                        <li><a href="#" aria-label="Annette on Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a></li>
-                        <li><a href="#" aria-label="Annette on YouTube"><i class="fa-brands fa-youtube" aria-hidden="true"></i></a></li>
-                    </ul>
-                </div>
+              <div class="step-area">
+              
+                <div class="space24"></div>
+                <a>Get a Wholesale Quote</a>
+                <div class="space16"></div>
+                <p>We provide transparent bulk pricing for dealers and contractors. No hidden charges — what we quote is what you pay.</p>
+              </div>
             </div>
             <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-duration="1000">
-                <div class="team-boxarea">
-                    <div class="img1">
-                        <img src="<?php echo $base_url; ?>assets/img/all-images/team/team-img2.png" alt="Freddie Gerlach — Site Manager, Rebuilders Construction Company" loading="lazy">
-                    </div>
-                    <div class="content">
-                        <a href="<?php echo $base_url; ?>team.php">Freddie Gerlach</a>
-                        <div class="space12"></div>
-                        <p>Site Manager</p>
-                    </div>
-                    <ul aria-label="Freddie Gerlach Social Links">
-                        <li><a href="#" aria-label="Freddie on Twitter"><i class="fa-brands fa-twitter" aria-hidden="true"></i></a></li>
-                        <li><a href="#" aria-label="Freddie on Facebook"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a></li>
-                        <li><a href="#" aria-label="Freddie on Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a></li>
-                        <li><a href="#" aria-label="Freddie on YouTube"><i class="fa-brands fa-youtube" aria-hidden="true"></i></a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-duration="1100">
-                <div class="team-boxarea">
-                    <div class="img1">
-                        <img src="<?php echo $base_url; ?>assets/img/all-images/team/team-img3.png" alt="Tom Gusikowski V — Engineer, Rebuilders Construction Company" loading="lazy">
-                    </div>
-                    <div class="content">
-                        <a href="<?php echo $base_url; ?>team.php">Tom Gusikowski V</a>
-                        <div class="space12"></div>
-                        <p>Engineer</p>
-                    </div>
-                    <ul aria-label="Tom Gusikowski Social Links">
-                        <li><a href="#" aria-label="Tom on Twitter"><i class="fa-brands fa-twitter" aria-hidden="true"></i></a></li>
-                        <li><a href="#" aria-label="Tom on Facebook"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a></li>
-                        <li><a href="#" aria-label="Tom on Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a></li>
-                        <li><a href="#" aria-label="Tom on YouTube"><i class="fa-brands fa-youtube" aria-hidden="true"></i></a></li>
-                    </ul>
-                </div>
+              <div class="step-area">
+           
+                <div class="space24"></div>
+                <a>Quality Check & Dispatch</a>
+                <div class="space16"></div>
+                <p>Every order is quality checked at our Nagpur plant before dispatch. We verify each batch for consistency and accuracy.</p>
+              </div>
             </div>
             <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-duration="1200">
-                <div class="team-boxarea">
-                    <div class="img1">
-                        <img src="<?php echo $base_url; ?>assets/img/all-images/team/team-img4.png" alt="Beatrice Raynor — Architect, Rebuilders Construction Company" loading="lazy">
-                    </div>
-                    <div class="content">
-                        <a href="<?php echo $base_url; ?>team.php">Beatrice Raynor</a>
-                        <div class="space12"></div>
-                        <p>Architecture</p>
-                    </div>
-                    <ul aria-label="Beatrice Raynor Social Links">
-                        <li><a href="#" aria-label="Beatrice on Twitter"><i class="fa-brands fa-twitter" aria-hidden="true"></i></a></li>
-                        <li><a href="#" aria-label="Beatrice on Facebook"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a></li>
-                        <li><a href="#" aria-label="Beatrice on Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a></li>
-                        <li><a href="#" aria-label="Beatrice on YouTube"><i class="fa-brands fa-youtube" aria-hidden="true"></i></a></li>
-                    </ul>
-                </div>
+              <div class="step-area">
+            
+                <div class="space24"></div>
+                <a>Delivered to Your Site</a>
+                <div class="space16"></div>
+                <p>We deliver across Nagpur and Maharashtra within 24–48 hours for bulk orders. Your project stays on schedule.</p>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </div>
-</section>
-<!--===== TEAM AREA ENDS =======-->
+  </div>
+</div>
+<!--===== HOW WE WORK ENDS =======-->
+
+<?php include 'include/latest-blog.php'; ?>
 
 <!--===== TESTIMONIAL AREA STARTS =======-->
 <section class="testimonial4-section-area sp1" aria-labelledby="testimonial-heading">
@@ -543,26 +1013,26 @@ $meta_keywords    = "construction company, building construction, renovation, re
         <div class="row">
             <div class="col-lg-6 m-auto">
                 <div class="testimonial-header text-center heading2 space-margin60">
-                    <h5><img src="<?php echo $base_url; ?>assets/img/icons/sub-logo4.svg" alt="">Testimonials</h5>
+                    <h5><img src="<?php echo $base_url; ?>assets/img/icons/sub-logo4.svg" alt="">Customer Reviews</h5>
                     <div class="space16"></div>
-                    <h2 class="text-anime-style-3" id="testimonial-heading">What Our Customers Say</h2>
+                    <h2 class="text-anime-style-3" id="testimonial-heading">What Our Clients Say About Niraj Industries</h2>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-lg-12">
-                <div class="testionial4-slider-area owl-carousel" role="region" aria-label="Customer Testimonials Slider">
+                <div class="testionial4-slider-area owl-carousel" role="region" aria-label="Niraj Industries Customer Testimonials">
                     <div class="testimonial4-boxarea">
                         <div class="icons">
                             <img src="<?php echo $base_url; ?>assets/img/icons/quoto3.svg" alt="Quote Icon" loading="lazy">
                         </div>
                         <div class="text-area">
-                            <p>"Rebuilders Construction Company transformed our outdated kitchen into a modern masterpiece. Their team was professional, efficient, and attentive to our needs. We couldn't be happier with the results!"</p>
+                            <p>"We have been sourcing UPVC pipes from Niraj Industries for our residential projects in Nagpur for the past 4 years. Delivery is always on time and the pipe quality is consistent batch after batch."</p>
                             <div class="space24"></div>
                             <div class="name-area">
-                                <a href="<?php echo $base_url; ?>team.php">Enring Haaland</a>
+                                <a href="#">Rajesh Thakre</a>
                                 <div class="space8"></div>
-                                <p>Client</p>
+                                <p>Civil Contractor, Nagpur</p>
                             </div>
                         </div>
                     </div>
@@ -571,12 +1041,12 @@ $meta_keywords    = "construction company, building construction, renovation, re
                             <img src="<?php echo $base_url; ?>assets/img/icons/quoto3.svg" alt="Quote Icon" loading="lazy">
                         </div>
                         <div class="text-area">
-                            <p>"From start to finish, the team at Rebuilders Construction Company exceeded our expectations. Their attention to detail and commitment to quality made our home renovation project a success. Highly recommend!"</p>
+                            <p>"Niraj Industries supplies agriculture PVC pipes across our dealer network in Vidarbha. Their pricing is competitive and quality is consistent. Highly recommend for bulk agriculture pipe orders."</p>
                             <div class="space24"></div>
                             <div class="name-area">
-                                <a href="<?php echo $base_url; ?>team.php">S. Ramos</a>
+                                <a href="#">Santosh Deshmukh</a>
                                 <div class="space8"></div>
-                                <p>Client</p>
+                                <p>Agriculture Dealer, Wardha</p>
                             </div>
                         </div>
                     </div>
@@ -585,12 +1055,12 @@ $meta_keywords    = "construction company, building construction, renovation, re
                             <img src="<?php echo $base_url; ?>assets/img/icons/quoto3.svg" alt="Quote Icon" loading="lazy">
                         </div>
                         <div class="text-area">
-                            <p>"Rebuilders Construction Company transformed our outdated kitchen into a modern masterpiece. Their team was professional, efficient, and attentive to our needs. We couldn't be happier with the results!"</p>
+                            <p>"Ordered SWR drainage pipes for a large housing society project. Niraj Industries gave us the best wholesale price and material quality was top class. Zero leakage complaints from our clients."</p>
                             <div class="space24"></div>
                             <div class="name-area">
-                                <a href="<?php echo $base_url; ?>team.php">Enring Haaland</a>
+                                <a href="#">Praful Meshram</a>
                                 <div class="space8"></div>
-                                <p>Client</p>
+                                <p>Builder & Developer, Nagpur</p>
                             </div>
                         </div>
                     </div>
@@ -599,12 +1069,12 @@ $meta_keywords    = "construction company, building construction, renovation, re
                             <img src="<?php echo $base_url; ?>assets/img/icons/quoto3.svg" alt="Quote Icon" loading="lazy">
                         </div>
                         <div class="text-area">
-                            <p>"From start to finish, the team at Rebuilders Construction Company exceeded our expectations. Their attention to detail and commitment to quality made our home renovation project a success. Highly recommend!"</p>
+                            <p>"We supply plumbing materials across Chandrapur and Niraj Industries has been our go-to PVC pipe manufacturer for 3 years. Fast dispatch, proper markings and honest billing — everything a dealer needs."</p>
                             <div class="space24"></div>
                             <div class="name-area">
-                                <a href="<?php echo $base_url; ?>team.php">S. Ramos</a>
+                                <a href="#">Vijay Raut</a>
                                 <div class="space8"></div>
-                                <p>Client</p>
+                                <p>Hardware & Plumbing Dealer, Chandrapur</p>
                             </div>
                         </div>
                     </div>
@@ -613,12 +1083,12 @@ $meta_keywords    = "construction company, building construction, renovation, re
                             <img src="<?php echo $base_url; ?>assets/img/icons/quoto3.svg" alt="Quote Icon" loading="lazy">
                         </div>
                         <div class="text-area">
-                            <p>"Rebuilders Construction Company transformed our outdated kitchen into a modern masterpiece. Their team was professional, efficient, and attentive to our needs. We couldn't be happier with the results!"</p>
+                            <p>"Installed Niraj Industries column pipes for borewell at our farm in Amravati district. Excellent quality, uniform wall thickness throughout. They delivered to our village location without any issues."</p>
                             <div class="space24"></div>
                             <div class="name-area">
-                                <a href="<?php echo $base_url; ?>team.php">Enring Haaland</a>
+                                <a href="#">Suresh Wankhede</a>
                                 <div class="space8"></div>
-                                <p>Client</p>
+                                <p>Farmer, Amravati District</p>
                             </div>
                         </div>
                     </div>
@@ -627,12 +1097,12 @@ $meta_keywords    = "construction company, building construction, renovation, re
                             <img src="<?php echo $base_url; ?>assets/img/icons/quoto3.svg" alt="Quote Icon" loading="lazy">
                         </div>
                         <div class="text-area">
-                            <p>"From start to finish, the team at Rebuilders Construction Company exceeded our expectations. Their attention to detail and commitment to quality made our home renovation project a success. Highly recommend!"</p>
+                            <p>"Running a construction firm in Nagpur, I have tried many PVC pipe suppliers. Niraj Industries stands out for consistency and responsiveness. They understand contractor requirements and always prioritize timely supply."</p>
                             <div class="space24"></div>
                             <div class="name-area">
-                                <a href="<?php echo $base_url; ?>team.php">S. Ramos</a>
+                                <a href="#">Nikhil Bobde</a>
                                 <div class="space8"></div>
-                                <p>Client</p>
+                                <p>Construction Firm Owner, Nagpur</p>
                             </div>
                         </div>
                     </div>
@@ -646,7 +1116,6 @@ $meta_keywords    = "construction company, building construction, renovation, re
 <!--===== FOOTER AREA STARTS =======-->
 <?php include 'include/footer.php'; ?>
 <!--===== FOOTER AREA ENDS =======-->
-
 <!--===== JS SCRIPT LINKS =======-->
 <script src="<?php echo $base_url; ?>assets/js/plugins/bootstrap.min.js"></script>
 <script src="<?php echo $base_url; ?>assets/js/plugins/fontawesome.js"></script>

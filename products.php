@@ -20,7 +20,7 @@ $total_products = count($all_products);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo htmlspecialchars($page_title); ?></title>
     <meta name="description" content="<?php echo htmlspecialchars($meta_description); ?>">
-    <link rel="shortcut icon" href="<?php echo $base_url; ?>assets/img/logo/fav-logo4.png" type="image/x-icon">
+   
 
     <link rel="stylesheet" href="<?php echo $base_url; ?>assets/css/plugins/bootstrap.min.css">
     <link rel="stylesheet" href="<?php echo $base_url; ?>assets/css/plugins/fontawesome.css">
@@ -35,6 +35,7 @@ $total_products = count($all_products);
 body.filter-sticky #header {
     display: none !important;
 }
+
     </style>
 </head>
 <body class="homepage4-body">
@@ -43,39 +44,8 @@ body.filter-sticky #header {
 <?php include 'include/header.php'; ?>
 
 <!-- ===== PAGE HERO ===== -->
-<section class="products-hero-area">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-8">
-                <nav class="breadcrumb-nav" style="margin-top:40px;">
-                    <a href="<?php echo $base_url; ?>index.php">Home</a>
-                    <i class="fa-solid fa-chevron-right"></i>
-                    <span>Our Products</span>
-                </nav>
-                <h1>Our <span>Product</span> Range</h1>
-                <p class="hero-desc">Explore Niraj Industries' complete lineup of premium commercial products — engineered for performance, built to last.</p>
-                <div class="hero-stats">
-                    <div class="hero-stat-item">
-                        <h3>120+</h3>
-                        <p>Products</p>
-                    </div>
-                    <div class="hero-stat-item">
-                        <h3>20+</h3>
-                        <p>Years Experience</p>
-                    </div>
-                    <div class="hero-stat-item">
-                        <h3>3500+</h3>
-                        <p>Happy Clients</p>
-                    </div>
-                    <div class="hero-stat-item">
-                        <h3>100%</h3>
-                        <p>Quality Assured</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+<div class="inner-hero-area" style="background-image: url(<?php echo $base_url; ?>assets/img/all-images/home/three.webp);" role="banner" aria-label="About Us Banner">
+</div>
 
 <!-- ===== TRUST STRIP ===== -->
 <div class="trust-strip">
@@ -148,10 +118,10 @@ body.filter-sticky #header {
             <span class="featured-banner-tag">⭐ Featured Collection</span>
             <h2>Premium Grade <span>Construction</span><br>Materials — 2024</h2>
             <p>Industry-leading quality products trusted by contractors, builders, and architects across India.</p>
-            <a href="<?php echo $base_url; ?>contact-us.php" class="header-btn2-h4">
+            <a href="<?php echo $base_url; ?>contact-us" class="header-btn2-h4">
                 Get Bulk Quote <span><i class="fa-solid fa-arrow-right"></i></span>
             </a>
-            <img src="<?php echo $base_url; ?>assets/img/all-images/hero/hero-img6.png" alt="Featured Product" class="featured-banner-img">
+            <img src="<?php echo $base_url; ?>assets/img/all-images/home/products.webp" alt="Featured Product" class="featured-banner-img">
         </div>
 
         <!-- Section Heading -->
@@ -202,7 +172,7 @@ body.filter-sticky #header {
                 <img src="<?php echo $base_url . $product['image']; ?>" 
                      alt="<?php echo htmlspecialchars($product['name']); ?>"
                      onerror="this.src='<?php echo $base_url; ?>assets/img/all-images/service/service-img13.png'">
-                <a href="<?php echo $base_url; ?>single-product.php?id=<?php echo $product['id']; ?>" 
+                <a href="<?php echo $base_url; ?>products/<?php echo htmlspecialchars($product['slug']); ?>" 
                    class="product-quick-view">
                    <i class="fa-solid fa-eye"></i> Quick View
                 </a>
@@ -212,7 +182,7 @@ body.filter-sticky #header {
                     <?php echo ucfirst(htmlspecialchars($product['category'])); ?>
                 </div>
                 <h3>
-                    <a href="<?php echo $base_url; ?>single-product.php?id=<?php echo $product['id']; ?>">
+                    <a href="<?php echo $base_url; ?>products/<?php echo htmlspecialchars($product['slug']); ?>">
                         <?php echo htmlspecialchars($product['name']); ?>
                     </a>
                 </h3>
@@ -224,7 +194,7 @@ body.filter-sticky #header {
             </div>
             <div class="product-card-footer">
                 <div class="product-moq">MOQ: <strong><?php echo htmlspecialchars($product['moq']); ?></strong></div>
-                <a href="<?php echo $base_url; ?>single-product.php?id=<?php echo $product['id']; ?>" class="product-inquiry-btn">
+                <a href="<?php echo $base_url; ?>products/<?php echo htmlspecialchars($product['slug']); ?>" class="product-inquiry-btn">
                     Details <i class="fa-solid fa-arrow-right"></i>
                 </a>
             </div>
@@ -251,16 +221,16 @@ body.filter-sticky #header {
                 <h2>Need a <span>Custom Quote</span> for<br>Bulk Orders?</h2>
                 <p>Get in touch with our sales team for competitive pricing, custom specifications, and pan-India delivery on all products.</p>
                 <div class="cta-btn-group">
-                    <a href="<?php echo $base_url; ?>contact-us.php" class="header-btn2-h4">
+                    <a href="<?php echo $base_url; ?>contact-us" class="header-btn2-h4">
                         Get A Free Quote <span><i class="fa-solid fa-arrow-right"></i></span>
                     </a>
-                    <a href="tel:+919876543210" class="cta-btn-outline">
+                    <a href="tel:+919579179996" class="cta-btn-outline">
                         <i class="fa-solid fa-phone"></i> Call Us Now
                     </a>
                 </div>
             </div>
             <div class="col-lg-5 d-none d-lg-block text-end">
-                <img src="<?php echo $base_url; ?>assets/img/all-images/hero/hero-img8.png" alt="Contact Niraj Industries" style="max-height:280px; opacity:.85;">
+                <img src="<?php echo $base_url; ?>assets/img/all-images/home/products.webp" alt="Contact Niraj Industries" style="max-height:280px; opacity:.85;">
             </div>
         </div>
     </div>

@@ -415,7 +415,7 @@ require_once '../include/head.php';
                         </button>
                     </div>
                 </div>
-
+                
                 <!-- Table -->
                 <div class="table-wrapper">
                     <div id="tableLoader">
@@ -424,7 +424,7 @@ require_once '../include/head.php';
                             <span class="small fw-medium" style="color:var(--blue-dark);">Loading…</span>
                         </div>
                     </div>
-
+                    
                     <div class="table-responsive">
                         <table class="table table-hover-soft table-borderless align-middle mb-0">
                             <thead style="background:var(--blue-light);">
@@ -584,7 +584,8 @@ require_once '../include/head.php';
                                     <!-- Actions -->
                                     <td class="py-3 text-end pe-4">
                                         <div class="btn-group shadow-sm border rounded-pill overflow-hidden bg-white">
-                                            <a href="<?= SITE_URL ?>/blog-details.php?slug=<?= htmlspecialchars($blog['slug'] ?? '') ?>"
+                                            <a href="<?= SITE_URL ?>/<?= htmlspecialchars($blog['slug'] ?? '') ?>"
+
                                                 target="_blank"
                                                 class="btn btn-sm btn-light border-0 py-2 px-3 text-secondary"
                                                 data-bs-toggle="tooltip" title="View Blog">
@@ -674,7 +675,7 @@ foreach ($blogs as $blog) {
         'reading_time'   => $blog['reading_time'] ?? 0,
         'published_at'   => $blog['published_at'] ? date('d M Y', strtotime($blog['published_at'])) : '—',
         'editUrl'        => 'edit.php?id=' . $blog['id'],
-        'viewUrl'        => '/nirajindustries/blog-details.php?slug=' . ($blog['slug'] ?? ''),
+        'viewUrl' => '/nirajindustries/' . ($blog['slug'] ?? ''),
     ];
 }
 

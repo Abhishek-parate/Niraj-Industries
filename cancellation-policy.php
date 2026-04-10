@@ -1,1604 +1,1082 @@
-<?php $base_url = "http://localhost/nirajindustries/"; ?>
-<?php include 'include/config.php'; ?>
+<?php
+$base_url = "http://localhost/nirajindustries/";
+include 'include/config.php';
+
+$page_title       = "Cancellation & Refund Policy | Niraj Industries";
+$meta_description = "Read Niraj Industries' cancellation and refund policy for orders, products, and deliveries. Transparent, fair, and customer-friendly terms.";
+?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Cancellation & Refund Policy of Dr. Agrawal's R.K. Hospital Nagpur. Read our policies on appointment cancellations, refunds, rescheduling, and no-show procedures.">
-    <meta name="keywords" content="RK Hospital Cancellation Policy, Hospital Refund Policy Nagpur, Appointment Cancellation RK Hospital">
-    <meta name="author" content="Dr. Agrawal's R.K. Hospital Nagpur">
-    <title>Cancellation & Refund Policy | Dr. Agrawal's R.K. Hospital Nagpur</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><?php echo htmlspecialchars($page_title); ?></title>
+    <meta name="description" content="<?php echo htmlspecialchars($meta_description); ?>">
+   
 
-    <!-- Favicon -->
-    <link rel="shortcut icon" href="<?php echo $base_url; ?>assets/img/RK-Logo.png" type="image/x-icon">
-    <link rel="apple-touch-icon" sizes="180x180" href="<?php echo $base_url; ?>assets/img/RK-Logo.png">
+    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/css/plugins/bootstrap.min.css">
+    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/css/plugins/fontawesome.css">
+    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/css/plugins/aos.css">
+    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/css/plugins/mobile.css">
+    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/css/plugins/sidebar.css">
+    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/css/main.css">
+    <script src="<?php echo $base_url; ?>assets/js/plugins/jquery-3-6-0.min.js"></script>
 
-    <!-- Theme Settings Js -->
-    <script src="assets/js/theme-script.js"></script>
+    <!-- Google Fonts: DM Serif Display + Sora -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/css/animate.css">
-
-    <!-- Fontawesome CSS -->
-    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/plugins/fontawesome/css/fontawesome.min.css">
-    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/plugins/fontawesome/css/all.min.css">
-
-    <!-- Iconsax CSS -->
-    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/css/iconsax.css">
-
-    <!-- Feathericon CSS -->
-    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/css/feather.css">
-
-    <!-- Slick CSS -->
-    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/plugins/slick/slick.css">
-    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/plugins/slick/slick-theme.css">
-
-    <!-- Wow CSS -->
-    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/plugins/wow/css/animate.css">
-
-    <!-- select CSS -->
-    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/plugins/select2/css/select2.min.css">
-
-    <!-- Fancybox CSS -->
-    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/plugins/fancybox/jquery.fancybox.min.css">
-
-    <!-- Main CSS -->
-    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/css/style.css">
-
-    <style>
-        /* ═══════════════════════════════════════════
-           THEME VARIABLES — matches homepage red/white
-        ═══════════════════════════════════════════ */
-        :root {
-            --red: #d32f2f;
-            --red-dark: #b71c1c;
-            --red-light: #ef5350;
-            --red-bg: #fff5f5;
-            --red-border: #fecaca;
-            --text-dark: #1a1a2e;
-            --text-mid: #374151;
-            --text-soft: #6b7280;
-            --white: #ffffff;
-            --off-white: #f9fafb;
-            --border: #e5e7eb;
-            --shadow-sm: 0 2px 12px rgba(211, 47, 47, 0.08);
-            --shadow-md: 0 6px 28px rgba(211, 47, 47, 0.13);
-            --shadow-lg: 0 20px 60px rgba(211, 47, 47, 0.18);
-            --primary: #316dff;
-            --blue-dark: #1a3fa3;
-            --blue-bg: #eef3ff;
-            --blue-border: #c3d0f8;
-        }
-         /* ─── STICKY SIDEBAR TOC ─── */
-.tc-sidebar {
-    position: sticky;
-    top: 90px;
+<style>
+/* ══════════════════════════════════════════════
+   NIRAJ INDUSTRIES — CANCELLATION POLICY PAGE
+   Theme: #B5100E red + #242223 dark
+   Font: DM Serif Display (headings) + Sora (body)
+   ══════════════════════════════════════════════ */
+:root {
+    --ni-red:        #B5100E;
+    --ni-red-dk:     #8f0b0a;
+    --ni-red-soft:   #fdf0f0;
+    --ni-red-mid:    rgba(181,16,14,0.12);
+    --ni-dark:       #242223;
+    --ni-dark-2:     #2e2c2c;
+    --ni-dark-3:     #3d3a3a;
+    --ni-white:      #ffffff;
+    --ni-off-white:  #f8f6f6;
+    --ni-text:       #242223;
+    --ni-text2:      #4a4646;
+    --ni-text3:      #888080;
+    --ni-border:     #e8e4e4;
+    --ni-bg:         #f5f3f3;
+    --ni-radius:     14px;
+    --ni-radius-sm:  8px;
+    --ni-shadow:     0 2px 16px rgba(36,34,35,0.07);
+    --ni-shadow-md:  0 8px 32px rgba(36,34,35,0.13);
+    --ni-font-head:  'DM Serif Display', serif;
+    --ni-font-body:  'Sora', sans-serif;
+    --ni-trans:      all .25s cubic-bezier(.4,0,.2,1);
 }
-        /* ─── META BAR ─── */
-        .tc-meta-bar {
-            background: var(--off-white);
-            border-bottom: 1px solid var(--border);
-            padding: 14px 0;
-        }
 
-        .tc-meta-inner {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 12px;
-        }
+.ni-cp-section {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+[data-aos] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html, body { overflow-x: hidden; }
 
-        .tc-updated-badge {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            gap: 6px 8px;
-            font-size: 12.5px;
-            color: var(--text-soft);
-            line-height: 1.6;
-        }
-        .tc-updated-badge i { color: var(--primary); flex-shrink: 0; }
-        .tc-updated-badge strong { color: var(--text-dark); }
-        .tc-updated-badge .sep-pipe { color: var(--border); }
+.ni-cp-page {
+    font-family: var(--ni-font-body);
+    background: var(--ni-white);
+    color: var(--ni-text);
+}
 
-        .tc-print-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 7px;
-            font-size: 12.5px;
-            font-weight: 600;
-            color: var(--text-mid);
-            background: none;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 6px 16px;
-            cursor: pointer;
-            transition: all 0.2s;
-            white-space: nowrap;
-        }
-        .tc-print-btn:hover { background: var(--white); border-color: var(--red); color: var(--red); }
+/* ── HERO BANNER ─────────────────────────────── */
+.ni-cp-hero {
+    background: var(--ni-dark);
+    position: relative;
+    overflow: hidden;
+    padding: 80px 0 70px;
+}
+.ni-cp-hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+        radial-gradient(ellipse 60% 80% at 90% 50%, rgba(181,16,14,0.15) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 60% at 10% 80%, rgba(181,16,14,0.07) 0%, transparent 50%);
+    pointer-events: none;
+}
+.ni-cp-hero::after {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+        linear-gradient(rgba(181,16,14,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(181,16,14,0.05) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+}
+.ni-cp-hero .container { position: relative; z-index: 2; }
 
-        @media (min-width: 768px) {
-            .tc-meta-inner {
-                flex-direction: row;
-                align-items: center;
-                justify-content: space-between;
-            }
-            .tc-updated-badge .sep-pipe { display: inline; }
-        }
+.ni-cp-breadcrumb {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 12.5px; color: rgba(255,255,255,0.45);
+    margin-bottom: 28px;
+    font-family: var(--ni-font-body);
+}
+.ni-cp-breadcrumb a { color: rgba(255,255,255,0.45); text-decoration: none; transition: color 0.2s; }
+.ni-cp-breadcrumb a:hover { color: var(--ni-red); }
+.ni-cp-breadcrumb i { font-size: 9px; }
+.ni-cp-breadcrumb span { color: var(--ni-red); }
 
-        @media (max-width: 767px) {
-            .tc-updated-badge .sep-pipe { display: none; }
-            .tc-print-btn { width: 100%; justify-content: center; }
-        }
+.ni-cp-hero-label {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(181,16,14,0.15);
+    border: 1px solid rgba(181,16,14,0.3);
+    color: #f87171;
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 2px; text-transform: uppercase;
+    padding: 6px 16px; border-radius: 30px;
+    margin-bottom: 20px;
+    font-family: var(--ni-font-body);
+}
 
-        /* ─── MAIN LAYOUT ─── */
-        .tc-wrapper {
-            padding: 60px 0 80px;
-            background: #fff;
-        }
+.ni-cp-hero h1 {
+    font-family: var(--ni-font-head);
+    font-size: clamp(32px, 4.5vw, 52px);
+    font-weight: 400; color: var(--ni-white);
+    line-height: 1.1; letter-spacing: -0.5px;
+    margin: 0 0 16px;
+}
+.ni-cp-hero h1 span { color: var(--ni-red); }
+.ni-cp-hero p {
+    font-family: var(--ni-font-body);
+    font-size: 15px; color: rgba(255,255,255,0.6);
+    line-height: 1.8; max-width: 520px;
+    margin: 0 0 32px;
+}
 
-        /* ─── STICKY SIDEBAR TOC ─── */
-        .tc-sidebar {
-            position: sticky;
-            top: 90px;
-        }
+.ni-cp-hero-pills { display: flex; flex-wrap: wrap; gap: 10px; }
+.ni-cp-hero-pills .pill {
+    display: inline-flex; align-items: center; gap: 7px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    color: rgba(255,255,255,0.8);
+    font-size: 12px; font-weight: 600;
+    padding: 8px 16px; border-radius: 30px;
+    font-family: var(--ni-font-body);
+}
+.ni-cp-hero-pills .pill i { color: var(--ni-red); }
 
-        .tc-toc {
-            background: var(--white);
-            border: 1px solid var(--border);
-            border-radius: 18px;
-            overflow: hidden;
-            box-shadow: var(--shadow-sm);
-        }
+.ni-cp-hero-right { display: flex; align-items: center; justify-content: flex-end; height: 100%; }
+.ni-cp-update-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(181,16,14,0.25);
+    border-radius: 20px; padding: 28px;
+    text-align: center; min-width: 220px;
+}
+.ni-cp-update-card .uc-icon {
+    width: 60px; height: 60px;
+    background: rgba(181,16,14,0.12);
+    border: 1.5px solid rgba(181,16,14,0.3);
+    border-radius: 16px;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 16px;
+}
+.ni-cp-update-card .uc-icon i { font-size: 24px; color: #f87171; }
+.ni-cp-update-card h5 {
+    font-size: 13px; font-weight: 700;
+    color: rgba(255,255,255,0.9); margin: 0 0 6px;
+    font-family: var(--ni-font-body);
+}
+.ni-cp-update-card p {
+    font-size: 12px; color: rgba(255,255,255,0.45);
+    margin: 0 0 16px;
+    font-family: var(--ni-font-body);
+}
+.ni-cp-update-card .uc-date {
+    display: inline-block;
+    background: var(--ni-red); color: var(--ni-white);
+    font-size: 12px; font-weight: 700;
+    padding: 5px 16px; border-radius: 20px;
+    font-family: var(--ni-font-body);
+}
 
-        .tc-toc-header {
-            background: linear-gradient(135deg, var(--red-dark), var(--red));
-            padding: 18px 22px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .tc-toc-header i { color: #fff; font-size: 16px; }
-        .tc-toc-header h5 {
-            margin: 0;
-            color: #fff;
-            font-size: 14px;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-        }
+/* ── QUICK SUMMARY STRIP ─────────────────────── */
+.ni-cp-strip { background: var(--ni-red); padding: 0; }
+.ni-cp-strip-inner { display: grid; grid-template-columns: repeat(4, 1fr); }
+.ni-cp-strip-item {
+    display: flex; align-items: center; gap: 14px;
+    padding: 20px 24px;
+    border-right: 1px solid rgba(255,255,255,0.15);
+}
+.ni-cp-strip-item:last-child { border-right: none; }
+.ni-cp-strip-item .si-icon {
+    width: 44px; height: 44px;
+    background: rgba(255,255,255,0.12);
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+}
+.ni-cp-strip-item .si-icon i { font-size: 18px; color: var(--ni-white); }
+.ni-cp-strip-item .si-text h6 {
+    font-size: 13px; font-weight: 700;
+    color: var(--ni-white); margin: 0 0 2px;
+    font-family: var(--ni-font-body);
+}
+.ni-cp-strip-item .si-text p {
+    font-size: 11.5px; color: rgba(255,255,255,0.7);
+    margin: 0; line-height: 1.4;
+    font-family: var(--ni-font-body);
+}
 
-        .tc-toc-list { padding: 14px 0; }
-        .tc-toc-list a {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 9px 22px;
-            font-size: 13px;
-            font-weight: 500;
-            color: var(--text-mid);
-            text-decoration: none;
-            transition: all 0.2s;
-            border-left: 3px solid transparent;
-        }
-        .tc-toc-list a .toc-num {
-            min-width: 22px;
-            height: 22px;
-            border-radius: 50%;
-            background: var(--off-white);
-            color: var(--red);
-            font-size: 10.5px;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 1px solid var(--red-border);
-            transition: all 0.2s;
-        }
-        .tc-toc-list a:hover {
-            color: var(--red);
-            background: var(--red-bg);
-            border-left-color: var(--red);
-        }
-        .tc-toc-list a:hover .toc-num {
-            background: var(--red);
-            color: #fff;
-            border-color: var(--red);
-        }
-        .tc-toc-list a.active {
-            color: var(--red);
-            background: var(--red-bg);
-            border-left-color: var(--red);
-            font-weight: 700;
-        }
-        .tc-toc-list a.active .toc-num {
-            background: var(--red);
-            color: #fff;
-        }
+/* ── MAIN LAYOUT ─────────────────────────────── */
+.ni-cp-body { padding: 60px 0 90px; background: var(--ni-bg); }
+.ni-cp-sidebar { position: sticky; top: 90px; }
 
-        /* Contact Card in Sidebar */
-        .tc-contact-card {
-            background: linear-gradient(135deg, #0d1b4b 0%, #1a3fa3 100%);
-            border-radius: 18px;
-            padding: 26px 22px;
-            margin-top: 20px;
-            text-align: center;
-        }
-        .tc-contact-card i { font-size: 28px; color: rgba(255,255,255,0.8); margin-bottom: 12px; display: block; }
-        .tc-contact-card h6 { color: #fff; font-size: 14px; font-weight: 700; margin-bottom: 6px; }
-        .tc-contact-card p { color: rgba(255,255,255,0.7); font-size: 12.5px; margin-bottom: 16px; }
-        .tc-contact-card a {
-            display: inline-flex;
-            align-items: center;
-            gap: 7px;
-            background: var(--red);
-            color: #fff;
-            font-size: 13px;
-            font-weight: 700;
-            padding: 10px 22px;
-            border-radius: 100px;
-            text-decoration: none;
-            transition: all 0.22s;
-        }
-        .tc-contact-card a:hover { background: var(--red-dark); transform: translateY(-1px); color: #fff; }
+.ni-toc-card {
+    background: var(--ni-white);
+    border-radius: 16px; border: 1px solid var(--ni-border);
+    overflow: hidden;
+    box-shadow: var(--ni-shadow);
+    margin-bottom: 20px;
+}
+.ni-toc-head {
+    background: var(--ni-dark);
+    padding: 18px 22px;
+    display: flex; align-items: center; gap: 10px;
+}
+.ni-toc-head i { color: var(--ni-red); font-size: 15px; }
+.ni-toc-head h5 {
+    margin: 0; color: var(--ni-white);
+    font-size: 13.5px; font-weight: 700;
+    font-family: var(--ni-font-body);
+}
 
-        /* ─── QUICK SUMMARY CARDS ─── */
-        .cp-quick-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 16px;
-            margin-bottom: 48px;
-        }
-        .cp-quick-card {
-            background: var(--off-white);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 22px 18px;
-            text-align: center;
-            transition: all 0.22s;
-        }
-        .cp-quick-card:hover {
-            border-color: var(--red-border);
-            box-shadow: var(--shadow-sm);
-            transform: translateY(-2px);
-        }
-        .cp-quick-card .qc-icon {
-            width: 50px;
-            height: 50px;
-            border-radius: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            margin: 0 auto 12px;
-        }
-        .cp-quick-card .qc-icon.red { background: var(--red-bg); color: var(--red); border: 1px solid var(--red-border); }
-        .cp-quick-card .qc-icon.blue { background: var(--blue-bg); color: var(--primary); border: 1px solid var(--blue-border); }
-        .cp-quick-card .qc-icon.green { background: #f0fdf4; color: #16a34a; border: 1px solid #bbf7d0; }
-        .cp-quick-card h6 { font-size: 13px; font-weight: 800; color: var(--text-dark); margin-bottom: 4px; }
-        .cp-quick-card p { font-size: 12px; color: var(--text-soft); margin: 0; line-height: 1.5; }
+.ni-toc-list { padding: 10px 0; }
+.ni-toc-list a {
+    display: flex; align-items: center; gap: 10px;
+    padding: 9px 20px;
+    font-size: 13px; font-weight: 500;
+    color: var(--ni-text2);
+    text-decoration: none;
+    border-left: 3px solid transparent;
+    transition: var(--ni-trans);
+    font-family: var(--ni-font-body);
+}
+.ni-toc-list a .tnum {
+    min-width: 22px; height: 22px;
+    border-radius: 50%;
+    background: var(--ni-bg); color: var(--ni-red-dk);
+    font-size: 10px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    border: 1px solid rgba(181,16,14,0.25);
+    transition: var(--ni-trans); flex-shrink: 0;
+    font-family: var(--ni-font-body);
+}
+.ni-toc-list a:hover,
+.ni-toc-list a.active {
+    color: var(--ni-dark);
+    background: var(--ni-red-soft);
+    border-left-color: var(--ni-red);
+}
+.ni-toc-list a:hover .tnum,
+.ni-toc-list a.active .tnum {
+    background: var(--ni-red); color: var(--ni-white);
+    border-color: var(--ni-red);
+}
+.ni-toc-list a.active { font-weight: 700; }
 
-        /* ─── CONTENT SECTIONS ─── */
-        .tc-section {
-            margin-bottom: 48px;
-            scroll-margin-top: 100px;
-        }
+.ni-contact-widget {
+    background: var(--ni-dark);
+    border-radius: 16px; padding: 26px 22px;
+    text-align: center;
+}
+.ni-contact-widget .cw-icon {
+    width: 52px; height: 52px;
+    background: rgba(181,16,14,0.15);
+    border: 1.5px solid rgba(181,16,14,0.3);
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 14px;
+}
+.ni-contact-widget .cw-icon i { font-size: 22px; color: #f87171; }
+.ni-contact-widget h6 {
+    color: var(--ni-white); font-size: 14px; font-weight: 700;
+    margin: 0 0 6px; font-family: var(--ni-font-body);
+}
+.ni-contact-widget p {
+    color: rgba(255,255,255,0.55); font-size: 12.5px;
+    margin: 0 0 18px; line-height: 1.6;
+    font-family: var(--ni-font-body);
+}
+.ni-contact-widget a {
+    display: inline-flex; align-items: center; gap: 7px;
+    background: var(--ni-red); color: var(--ni-white);
+    font-size: 13px; font-weight: 700;
+    padding: 11px 24px; border-radius: 30px;
+    text-decoration: none; transition: var(--ni-trans);
+    width: 100%; justify-content: center;
+    font-family: var(--ni-font-body);
+}
+.ni-contact-widget a:hover {
+    background: var(--ni-red-dk); color: var(--ni-white);
+    transform: translateY(-2px);
+}
 
-        .tc-section-header {
-            display: flex;
-            align-items: flex-start;
-            gap: 16px;
-            margin-bottom: 22px;
-            padding-bottom: 18px;
-            border-bottom: 2px solid var(--border);
-        }
+/* ── CONTENT SECTIONS ────────────────────────── */
+.ni-cp-section {
+    background: var(--ni-white);
+    border-radius: 16px; border: 1px solid var(--ni-border);
+    padding: 32px 36px; margin-bottom: 20px;
+    scroll-margin-top: 100px;
+    box-shadow: var(--ni-shadow);
+    transition: box-shadow 0.2s;
+}
+.ni-cp-section:hover { box-shadow: var(--ni-shadow-md); }
 
-        .tc-section-icon {
-            width: 52px;
-            height: 52px;
-            border-radius: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            flex-shrink: 0;
-        }
-        .tc-section-icon.red { background: var(--red-bg); color: var(--red); border: 1px solid var(--red-border); }
-        .tc-section-icon.blue { background: var(--blue-bg); color: var(--primary); border: 1px solid var(--blue-border); }
-        .tc-section-icon.green { background: #f0fdf4; color: #16a34a; border: 1px solid #bbf7d0; }
+.ni-cp-section-head {
+    display: flex; align-items: flex-start; gap: 16px;
+    padding-bottom: 20px; margin-bottom: 22px;
+    border-bottom: 2px solid var(--ni-border);
+}
+.ni-cp-section-icon {
+    width: 50px; height: 50px;
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; flex-shrink: 0;
+    background: var(--ni-red-soft);
+    border: 1.5px solid rgba(181,16,14,0.2);
+    color: var(--ni-red);
+}
+.ni-cp-sec-num {
+    font-size: 10.5px; font-weight: 700;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: var(--ni-red); margin-bottom: 3px;
+    font-family: var(--ni-font-body);
+}
+.ni-cp-sec-title {
+    font-family: var(--ni-font-head);
+    font-size: 22px; font-weight: 400;
+    color: var(--ni-dark); margin: 0; line-height: 1.2;
+}
 
-        .tc-section-header-text { flex: 1; }
-        .tc-section-num {
-            font-size: 10.5px;
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--red);
-            margin-bottom: 3px;
-        }
-        .tc-section-title {
-            font-size: 1.25rem;
-            font-weight: 800;
-            color: var(--text-dark);
-            margin: 0;
-        }
+.ni-cp-prose {
+    font-family: var(--ni-font-body);
+    font-size: 14.5px; color: var(--ni-text2); line-height: 1.85;
+}
+.ni-cp-prose p + p { margin-top: 12px; }
 
-        .tc-prose {
-            font-size: 14.5px;
-            color: var(--text-mid);
-            line-height: 1.85;
-        }
+/* List */
+.ni-cp-list { list-style: none; padding: 0; margin: 16px 0 0; }
+.ni-cp-list li {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 12px 0; border-bottom: 1px solid var(--ni-border);
+    font-size: 14px; color: var(--ni-text2); line-height: 1.7;
+    font-family: var(--ni-font-body);
+}
+.ni-cp-list li:last-child { border-bottom: none; }
+.ni-cp-list li .li-dot {
+    width: 22px; height: 22px; border-radius: 50%;
+    background: var(--ni-red-soft);
+    border: 1.5px solid rgba(181,16,14,0.2);
+    color: var(--ni-red); font-size: 9px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; margin-top: 2px;
+}
 
-        /* List style */
-        .tc-list {
-            list-style: none;
-            padding: 0;
-            margin: 14px 0 0;
-        }
-        .tc-list li {
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            padding: 11px 0;
-            border-bottom: 1px solid var(--border);
-            font-size: 14px;
-            color: var(--text-mid);
-            line-height: 1.65;
-        }
-        .tc-list li:last-child { border-bottom: none; }
-        .tc-list li .li-icon {
-            width: 22px;
-            height: 22px;
-            border-radius: 50%;
-            background: var(--red-bg);
-            color: var(--red);
-            font-size: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            margin-top: 2px;
-            border: 1px solid var(--red-border);
-            transition: all 0.2s;
-        }
-        .tc-list li .li-icon.blue { background: var(--blue-bg); color: var(--primary); border-color: var(--blue-border); }
-        .tc-list li .li-icon.green { background: #f0fdf4; color: #16a34a; border-color: #bbf7d0; }
-        .tc-list li .li-icon.orange { background: #fff7ed; color: #ea580c; border-color: #fed7aa; }
+/* Highlight boxes */
+.ni-highlight {
+    background: var(--ni-red-soft);
+    border: 1px solid rgba(181,16,14,0.18);
+    border-left: 4px solid var(--ni-red);
+    border-radius: 10px; padding: 16px 20px;
+    margin-top: 18px; font-size: 13.5px;
+    color: var(--ni-text); line-height: 1.75;
+    font-family: var(--ni-font-body);
+}
+.ni-highlight strong { color: var(--ni-dark); }
+.ni-highlight a { color: var(--ni-red-dk); font-weight: 600; }
 
-        /* Highlight box */
-        .tc-highlight {
-            background: var(--red-bg);
-            border: 1px solid var(--red-border);
-            border-left: 4px solid var(--red);
-            border-radius: 10px;
-            padding: 16px 20px;
-            margin-top: 16px;
-            font-size: 13.5px;
-            color: var(--text-mid);
-            line-height: 1.75;
-        }
-        .tc-highlight.blue {
-            background: var(--blue-bg);
-            border-color: var(--blue-border);
-            border-left-color: var(--primary);
-        }
-        .tc-highlight.green {
-            background: #f0fdf4;
-            border-color: #bbf7d0;
-            border-left-color: #16a34a;
-        }
-        .tc-highlight.orange {
-            background: #fff7ed;
-            border-color: #fed7aa;
-            border-left-color: #ea580c;
-        }
-        .tc-highlight strong { color: var(--text-dark); }
+.ni-highlight.dark {
+    background: var(--ni-dark);
+    border-color: rgba(181,16,14,0.35);
+    border-left-color: var(--ni-red);
+    color: rgba(255,255,255,0.75);
+}
+.ni-highlight.dark strong { color: #f87171; }
 
-        /* Info grid */
-        .tc-info-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 14px;
-            margin-top: 18px;
-        }
-        .tc-info-card {
-            background: var(--off-white);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 16px 18px;
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-        }
-        .tc-info-card i {
-            font-size: 18px;
-            color: var(--primary);
-            margin-top: 2px;
-            flex-shrink: 0;
-        }
-        .tc-info-card i.red { color: var(--red); }
-        .tc-info-card i.green { color: #16a34a; }
-        .tc-info-card h6 { font-size: 13px; font-weight: 700; color: var(--text-dark); margin-bottom: 4px; }
-        .tc-info-card p { font-size: 12.5px; color: var(--text-soft); margin: 0; line-height: 1.5; }
+/* Timeline */
+.ni-timeline {
+    position: relative;
+    padding-left: 30px;
+    margin-top: 22px;
+}
+.ni-timeline::before {
+    content: '';
+    position: absolute;
+    left: 10px; top: 8px; bottom: 8px;
+    width: 2px;
+    background: linear-gradient(180deg, #22c55e, var(--ni-red), #ef4444);
+    border-radius: 2px;
+}
+.ni-tl-item {
+    position: relative;
+    padding: 0 0 28px 26px;
+}
+.ni-tl-item:last-child { padding-bottom: 0; }
+.ni-tl-dot {
+    position: absolute;
+    left: -30px; top: 4px;
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 9px;
+    border: 2px solid var(--ni-white);
+}
+.ni-tl-dot.green { background: #22c55e; color: #fff; box-shadow: 0 0 0 2px #22c55e; }
+.ni-tl-dot.yellow { background: var(--ni-red); color: var(--ni-white); box-shadow: 0 0 0 2px var(--ni-red); }
+.ni-tl-dot.red { background: #ef4444; color: #fff; box-shadow: 0 0 0 2px #ef4444; }
+.ni-tl-label {
+    font-size: 12px; font-weight: 700;
+    letter-spacing: 0.5px; text-transform: uppercase;
+    margin-bottom: 5px;
+    font-family: var(--ni-font-body);
+}
+.ni-tl-label.green { color: #16a34a; }
+.ni-tl-label.yellow { color: var(--ni-red-dk); }
+.ni-tl-label.red { color: #dc2626; }
+.ni-tl-text {
+    font-size: 13.5px; color: var(--ni-text2); line-height: 1.65;
+    font-family: var(--ni-font-body);
+}
 
-        /* ─── TIMELINE (Cancellation Window) ─── */
-        .cp-timeline {
-            position: relative;
-            padding-left: 28px;
-            margin-top: 20px;
-        }
-        .cp-timeline::before {
-            content: '';
-            position: absolute;
-            left: 10px;
-            top: 6px;
-            bottom: 6px;
-            width: 2px;
-            background: linear-gradient(180deg, var(--red), var(--primary), #16a34a);
-            border-radius: 2px;
-        }
-        .cp-timeline-item {
-            position: relative;
-            padding: 0 0 24px 24px;
-        }
-        .cp-timeline-item:last-child { padding-bottom: 0; }
-        .cp-timeline-dot {
-            position: absolute;
-            left: -28px;
-            top: 4px;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 9px;
-            font-weight: 700;
-            border: 2px solid #fff;
-            box-shadow: 0 0 0 2px currentColor;
-        }
-        .cp-timeline-dot.green { background: #16a34a; color: #fff; box-shadow: 0 0 0 2px #16a34a; }
-        .cp-timeline-dot.orange { background: #ea580c; color: #fff; box-shadow: 0 0 0 2px #ea580c; }
-        .cp-timeline-dot.red { background: var(--red); color: #fff; box-shadow: 0 0 0 2px var(--red); }
-        .cp-timeline-label {
-            font-size: 12px;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-            margin-bottom: 4px;
-        }
-        .cp-timeline-label.green { color: #16a34a; }
-        .cp-timeline-label.orange { color: #ea580c; }
-        .cp-timeline-label.red { color: var(--red); }
-        .cp-timeline-text {
-            font-size: 13.5px;
-            color: var(--text-mid);
-            line-height: 1.6;
-        }
+/* Refund Table */
+.ni-refund-table {
+    width: 100%;
+    border-collapse: separate; border-spacing: 0;
+    border-radius: 14px; overflow: hidden;
+    border: 1px solid var(--ni-border);
+    margin-top: 20px; font-size: 13.5px;
+    font-family: var(--ni-font-body);
+}
+.ni-refund-table thead tr { background: var(--ni-dark); }
+.ni-refund-table thead th {
+    padding: 14px 18px; color: var(--ni-white);
+    font-weight: 700; font-size: 12.5px;
+    text-align: left; letter-spacing: 0.3px;
+    font-family: var(--ni-font-body);
+}
+.ni-refund-table tbody tr {
+    border-bottom: 1px solid var(--ni-border);
+    transition: background 0.15s;
+}
+.ni-refund-table tbody tr:nth-child(even) { background: var(--ni-bg); }
+.ni-refund-table tbody tr:hover { background: var(--ni-red-soft); }
+.ni-refund-table tbody tr:last-child { border-bottom: none; }
+.ni-refund-table td {
+    padding: 13px 18px; color: var(--ni-text2);
+    vertical-align: middle;
+    font-family: var(--ni-font-body);
+}
+.ni-refund-table td:first-child { font-weight: 600; color: var(--ni-dark); }
 
-        /* ─── REFUND TABLE ─── */
-        .cp-refund-table {
-            width: 100%;
-            border-collapse: separate;
-            border-spacing: 0;
-            border-radius: 14px;
-            overflow: hidden;
-            border: 1px solid var(--border);
-            margin-top: 20px;
-            font-size: 13.5px;
-        }
-        .cp-refund-table thead tr {
-            background: linear-gradient(135deg, var(--red-dark), var(--red));
-        }
-        .cp-refund-table thead th {
-            padding: 14px 18px;
-            color: #fff;
-            font-weight: 700;
-            font-size: 12.5px;
-            letter-spacing: 0.4px;
-            text-align: left;
-        }
-        .cp-refund-table tbody tr {
-            border-bottom: 1px solid var(--border);
-            transition: background 0.15s;
-        }
-        .cp-refund-table tbody tr:last-child { border-bottom: none; }
-        .cp-refund-table tbody tr:hover { background: var(--off-white); }
-        .cp-refund-table td {
-            padding: 13px 18px;
-            color: var(--text-mid);
-            vertical-align: middle;
-        }
-        .cp-refund-table td:first-child { font-weight: 600; color: var(--text-dark); }
-        .cp-badge {
-            display: inline-block;
-            font-size: 11.5px;
-            font-weight: 700;
-            padding: 3px 10px;
-            border-radius: 100px;
-        }
-        .cp-badge.full { background: #dcfce7; color: #15803d; }
-        .cp-badge.partial { background: #fef9c3; color: #a16207; }
-        .cp-badge.none { background: #fee2e2; color: #b91c1c; }
-        .cp-badge.na { background: var(--off-white); color: var(--text-soft); border: 1px solid var(--border); }
+.ni-badge {
+    display: inline-block;
+    font-size: 11px; font-weight: 700;
+    padding: 4px 12px; border-radius: 20px;
+    letter-spacing: 0.3px;
+    font-family: var(--ni-font-body);
+}
+.ni-badge.full  { background: #dcfce7; color: #15803d; }
+.ni-badge.partial { background: var(--ni-red-soft); color: var(--ni-red-dk); border: 1px solid rgba(181,16,14,0.2); }
+.ni-badge.none  { background: #fee2e2; color: #b91c1c; }
+.ni-badge.adj   { background: var(--ni-bg); color: var(--ni-text3); border: 1px solid var(--ni-border); }
 
-        /* ─── AGREEMENT FOOTER BANNER ─── */
-        .tc-agreement-banner {
-            background: linear-gradient(135deg, #0d1b4b 0%, #1a1a2e 50%, #7f0000 100%);
-            border-radius: 20px;
-            padding: 48px 40px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            margin-top: 16px;
-        }
-        .tc-agreement-banner::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M20 20.5V18H0v5h5v5H0v5h20v-2.5h-5V20.5h5zM15 45V20H0v5h5v5H0v5h5v5H0v5h15v-5H5v-5h5v-5H5v-5h10z'/%3E%3C/g%3E%3C/svg%3E");
-        }
-        .tc-agreement-banner i {
-            font-size: 42px;
-            color: rgba(255,255,255,0.35);
-            display: block;
-            margin-bottom: 16px;
-            position: relative;
-            z-index: 1;
-        }
-        .tc-agreement-banner h3 {
-            color: #fff;
-            font-size: 1.55rem;
-            font-weight: 800;
-            margin-bottom: 10px;
-            position: relative;
-            z-index: 1;
-        }
-        .tc-agreement-banner p {
-            color: rgba(255,255,255,0.7);
-            font-size: 14.5px;
-            max-width: 540px;
-            margin: 0 auto 26px;
-            position: relative;
-            z-index: 1;
-        }
-        .tc-agreement-actions {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 14px;
-            flex-wrap: wrap;
-            position: relative;
-            z-index: 1;
-        }
-        .btn-tc-primary {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: linear-gradient(135deg, var(--red-dark), var(--red-light));
-            color: #fff;
-            font-size: 14px;
-            font-weight: 700;
-            padding: 13px 30px;
-            border-radius: 100px;
-            text-decoration: none;
-            transition: all 0.22s;
-            box-shadow: 0 5px 20px rgba(183,28,28,0.4);
-        }
-        .btn-tc-primary:hover {
-            background: linear-gradient(135deg, #7f0000, var(--red-dark));
-            transform: translateY(-2px);
-            box-shadow: 0 8px 28px rgba(183,28,28,0.55);
-            color: #fff;
-        }
-        .btn-tc-outline {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            border: 2px solid rgba(255,255,255,0.35);
-            color: rgba(255,255,255,0.85);
-            font-size: 14px;
-            font-weight: 700;
-            padding: 13px 30px;
-            border-radius: 100px;
-            text-decoration: none;
-            transition: all 0.22s;
-        }
-        .btn-tc-outline:hover {
-            border-color: #fff;
-            color: #fff;
-            background: rgba(255,255,255,0.08);
-        }
+/* Info Grid */
+.ni-info-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 14px; margin-top: 18px;
+}
+.ni-info-card {
+    background: var(--ni-bg); border: 1px solid var(--ni-border);
+    border-radius: 12px; padding: 16px 18px;
+    display: flex; align-items: flex-start; gap: 12px;
+}
+.ni-info-card i { font-size: 18px; color: var(--ni-red); margin-top: 2px; flex-shrink: 0; }
+.ni-info-card h6 {
+    font-size: 13px; font-weight: 700;
+    color: var(--ni-dark); margin: 0 0 3px;
+    font-family: var(--ni-font-body);
+}
+.ni-info-card p {
+    font-size: 12.5px; color: var(--ni-text3);
+    margin: 0; line-height: 1.5;
+    font-family: var(--ni-font-body);
+}
 
-        /* ─── GLOBAL OVERFLOW FIX ─── */
-        html, body {
-            overflow-x: hidden !important;
-            max-width: 100vw !important;
-        }
-        .main-wrapper {
-            overflow-x: hidden !important;
-            max-width: 100vw !important;
-        }
+/* ── BOTTOM CTA BANNER ───────────────────────── */
+.ni-cp-cta {
+    background: var(--ni-dark); border-radius: 20px;
+    padding: 48px 44px; text-align: center;
+    position: relative; overflow: hidden; margin-top: 10px;
+}
+.ni-cp-cta::before {
+    content: ''; position: absolute; inset: 0;
+    background:
+        radial-gradient(ellipse 50% 80% at 100% 50%, rgba(181,16,14,0.15) 0%, transparent 55%),
+        radial-gradient(ellipse 40% 60% at 0% 50%, rgba(181,16,14,0.08) 0%, transparent 50%);
+    pointer-events: none;
+}
+.ni-cp-cta::after {
+    content: ''; position: absolute; inset: 0;
+    background-image: radial-gradient(circle, rgba(181,16,14,0.08) 1px, transparent 1px);
+    background-size: 28px 28px; pointer-events: none;
+}
+.ni-cp-cta .cta-inner { position: relative; z-index: 1; }
+.ni-cp-cta h3 {
+    font-family: var(--ni-font-head);
+    font-size: 32px; font-weight: 400;
+    color: var(--ni-white); margin: 0 0 10px; line-height: 1.2;
+}
+.ni-cp-cta h3 span { color: var(--ni-red); }
+.ni-cp-cta p {
+    font-family: var(--ni-font-body);
+    font-size: 15px; color: rgba(255,255,255,0.6);
+    max-width: 500px; margin: 0 auto 28px; line-height: 1.7;
+}
+.ni-cp-cta-btns { display: flex; align-items: center; justify-content: center; gap: 14px; flex-wrap: wrap; }
 
-        /* ─── CP BANNER (custom prefix cp- to avoid style.css conflicts) ─── */
-        .cp-hero-banner {
-            position: relative;
-            width: 100%;
-            max-width: 100vw;
-            overflow: hidden;
-            min-height: 420px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            box-sizing: border-box;
-        }
-        .cp-hero-banner .cp-banner-img {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: 0;
-        }
-        .cp-hero-banner .cp-banner-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, rgba(13,27,75,0.88) 0%, rgba(26,26,46,0.82) 50%, rgba(127,0,0,0.85) 100%);
-            z-index: 1;
-        }
-        .cp-hero-banner .cp-banner-body {
-            position: relative;
-            z-index: 2;
-            width: 100%;
-            max-width: 100%;
-            padding: 60px 20px 60px;
-            box-sizing: border-box;
-        }
-        .cp-banner-eyebrow {
-            display: inline-flex;
-            align-items: center;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 6px;
-            background: rgba(255,255,255,0.12);
-            border: 1px solid rgba(255,255,255,0.2);
-            color: #fff;
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            padding: 6px 18px;
-            border-radius: 100px;
-            margin-bottom: 20px;
-            max-width: 100%;
-            word-break: break-word;
-        }
-        .cp-banner-eyebrow i { color: #ef5350; }
-        .cp-banner-h1 {
-            font-size: clamp(1.6rem, 5vw, 3rem);
-            font-weight: 800;
-            color: #fff;
-            line-height: 1.2;
-            margin: 0 auto 14px;
-            max-width: 100%;
-            word-break: break-word;
-            overflow-wrap: break-word;
-            white-space: normal;
-        }
-        .cp-banner-h1 span {
-            color: #ef5350;
-            display: block;
-            font-size: clamp(1.3rem, 4.5vw, 2.6rem);
-            word-break: break-word;
-        }
-        .cp-banner-sub {
-            color: rgba(255,255,255,0.75);
-            font-size: clamp(13px, 3vw, 15.5px);
-            max-width: 600px;
-            margin: 0 auto 28px;
-            line-height: 1.7;
-            word-break: break-word;
-            overflow-wrap: break-word;
-            white-space: normal;
-        }
-        .cp-banner-btns {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-        }
-        .cp-btn-red {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: linear-gradient(135deg, #b71c1c, #ef5350);
-            color: #fff;
-            font-size: clamp(12px, 3vw, 14px);
-            font-weight: 700;
-            padding: 12px 24px;
-            border-radius: 100px;
-            text-decoration: none;
-            transition: all 0.22s;
-            box-shadow: 0 4px 18px rgba(183,28,28,0.4);
-            white-space: nowrap;
-        }
-        .cp-btn-red:hover { transform: translateY(-2px); color: #fff; box-shadow: 0 6px 24px rgba(183,28,28,0.55); }
-        .cp-btn-outline {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            border: 2px solid rgba(255,255,255,0.4);
-            color: rgba(255,255,255,0.9);
-            font-size: clamp(12px, 3vw, 14px);
-            font-weight: 700;
-            padding: 12px 24px;
-            border-radius: 100px;
-            text-decoration: none;
-            transition: all 0.22s;
-            white-space: nowrap;
-        }
-        .cp-btn-outline:hover { border-color: #fff; color: #fff; background: rgba(255,255,255,0.1); }
+.ni-cta-btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--ni-red); color: var(--ni-white);
+    font-size: 14px; font-weight: 700;
+    padding: 14px 32px; border-radius: 50px;
+    text-decoration: none; transition: var(--ni-trans);
+    border: 2px solid var(--ni-red);
+    font-family: var(--ni-font-body);
+}
+.ni-cta-btn-primary:hover {
+    background: var(--ni-red-dk); border-color: var(--ni-red-dk);
+    color: var(--ni-white); transform: translateY(-2px);
+}
+.ni-cta-btn-outline {
+    display: inline-flex; align-items: center; gap: 8px;
+    border: 2px solid rgba(255,255,255,0.25);
+    color: rgba(255,255,255,0.8);
+    font-size: 14px; font-weight: 700;
+    padding: 14px 32px; border-radius: 50px;
+    text-decoration: none; transition: var(--ni-trans);
+    font-family: var(--ni-font-body);
+}
+.ni-cta-btn-outline:hover { border-color: var(--ni-red); color: #f87171; }
 
-        /* Stat badges — desktop only */
-        .cp-stat-badge {
-            display: none;
-        }
-        @media (min-width: 768px) {
-            .cp-stat-badge {
-                display: flex;
-                align-items: center;
-                gap: 10px;
-                position: absolute;
-                z-index: 3;
-                background: rgba(255,255,255,0.12);
-                backdrop-filter: blur(8px);
-                border: 1px solid rgba(255,255,255,0.2);
-                border-radius: 14px;
-                padding: 12px 18px;
-            }
-            .cp-stat-badge.badge-left { left: 24px; bottom: 32px; }
-            .cp-stat-badge.badge-right { right: 24px; bottom: 32px; }
-            .cp-stat-badge .badge-icon {
-                width: 36px; height: 36px;
-                background: var(--red); border-radius: 50%;
-                display: flex; align-items: center; justify-content: center;
-                color: #fff; font-size: 14px;
-            }
-            .cp-stat-badge .num { font-size: 15px; font-weight: 800; color: #fff; line-height: 1; }
-            .cp-stat-badge .label { font-size: 11px; color: rgba(255,255,255,0.7); }
-            .cp-hero-banner .cp-banner-body { padding: 80px 40px; }
-        }
-
-        @media (max-width: 576px) {
-            .cp-btn-red, .cp-btn-outline {
-                width: 100%;
-                justify-content: center;
-            }
-        }
-
-        /* ═══ RESPONSIVE ═══ */
-        @media (max-width: 991px) {
-            .tc-sidebar { position: static; margin-bottom: 32px; }
-            .tc-toc { position: static; }
-            .cp-quick-grid { grid-template-columns: repeat(2, 1fr); }
-        }
-        @media (max-width: 768px) {
-            .tc-info-grid { grid-template-columns: 1fr; }
-            .tc-agreement-banner { padding: 36px 24px; }
-            .tc-agreement-banner h3 { font-size: 1.25rem; }
-            .tc-wrapper { padding: 40px 0 60px; }
-            .cp-refund-table { font-size: 12.5px; }
-            .cp-refund-table td, .cp-refund-table thead th { padding: 10px 12px; }
-        }
-        @media (max-width: 576px) {
-            .tc-section-header { flex-direction: column; gap: 12px; }
-            .tc-section-title { font-size: 1.1rem; }
-            .tc-prose { font-size: 14px; }
-            .tc-highlight { font-size: 13px; padding: 14px 16px; }
-            .tc-info-card { padding: 14px 14px; }
-            .tc-agreement-banner { padding: 28px 18px; }
-            .btn-tc-primary, .btn-tc-outline {
-                width: 100%;
-                justify-content: center;
-                padding: 13px 20px;
-            }
-            .tc-agreement-actions { flex-direction: column; gap: 10px; }
-            .tc-section { margin-bottom: 36px; }
-            .cp-quick-grid { grid-template-columns: 1fr; }
-            .cp-refund-table { display: block; overflow-x: auto; white-space: nowrap; }
-        }
-    </style>
+/* ── RESPONSIVE ──────────────────────────────── */
+@media (max-width: 991px) {
+    .ni-cp-sidebar { position: static; margin-bottom: 28px; }
+    .ni-cp-strip-inner { grid-template-columns: repeat(2, 1fr); }
+    .ni-cp-strip-item:nth-child(2) { border-right: none; }
+    .ni-cp-hero-right { justify-content: flex-start; margin-top: 40px; }
+}
+@media (max-width: 767px) {
+    .ni-cp-hero { padding: 60px 0 50px; }
+    .ni-cp-section { padding: 24px 20px; }
+    .ni-cp-cta { padding: 36px 24px; }
+    .ni-cp-cta h3 { font-size: 26px; }
+    .ni-info-grid { grid-template-columns: 1fr; }
+    .ni-refund-table { display: block; overflow-x: auto; white-space: nowrap; }
+    .ni-cp-strip-inner { grid-template-columns: 1fr 1fr; }
+    .ni-cta-btn-primary, .ni-cta-btn-outline { width: 100%; justify-content: center; }
+    .ni-cp-cta-btns { flex-direction: column; }
+}
+@media (max-width: 480px) {
+    .ni-cp-strip-inner { grid-template-columns: 1fr; }
+    .ni-cp-strip-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.15); }
+    .ni-cp-strip-item:last-child { border-bottom: none; }
+}
+</style>
 </head>
+<body class="homepage4-body ni-cp-page">
 
-<body>
-    <!-- Main Wrapper -->
-    <div class="main-wrapper">
+<?php include 'include/header.php'; ?>
 
-        <?php include 'include/header.php'; ?>
-
-        <!-- ═══ BANNER ═══ -->
-        <section class="cp-hero-banner">
-            <img src="assets/img/home/image-crousel1.webp" alt="RK Hospital Nagpur Cancellation Policy" class="cp-banner-img">
-            <div class="cp-banner-overlay"></div>
-
-            <!-- Stat Badges — desktop only -->
-            <div class="cp-stat-badge badge-left">
-                <div class="badge-icon"><i class="fa-solid fa-star"></i></div>
-                <div>
-                    <div class="num">5.0 ★</div>
-                    <div class="label">496+ Reviews</div>
-                </div>
-            </div>
-            <div class="cp-stat-badge badge-right">
-                <div class="badge-icon"><i class="fa-solid fa-clock"></i></div>
-                <div>
-                    <div class="num">24/7</div>
-                    <div class="label">Emergency Care</div>
-                </div>
-            </div>
-
-            <div class="cp-banner-body">
-                <div class="cp-banner-eyebrow">
-                    <i class="fa-solid fa-hospital"></i>
-                    Dr. Agrawal's R.K. Hospital, Nagpur
-                </div>
-                <h1 class="cp-banner-h1">
-                    Legal &amp; Policy Documents
+<!-- ══ HERO BANNER ══════════════════════════════ -->
+<section class="ni-cp-hero">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-8">
+                <nav class="ni-cp-breadcrumb" style="margin-top:20px;">
+                    <a href="<?php echo $base_url; ?>">Home</a>
+                    <i class="fa-solid fa-chevron-right"></i>
                     <span>Cancellation &amp; Refund Policy</span>
-                </h1>
-                <p class="cp-banner-sub">
-                    Understand our appointment cancellation, rescheduling, and refund procedures at Dr. Agrawal's R.K. Hospital, Nagpur — designed to be fair, transparent, and patient-friendly.
-                </p>
-                <div class="cp-banner-btns">
-                    <a href="tel:+919766057372" class="cp-btn-red">
-                        <i class="fa-solid fa-phone"></i>
-                        Call Now: +91 97660 57372
-                    </a>
-                    <a href="contact-us" class="cp-btn-outline">
-                        <i class="fa-solid fa-calendar-check"></i>
-                        Book Appointment
-                    </a>
+                </nav>
+                <div class="ni-cp-hero-label">
+                    <i class="fa-solid fa-file-shield"></i>
+                    Legal &amp; Policy
+                </div>
+                <h1>Cancellation &amp;<br><span>Refund Policy</span></h1>
+                <p>We believe in complete transparency. Read our cancellation and refund terms for all orders placed with Niraj Industries — fair, clear, and no hidden clauses.</p>
+                <div class="ni-cp-hero-pills">
+                    <div class="pill"><i class="fa-solid fa-check"></i> Order Cancellation</div>
+                    <div class="pill"><i class="fa-solid fa-check"></i> Refund Process</div>
+                    <div class="pill"><i class="fa-solid fa-check"></i> Return Policy</div>
+                    <div class="pill"><i class="fa-solid fa-check"></i> Dispute Resolution</div>
                 </div>
             </div>
-        </section>
-
-        <!-- ═══ META BAR ═══ -->
-        <div class="tc-meta-bar">
-            <div class="container">
-                <div class="tc-meta-inner">
-                    <div class="tc-updated-badge">
-                        <i class="fa-regular fa-calendar-check"></i>
-                        Last Updated: <strong>January 1, 2025</strong>
-                        &nbsp;|&nbsp;
-                        <i class="fa-solid fa-file-lines"></i>
-                        Version: <strong>2.0</strong>
-                        &nbsp;|&nbsp;
-                        <i class="fa-solid fa-globe"></i>
-                        Applicable: <strong>R.K. Hospital, Nagpur</strong>
+            <div class="col-lg-4">
+                <div class="ni-cp-hero-right">
+                    <div class="ni-cp-update-card">
+                        <div class="uc-icon">
+                            <i class="fa-solid fa-calendar-check"></i>
+                        </div>
+                        <h5>Last Updated</h5>
+                        <p>This policy was last reviewed and updated on:</p>
+                        <span class="uc-date">April 01, 2026</span>
                     </div>
-                    <button class="tc-print-btn" onclick="window.print()">
-                        <i class="fa-solid fa-print"></i> Print / Save PDF
-                    </button>
                 </div>
             </div>
         </div>
-
-        <!-- ═══ MAIN CONTENT ═══ -->
-        <section class="tc-wrapper">
-            <div class="container">
-                <div class="row g-5">
-
-                    <!-- ── SIDEBAR ── -->
-                    <div class="col-lg-4 col-xl-3 d-none d-lg-block">
-                        <div class="tc-sidebar">
-
-                            <!-- Table of Contents -->
-                            <div class="tc-toc">
-                                <div class="tc-toc-header">
-                                    <i class="fa-solid fa-list-ul"></i>
-                                    <h5>Table of Contents</h5>
-                                </div>
-                                <div class="tc-toc-list">
-                                    <a href="#cp-1" class="active">
-                                        <span class="toc-num">01</span> Overview
-                                    </a>
-                                    <a href="#cp-2">
-                                        <span class="toc-num">02</span> Appointment Cancellation
-                                    </a>
-                                    <a href="#cp-3">
-                                        <span class="toc-num">03</span> Cancellation Window
-                                    </a>
-                                    <a href="#cp-4">
-                                        <span class="toc-num">04</span> Refund Policy
-                                    </a>
-                                    <a href="#cp-5">
-                                        <span class="toc-num">05</span> No-Show Policy
-                                    </a>
-                                    <a href="#cp-6">
-                                        <span class="toc-num">06</span> Rescheduling Policy
-                                    </a>
-                                    <a href="#cp-7">
-                                        <span class="toc-num">07</span> Surgery & IPD Cancellation
-                                    </a>
-                                    <a href="#cp-8">
-                                        <span class="toc-num">08</span> Insurance & Cashless
-                                    </a>
-                                    <a href="#cp-9">
-                                        <span class="toc-num">09</span> Emergency Exceptions
-                                    </a>
-                                    <a href="#cp-10">
-                                        <span class="toc-num">10</span> How to Cancel
-                                    </a>
-                                </div>
-                            </div>
-
-                            <!-- Contact Card -->
-                            <div class="tc-contact-card">
-                                <i class="fa-solid fa-headset"></i>
-                                <h6>Need Help Cancelling?</h6>
-                                <p>Our billing team is available to assist you with cancellations and refund queries.</p>
-                                <a href="contact-us">
-                                    <i class="fa-solid fa-phone"></i> Contact Us
-                                </a>
-                            </div>
-
-                        </div>
-                    </div>
-
-                    <!-- ── MAIN CONTENT ── -->
-                    <div class="col-lg-8 col-xl-9">
-
-                        <!-- QUICK SUMMARY CARDS -->
-                        <div class="cp-quick-grid">
-                            <div class="cp-quick-card">
-                                <div class="qc-icon green">
-                                    <i class="fa-solid fa-circle-check"></i>
-                                </div>
-                                <h6>Free Cancellation</h6>
-                                <p>Cancel 2+ hours before appointment with no penalty</p>
-                            </div>
-                            <div class="cp-quick-card">
-                                <div class="qc-icon blue">
-                                    <i class="fa-solid fa-calendar-xmark"></i>
-                                </div>
-                                <h6>Reschedule Anytime</h6>
-                                <p>Adjust your slot within 30 days at no extra charge</p>
-                            </div>
-                            <div class="cp-quick-card">
-                                <div class="qc-icon red">
-                                    <i class="fa-solid fa-indian-rupee-sign"></i>
-                                </div>
-                                <h6>Refund in 7–10 Days</h6>
-                                <p>Eligible refunds processed back to original payment mode</p>
-                            </div>
-                        </div>
-
-                        <!-- SECTION 01 — Overview -->
-                        <div class="tc-section" id="cp-1">
-                            <div class="tc-section-header">
-                                <div class="tc-section-icon red">
-                                    <i class="fa-solid fa-file-circle-exclamation"></i>
-                                </div>
-                                <div class="tc-section-header-text">
-                                    <div class="tc-section-num">Section 01</div>
-                                    <h2 class="tc-section-title">Overview of This Policy</h2>
-                                </div>
-                            </div>
-                            <div class="tc-prose">
-                                <p>
-                                    At <strong>Dr. Agrawal's R.K. Hospital, Nagpur</strong>, we understand that medical plans can change due to unforeseen circumstances. This Cancellation &amp; Refund Policy has been designed to be fair, transparent, and straightforward for all our valued patients.
-                                </p>
-                                <p style="margin-top:12px;">
-                                    This policy applies to all outpatient (OPD) appointments, inpatient (IPD) admissions, surgical procedures, diagnostic bookings, and any other services booked through our hospital — whether booked in person, via phone call, or through our online appointment system.
-                                </p>
-                                <div class="tc-highlight">
-                                    <strong>Important:</strong> Please read this policy carefully before booking any appointment or procedure. By booking a service with R.K. Hospital, you agree to the terms outlined in this policy. For any assistance, call us at <strong>+91 97660 57372</strong>.
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- SECTION 02 — Appointment Cancellation -->
-                        <div class="tc-section" id="cp-2">
-                            <div class="tc-section-header">
-                                <div class="tc-section-icon blue">
-                                    <i class="fa-solid fa-calendar-xmark"></i>
-                                </div>
-                                <div class="tc-section-header-text">
-                                    <div class="tc-section-num">Section 02</div>
-                                    <h2 class="tc-section-title">Appointment Cancellation Terms</h2>
-                                </div>
-                            </div>
-                            <div class="tc-prose">
-                                <p>Patients who wish to cancel a booked OPD or specialist appointment must adhere to the following conditions:</p>
-                                <ul class="tc-list">
-                                    <li>
-                                        <span class="li-icon blue"><i class="fa-solid fa-check"></i></span>
-                                        Cancellation requests must be communicated to our reception or helpline at least <strong>2 hours before</strong> the scheduled appointment time to be eligible for any adjustment or credit.
-                                    </li>
-                                    <li>
-                                        <span class="li-icon blue"><i class="fa-solid fa-check"></i></span>
-                                        Cancellations must be made by calling our helpline numbers: <strong>+91 97660 57372</strong>. Walk-in cancellations at the reception desk are also accepted.
-                                    </li>
-                                    <li>
-                                        <span class="li-icon blue"><i class="fa-solid fa-check"></i></span>
-                                        Upon successful cancellation, patients will receive a confirmation from our staff. Please retain this confirmation for any future reference or refund claim.
-                                    </li>
-                                    <li>
-                                        <span class="li-icon blue"><i class="fa-solid fa-check"></i></span>
-                                        Cancellation requests made after the 2-hour window but before the appointment time will be treated as late cancellations and will not be eligible for a refund, but may qualify for rescheduling.
-                                    </li>
-                                    <li>
-                                        <span class="li-icon blue"><i class="fa-solid fa-check"></i></span>
-                                        Free-of-cost OPD slots (walk-in without advance payment) can be cancelled without any restriction or penalty.
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <!-- SECTION 03 — Cancellation Window (Timeline) -->
-                        <div class="tc-section" id="cp-3">
-                            <div class="tc-section-header">
-                                <div class="tc-section-icon green">
-                                    <i class="fa-solid fa-hourglass-half"></i>
-                                </div>
-                                <div class="tc-section-header-text">
-                                    <div class="tc-section-num">Section 03</div>
-                                    <h2 class="tc-section-title">Cancellation Time Window</h2>
-                                </div>
-                            </div>
-                            <div class="tc-prose">
-                                <p>The timing of your cancellation request determines your eligibility for a refund or credit. Refer to the breakdown below:</p>
-                                <div class="cp-timeline">
-                                    <div class="cp-timeline-item">
-                                        <div class="cp-timeline-dot green"><i class="fa-solid fa-check"></i></div>
-                                        <div class="cp-timeline-label green">More than 2 Hours Before — Full Credit / Refund Eligible</div>
-                                        <div class="cp-timeline-text">
-                                            Cancellation made more than 2 hours before the appointment: consultation fee is credited to your account for future use or refunded to your original payment method within 7–10 working days.
-                                        </div>
-                                    </div>
-                                    <div class="cp-timeline-item">
-                                        <div class="cp-timeline-dot orange"><i class="fa-solid fa-clock"></i></div>
-                                        <div class="cp-timeline-label orange">Within 2 Hours — Reschedule Only (No Refund)</div>
-                                        <div class="cp-timeline-text">
-                                            Cancellation made within 2 hours of the appointment: no refund is applicable, but the fee can be adjusted for a rescheduled appointment within 30 calendar days.
-                                        </div>
-                                    </div>
-                                    <div class="cp-timeline-item">
-                                        <div class="cp-timeline-dot red"><i class="fa-solid fa-xmark"></i></div>
-                                        <div class="cp-timeline-label red">No-Show (After Appointment Time) — Fee Forfeited</div>
-                                        <div class="cp-timeline-text">
-                                            If no cancellation is communicated and the patient does not show up for their scheduled appointment, the consultation fee is forfeited. No refund or credit is applicable.
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- SECTION 04 — Refund Policy -->
-                        <div class="tc-section" id="cp-4">
-                            <div class="tc-section-header">
-                                <div class="tc-section-icon red">
-                                    <i class="fa-solid fa-indian-rupee-sign"></i>
-                                </div>
-                                <div class="tc-section-header-text">
-                                    <div class="tc-section-num">Section 04</div>
-                                    <h2 class="tc-section-title">Refund Policy</h2>
-                                </div>
-                            </div>
-                            <div class="tc-prose">
-                                <p>Refund eligibility varies by service type and timing of cancellation. The table below summarises our refund structure:</p>
-
-                                <table class="cp-refund-table">
-                                    <thead>
-                                        <tr>
-                                            <th>Service Type</th>
-                                            <th>Cancellation Timing</th>
-                                            <th>Refund Status</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>OPD Consultation Fee</td>
-                                            <td>2+ hours before</td>
-                                            <td><span class="cp-badge full">Full Credit</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td>OPD Consultation Fee</td>
-                                            <td>Within 2 hours</td>
-                                            <td><span class="cp-badge partial">Reschedule Only</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td>OPD Consultation Fee</td>
-                                            <td>No-show</td>
-                                            <td><span class="cp-badge none">No Refund</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Diagnostic / Lab Tests</td>
-                                            <td>Before sample collection</td>
-                                            <td><span class="cp-badge full">Full Refund</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Diagnostic / Lab Tests</td>
-                                            <td>After sample collection</td>
-                                            <td><span class="cp-badge none">No Refund</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Surgical Deposit</td>
-                                            <td>Cancelled by hospital</td>
-                                            <td><span class="cp-badge full">Full Refund</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Surgical Deposit</td>
-                                            <td>Cancelled by patient (&gt;7 days)</td>
-                                            <td><span class="cp-badge partial">Partial Refund</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Surgical Deposit</td>
-                                            <td>Cancelled by patient (&lt;7 days)</td>
-                                            <td><span class="cp-badge none">No Refund</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td>IPD Advance Deposit</td>
-                                            <td>Before admission</td>
-                                            <td><span class="cp-badge full">Full Refund</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td>IPD Advance Deposit</td>
-                                            <td>After admission</td>
-                                            <td><span class="cp-badge na">Adjusted at Discharge</span></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-
-                                <div class="tc-highlight blue" style="margin-top:20px;">
-                                    <strong>Refund Processing Time:</strong> All approved refunds are processed within <strong>7–10 working days</strong> from the date of the approved cancellation request. Refunds are credited to the original mode of payment (cash refund via cheque/NEFT, card refunds via banking channel, UPI refund to source account).
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- SECTION 05 — No-Show Policy -->
-                        <div class="tc-section" id="cp-5">
-                            <div class="tc-section-header">
-                                <div class="tc-section-icon red">
-                                    <i class="fa-solid fa-user-xmark"></i>
-                                </div>
-                                <div class="tc-section-header-text">
-                                    <div class="tc-section-num">Section 05</div>
-                                    <h2 class="tc-section-title">No-Show Policy</h2>
-                                </div>
-                            </div>
-                            <div class="tc-prose">
-                                <p>A "No-Show" is defined as failing to attend a confirmed appointment without prior cancellation notice. The following terms apply to no-show cases:</p>
-                                <ul class="tc-list">
-                                    <li>
-                                        <span class="li-icon"><i class="fa-solid fa-xmark"></i></span>
-                                        Patients who do not attend their scheduled OPD appointment without any prior notification will forfeit the full consultation fee paid in advance.
-                                    </li>
-                                    <li>
-                                        <span class="li-icon"><i class="fa-solid fa-xmark"></i></span>
-                                        No-show patients are not eligible for a refund or fee credit for the missed appointment slot.
-                                    </li>
-                                    <li>
-                                        <span class="li-icon"><i class="fa-solid fa-xmark"></i></span>
-                                        Repeated no-shows (3 or more instances) may result in a temporary restriction on advance appointment booking at R.K. Hospital.
-                                    </li>
-                                    <li>
-                                        <span class="li-icon blue"><i class="fa-solid fa-check"></i></span>
-                                        In case of a genuine emergency that prevents attendance, the patient or attendant should inform the hospital as soon as possible. Such cases will be reviewed on a compassionate basis by our management.
-                                    </li>
-                                    <li>
-                                        <span class="li-icon blue"><i class="fa-solid fa-check"></i></span>
-                                        Documentation (e.g., emergency report, accident certificate) may be required to support a compassionate cancellation request.
-                                    </li>
-                                </ul>
-                                <div class="tc-highlight orange">
-                                    <strong>We understand emergencies happen.</strong> Please call us at <strong>+91 97660 57372</strong> as soon as possible if you are unable to make your appointment — even last-minute communication helps us accommodate other waiting patients.
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- SECTION 06 — Rescheduling -->
-                        <div class="tc-section" id="cp-6">
-                            <div class="tc-section-header">
-                                <div class="tc-section-icon blue">
-                                    <i class="fa-solid fa-calendar-day"></i>
-                                </div>
-                                <div class="tc-section-header-text">
-                                    <div class="tc-section-num">Section 06</div>
-                                    <h2 class="tc-section-title">Rescheduling Policy</h2>
-                                </div>
-                            </div>
-                            <div class="tc-prose">
-                                <p>We offer flexible rescheduling options so that patients do not lose the value of their booking in case of genuine inconvenience:</p>
-                                <ul class="tc-list">
-                                    <li>
-                                        <span class="li-icon blue"><i class="fa-solid fa-check"></i></span>
-                                        Appointments can be rescheduled free of charge up to <strong>2 times</strong>, provided the rescheduling is requested at least 2 hours before the original appointment time.
-                                    </li>
-                                    <li>
-                                        <span class="li-icon blue"><i class="fa-solid fa-check"></i></span>
-                                        The rescheduled appointment must be taken within <strong>30 calendar days</strong> of the original appointment date. After 30 days, the booking fee will be forfeited.
-                                    </li>
-                                    <li>
-                                        <span class="li-icon blue"><i class="fa-solid fa-check"></i></span>
-                                        Rescheduling is subject to doctor availability. The hospital will make every effort to accommodate the patient's preferred time slot.
-                                    </li>
-                                    <li>
-                                        <span class="li-icon blue"><i class="fa-solid fa-check"></i></span>
-                                        If the rescheduled appointment involves a more senior specialist or a different department with a higher fee, the patient must pay the differential amount.
-                                    </li>
-                                    <li>
-                                        <span class="li-icon blue"><i class="fa-solid fa-check"></i></span>
-                                        To reschedule, contact our reception at <strong>+91 97660 57372</strong> during OPD hours: 11AM–4PM and 7PM–9PM, Mon–Saturday.
-                                    </li>
-                                </ul>
-                                <div class="tc-info-grid">
-                                    <div class="tc-info-card">
-                                        <i class="fa-solid fa-phone-volume"></i>
-                                        <div>
-                                            <h6>Call to Reschedule</h6>
-                                            <p>+91 97660 57372</p>
-                                        </div>
-                                    </div>
-                                    <div class="tc-info-card">
-                                        <i class="fa-regular fa-clock"></i>
-                                        <div>
-                                            <h6>Reschedule Window</h6>
-                                            <p>Within 30 days of original date<br>Up to 2 free reschedules</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- SECTION 07 — Surgery & IPD Cancellation -->
-                        <div class="tc-section" id="cp-7">
-                            <div class="tc-section-header">
-                                <div class="tc-section-icon red">
-                                    <i class="fa-solid fa-kit-medical"></i>
-                                </div>
-                                <div class="tc-section-header-text">
-                                    <div class="tc-section-num">Section 07</div>
-                                    <h2 class="tc-section-title">Surgical Procedure & IPD Cancellation</h2>
-                                </div>
-                            </div>
-                            <div class="tc-prose">
-                                <p>Cancellation of scheduled surgeries, inpatient procedures, or planned admissions is handled with greater care due to the resources involved in pre-operative preparations:</p>
-                                <ul class="tc-list">
-                                    <li>
-                                        <span class="li-icon"><i class="fa-solid fa-check"></i></span>
-                                        Surgical cancellation requests by the patient must be submitted in writing or via a recorded phone call to our admissions department.
-                                    </li>
-                                    <li>
-                                        <span class="li-icon"><i class="fa-solid fa-check"></i></span>
-                                        Cancellations made <strong>more than 7 days</strong> before the scheduled surgery date: a partial refund will be issued after deducting administrative and pre-operative preparation costs.
-                                    </li>
-                                    <li>
-                                        <span class="li-icon"><i class="fa-solid fa-check"></i></span>
-                                        Cancellations made <strong>within 7 days</strong> of surgery: the advance surgical deposit is non-refundable. However, the amount may be adjusted toward a rescheduled procedure within 60 days.
-                                    </li>
-                                    <li>
-                                        <span class="li-icon green"><i class="fa-solid fa-check"></i></span>
-                                        If the surgery is cancelled by <strong>the hospital</strong> due to medical necessity, equipment issues, or unavailability of the surgeon, a <strong>full refund</strong> of the deposit is issued within 7–10 working days.
-                                    </li>
-                                    <li>
-                                        <span class="li-icon"><i class="fa-solid fa-check"></i></span>
-                                        Amounts spent on pre-operative investigations (blood tests, X-rays, ECG, etc.) conducted at R.K. Hospital are non-refundable regardless of the cause of surgery cancellation.
-                                    </li>
-                                    <li>
-                                        <span class="li-icon"><i class="fa-solid fa-check"></i></span>
-                                        IPD advance deposits paid at the time of admission are adjusted against the final bill at the time of discharge and cannot be refunded mid-admission except in exceptional circumstances approved by management.
-                                    </li>
-                                </ul>
-                                <div class="tc-highlight">
-                                    <strong>Please Note:</strong> For planned surgeries, we request patients to inform us of any cancellation at the earliest possible opportunity. This helps us prioritise other patients awaiting their procedures and avoids unnecessary operational delays.
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- SECTION 08 — Insurance & Cashless -->
-                        <div class="tc-section" id="cp-8">
-                            <div class="tc-section-header">
-                                <div class="tc-section-icon blue">
-                                    <i class="fa-solid fa-shield-heart"></i>
-                                </div>
-                                <div class="tc-section-header-text">
-                                    <div class="tc-section-num">Section 08</div>
-                                    <h2 class="tc-section-title">Insurance & Cashless Treatment Cancellation</h2>
-                                </div>
-                            </div>
-                            <div class="tc-prose">
-                                <p>For patients utilising health insurance or cashless treatment facilities, additional terms apply:</p>
-                                <ul class="tc-list">
-                                    <li>
-                                        <span class="li-icon blue"><i class="fa-solid fa-check"></i></span>
-                                        Cancellation of cashless admission must be communicated to both R.K. Hospital and the patient's insurance provider, as cancellation procedures may vary by insurer.
-                                    </li>
-                                    <li>
-                                        <span class="li-icon blue"><i class="fa-solid fa-check"></i></span>
-                                        Pre-authorisation obtained for a specific procedure cannot be transferred to a different procedure. A fresh pre-authorisation will be required in case of rescheduling.
-                                    </li>
-                                    <li>
-                                        <span class="li-icon blue"><i class="fa-solid fa-check"></i></span>
-                                        Any out-of-pocket amounts paid by the patient under co-payment or deductible clauses are governed by the terms of the patient's insurance policy and are subject to that insurer's refund rules.
-                                    </li>
-                                    <li>
-                                        <span class="li-icon blue"><i class="fa-solid fa-check"></i></span>
-                                        R.K. Hospital is not responsible for delays in reimbursement caused by the patient's insurance provider. All insurance-related disputes must be resolved directly with the insurer.
-                                    </li>
-                                    <li>
-                                        <span class="li-icon blue"><i class="fa-solid fa-check"></i></span>
-                                        Self-paid amounts deposited for insurance-covered admissions that get rejected by the insurer will be handled as per R.K. Hospital's standard refund policy.
-                                    </li>
-                                </ul>
-                                <div class="tc-highlight blue">
-                                    <strong>Cashless Verification:</strong> R.K. Hospital accepts cashless treatment under most major TPA and insurance providers. Please contact our billing desk at <strong>+91 97660 57372</strong> to verify your insurer before scheduling your admission.
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- SECTION 09 — Emergency Exceptions -->
-                        <div class="tc-section" id="cp-9">
-                            <div class="tc-section-header">
-                                <div class="tc-section-icon green">
-                                    <i class="fa-solid fa-truck-medical"></i>
-                                </div>
-                                <div class="tc-section-header-text">
-                                    <div class="tc-section-num">Section 09</div>
-                                    <h2 class="tc-section-title">Emergency & Special Exceptions</h2>
-                                </div>
-                            </div>
-                            <div class="tc-prose">
-                                <p>We are a compassionate institution and we review genuine emergency cases on an individual basis. The following exceptions apply:</p>
-                                <ul class="tc-list">
-                                    <li>
-                                        <span class="li-icon green"><i class="fa-solid fa-check"></i></span>
-                                        <span>In the event of a <strong>patient's death</strong> prior to the appointment or procedure, the full amount paid will be refunded to the next of kin upon submission of the death certificate.</span>
-                                    </li>
-                                    <li>
-                                        <span class="li-icon green"><i class="fa-solid fa-check"></i></span>
-                                        <span>If a patient is <strong>hospitalised elsewhere</strong> due to an unrelated emergency and cannot attend their scheduled appointment, a reschedule or refund may be considered upon submission of hospital documentation.</span>
-                                    </li>
-                                    <li>
-                                        <span class="li-icon green"><i class="fa-solid fa-check"></i></span>
-                                        <span>Cancellations arising due to <strong>natural disasters, government-declared curfews, or public health emergencies</strong> (e.g., lockdowns) are treated under a full-credit policy.</span>
-                                    </li>
-                                    <li>
-                                        <span class="li-icon green"><i class="fa-solid fa-check"></i></span>
-                                        <span>All exceptional cases must be submitted in writing to our Management Office within <strong>15 days</strong> of the missed appointment, along with supporting documentation.</span>
-                                    </li>
-                                </ul>
-                                <div class="tc-highlight green">
-                                    <strong>Our Commitment:</strong> We aim to handle all exceptional cases with empathy and understanding. No patient should feel financially penalised due to circumstances beyond their control. Please reach out to us — we will do our best to help.
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- SECTION 10 — How to Cancel -->
-                        <div class="tc-section" id="cp-10">
-                            <div class="tc-section-header">
-                                <div class="tc-section-icon blue">
-                                    <i class="fa-solid fa-list-check"></i>
-                                </div>
-                                <div class="tc-section-header-text">
-                                    <div class="tc-section-num">Section 10</div>
-                                    <h2 class="tc-section-title">How to Cancel Your Appointment</h2>
-                                </div>
-                            </div>
-                            <div class="tc-prose">
-                                <p>Cancelling your appointment at R.K. Hospital is simple. Use any of the following methods:</p>
-                                <ul class="tc-list">
-                                    <li>
-                                        <span class="li-icon blue"><i class="fa-solid fa-phone"></i></span>
-                                        <span><strong>By Phone:</strong> Call our helpline at <strong>+91 97660 57372</strong> during OPD hours (11AM–4PM and 7PM–9PM, Mon–Sat). For urgent cancellations, our emergency line is available 24/7.</span>
-                                    </li>
-                                    <li>
-                                        <span class="li-icon blue"><i class="fa-solid fa-person-walking-arrow-right"></i></span>
-                                        <span><strong>In Person:</strong> Visit the hospital reception at <strong>27, Central Avenue Road, Beside Hotel Al Zam Zam, Gandhibagh, Nagpur – 440002</strong> and inform the front desk staff of your cancellation request.</span>
-                                    </li>
-                                    <li>
-                                        <span class="li-icon blue"><i class="fa-solid fa-envelope"></i></span>
-                                        <span><strong>Via Website:</strong> Use the Contact Us form on our website to submit a written cancellation request. Please include your name, appointment date, and registered phone number.</span>
-                                    </li>
-                                    <li>
-                                        <span class="li-icon blue"><i class="fa-solid fa-receipt"></i></span>
-                                        <span><strong>For Refund Requests:</strong> Submit your cancellation confirmation and payment receipt to our billing department. Refunds will be processed within 7–10 working days.</span>
-                                    </li>
-                                </ul>
-                                <div class="tc-info-grid">
-                                    <div class="tc-info-card">
-                                        <i class="fa-solid fa-phone-volume"></i>
-                                        <div>
-                                            <h6>Cancellation Helpline</h6>
-                                            <p>+91 97660 57372</p>
-                                        </div>
-                                    </div>
-                                    <div class="tc-info-card">
-                                        <i class="fa-solid fa-location-dot red"></i>
-                                        <div>
-                                            <h6>Hospital Address</h6>
-                                            <p>27 Chandrashekhar, Azad Square, Central Ave, Ladpura, Itwari, Nagpur, Maharashtra 440002</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="tc-highlight blue" style="margin-top:20px;">
-                                    For any queries about this Cancellation &amp; Refund Policy, please contact our billing department or reach us via the Contact Us page on our website. We are committed to resolving all concerns promptly and fairly.
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- AGREEMENT BANNER -->
-                        <div class="tc-agreement-banner">
-                            <i class="fa-solid fa-handshake"></i>
-                            <h3>We're Here to Make It Easy for You</h3>
-                            <p>
-                                Our cancellation policy is built on trust and transparency. If you have any doubts or concerns, our team is always available to assist you at no extra hassle.
-                            </p>
-                            <div class="tc-agreement-actions">
-                                <a href="contact-us" class="btn-tc-primary">
-                                    <i class="fa-solid fa-calendar-plus"></i> Book an Appointment
-                                </a>
-                                <a href="terms-conditions.php" class="btn-tc-outline">
-                                    <i class="fa-solid fa-file-lines"></i> View Terms &amp; Conditions
-                                </a>
-                            </div>
-                        </div>
-
-                    </div>
-                    <!-- ── END MAIN CONTENT ── -->
-
-                </div>
-            </div>
-        </section>
-
-        <?php include 'include/footer.php'; ?>
-
-        <!-- Cursor -->
-        <div class="mouse-cursor cursor-outer"></div>
-        <div class="mouse-cursor cursor-inner"></div>
     </div>
-    <!-- /Main Wrapper -->
+</section>
 
-    <!-- Offcanvas -->
-    <div class="offcanvas offcanvas-offset offcanvas-end support_popup" tabindex="-1" id="support_item">
-        <div class="offcanvas-header">
-            <a href="index.php"><img src="assets/img/logo.svg" alt="logo" class="img-fluid logo"></a>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close">
-                <i class="isax isax-close-circle"></i>
-            </button>
-        </div>
-        <div class="offcanvas-body">
-            <div class="about-popup-item">
-                <h3 class="title">About R.K. Hospital</h3>
-                <p>Leading Orthopedic & Gynecology Hospital in Nagpur with 25+ years of medical excellence.</p>
-                <div class="about-img d-flex align-items-center gap-2 justify-content-between">
-                    <a href="<?php echo $base_url; ?>assets/img/banner/about-img-1.jpg" data-fancybox="gallery">
-                        <img src="assets/img/banner/about-img-1.jpg" alt="RK Hospital Nagpur" class="img-fluid">
-                    </a>
-                    <a href="<?php echo $base_url; ?>assets/img/banner/about-img-2.jpg" data-fancybox="gallery">
-                        <img src="assets/img/banner/about-img-2.jpg" alt="RK Hospital Nagpur" class="img-fluid">
-                    </a>
-                    <a href="<?php echo $base_url; ?>assets/img/banner/about-img-3.jpg" data-fancybox="gallery">
-                        <img src="assets/img/banner/about-img-3.jpg" alt="RK Hospital Nagpur" class="img-fluid">
-                    </a>
+<!-- ══ QUICK SUMMARY STRIP ══════════════════════ -->
+<div class="ni-cp-strip">
+    <div class="container-fluid px-0">
+        <div class="ni-cp-strip-inner">
+            <div class="ni-cp-strip-item">
+                <div class="si-icon"><i class="fa-solid fa-clock-rotate-left"></i></div>
+                <div class="si-text">
+                    <h6>Cancel Before Dispatch</h6>
+                    <p>Full refund, no questions asked</p>
                 </div>
             </div>
-            <div class="about-popup-item">
-                <h3 class="title">Hospital Location</h3>
-                <div class="loction-item mb-3">
-                    <h4 class="title">R.K. Hospital Nagpur</h4>
-                    <p class="location">27, Central Avenue Road, Beside Hotel Al Zam Zam, Gandhibagh, Nagpur – 440002</p>
+            <div class="ni-cp-strip-item">
+                <div class="si-icon"><i class="fa-solid fa-rotate-left"></i></div>
+                <div class="si-text">
+                    <h6>7-Day Return Window</h6>
+                    <p>For damaged or defective goods</p>
                 </div>
             </div>
-            <div class="about-popup-item">
-                <h3 class="title">Contact Information</h3>
-                <div class="support-item mb-3">
-                    <div class="avatar avatar-lg bg-primary rounded-circle">
-                        <i class="isax isax-call-calling"></i>
-                    </div>
-                    <div>
-                        <p class="title">24/7 Emergency</p>
-                        <h5 class="link"><a href="tel:+919766057372">+91 97660 57372</a></h5>
-                    </div>
-                </div>
-                <div class="support-item">
-                    <div class="avatar avatar-lg bg-primary rounded-circle">
-                        <i class="isax isax-call-calling"></i>
-                    </div>
-                
+            <div class="ni-cp-strip-item">
+                <div class="si-icon"><i class="fa-solid fa-indian-rupee-sign"></i></div>
+                <div class="si-text">
+                    <h6>Refund in 7–10 Days</h6>
+                    <p>Processed to original payment</p>
                 </div>
             </div>
-            <div class="about-popup-item border-0">
-                <h3 class="title">Follow Us</h3>
-                <ul class="d-flex align-items-center gap-2 social-iyem">
-                    <li><a href="#" class="social-icon"><i class="fa-brands fa-facebook"></i></a></li>
-                    <li><a href="#" class="social-icon"><i class="fa-brands fa-instagram"></i></a></li>
-                    <li><a href="#" class="social-icon"><i class="fa-brands fa-youtube"></i></a></li>
-                </ul>
+            <div class="ni-cp-strip-item">
+                <div class="si-icon"><i class="fa-solid fa-headset"></i></div>
+                <div class="si-text">
+                    <h6>Dedicated Support</h6>
+                    <p>We resolve all disputes fairly</p>
+                </div>
             </div>
         </div>
-        <img src="assets/img/bg/offcanvas-bg.png" alt="element" class="element-01">
     </div>
+</div>
 
-    <!-- ScrollToTop -->
-    <div class="progress-wrap active-progress">
-        <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
-            <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"
-                style="transition: stroke-dashoffset 10ms linear 0s; stroke-dasharray: 307.919px, 307.919px; stroke-dashoffset: 228.265px;"></path>
-        </svg>
+<!-- ══ MAIN BODY ════════════════════════════════ -->
+<section class="ni-cp-body">
+    <div class="container">
+        <div class="row g-4">
+
+            <!-- ── SIDEBAR ── -->
+            <div class="col-lg-3 d-none d-lg-block">
+                <div class="ni-cp-sidebar">
+                    <div class="ni-toc-card">
+                        <div class="ni-toc-head">
+                            <i class="fa-solid fa-list-ul"></i>
+                            <h5>Table of Contents</h5>
+                        </div>
+                        <div class="ni-toc-list">
+                            <a href="#cp1" class="active"><span class="tnum">01</span> Overview</a>
+                            <a href="#cp2"><span class="tnum">02</span> Order Cancellation</a>
+                            <a href="#cp3"><span class="tnum">03</span> Cancellation Timeline</a>
+                            <a href="#cp4"><span class="tnum">04</span> Refund Policy</a>
+                            <a href="#cp5"><span class="tnum">05</span> Return of Goods</a>
+                            <a href="#cp6"><span class="tnum">06</span> Non-Refundable Cases</a>
+                            <a href="#cp7"><span class="tnum">07</span> Bulk/Custom Orders</a>
+                            <a href="#cp8"><span class="tnum">08</span> How to Raise a Request</a>
+                        </div>
+                    </div>
+                    <div class="ni-contact-widget">
+                        <div class="cw-icon"><i class="fa-solid fa-phone-volume"></i></div>
+                        <h6>Need Help?</h6>
+                        <p>Our team is happy to assist with any cancellation or refund queries.</p>
+                        <a href="<?php echo $base_url; ?>contact-us">
+                            <i class="fa-solid fa-arrow-right"></i> Contact Us
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── CONTENT ── -->
+            <div class="col-lg-9">
+
+                <!-- Section 01 — Overview -->
+                <div class="ni-cp-section" id="cp1" data-aos="fade-up" data-aos-duration="600">
+                    <div class="ni-cp-section-head">
+                        <div class="ni-cp-section-icon"><i class="fa-solid fa-file-circle-info"></i></div>
+                        <div>
+                            <div class="ni-cp-sec-num">Section 01</div>
+                            <h2 class="ni-cp-sec-title">Overview of This Policy</h2>
+                        </div>
+                    </div>
+                    <div class="ni-cp-prose">
+                        <p>At <strong>Niraj Industries</strong>, we manufacture and supply high-quality PVC pipes, fittings, and related industrial products. We are committed to fair business practices and maintaining the highest level of customer satisfaction.</p>
+                        <p>This Cancellation &amp; Refund Policy applies to all orders placed directly with Niraj Industries — whether placed through our website, sales representatives, or via phone/WhatsApp. By placing an order, you agree to the terms described in this policy.</p>
+                        <div class="ni-highlight">
+                            <strong>Our Promise:</strong> We do not believe in hiding behind complicated terms. If there is a genuine issue with your order, we will work with you to resolve it fairly and quickly. For any queries, reach us at <strong><?php echo $base_url; ?></strong> or through our Contact Us page.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 02 — Order Cancellation -->
+                <div class="ni-cp-section" id="cp2" data-aos="fade-up" data-aos-duration="600">
+                    <div class="ni-cp-section-head">
+                        <div class="ni-cp-section-icon"><i class="fa-solid fa-ban"></i></div>
+                        <div>
+                            <div class="ni-cp-sec-num">Section 02</div>
+                            <h2 class="ni-cp-sec-title">Order Cancellation Terms</h2>
+                        </div>
+                    </div>
+                    <div class="ni-cp-prose">
+                        <p>Customers may request cancellation of their order subject to the following conditions:</p>
+                        <ul class="ni-cp-list">
+                            <li>
+                                <span class="li-dot"><i class="fa-solid fa-check"></i></span>
+                                Orders can be cancelled <strong>free of charge</strong> if the cancellation request is made before the order has been dispatched from our warehouse or manufacturing unit.
+                            </li>
+                            <li>
+                                <span class="li-dot"><i class="fa-solid fa-check"></i></span>
+                                Cancellation requests must be submitted via our Contact Us page, email, or by calling our sales helpline. Please mention your <strong>Order ID</strong> and registered contact number.
+                            </li>
+                            <li>
+                                <span class="li-dot"><i class="fa-solid fa-check"></i></span>
+                                Once an order has been dispatched, it cannot be cancelled. However, you may initiate a return request upon delivery as per our Return Policy (Section 05).
+                            </li>
+                            <li>
+                                <span class="li-dot"><i class="fa-solid fa-check"></i></span>
+                                For orders that include custom cutting, special sizing, or made-to-order products, cancellation may not be possible once production has commenced. Please review Section 07 for details.
+                            </li>
+                            <li>
+                                <span class="li-dot"><i class="fa-solid fa-check"></i></span>
+                                Upon successful cancellation, you will receive a confirmation message/email within <strong>24 business hours</strong>. Refund will be processed as per Section 04.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Section 03 — Cancellation Timeline -->
+                <div class="ni-cp-section" id="cp3" data-aos="fade-up" data-aos-duration="600">
+                    <div class="ni-cp-section-head">
+                        <div class="ni-cp-section-icon"><i class="fa-solid fa-timeline"></i></div>
+                        <div>
+                            <div class="ni-cp-sec-num">Section 03</div>
+                            <h2 class="ni-cp-sec-title">Cancellation Timeline</h2>
+                        </div>
+                    </div>
+                    <div class="ni-cp-prose">
+                        <p>The timing of your cancellation request determines your refund eligibility:</p>
+                        <div class="ni-timeline">
+                            <div class="ni-tl-item">
+                                <div class="ni-tl-dot green"><i class="fa-solid fa-check"></i></div>
+                                <div class="ni-tl-label green">Before Dispatch — Full Refund Eligible</div>
+                                <div class="ni-tl-text">Order cancelled before it leaves our facility. Full refund will be processed within 7–10 working days to the original payment method. No deductions apply.</div>
+                            </div>
+                            <div class="ni-tl-item">
+                                <div class="ni-tl-dot yellow"><i class="fa-solid fa-truck"></i></div>
+                                <div class="ni-tl-label yellow">After Dispatch / In Transit — Return Required</div>
+                                <div class="ni-tl-text">Order is already in transit. Cancellation is not possible at this stage. You may raise a return request on delivery. Return shipping costs may apply depending on the situation.</div>
+                            </div>
+                            <div class="ni-tl-item">
+                                <div class="ni-tl-dot red"><i class="fa-solid fa-xmark"></i></div>
+                                <div class="ni-tl-label red">After Delivery &amp; Use — No Cancellation</div>
+                                <div class="ni-tl-text">Once goods have been delivered, accepted, and used/installed, cancellation is not applicable. Only warranty or defect claims can be raised thereafter.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 04 — Refund Policy -->
+                <div class="ni-cp-section" id="cp4" data-aos="fade-up" data-aos-duration="600">
+                    <div class="ni-cp-section-head">
+                        <div class="ni-cp-section-icon"><i class="fa-solid fa-indian-rupee-sign"></i></div>
+                        <div>
+                            <div class="ni-cp-sec-num">Section 04</div>
+                            <h2 class="ni-cp-sec-title">Refund Policy</h2>
+                        </div>
+                    </div>
+                    <div class="ni-cp-prose">
+                        <p>The following table outlines refund eligibility based on order type and situation:</p>
+                        <table class="ni-refund-table">
+                            <thead>
+                                <tr>
+                                    <th>Situation</th>
+                                    <th>Refund Status</th>
+                                    <th>Processing Time</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Cancelled before dispatch</td>
+                                    <td><span class="ni-badge full">Full Refund</span></td>
+                                    <td>7–10 working days</td>
+                                </tr>
+                                <tr>
+                                    <td>Wrong product delivered by us</td>
+                                    <td><span class="ni-badge full">Full Refund / Replacement</span></td>
+                                    <td>After pickup confirmation</td>
+                                </tr>
+                                <tr>
+                                    <td>Damaged goods on delivery</td>
+                                    <td><span class="ni-badge full">Full Refund / Replacement</span></td>
+                                    <td>After verification</td>
+                                </tr>
+                                <tr>
+                                    <td>Customer-initiated return (unused)</td>
+                                    <td><span class="ni-badge partial">Partial Refund</span></td>
+                                    <td>After return receipt &amp; inspection</td>
+                                </tr>
+                                <tr>
+                                    <td>Custom / made-to-order products</td>
+                                    <td><span class="ni-badge none">Non-Refundable</span></td>
+                                    <td>—</td>
+                                </tr>
+                                <tr>
+                                    <td>Order returned after 7 days</td>
+                                    <td><span class="ni-badge none">Not Eligible</span></td>
+                                    <td>—</td>
+                                </tr>
+                                <tr>
+                                    <td>Advance payment (cancelled by us)</td>
+                                    <td><span class="ni-badge full">Full Refund</span></td>
+                                    <td>5–7 working days</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="ni-highlight" style="margin-top:20px;">
+                            <strong>Refund Mode:</strong> All refunds are credited to the original payment method — NEFT/RTGS for bank transfers, original card for card payments, or original UPI ID. Cash refunds may be arranged for in-person transactions.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 05 — Return of Goods -->
+                <div class="ni-cp-section" id="cp5" data-aos="fade-up" data-aos-duration="600">
+                    <div class="ni-cp-section-head">
+                        <div class="ni-cp-section-icon"><i class="fa-solid fa-box-open"></i></div>
+                        <div>
+                            <div class="ni-cp-sec-num">Section 05</div>
+                            <h2 class="ni-cp-sec-title">Return of Goods</h2>
+                        </div>
+                    </div>
+                    <div class="ni-cp-prose">
+                        <p>Returns are accepted within <strong>7 days of delivery</strong> under the following conditions:</p>
+                        <ul class="ni-cp-list">
+                            <li>
+                                <span class="li-dot"><i class="fa-solid fa-check"></i></span>
+                                The product must be <strong>unused, uncut, and in original condition</strong> with the original packaging intact.
+                            </li>
+                            <li>
+                                <span class="li-dot"><i class="fa-solid fa-check"></i></span>
+                                Returns for <strong>damaged or defective goods</strong> must be reported within 48 hours of delivery with photographic evidence shared via WhatsApp or email.
+                            </li>
+                            <li>
+                                <span class="li-dot"><i class="fa-solid fa-check"></i></span>
+                                Goods that have been cut, welded, installed, or modified in any way are <strong>not eligible for return</strong>.
+                            </li>
+                            <li>
+                                <span class="li-dot"><i class="fa-solid fa-check"></i></span>
+                                Return transportation arrangements and costs are the customer's responsibility unless the return is due to our error (wrong product/damaged delivery).
+                            </li>
+                            <li>
+                                <span class="li-dot"><i class="fa-solid fa-check"></i></span>
+                                All returned goods will be inspected upon receipt at our warehouse before any refund or replacement is processed.
+                            </li>
+                        </ul>
+                        <div class="ni-info-grid">
+                            <div class="ni-info-card">
+                                <i class="fa-solid fa-calendar-days"></i>
+                                <div>
+                                    <h6>Return Window</h6>
+                                    <p>Within 7 days of delivery date</p>
+                                </div>
+                            </div>
+                            <div class="ni-info-card">
+                                <i class="fa-solid fa-camera"></i>
+                                <div>
+                                    <h6>Damage Claims</h6>
+                                    <p>Report within 48 hours with photos</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 06 — Non-Refundable -->
+                <div class="ni-cp-section" id="cp6" data-aos="fade-up" data-aos-duration="600">
+                    <div class="ni-cp-section-head">
+                        <div class="ni-cp-section-icon"><i class="fa-solid fa-circle-xmark"></i></div>
+                        <div>
+                            <div class="ni-cp-sec-num">Section 06</div>
+                            <h2 class="ni-cp-sec-title">Non-Refundable Cases</h2>
+                        </div>
+                    </div>
+                    <div class="ni-cp-prose">
+                        <p>The following situations are <strong>not eligible</strong> for cancellation, return, or refund:</p>
+                        <ul class="ni-cp-list">
+                            <li>
+                                <span class="li-dot"><i class="fa-solid fa-xmark"></i></span>
+                                Products that have been <strong>cut, installed, or modified</strong> after delivery.
+                            </li>
+                            <li>
+                                <span class="li-dot"><i class="fa-solid fa-xmark"></i></span>
+                                Orders for <strong>custom sizes, special colours, or made-to-order</strong> products once production has started.
+                            </li>
+                            <li>
+                                <span class="li-dot"><i class="fa-solid fa-xmark"></i></span>
+                                Damage caused due to <strong>improper installation, misuse, or storage</strong> by the customer.
+                            </li>
+                            <li>
+                                <span class="li-dot"><i class="fa-solid fa-xmark"></i></span>
+                                Returns initiated <strong>after 7 days</strong> from the delivery date without prior written approval from Niraj Industries.
+                            </li>
+                            <li>
+                                <span class="li-dot"><i class="fa-solid fa-xmark"></i></span>
+                                Goods damaged due to <strong>natural calamities, accidents, or third-party transportation</strong> not arranged by us.
+                            </li>
+                            <li>
+                                <span class="li-dot"><i class="fa-solid fa-xmark"></i></span>
+                                Delivery charges and handling fees once the order has been dispatched.
+                            </li>
+                        </ul>
+                        <div class="ni-highlight dark">
+                            <strong>Note:</strong> We inspect all returned goods thoroughly. If a returned product does not meet our return conditions, it will be sent back to the customer and no refund will be issued. We encourage you to contact us <em>before</em> returning any goods.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 07 — Bulk & Custom Orders -->
+                <div class="ni-cp-section" id="cp7" data-aos="fade-up" data-aos-duration="600">
+                    <div class="ni-cp-section-head">
+                        <div class="ni-cp-section-icon"><i class="fa-solid fa-industry"></i></div>
+                        <div>
+                            <div class="ni-cp-sec-num">Section 07</div>
+                            <h2 class="ni-cp-sec-title">Bulk &amp; Custom Orders</h2>
+                        </div>
+                    </div>
+                    <div class="ni-cp-prose">
+                        <p>Special terms apply for bulk purchases and custom-manufactured products:</p>
+                        <ul class="ni-cp-list">
+                            <li>
+                                <span class="li-dot"><i class="fa-solid fa-check"></i></span>
+                                Bulk orders (above ₹50,000 value) require a confirmed Purchase Order or written agreement before production begins.
+                            </li>
+                            <li>
+                                <span class="li-dot"><i class="fa-solid fa-check"></i></span>
+                                Advance payments for bulk orders are <strong>non-refundable once production has commenced</strong>, unless Niraj Industries is unable to fulfil the order.
+                            </li>
+                            <li>
+                                <span class="li-dot"><i class="fa-solid fa-check"></i></span>
+                                Cancellation of bulk orders before production commencement may attract a <strong>processing fee of up to 10%</strong> of the order value.
+                            </li>
+                            <li>
+                                <span class="li-dot"><i class="fa-solid fa-check"></i></span>
+                                Custom pipe sizes, special pressure ratings, or non-standard product specifications are made to order and are <strong>fully non-refundable</strong> once confirmed.
+                            </li>
+                            <li>
+                                <span class="li-dot"><i class="fa-solid fa-check"></i></span>
+                                Partial cancellation of bulk orders is evaluated on a case-by-case basis. Contact our sales team to discuss your situation.
+                            </li>
+                        </ul>
+                        <div class="ni-highlight">
+                            <strong>Before Ordering Custom Products:</strong> We recommend confirming your specifications carefully before placing a custom or bulk order. Our team is happy to provide samples, technical data sheets, and consultations before final confirmation.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 08 — How to Raise a Request -->
+                <div class="ni-cp-section" id="cp8" data-aos="fade-up" data-aos-duration="600">
+                    <div class="ni-cp-section-head">
+                        <div class="ni-cp-section-icon"><i class="fa-solid fa-list-check"></i></div>
+                        <div>
+                            <div class="ni-cp-sec-num">Section 08</div>
+                            <h2 class="ni-cp-sec-title">How to Raise a Cancellation / Refund Request</h2>
+                        </div>
+                    </div>
+                    <div class="ni-cp-prose">
+                        <p>Raising a request is simple. Use any of the following channels:</p>
+                        <ul class="ni-cp-list">
+                            <li>
+                                <span class="li-dot"><i class="fa-solid fa-globe"></i></span>
+                                <span><strong>Online:</strong> Visit our <a href="<?php echo $base_url; ?>contact-us" style="color:var(--ni-red-dk); font-weight:600;">Contact Us</a> page and fill in the enquiry form with your Order ID, issue description, and contact details.</span>
+                            </li>
+                            <li>
+                                <span class="li-dot"><i class="fa-brands fa-whatsapp"></i></span>
+                                <span><strong>WhatsApp:</strong> Send your order details and issue to our business WhatsApp number. Include a photo if reporting a damaged or wrong product.</span>
+                            </li>
+                            <li>
+                                <span class="li-dot"><i class="fa-solid fa-envelope"></i></span>
+                                <span><strong>Email:</strong> Write to us with your Order ID, issue description, and any supporting photos. Our team will respond within 24 business hours.</span>
+                            </li>
+                            <li>
+                                <span class="li-dot"><i class="fa-solid fa-location-dot"></i></span>
+                                <span><strong>In Person:</strong> You may also visit our office in Nagpur to raise a request directly with our sales or support team.</span>
+                            </li>
+                        </ul>
+                        <div class="ni-info-grid">
+                            <div class="ni-info-card">
+                                <i class="fa-solid fa-clock"></i>
+                                <div>
+                                    <h6>Response Time</h6>
+                                    <p>Within 24 business hours of request</p>
+                                </div>
+                            </div>
+                            <div class="ni-info-card">
+                                <i class="fa-solid fa-rotate"></i>
+                                <div>
+                                    <h6>Refund Processing</h6>
+                                    <p>7–10 working days after approval</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CTA Banner -->
+                <div class="ni-cp-cta" data-aos="fade-up" data-aos-duration="700">
+                    <div class="cta-inner">
+                        <h3>Still Have <span>Questions?</span></h3>
+                        <p>Our team is always available to help you with any concerns about your order, cancellation, or refund. Reach out — we'll sort it out for you.</p>
+                        <div class="ni-cp-cta-btns">
+                            <a href="<?php echo $base_url; ?>contact-us" class="ni-cta-btn-primary">
+                                <i class="fa-solid fa-paper-plane"></i> Contact Us
+                            </a>
+                            <a href="<?php echo $base_url; ?>products" class="ni-cta-btn-outline">
+                                <i class="fa-solid fa-boxes-stacked"></i> View Products
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- ── END CONTENT ── -->
+
+        </div>
     </div>
+</section>
 
-    <!-- jQuery -->
-    <script src="assets/js/jquery-3.7.1.min.js"></script>
-    <!-- Bootstrap Bundle JS -->
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
-    <!-- Feather Icon JS -->
-    <script src="assets/js/feather.min.js"></script>
-    <!-- BacktoTop JS -->
-    <script src="assets/js/backToTop.js"></script>
-    <!-- select JS -->
-    <script src="assets/plugins/select2/js/select2.min.js"></script>
-    <!-- Slick Slider -->
-    <script src="assets/plugins/slick/slick.min.js"></script>
-    <!-- Fancybox JS -->
-    <script src="assets/plugins/fancybox/jquery.fancybox.min.js"></script>
-    <!-- Counter JS -->
-    <script src="assets/js/counter.js"></script>
-    <!-- Wow JS -->
-    <script src="assets/plugins/wow/js/wow.min.js"></script>
-    <!-- Custom JS -->
-    <script src="assets/js/script.js"></script>
+<?php include 'include/footer.php'; ?>
 
-    <script>
-        // ── TOC Active State on Scroll ──
-        (function () {
-            const sections = document.querySelectorAll('.tc-section[id]');
-            const tocLinks = document.querySelectorAll('.tc-toc-list a');
+<script src="<?php echo $base_url; ?>assets/js/plugins/bootstrap.min.js"></script>
+<script src="<?php echo $base_url; ?>assets/js/plugins/fontawesome.js"></script>
+<script src="<?php echo $base_url; ?>assets/js/plugins/aos.js"></script>
+<script src="<?php echo $base_url; ?>assets/js/plugins/sidebar.js"></script>
+<script src="<?php echo $base_url; ?>assets/js/plugins/mobilemenu.js"></script>
+<script src="<?php echo $base_url; ?>assets/js/main.js"></script>
+<script>
+if (typeof AOS !== 'undefined') { AOS.init({ duration: 600, once: true, offset: 50 }); }
 
-            function updateActive() {
-                let current = '';
-                sections.forEach(sec => {
-                    const top = sec.getBoundingClientRect().top;
-                    if (top <= 120) current = sec.getAttribute('id');
-                });
-                tocLinks.forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href') === '#' + current) {
-                        link.classList.add('active');
-                    }
-                });
-            }
-
-            window.addEventListener('scroll', updateActive, { passive: true });
-            updateActive();
-        })();
-
-        // ── ScrollToTop Progress ──
-        (function () {
-            const wrap = document.querySelector('.progress-wrap');
-            const path = wrap ? wrap.querySelector('path') : null;
-            if (!wrap || !path) return;
-            const pathLength = path.getTotalLength();
-            path.style.strokeDasharray = pathLength + 'px';
-            path.style.strokeDashoffset = pathLength + 'px';
-            path.style.transition = 'stroke-dashoffset 10ms linear';
-
-            function updateProgress() {
-                const scrollTop = window.scrollY || document.documentElement.scrollTop;
-                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-                const scrolled = scrollTop / docHeight;
-                path.style.strokeDashoffset = (pathLength - pathLength * scrolled) + 'px';
-                wrap.classList.toggle('active-progress', scrollTop > 200);
-            }
-            window.addEventListener('scroll', updateProgress, { passive: true });
-            updateProgress();
-        })();
-    </script>
-
+(function () {
+    const sections = document.querySelectorAll('.ni-cp-section[id]');
+    const links    = document.querySelectorAll('.ni-toc-list a');
+    function update() {
+        let current = '';
+        sections.forEach(s => {
+            if (s.getBoundingClientRect().top <= 120) current = s.id;
+        });
+        links.forEach(l => {
+            l.classList.remove('active');
+            if (l.getAttribute('href') === '#' + current) l.classList.add('active');
+        });
+    }
+    window.addEventListener('scroll', update, { passive: true });
+    update();
+})();
+</script>
 </body>
 </html>

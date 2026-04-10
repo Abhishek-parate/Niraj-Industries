@@ -2,26 +2,35 @@ Options -Indexes
 RewriteEngine On
 RewriteBase /nirajindustries/
 
-# 1. DOCTOR CLEAN URL  (/doctors/slug)
+# 1. DOCTOR CLEAN URL (/doctors/slug)
 RewriteRule ^doctors/([a-zA-Z0-9_-]+)$ single-doctor.php?slug=$1 [L,QSA]
 
-# 2. BLOG POST CLEAN URL  (/blog/slug)
+# 2. BLOG POST CLEAN URL (/blog/slug)
 RewriteRule ^blog/([a-zA-Z0-9_-]+)$ blog-details.php?slug=$1 [L,QSA]
 
-# 3. BLOG CATEGORY & TAGS CLEAN URL  (/blogs/gynecology or /blogs/Surgery)
-# Changed regex to ([^/]+) and added [B] flag to handle URL-encoded spaces
+# 3. BLOG CLEAN URL (/top-industrial-valves → blog-details.php?slug=top-industrial-valves)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.php !-f
+RewriteRule ^([a-zA-Z0-9_-]+)/?$ blog-details.php?slug=$1 [L,QSA]
+
+# 4. BLOG CATEGORY & TAGS CLEAN URL
 RewriteRule ^blogs/([^/]+)/?$ blogs.php?category=$1 [B,L,QSA]
 
-# 4. SERVICE CLEAN URL  (/service/slug)
+# 5. SERVICE CLEAN URL (/service/slug)
 RewriteRule ^service/([a-zA-Z0-9_-]+)$ single-service.php?slug=$1 [L,QSA]
 
-# 5. SERVICES CATEGORY CLEAN URL (/services/category/id)
+RewriteRule ^products/([a-zA-Z0-9_-]+)$ single-product.php?slug=$1 [L,QSA]
+
+# 6. SERVICES CATEGORY CLEAN URL
 RewriteRule ^services/category/([^/]+)/?$ services.php?category=$1 [B,L,QSA]
 
-# 6. SERVICES KEYWORD SEARCH CLEAN URL (/services/search/keyword)
+RewriteRule ^products/([a-zA-Z0-9_-]+)$ single-product.php?slug=$1 [L,QSA]
+
+# 7. SERVICES KEYWORD SEARCH CLEAN URL
 RewriteRule ^services/search/([^/]+)/?$ services.php?search=$1 [B,L,QSA]
 
-# 7. REMOVE .php FROM URL (INTERNAL)
+# 8. REMOVE .php FROM URL (INTERNAL)
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}.php -f
 RewriteRule ^([^/]+)$ $1.php [L]

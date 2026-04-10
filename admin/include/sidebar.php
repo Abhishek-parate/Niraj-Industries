@@ -53,7 +53,7 @@ function sbOpen(string $prefix, string $active): string {
                 <?php if (canAccess('products')): ?>
                 <li<?= sbParent('products', $activePage) ?>>
                     <a href="#">
-                        <i class="fe fe-box"></i> <span>Products</span>
+                        <i class="fa fa-box"></i> <span>Products</span>
                         <span class="menu-arrow"></span>
                     </a>
                     <ul style="display:<?= sbOpen('products', $activePage) ?>;">
@@ -68,24 +68,25 @@ function sbOpen(string $prefix, string $active): string {
                     </ul>
                 </li>
                 <?php endif; ?>
+
                 <?php if (canAccess('blogs')): ?>
-<li<?= sbParent('blogs', $activePage) ?>>
-    <a href="#">
-        <i class="fe fe-file-text"></i> <span>Blogs</span>
-        <span class="menu-arrow"></span>
-    </a>
-    <ul style="display:<?= sbOpen('blogs', $activePage) ?>;">
-        <li<?= sbActive('blogs-index', $activePage, ['blogs-edit']) ?>>
-            <a href="<?= $adminBase ?>blogs/">All Blogs</a>
-        </li>
-        <?php if (!hasRole('viewer')): ?>
-        <li<?= sbActive('blogs-add', $activePage) ?>>
-            <a href="<?= $adminBase ?>blogs/add">Add Blog</a>
-        </li>
-        <?php endif; ?>
-    </ul>
-</li>
-<?php endif; ?>
+                <li<?= sbParent('blogs', $activePage) ?>>
+                    <a href="#">
+                        <i class="fe fe-edit"></i> <span>Blogs</span>  <!-- ✅ fixed -->
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <ul style="display:<?= sbOpen('blogs', $activePage) ?>;">
+                        <li<?= sbActive('blogs-index', $activePage, ['blogs-edit']) ?>>
+                            <a href="<?= $adminBase ?>blogs/">All Blogs</a>
+                        </li>
+                        <?php if (!hasRole('viewer')): ?>
+                        <li<?= sbActive('blogs-add', $activePage) ?>>
+                            <a href="<?= $adminBase ?>blogs/add">Add Blog</a>
+                        </li>
+                        <?php endif; ?>
+                    </ul>
+                </li>
+                <?php endif; ?>
 
             </ul>
         </div>

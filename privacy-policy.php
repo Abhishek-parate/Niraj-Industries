@@ -1,1375 +1,1042 @@
-<?php $base_url = "http://localhost/nirajindustries/"; ?>
-<?php include 'include/config.php'; ?>
+<?php
+$base_url = "http://localhost/nirajindustries/";
+include 'include/config.php';
+
+$page_title       = "Privacy Policy | Niraj Industries";
+$meta_description = "Read Niraj Industries' Privacy Policy to understand how we collect, use, and protect your personal data. Your privacy is our priority.";
+?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Privacy Policy of Dr. Agrawal's R.K. Hospital Nagpur. Learn how we collect, use, and protect your personal and medical information.">
-    <meta name="keywords" content="RK Hospital Privacy Policy, Patient Data Protection Nagpur, Hospital Data Privacy RK Hospital">
-    <meta name="author" content="Dr. Agrawal's R.K. Hospital Nagpur">
-    <title>Privacy Policy | Dr. Agrawal's R.K. Hospital Nagpur</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><?php echo htmlspecialchars($page_title); ?></title>
+    <meta name="description" content="<?php echo htmlspecialchars($meta_description); ?>">
 
-    <!-- Favicon -->
-    <link rel="shortcut icon" href="<?php echo $base_url; ?>assets/img/RK-Logo.png" type="image/x-icon">
-    <link rel="apple-touch-icon" sizes="180x180" href="<?php echo $base_url; ?>assets/img/RK-Logo.png">
 
-    <!-- Theme Settings Js -->
-    <script src="assets/js/theme-script.js"></script>
+    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/css/plugins/bootstrap.min.css">
+    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/css/plugins/fontawesome.css">
+    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/css/plugins/aos.css">
+    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/css/plugins/mobile.css">
+    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/css/plugins/sidebar.css">
+    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/css/main.css">
+    <script src="<?php echo $base_url; ?>assets/js/plugins/jquery-3-6-0.min.js"></script>
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/css/animate.css">
+    <!-- Google Fonts: DM Serif Display + Sora -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <!-- Fontawesome CSS -->
-    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/plugins/fontawesome/css/fontawesome.min.css">
-    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/plugins/fontawesome/css/all.min.css">
-
-    <!-- Iconsax CSS -->
-    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/css/iconsax.css">
-
-    <!-- Feathericon CSS -->
-    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/css/feather.css">
-
-    <!-- Slick CSS -->
-    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/plugins/slick/slick.css">
-    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/plugins/slick/slick-theme.css">
-
-    <!-- Wow CSS -->
-    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/plugins/wow/css/animate.css">
-
-    <!-- select CSS -->
-    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/plugins/select2/css/select2.min.css">
-
-    <!-- Fancybox CSS -->
-    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/plugins/fancybox/jquery.fancybox.min.css">
-
-    <!-- Main CSS -->
-    <link rel="stylesheet" href="<?php echo $base_url; ?>assets/css/style.css">
-
-    <style>
-        /* ═══════════════════════════════════════════
-           THEME VARIABLES — matches homepage red/white
-        ═══════════════════════════════════════════ */
-        :root {
-            --red: #d32f2f;
-            --red-dark: #b71c1c;
-            --red-light: #ef5350;
-            --red-bg: #fff5f5;
-            --red-border: #fecaca;
-            --text-dark: #1a1a2e;
-            --text-mid: #374151;
-            --text-soft: #6b7280;
-            --white: #ffffff;
-            --off-white: #f9fafb;
-            --border: #e5e7eb;
-            --shadow-sm: 0 2px 12px rgba(211, 47, 47, 0.08);
-            --shadow-md: 0 6px 28px rgba(211, 47, 47, 0.13);
-            --shadow-lg: 0 20px 60px rgba(211, 47, 47, 0.18);
-            --primary: #316dff;
-            --blue-dark: #1a3fa3;
-            --blue-bg: #eef3ff;
-            --blue-border: #c3d0f8;
-        }
-
-        /* ─── BANNER ─── */
-        .contact-hero-banner {
-            margin-left: 0 !important;
-            margin-right: 0 !important;
-            width: 100% !important;
-            max-width: 100% !important;
-        }
-
-        /* ─── META BAR ─── */
-        .pp-meta-bar {
-            background: var(--off-white);
-            border-bottom: 1px solid var(--border);
-            padding: 14px 0;
-        }
-
-        .pp-meta-inner {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 12px;
-        }
-
-        .pp-updated-badge {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            gap: 6px 8px;
-            font-size: 12.5px;
-            color: var(--text-soft);
-            line-height: 1.6;
-        }
-        .pp-updated-badge i { color: var(--primary); flex-shrink: 0; }
-        .pp-updated-badge strong { color: var(--text-dark); }
-
-        .pp-print-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 7px;
-            font-size: 12.5px;
-            font-weight: 600;
-            color: var(--text-mid);
-            background: none;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 6px 16px;
-            cursor: pointer;
-            transition: all 0.2s;
-            white-space: nowrap;
-        }
-        .pp-print-btn:hover { background: var(--white); border-color: var(--red); color: var(--red); }
-
-        @media (min-width: 768px) {
-            .pp-meta-inner {
-                flex-direction: row;
-                align-items: center;
-                justify-content: space-between;
-            }
-        }
-        @media (max-width: 767px) {
-            .pp-print-btn {
-                width: 100%;
-                justify-content: center;
-            }
-        }
-
-        /* ─── MAIN LAYOUT ─── */
-        .pp-wrapper {
-            padding: 60px 0 80px;
-            background: #fff;
-        }
-
-        /* ─── STICKY SIDEBAR TOC ─── */
-        .pp-sidebar {
-            position: sticky;
-            top: 90px;
-        }
-
-        .pp-toc {
-            background: var(--white);
-            border: 1px solid var(--border);
-            border-radius: 18px;
-            overflow: hidden;
-            box-shadow: var(--shadow-sm);
-        }
-
-        .pp-toc-header {
-            background: linear-gradient(135deg, var(--red-dark), var(--red));
-            padding: 18px 22px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .pp-toc-header i { color: #fff; font-size: 16px; }
-        .pp-toc-header h5 {
-            margin: 0;
-            color: #fff;
-            font-size: 14px;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-        }
-
-        .pp-toc-list { padding: 14px 0; }
-        .pp-toc-list a {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 9px 22px;
-            font-size: 13px;
-            font-weight: 500;
-            color: var(--text-mid);
-            text-decoration: none;
-            transition: all 0.2s;
-            border-left: 3px solid transparent;
-        }
-        .pp-toc-list a .toc-num {
-            min-width: 22px;
-            height: 22px;
-            border-radius: 50%;
-            background: var(--off-white);
-            color: var(--red);
-            font-size: 10.5px;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 1px solid var(--red-border);
-            transition: all 0.2s;
-            flex-shrink: 0;
-        }
-        .pp-toc-list a:hover {
-            color: var(--red);
-            background: var(--red-bg);
-            border-left-color: var(--red);
-        }
-        .pp-toc-list a:hover .toc-num {
-            background: var(--red);
-            color: #fff;
-            border-color: var(--red);
-        }
-        .pp-toc-list a.active {
-            color: var(--red);
-            background: var(--red-bg);
-            border-left-color: var(--red);
-            font-weight: 700;
-        }
-        .pp-toc-list a.active .toc-num {
-            background: var(--red);
-            color: #fff;
-        }
-
-        /* Contact Card in Sidebar */
-        .pp-contact-card {
-            background: linear-gradient(135deg, #0d1b4b 0%, #1a3fa3 100%);
-            border-radius: 18px;
-            padding: 26px 22px;
-            margin-top: 20px;
-            text-align: center;
-        }
-        .pp-contact-card i { font-size: 28px; color: rgba(255,255,255,0.8); margin-bottom: 12px; display: block; }
-        .pp-contact-card h6 { color: #fff; font-size: 14px; font-weight: 700; margin-bottom: 6px; }
-        .pp-contact-card p { color: rgba(255,255,255,0.7); font-size: 12.5px; margin-bottom: 16px; }
-        .pp-contact-card a {
-            display: inline-flex;
-            align-items: center;
-            gap: 7px;
-            background: var(--red);
-            color: #fff;
-            font-size: 13px;
-            font-weight: 700;
-            padding: 10px 22px;
-            border-radius: 100px;
-            text-decoration: none;
-            transition: all 0.22s;
-        }
-        .pp-contact-card a:hover { background: var(--red-dark); transform: translateY(-1px); color: #fff; }
-
-        /* ─── CONTENT SECTIONS ─── */
-        .pp-section {
-            margin-bottom: 48px;
-            scroll-margin-top: 100px;
-        }
-
-        .pp-section-header {
-            display: flex;
-            align-items: flex-start;
-            gap: 16px;
-            margin-bottom: 22px;
-            padding-bottom: 18px;
-            border-bottom: 2px solid var(--border);
-        }
-
-        .pp-section-icon {
-            width: 52px;
-            height: 52px;
-            border-radius: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            flex-shrink: 0;
-        }
-        .pp-section-icon.red { background: var(--red-bg); color: var(--red); border: 1px solid var(--red-border); }
-        .pp-section-icon.blue { background: var(--blue-bg); color: var(--primary); border: 1px solid var(--blue-border); }
-
-        .pp-section-header-text { flex: 1; }
-        .pp-section-num {
-            font-size: 10.5px;
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--red);
-            margin-bottom: 3px;
-        }
-        .pp-section-title {
-            font-size: 1.25rem;
-            font-weight: 800;
-            color: var(--text-dark);
-            margin: 0;
-        }
-
-        .pp-prose {
-            font-size: 14.5px;
-            color: var(--text-mid);
-            line-height: 1.85;
-        }
-
-        /* List style */
-        .pp-list {
-            list-style: none;
-            padding: 0;
-            margin: 14px 0 0;
-        }
-        .pp-list li {
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            padding: 11px 0;
-            border-bottom: 1px solid var(--border);
-            font-size: 14px;
-            color: var(--text-mid);
-            line-height: 1.65;
-        }
-        .pp-list li:last-child { border-bottom: none; }
-        .pp-list li .li-icon {
-            width: 22px;
-            height: 22px;
-            border-radius: 50%;
-            background: var(--red-bg);
-            color: var(--red);
-            font-size: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            margin-top: 2px;
-            border: 1px solid var(--red-border);
-            transition: all 0.2s;
-        }
-        .pp-list li .li-icon.blue { background: var(--blue-bg); color: var(--primary); border-color: var(--blue-border); }
-
-        /* Highlight box */
-        .pp-highlight {
-            background: var(--red-bg);
-            border: 1px solid var(--red-border);
-            border-left: 4px solid var(--red);
-            border-radius: 10px;
-            padding: 16px 20px;
-            margin-top: 16px;
-            font-size: 13.5px;
-            color: var(--text-mid);
-            line-height: 1.75;
-        }
-        .pp-highlight.blue {
-            background: var(--blue-bg);
-            border-color: var(--blue-border);
-            border-left-color: var(--primary);
-        }
-        .pp-highlight strong { color: var(--text-dark); }
-
-        /* Info grid */
-        .pp-info-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 14px;
-            margin-top: 18px;
-        }
-        .pp-info-card {
-            background: var(--off-white);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 16px 18px;
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-        }
-        .pp-info-card i {
-            font-size: 18px;
-            color: var(--primary);
-            margin-top: 2px;
-            flex-shrink: 0;
-        }
-        .pp-info-card h6 { font-size: 13px; font-weight: 700; color: var(--text-dark); margin-bottom: 4px; }
-        .pp-info-card p { font-size: 12.5px; color: var(--text-soft); margin: 0; line-height: 1.5; }
-
-        /* Data Table */
-        .pp-data-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 18px;
-            font-size: 13.5px;
-            overflow: hidden;
-            border-radius: 12px;
-            border: 1px solid var(--border);
-        }
-        .pp-data-table thead tr {
-            background: linear-gradient(135deg, var(--red-dark), var(--red));
-        }
-        .pp-data-table thead th {
-            color: #fff;
-            font-weight: 700;
-            padding: 12px 16px;
-            text-align: left;
-            font-size: 12.5px;
-            letter-spacing: 0.3px;
-        }
-        .pp-data-table tbody tr {
-            border-bottom: 1px solid var(--border);
-            transition: background 0.15s;
-        }
-        .pp-data-table tbody tr:last-child { border-bottom: none; }
-        .pp-data-table tbody tr:nth-child(even) { background: var(--off-white); }
-        .pp-data-table tbody tr:hover { background: var(--red-bg); }
-        .pp-data-table tbody td {
-            padding: 11px 16px;
-            color: var(--text-mid);
-            vertical-align: top;
-            line-height: 1.6;
-        }
-        .pp-data-table tbody td:first-child {
-            font-weight: 600;
-            color: var(--text-dark);
-        }
-
-        /* ─── AGREEMENT FOOTER BANNER ─── */
-        .pp-agreement-banner {
-            background: linear-gradient(135deg, #0d1b4b 0%, #1a1a2e 50%, #7f0000 100%);
-            border-radius: 20px;
-            padding: 48px 40px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            margin-top: 16px;
-        }
-        .pp-agreement-banner::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M20 20.5V18H0v5h5v5H0v5h20v-2.5h-5V20.5h5zM15 45V20H0v5h5v5H0v5h5v5H0v5h15v-5H5v-5h5v-5H5v-5h10z'/%3E%3C/g%3E%3C/svg%3E");
-        }
-        .pp-agreement-banner i {
-            font-size: 42px;
-            color: rgba(255,255,255,0.35);
-            display: block;
-            margin-bottom: 16px;
-            position: relative;
-            z-index: 1;
-        }
-        .pp-agreement-banner h3 {
-            color: #fff;
-            font-size: 1.55rem;
-            font-weight: 800;
-            margin-bottom: 10px;
-            position: relative;
-            z-index: 1;
-        }
-        .pp-agreement-banner p {
-            color: rgba(255,255,255,0.7);
-            font-size: 14.5px;
-            max-width: 540px;
-            margin: 0 auto 26px;
-            position: relative;
-            z-index: 1;
-        }
-        .pp-agreement-actions {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 14px;
-            flex-wrap: wrap;
-            position: relative;
-            z-index: 1;
-        }
-        .btn-pp-primary {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: linear-gradient(135deg, var(--red-dark), var(--red-light));
-            color: #fff;
-            font-size: 14px;
-            font-weight: 700;
-            padding: 13px 30px;
-            border-radius: 100px;
-            text-decoration: none;
-            transition: all 0.22s;
-            box-shadow: 0 5px 20px rgba(183,28,28,0.4);
-        }
-        .btn-pp-primary:hover {
-            background: linear-gradient(135deg, #7f0000, var(--red-dark));
-            transform: translateY(-2px);
-            box-shadow: 0 8px 28px rgba(183,28,28,0.55);
-            color: #fff;
-        }
-        .btn-pp-outline {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            border: 2px solid rgba(255,255,255,0.35);
-            color: rgba(255,255,255,0.85);
-            font-size: 14px;
-            font-weight: 700;
-            padding: 13px 30px;
-            border-radius: 100px;
-            text-decoration: none;
-            transition: all 0.22s;
-        }
-        .btn-pp-outline:hover {
-            border-color: #fff;
-            color: #fff;
-            background: rgba(255,255,255,0.08);
-        }
-
-        /* ═══════════════════════════════════════════
-           RESPONSIVE BREAKPOINTS
-        ═══════════════════════════════════════════ */
-
-        @media (max-width: 991px) {
-            .pp-sidebar {
-                position: static;
-                margin-bottom: 32px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .pp-info-grid {
-                grid-template-columns: 1fr;
-            }
-            .pp-agreement-banner {
-                padding: 36px 24px;
-            }
-            .pp-agreement-banner h3 {
-                font-size: 1.25rem;
-            }
-            .pp-wrapper {
-                padding: 40px 0 60px;
-            }
-            .pp-data-table {
-                display: block;
-                overflow-x: auto;
-                -webkit-overflow-scrolling: touch;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .pp-section-header {
-                flex-direction: column;
-                gap: 12px;
-            }
-            .pp-section-title {
-                font-size: 1.1rem;
-            }
-            .pp-prose {
-                font-size: 14px;
-            }
-            .pp-highlight {
-                font-size: 13px;
-                padding: 14px 16px;
-            }
-            .pp-info-card {
-                padding: 14px 14px;
-            }
-            .pp-agreement-banner {
-                padding: 28px 18px;
-            }
-            .btn-pp-primary,
-            .btn-pp-outline {
-                width: 100%;
-                justify-content: center;
-                padding: 13px 20px;
-            }
-            .pp-agreement-actions {
-                flex-direction: column;
-                gap: 10px;
-            }
-            .pp-section {
-                margin-bottom: 36px;
-            }
-        }
-       
-.tc-sidebar {
-    position: -webkit-sticky;
-    position: sticky;
-    top: 100px;
-    max-height: calc(100vh - 120px);
-    overflow-y: auto;
+<style>
+/* ══════════════════════════════════════════════
+   NIRAJ INDUSTRIES — PRIVACY POLICY PAGE
+   Theme: #B5100E red + #242223 dark
+   Font: DM Serif Display (headings) + Sora (body)
+   ══════════════════════════════════════════════ */
+:root {
+    --ni-red:        #B5100E;
+    --ni-red-dk:     #8f0b0a;
+    --ni-red-soft:   #fdf0f0;
+    --ni-red-mid:    rgba(181,16,14,0.12);
+    --ni-dark:       #242223;
+    --ni-dark-2:     #2e2c2c;
+    --ni-dark-3:     #3d3a3a;
+    --ni-white:      #ffffff;
+    --ni-off-white:  #f8f6f6;
+    --ni-text:       #242223;
+    --ni-text2:      #4a4646;
+    --ni-text3:      #888080;
+    --ni-border:     #e8e4e4;
+    --ni-bg:         #f5f3f3;
+    --ni-radius:     14px;
+    --ni-radius-sm:  8px;
+    --ni-shadow:     0 2px 16px rgba(36,34,35,0.07);
+    --ni-shadow-md:  0 8px 32px rgba(36,34,35,0.13);
+    --ni-font-head:  'DM Serif Display', serif;
+    --ni-font-body:  'Sora', sans-serif;
+    --ni-trans:      all .25s cubic-bezier(.4,0,.2,1);
 }
-    </style>
+
+.ni-pp-section {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+[data-aos] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html, body { overflow-x: hidden; }
+.ni-pp-page {
+    font-family: var(--ni-font-body);
+    background: var(--ni-white);
+    color: var(--ni-text);
+}
+
+/* ── HERO ────────────────────────────────────── */
+.ni-pp-hero {
+    background: var(--ni-dark);
+    position: relative;
+    overflow: hidden;
+    padding: 80px 0 70px;
+}
+.ni-pp-hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+        radial-gradient(ellipse 60% 80% at 90% 50%, rgba(181,16,14,0.15) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 60% at 10% 80%, rgba(181,16,14,0.07) 0%, transparent 50%);
+    pointer-events: none;
+}
+.ni-pp-hero::after {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+        linear-gradient(rgba(181,16,14,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(181,16,14,0.05) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+}
+.ni-pp-hero .container { position: relative; z-index: 2; }
+
+.ni-pp-breadcrumb {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 12.5px; color: rgba(255,255,255,0.45);
+    margin-bottom: 28px;
+    font-family: var(--ni-font-body);
+}
+.ni-pp-breadcrumb a { color: rgba(255,255,255,0.45); text-decoration: none; transition: color 0.2s; }
+.ni-pp-breadcrumb a:hover { color: var(--ni-red); }
+.ni-pp-breadcrumb i { font-size: 9px; }
+.ni-pp-breadcrumb span { color: var(--ni-red); }
+
+.ni-pp-hero-label {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(181,16,14,0.15);
+    border: 1px solid rgba(181,16,14,0.3);
+    color: #f87171;
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 2px; text-transform: uppercase;
+    padding: 6px 16px; border-radius: 30px;
+    margin-bottom: 20px;
+    font-family: var(--ni-font-body);
+}
+
+.ni-pp-hero h1 {
+    font-family: var(--ni-font-head);
+    font-size: clamp(32px, 4.5vw, 52px);
+    font-weight: 400; color: var(--ni-white);
+    line-height: 1.1; letter-spacing: -0.5px;
+    margin: 0 0 16px;
+}
+.ni-pp-hero h1 span { color: var(--ni-red); }
+.ni-pp-hero p {
+    font-family: var(--ni-font-body);
+    font-size: 15px; color: rgba(255,255,255,0.6);
+    line-height: 1.8; max-width: 520px;
+    margin: 0 0 32px;
+}
+
+.ni-pp-hero-pills { display: flex; flex-wrap: wrap; gap: 10px; }
+.ni-pp-hero-pills .pill {
+    display: inline-flex; align-items: center; gap: 7px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    color: rgba(255,255,255,0.8);
+    font-size: 12px; font-weight: 600;
+    padding: 8px 16px; border-radius: 30px;
+    font-family: var(--ni-font-body);
+}
+.ni-pp-hero-pills .pill i { color: var(--ni-red); }
+
+.ni-pp-hero-right { display: flex; align-items: center; justify-content: flex-end; height: 100%; }
+.ni-pp-update-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(181,16,14,0.25);
+    border-radius: 20px; padding: 28px;
+    text-align: center; min-width: 220px;
+}
+.ni-pp-update-card .uc-icon {
+    width: 60px; height: 60px;
+    background: rgba(181,16,14,0.12);
+    border: 1.5px solid rgba(181,16,14,0.3);
+    border-radius: 16px;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 16px;
+}
+.ni-pp-update-card .uc-icon i { font-size: 24px; color: #f87171; }
+.ni-pp-update-card h5 {
+    font-size: 13px; font-weight: 700;
+    color: rgba(255,255,255,0.9); margin: 0 0 6px;
+    font-family: var(--ni-font-body);
+}
+.ni-pp-update-card p {
+    font-size: 12px; color: rgba(255,255,255,0.45);
+    margin: 0 0 16px;
+    font-family: var(--ni-font-body);
+}
+.ni-pp-update-card .uc-date {
+    display: inline-block;
+    background: var(--ni-red); color: var(--ni-white);
+    font-size: 12px; font-weight: 700;
+    padding: 5px 16px; border-radius: 20px;
+    font-family: var(--ni-font-body);
+}
+
+/* ── STRIP ───────────────────────────────────── */
+.ni-pp-strip { background: var(--ni-red); padding: 0; }
+.ni-pp-strip-inner { display: grid; grid-template-columns: repeat(4, 1fr); }
+.ni-pp-strip-item {
+    display: flex; align-items: center; gap: 14px;
+    padding: 20px 24px;
+    border-right: 1px solid rgba(255,255,255,0.15);
+}
+.ni-pp-strip-item:last-child { border-right: none; }
+.ni-pp-strip-item .si-icon {
+    width: 44px; height: 44px;
+    background: rgba(255,255,255,0.12);
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+}
+.ni-pp-strip-item .si-icon i { font-size: 18px; color: var(--ni-white); }
+.ni-pp-strip-item .si-text h6 {
+    font-size: 13px; font-weight: 700;
+    color: var(--ni-white); margin: 0 0 2px;
+    font-family: var(--ni-font-body);
+}
+.ni-pp-strip-item .si-text p {
+    font-size: 11.5px; color: rgba(255,255,255,0.7);
+    margin: 0; line-height: 1.4;
+    font-family: var(--ni-font-body);
+}
+
+/* ── MAIN LAYOUT ─────────────────────────────── */
+.ni-pp-body { padding: 60px 0 90px; background: var(--ni-bg); }
+.ni-pp-sidebar { position: sticky; top: 90px; }
+
+.ni-toc-card {
+    background: var(--ni-white);
+    border-radius: 16px; border: 1px solid var(--ni-border);
+    overflow: hidden;
+    box-shadow: var(--ni-shadow);
+    margin-bottom: 20px;
+}
+.ni-toc-head {
+    background: var(--ni-dark);
+    padding: 18px 22px;
+    display: flex; align-items: center; gap: 10px;
+}
+.ni-toc-head i { color: var(--ni-red); font-size: 15px; }
+.ni-toc-head h5 {
+    margin: 0; color: var(--ni-white);
+    font-size: 13.5px; font-weight: 700;
+    font-family: var(--ni-font-body);
+}
+
+.ni-toc-list { padding: 10px 0; }
+.ni-toc-list a {
+    display: flex; align-items: center; gap: 10px;
+    padding: 9px 20px;
+    font-size: 13px; font-weight: 500;
+    color: var(--ni-text2);
+    text-decoration: none;
+    border-left: 3px solid transparent;
+    transition: var(--ni-trans);
+    font-family: var(--ni-font-body);
+}
+.ni-toc-list a .tnum {
+    min-width: 22px; height: 22px;
+    border-radius: 50%;
+    background: var(--ni-bg); color: var(--ni-red-dk);
+    font-size: 10px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    border: 1px solid rgba(181,16,14,0.25);
+    transition: var(--ni-trans); flex-shrink: 0;
+    font-family: var(--ni-font-body);
+}
+.ni-toc-list a:hover, .ni-toc-list a.active {
+    color: var(--ni-dark);
+    background: var(--ni-red-soft);
+    border-left-color: var(--ni-red);
+}
+.ni-toc-list a:hover .tnum, .ni-toc-list a.active .tnum {
+    background: var(--ni-red); color: var(--ni-white);
+    border-color: var(--ni-red);
+}
+.ni-toc-list a.active { font-weight: 700; }
+
+.ni-contact-widget {
+    background: var(--ni-dark);
+    border-radius: 16px; padding: 26px 22px;
+    text-align: center;
+}
+.ni-contact-widget .cw-icon {
+    width: 52px; height: 52px;
+    background: rgba(181,16,14,0.15);
+    border: 1.5px solid rgba(181,16,14,0.3);
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 14px;
+}
+.ni-contact-widget .cw-icon i { font-size: 22px; color: #f87171; }
+.ni-contact-widget h6 {
+    color: var(--ni-white); font-size: 14px; font-weight: 700;
+    margin: 0 0 6px; font-family: var(--ni-font-body);
+}
+.ni-contact-widget p {
+    color: rgba(255,255,255,0.55); font-size: 12.5px;
+    margin: 0 0 18px; line-height: 1.6;
+    font-family: var(--ni-font-body);
+}
+.ni-contact-widget a {
+    display: inline-flex; align-items: center; gap: 7px;
+    background: var(--ni-red); color: var(--ni-white);
+    font-size: 13px; font-weight: 700;
+    padding: 11px 24px; border-radius: 30px;
+    text-decoration: none; transition: var(--ni-trans);
+    width: 100%; justify-content: center;
+    font-family: var(--ni-font-body);
+}
+.ni-contact-widget a:hover {
+    background: var(--ni-red-dk); color: var(--ni-white);
+    transform: translateY(-2px);
+}
+
+/* ── CONTENT SECTIONS ────────────────────────── */
+.ni-pp-section {
+    background: var(--ni-white);
+    border-radius: 16px; border: 1px solid var(--ni-border);
+    padding: 32px 36px; margin-bottom: 20px;
+    scroll-margin-top: 100px;
+    box-shadow: var(--ni-shadow);
+    transition: box-shadow 0.2s;
+}
+.ni-pp-section:hover { box-shadow: var(--ni-shadow-md); }
+
+.ni-pp-section-head {
+    display: flex; align-items: flex-start; gap: 16px;
+    padding-bottom: 20px; margin-bottom: 22px;
+    border-bottom: 2px solid var(--ni-border);
+}
+.ni-pp-section-icon {
+    width: 50px; height: 50px;
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; flex-shrink: 0;
+    background: var(--ni-red-soft);
+    border: 1.5px solid rgba(181,16,14,0.2);
+    color: var(--ni-red);
+}
+.ni-pp-sec-num {
+    font-size: 10.5px; font-weight: 700;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: var(--ni-red); margin-bottom: 3px;
+    font-family: var(--ni-font-body);
+}
+.ni-pp-sec-title {
+    font-family: var(--ni-font-head);
+    font-size: 22px; font-weight: 400;
+    color: var(--ni-dark); margin: 0; line-height: 1.2;
+}
+
+.ni-pp-prose {
+    font-family: var(--ni-font-body);
+    font-size: 14.5px; color: var(--ni-text2); line-height: 1.85;
+}
+.ni-pp-prose p + p { margin-top: 12px; }
+
+.ni-pp-list { list-style: none; padding: 0; margin: 16px 0 0; }
+.ni-pp-list li {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 12px 0; border-bottom: 1px solid var(--ni-border);
+    font-size: 14px; color: var(--ni-text2); line-height: 1.7;
+    font-family: var(--ni-font-body);
+}
+.ni-pp-list li:last-child { border-bottom: none; }
+.ni-pp-list li .li-dot {
+    width: 22px; height: 22px; border-radius: 50%;
+    background: var(--ni-red-soft);
+    border: 1.5px solid rgba(181,16,14,0.2);
+    color: var(--ni-red); font-size: 9px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; margin-top: 2px;
+}
+
+.ni-highlight {
+    background: var(--ni-red-soft);
+    border: 1px solid rgba(181,16,14,0.18);
+    border-left: 4px solid var(--ni-red);
+    border-radius: 10px; padding: 16px 20px;
+    margin-top: 18px; font-size: 13.5px;
+    color: var(--ni-text); line-height: 1.75;
+    font-family: var(--ni-font-body);
+}
+.ni-highlight strong { color: var(--ni-dark); }
+.ni-highlight a { color: var(--ni-red-dk); font-weight: 600; }
+.ni-highlight.dark {
+    background: var(--ni-dark);
+    border-color: rgba(181,16,14,0.35);
+    border-left-color: var(--ni-red);
+    color: rgba(255,255,255,0.75);
+}
+.ni-highlight.dark strong { color: #f87171; }
+
+/* Data Type Grid */
+.ni-data-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px; margin-top: 20px;
+}
+.ni-data-card {
+    background: var(--ni-bg);
+    border: 1px solid var(--ni-border);
+    border-top: 3px solid var(--ni-red);
+    border-radius: 12px; padding: 18px 16px;
+    text-align: center;
+}
+.ni-data-card i {
+    font-size: 22px; color: var(--ni-red);
+    margin-bottom: 10px; display: block;
+}
+.ni-data-card h6 {
+    font-size: 13px; font-weight: 700;
+    color: var(--ni-dark); margin: 0 0 4px;
+    font-family: var(--ni-font-body);
+}
+.ni-data-card p {
+    font-size: 11.5px; color: var(--ni-text3);
+    margin: 0; line-height: 1.5;
+    font-family: var(--ni-font-body);
+}
+
+/* Rights Grid */
+.ni-info-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 14px; margin-top: 18px;
+}
+.ni-info-card {
+    background: var(--ni-bg); border: 1px solid var(--ni-border);
+    border-radius: 12px; padding: 16px 18px;
+    display: flex; align-items: flex-start; gap: 12px;
+}
+.ni-info-card i { font-size: 18px; color: var(--ni-red); margin-top: 2px; flex-shrink: 0; }
+.ni-info-card h6 {
+    font-size: 13px; font-weight: 700;
+    color: var(--ni-dark); margin: 0 0 3px;
+    font-family: var(--ni-font-body);
+}
+.ni-info-card p {
+    font-size: 12.5px; color: var(--ni-text3);
+    margin: 0; line-height: 1.5;
+    font-family: var(--ni-font-body);
+}
+
+/* ── CTA ─────────────────────────────────────── */
+.ni-pp-cta {
+    background: var(--ni-dark); border-radius: 20px;
+    padding: 48px 44px; text-align: center;
+    position: relative; overflow: hidden; margin-top: 10px;
+}
+.ni-pp-cta::before {
+    content: ''; position: absolute; inset: 0;
+    background:
+        radial-gradient(ellipse 50% 80% at 100% 50%, rgba(181,16,14,0.15) 0%, transparent 55%),
+        radial-gradient(ellipse 40% 60% at 0% 50%, rgba(181,16,14,0.08) 0%, transparent 50%);
+    pointer-events: none;
+}
+.ni-pp-cta::after {
+    content: ''; position: absolute; inset: 0;
+    background-image: radial-gradient(circle, rgba(181,16,14,0.08) 1px, transparent 1px);
+    background-size: 28px 28px; pointer-events: none;
+}
+.ni-pp-cta .cta-inner { position: relative; z-index: 1; }
+.ni-pp-cta h3 {
+    font-family: var(--ni-font-head);
+    font-size: 32px; font-weight: 400;
+    color: var(--ni-white); margin: 0 0 10px; line-height: 1.2;
+}
+.ni-pp-cta h3 span { color: var(--ni-red); }
+.ni-pp-cta p {
+    font-family: var(--ni-font-body);
+    font-size: 15px; color: rgba(255,255,255,0.6);
+    max-width: 500px; margin: 0 auto 28px; line-height: 1.7;
+}
+.ni-pp-cta-btns { display: flex; align-items: center; justify-content: center; gap: 14px; flex-wrap: wrap; }
+
+.ni-cta-btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--ni-red); color: var(--ni-white);
+    font-size: 14px; font-weight: 700;
+    padding: 14px 32px; border-radius: 50px;
+    text-decoration: none; transition: var(--ni-trans);
+    border: 2px solid var(--ni-red);
+    font-family: var(--ni-font-body);
+}
+.ni-cta-btn-primary:hover {
+    background: var(--ni-red-dk); border-color: var(--ni-red-dk);
+    color: var(--ni-white); transform: translateY(-2px);
+}
+.ni-cta-btn-outline {
+    display: inline-flex; align-items: center; gap: 8px;
+    border: 2px solid rgba(255,255,255,0.25);
+    color: rgba(255,255,255,0.8);
+    font-size: 14px; font-weight: 700;
+    padding: 14px 32px; border-radius: 50px;
+    text-decoration: none; transition: var(--ni-trans);
+    font-family: var(--ni-font-body);
+}
+.ni-cta-btn-outline:hover { border-color: var(--ni-red); color: #f87171; }
+
+/* ── RESPONSIVE ──────────────────────────────── */
+@media (max-width: 991px) {
+    .ni-pp-sidebar { position: static; margin-bottom: 28px; }
+    .ni-pp-strip-inner { grid-template-columns: repeat(2, 1fr); }
+    .ni-pp-strip-item:nth-child(2) { border-right: none; }
+    .ni-pp-hero-right { justify-content: flex-start; margin-top: 40px; }
+}
+@media (max-width: 767px) {
+    .ni-pp-hero { padding: 60px 0 50px; }
+    .ni-pp-section { padding: 24px 20px; }
+    .ni-pp-cta { padding: 36px 24px; }
+    .ni-pp-cta h3 { font-size: 26px; }
+    .ni-info-grid, .ni-data-grid { grid-template-columns: 1fr; }
+    .ni-cta-btn-primary, .ni-cta-btn-outline { width: 100%; justify-content: center; }
+    .ni-pp-cta-btns { flex-direction: column; }
+}
+@media (max-width: 480px) {
+    .ni-pp-strip-inner { grid-template-columns: 1fr; }
+    .ni-pp-strip-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.15); }
+    .ni-pp-strip-item:last-child { border-bottom: none; }
+}
+</style>
 </head>
+<body class="homepage4-body ni-pp-page">
 
-<body>
-    <!-- Main Wrapper -->
-    <div class="main-wrapper">
+<?php include 'include/header.php'; ?>
 
-        <?php include 'include/header.php'; ?>
-
-        <!-- ═══ HERO BANNER ═══ -->
-        <section class="contact-hero-banner">
-            <img src="assets/img/home/image-crousel1.webp" alt="RK Hospital Nagpur Privacy Policy" class="banner-img">
-            <div class="banner-grid-pattern"></div>
-            <div class="banner-overlay"></div>
-
-            <!-- Floating Stat Badges -->
-            <div class="banner-stat-badge badge-left">
-                <div class="badge-icon"><i class="fa-solid fa-star"></i></div>
-                <div class="badge-text">
-                    <div class="num">5.0 ★</div>
-                    <div class="label">496+ Reviews</div>
-                </div>
-            </div>
-
-            <div class="banner-stat-badge badge-right">
-                <div class="badge-icon"><i class="fa-solid fa-shield-halved"></i></div>
-                <div class="badge-text">
-                    <div class="num">100%</div>
-                    <div class="label">Data Secure</div>
-                </div>
-            </div>
-
-            <div class="banner-content">
-                <div class="banner-eyebrow">
-                    <i class="fa-solid fa-hospital"></i>
-                    Dr. Agrawal's R.K. Hospital, Nagpur
-                </div>
-                <h1 class="banner-heading">
-                    Legal &amp; Policy Documents<br>
+<!-- ══ HERO ══════════════════════════════════════ -->
+<section class="ni-pp-hero">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-8">
+                <nav class="ni-pp-breadcrumb" style="margin-top:20px;">
+                    <a href="<?php echo $base_url; ?>">Home</a>
+                    <i class="fa-solid fa-chevron-right"></i>
                     <span>Privacy Policy</span>
-                </h1>
-                <p class="banner-sub">
-                    Your privacy and the security of your personal and medical information is our highest priority. Learn how Dr. Agrawal's R.K. Hospital collects, uses, and protects your data.
-                </p>
-                <div class="banner-cta-group">
-                    <a href="tel:+919766057372" class="banner-btn-primary">
-                        <i class="fa-solid fa-phone"></i>
-                        Call Now: +91 97660 57372
-                    </a>
-                    <a href="contact-us" class="banner-btn-outline">
-                        <i class="fa-solid fa-calendar-check"></i>
-                        Book Appointment
-                    </a>
+                </nav>
+                <div class="ni-pp-hero-label">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    Legal &amp; Policy
+                </div>
+                <h1>Privacy<br><span>Policy</span></h1>
+                <p>We respect your privacy. This policy explains exactly what data we collect, why we collect it, and how we keep it safe — no jargon, no hidden clauses.</p>
+                <div class="ni-pp-hero-pills">
+                    <div class="pill"><i class="fa-solid fa-check"></i> Data Collection</div>
+                    <div class="pill"><i class="fa-solid fa-check"></i> How We Use Data</div>
+                    <div class="pill"><i class="fa-solid fa-check"></i> Your Rights</div>
+                    <div class="pill"><i class="fa-solid fa-check"></i> Cookies Policy</div>
                 </div>
             </div>
-        </section>
-
-        <!-- ═══ META BAR ═══ -->
-        <div class="pp-meta-bar">
-            <div class="container">
-                <div class="pp-meta-inner">
-                    <div class="pp-updated-badge">
-                        <i class="fa-regular fa-calendar-check"></i>
-                        Last Updated: <strong>January 1, 2026</strong>
-                        &nbsp;|&nbsp;
-                        <i class="fa-solid fa-file-shield"></i>
-                        Version: <strong>2.0</strong>
-                        &nbsp;|&nbsp;
-                        <i class="fa-solid fa-globe"></i>
-                        Applicable: <strong>R.K. Hospital, Nagpur</strong>
+            <div class="col-lg-4">
+                <div class="ni-pp-hero-right">
+                    <div class="ni-pp-update-card">
+                        <div class="uc-icon">
+                            <i class="fa-solid fa-calendar-check"></i>
+                        </div>
+                        <h5>Last Updated</h5>
+                        <p>This policy was last reviewed and updated on:</p>
+                        <span class="uc-date">April 01, 2025</span>
                     </div>
-                    <button class="pp-print-btn" onclick="window.print()">
-                        <i class="fa-solid fa-print"></i> Print / Save PDF
-                    </button>
                 </div>
             </div>
         </div>
-
-        <!-- ═══ MAIN CONTENT ═══ -->
-        <section class="pp-wrapper">
-            <div class="container">
-                <div class="row g-5">
-
-                    <!-- ── SIDEBAR ── -->
-                    <div class="col-lg-4 col-xl-3 d-none d-lg-block">
-                        <div class="pp-sidebar">
-
-                            <!-- Table of Contents -->
-                            <div class="pp-toc">
-                                <div class="pp-toc-header">
-                                    <i class="fa-solid fa-list-ul"></i>
-                                    <h5>Table of Contents</h5>
-                                </div>
-                                <div class="pp-toc-list">
-                                    <a href="#pp-1" class="active">
-                                        <span class="toc-num">01</span> Introduction
-                                    </a>
-                                    <a href="#pp-2">
-                                        <span class="toc-num">02</span> Information We Collect
-                                    </a>
-                                    <a href="#pp-3">
-                                        <span class="toc-num">03</span> How We Use Your Data
-                                    </a>
-                                    <a href="#pp-4">
-                                        <span class="toc-num">04</span> Data Sharing & Disclosure
-                                    </a>
-                                    <a href="#pp-5">
-                                        <span class="toc-num">05</span> Medical Records Policy
-                                    </a>
-                                    <a href="#pp-6">
-                                        <span class="toc-num">06</span> Cookies & Website Data
-                                    </a>
-                                    <a href="#pp-7">
-                                        <span class="toc-num">07</span> Data Security
-                                    </a>
-                                    <a href="#pp-8">
-                                        <span class="toc-num">08</span> Your Rights & Choices
-                                    </a>
-                                    <a href="#pp-9">
-                                        <span class="toc-num">09</span> Children's Privacy
-                                    </a>
-                                    <a href="#pp-10">
-                                        <span class="toc-num">10</span> Policy Updates & Contact
-                                    </a>
-                                </div>
-                            </div>
-
-                            <!-- Contact Card -->
-                            <div class="pp-contact-card">
-                                <i class="fa-solid fa-shield-halved"></i>
-                                <h6>Privacy Concerns?</h6>
-                                <p>Contact our Data Protection Officer for any privacy-related queries.</p>
-                                <a href="contact-us">
-                                    <i class="fa-solid fa-envelope"></i> Contact Us
-                                </a>
-                            </div>
-
-                        </div>
-                    </div>
-
-                    <!-- ── MAIN CONTENT ── -->
-                    <div class="col-lg-8 col-xl-9">
-
-                        <!-- SECTION 01 — Introduction -->
-                        <div class="pp-section" id="pp-1">
-                            <div class="pp-section-header">
-                                <div class="pp-section-icon red">
-                                    <i class="fa-solid fa-hospital"></i>
-                                </div>
-                                <div class="pp-section-header-text">
-                                    <div class="pp-section-num">Section 01</div>
-                                    <h2 class="pp-section-title">Introduction</h2>
-                                </div>
-                            </div>
-                            <div class="pp-prose">
-                                <p>
-                                    At <strong>Dr. Agrawal's R.K. Hospital, Nagpur</strong>, we believe that every patient has a fundamental right to privacy. This Privacy Policy ("Policy") explains how we collect, use, store, protect, and share your personal and medical information when you visit our hospital, use our website, or avail any of our healthcare services.
-                                </p>
-                                <p style="margin-top:12px;">
-                                    This Policy applies to all patients, attendants, website visitors, and any individual whose information is processed by R.K. Hospital. By using our services or providing your information, you consent to the practices described in this Privacy Policy.
-                                </p>
-                                <p style="margin-top:12px;">
-                                    We are committed to complying with applicable Indian laws including the <strong>Information Technology Act, 2000</strong>, the <strong>IT (Amendment) Act, 2008</strong>, and the <strong>Digital Personal Data Protection Act, 2023 (DPDPA)</strong> to ensure the highest standard of data privacy.
-                                </p>
-                                <div class="pp-highlight">
-                                    <strong>Scope:</strong> This Privacy Policy applies to all services offered at Dr. Agrawal's R.K. Hospital, 27, Central Avenue Road, Beside Hotel Al Zam Zam, Gandhibagh, Nagpur – 440002, Maharashtra, including our official website and appointment booking system.
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- SECTION 02 — Information We Collect -->
-                        <div class="pp-section" id="pp-2">
-                            <div class="pp-section-header">
-                                <div class="pp-section-icon blue">
-                                    <i class="fa-solid fa-database"></i>
-                                </div>
-                                <div class="pp-section-header-text">
-                                    <div class="pp-section-num">Section 02</div>
-                                    <h2 class="pp-section-title">Information We Collect</h2>
-                                </div>
-                            </div>
-                            <div class="pp-prose">
-                                <p>We collect different types of information depending on the nature of your interaction with us. This includes:</p>
-
-                                <p style="margin-top:16px;"><strong>A. Personal Identification Information</strong></p>
-                                <ul class="pp-list">
-                                    <li>
-                                        <span class="li-icon blue"><i class="fa-solid fa-check"></i></span>
-                                        Full name, date of birth, gender, and age.
-                                    </li>
-                                    <li>
-                                        <span class="li-icon blue"><i class="fa-solid fa-check"></i></span>
-                                        Contact details: mobile number, email address, and residential address.
-                                    </li>
-                                    <li>
-                                        <span class="li-icon blue"><i class="fa-solid fa-check"></i></span>
-                                        Government-issued ID (Aadhaar, PAN, or Passport) where required for billing and insurance purposes.
-                                    </li>
-                                    <li>
-                                        <span class="li-icon blue"><i class="fa-solid fa-check"></i></span>
-                                        Emergency contact information and next-of-kin details.
-                                    </li>
-                                </ul>
-
-                                <p style="margin-top:18px;"><strong>B. Medical & Health Information</strong></p>
-                                <ul class="pp-list">
-                                    <li>
-                                        <span class="li-icon"><i class="fa-solid fa-check"></i></span>
-                                        Medical history, past diagnoses, surgeries, and treatment records.
-                                    </li>
-                                    <li>
-                                        <span class="li-icon"><i class="fa-solid fa-check"></i></span>
-                                        Current medications, allergies, and pre-existing conditions.
-                                    </li>
-                                    <li>
-                                        <span class="li-icon"><i class="fa-solid fa-check"></i></span>
-                                        Lab reports, X-rays, MRI, USG scans, and other diagnostic data.
-                                    </li>
-                                    <li>
-                                        <span class="li-icon"><i class="fa-solid fa-check"></i></span>
-                                        Doctor consultation notes, prescription records, and discharge summaries.
-                                    </li>
-                                </ul>
-
-                                <p style="margin-top:18px;"><strong>C. Financial Information</strong></p>
-                                <ul class="pp-list">
-                                    <li>
-                                        <span class="li-icon blue"><i class="fa-solid fa-check"></i></span>
-                                        Payment details including billing records, invoices, and receipts.
-                                    </li>
-                                    <li>
-                                        <span class="li-icon blue"><i class="fa-solid fa-check"></i></span>
-                                        Health insurance policy number and TPA (Third Party Administrator) details.
-                                    </li>
-                                </ul>
-
-                                <p style="margin-top:18px;"><strong>D. Website & Digital Information</strong></p>
-                                <ul class="pp-list">
-                                    <li>
-                                        <span class="li-icon"><i class="fa-solid fa-check"></i></span>
-                                        IP address, browser type, device type, and operating system.
-                                    </li>
-                                    <li>
-                                        <span class="li-icon"><i class="fa-solid fa-check"></i></span>
-                                        Pages visited, time spent on website, and clickstream data.
-                                    </li>
-                                    <li>
-                                        <span class="li-icon"><i class="fa-solid fa-check"></i></span>
-                                        Information submitted via our contact form or appointment booking system.
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <!-- SECTION 03 — How We Use Your Data -->
-                        <div class="pp-section" id="pp-3">
-                            <div class="pp-section-header">
-                                <div class="pp-section-icon red">
-                                    <i class="fa-solid fa-gears"></i>
-                                </div>
-                                <div class="pp-section-header-text">
-                                    <div class="pp-section-num">Section 03</div>
-                                    <h2 class="pp-section-title">How We Use Your Information</h2>
-                                </div>
-                            </div>
-                            <div class="pp-prose">
-                                <p>Your information is used exclusively for legitimate healthcare and operational purposes:</p>
-                                <ul class="pp-list">
-                                    <li>
-                                        <span class="li-icon"><i class="fa-solid fa-check"></i></span>
-                                        <div><strong>Patient Care & Treatment:</strong> To provide accurate diagnosis, treatment plans, surgical procedures, and follow-up care tailored to your specific medical needs.</div>
-                                    </li>
-                                    <li>
-                                        <span class="li-icon"><i class="fa-solid fa-check"></i></span>
-                                        <div><strong>Appointment Management:</strong> To schedule, confirm, reschedule, and send reminders for your OPD or IPD appointments via SMS or WhatsApp.</div>
-                                    </li>
-                                    <li>
-                                        <span class="li-icon"><i class="fa-solid fa-check"></i></span>
-                                        <div><strong>Billing & Insurance:</strong> To generate invoices, process insurance claims, verify coverage, and manage financial transactions related to your treatment.</div>
-                                    </li>
-                                    <li>
-                                        <span class="li-icon"><i class="fa-solid fa-check"></i></span>
-                                        <div><strong>Legal & Regulatory Compliance:</strong> To maintain medical records as mandated under applicable Indian healthcare laws and government regulations.</div>
-                                    </li>
-                                    <li>
-                                        <span class="li-icon"><i class="fa-solid fa-check"></i></span>
-                                        <div><strong>Safety & Security:</strong> To monitor hospital premises via CCTV for the safety of patients, staff, and visitors.</div>
-                                    </li>
-                                    <li>
-                                        <span class="li-icon"><i class="fa-solid fa-check"></i></span>
-                                        <div><strong>Service Improvement:</strong> To analyze anonymized, aggregated data for enhancing our healthcare services, infrastructure, and patient experience.</div>
-                                    </li>
-                                    <li>
-                                        <span class="li-icon"><i class="fa-solid fa-check"></i></span>
-                                        <div><strong>Communication:</strong> To send you important health updates, post-treatment care instructions, and information about our services. You may opt out of non-essential communications at any time.</div>
-                                    </li>
-                                </ul>
-                                <div class="pp-highlight blue">
-                                    <strong>Important:</strong> We will <strong>never</strong> use your personal or medical information for marketing or advertising purposes without your explicit written consent.
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- SECTION 04 — Data Sharing -->
-                        <div class="pp-section" id="pp-4">
-                            <div class="pp-section-header">
-                                <div class="pp-section-icon blue">
-                                    <i class="fa-solid fa-share-nodes"></i>
-                                </div>
-                                <div class="pp-section-header-text">
-                                    <div class="pp-section-num">Section 04</div>
-                                    <h2 class="pp-section-title">Data Sharing & Disclosure</h2>
-                                </div>
-                            </div>
-                            <div class="pp-prose">
-                                <p>R.K. Hospital does not sell, rent, or trade your personal information. We share data only in the following strictly controlled circumstances:</p>
-
-                                <table class="pp-data-table">
-                                    <thead>
-                                        <tr>
-                                            <th>Recipient</th>
-                                            <th>Purpose</th>
-                                            <th>Basis</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Treating Doctors & Specialists</td>
-                                            <td>Direct patient care, referrals, and second opinions</td>
-                                            <td>Medical Necessity</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Insurance Companies / TPA</td>
-                                            <td>Cashless claim processing and reimbursement</td>
-                                            <td>Patient Consent</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Diagnostic Laboratories</td>
-                                            <td>Processing tests, reports, and pathology work</td>
-                                            <td>Treatment Purpose</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Government Authorities</td>
-                                            <td>Legal obligations, court orders, public health reporting</td>
-                                            <td>Legal Compliance</td>
-                                        </tr>
-                                        <tr>
-                                            <td>IT Service Providers</td>
-                                            <td>Hospital management software and website hosting (under NDA)</td>
-                                            <td>Operational Necessity</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-
-                                <div class="pp-highlight" style="margin-top:20px;">
-                                    All third parties with whom we share data are bound by strict confidentiality agreements. We do not transfer your data outside India without your explicit written consent.
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- SECTION 05 — Medical Records Policy -->
-                        <div class="pp-section" id="pp-5">
-                            <div class="pp-section-header">
-                                <div class="pp-section-icon red">
-                                    <i class="fa-solid fa-file-medical"></i>
-                                </div>
-                                <div class="pp-section-header-text">
-                                    <div class="pp-section-num">Section 05</div>
-                                    <h2 class="pp-section-title">Medical Records Policy</h2>
-                                </div>
-                            </div>
-                            <div class="pp-prose">
-                                <p>Medical records are among the most sensitive personal data we hold. Our policy for their management is as follows:</p>
-                                <ul class="pp-list">
-                                    <li>
-                                        <span class="li-icon"><i class="fa-solid fa-check"></i></span>
-                                        All patient medical records — including OPD notes, IPD files, surgical records, and diagnostic reports — are maintained in strict confidentiality and accessible only to authorized medical personnel.
-                                    </li>
-                                    <li>
-                                        <span class="li-icon"><i class="fa-solid fa-check"></i></span>
-                                        Medical records are retained for a minimum period of <strong>7 years</strong> from the date of last treatment as per Indian Medical Council guidelines. For minors, records are retained until 7 years after they attain the age of 18.
-                                    </li>
-                                    <li>
-                                        <span class="li-icon"><i class="fa-solid fa-check"></i></span>
-                                        You or your authorized legal guardian may request a copy of your medical records. Requests must be submitted in writing to the Medical Records Department with valid photo ID proof.
-                                    </li>
-                                    <li>
-                                        <span class="li-icon"><i class="fa-solid fa-check"></i></span>
-                                        A nominal administrative fee may be charged for providing printed copies of medical records, X-rays, or other imaging reports.
-                                    </li>
-                                    <li>
-                                        <span class="li-icon"><i class="fa-solid fa-check"></i></span>
-                                        In medico-legal cases, medical records may be disclosed to law enforcement agencies or courts upon receipt of a valid legal order.
-                                    </li>
-                                </ul>
-
-                                <div class="pp-info-grid">
-                                    <div class="pp-info-card">
-                                        <i class="fa-solid fa-clock-rotate-left"></i>
-                                        <div>
-                                            <h6>Retention Period</h6>
-                                            <p>Minimum 7 years as per MCI guidelines</p>
-                                        </div>
-                                    </div>
-                                    <div class="pp-info-card">
-                                        <i class="fa-solid fa-file-export"></i>
-                                        <div>
-                                            <h6>Record Request</h6>
-                                            <p>Submit written request with photo ID to MRD department</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- SECTION 06 — Cookies -->
-                        <div class="pp-section" id="pp-6">
-                            <div class="pp-section-header">
-                                <div class="pp-section-icon blue">
-                                    <i class="fa-solid fa-cookie-bite"></i>
-                                </div>
-                                <div class="pp-section-header-text">
-                                    <div class="pp-section-num">Section 06</div>
-                                    <h2 class="pp-section-title">Cookies & Website Data</h2>
-                                </div>
-                            </div>
-                            <div class="pp-prose">
-                                <p>Our website uses cookies and similar technologies to enhance your browsing experience. Here is how we use them:</p>
-                                <ul class="pp-list">
-                                    <li>
-                                        <span class="li-icon blue"><i class="fa-solid fa-check"></i></span>
-                                        <div><strong>Essential Cookies:</strong> Required for the basic functioning of our website, such as maintaining your session when booking an appointment or filling contact forms.</div>
-                                    </li>
-                                    <li>
-                                        <span class="li-icon blue"><i class="fa-solid fa-check"></i></span>
-                                        <div><strong>Analytics Cookies:</strong> We use tools like Google Analytics to understand how visitors interact with our website. All data collected is anonymized and aggregated.</div>
-                                    </li>
-                                    <li>
-                                        <span class="li-icon blue"><i class="fa-solid fa-check"></i></span>
-                                        <div><strong>Performance Cookies:</strong> Help us identify slow-loading pages and improve website speed for a better user experience.</div>
-                                    </li>
-                                    <li>
-                                        <span class="li-icon blue"><i class="fa-solid fa-check"></i></span>
-                                        We do <strong>not</strong> use cookies to track patients across third-party websites, build advertising profiles, or share data with marketing agencies.
-                                    </li>
-                                </ul>
-                                <div class="pp-highlight blue">
-                                    You can control or disable cookies through your browser settings at any time. Disabling certain cookies may affect the functionality of our appointment booking system. We recommend keeping essential cookies enabled for the best experience.
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- SECTION 07 — Data Security -->
-                        <div class="pp-section" id="pp-7">
-                            <div class="pp-section-header">
-                                <div class="pp-section-icon red">
-                                    <i class="fa-solid fa-shield-halved"></i>
-                                </div>
-                                <div class="pp-section-header-text">
-                                    <div class="pp-section-num">Section 07</div>
-                                    <h2 class="pp-section-title">Data Security Measures</h2>
-                                </div>
-                            </div>
-                            <div class="pp-prose">
-                                <p>We take the security of your data extremely seriously. The following safeguards are in place to protect your information:</p>
-                                <ul class="pp-list">
-                                    <li>
-                                        <span class="li-icon"><i class="fa-solid fa-check"></i></span>
-                                        <div><strong>Physical Security:</strong> Patient files and medical records are stored in locked, access-controlled areas accessible only to authorized hospital staff.</div>
-                                    </li>
-                                    <li>
-                                        <span class="li-icon"><i class="fa-solid fa-check"></i></span>
-                                        <div><strong>Digital Security:</strong> Electronic medical records are protected with password-controlled access, role-based permissions, and regular security audits.</div>
-                                    </li>
-                                    <li>
-                                        <span class="li-icon"><i class="fa-solid fa-check"></i></span>
-                                        <div><strong>CCTV Surveillance:</strong> The hospital premises are monitored 24/7 by CCTV cameras for the safety of patients and staff. Footage is retained for 30 days and accessible only to authorized personnel.</div>
-                                    </li>
-                                    <li>
-                                        <span class="li-icon"><i class="fa-solid fa-check"></i></span>
-                                        <div><strong>Staff Training:</strong> All hospital staff handling patient data receive regular training on data privacy, confidentiality, and information security protocols.</div>
-                                    </li>
-                                    <li>
-                                        <span class="li-icon"><i class="fa-solid fa-check"></i></span>
-                                        <div><strong>Data Breach Protocol:</strong> In the event of any data breach that may affect your personal information, we will notify affected individuals and relevant authorities as required by applicable law.</div>
-                                    </li>
-                                </ul>
-                                <div class="pp-highlight">
-                                    <strong>Note:</strong> While we implement robust security measures, no method of transmission over the internet or electronic storage is 100% secure. We continuously work to strengthen our data protection systems.
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- SECTION 08 — Your Rights -->
-                        <div class="pp-section" id="pp-8">
-                            <div class="pp-section-header">
-                                <div class="pp-section-icon blue">
-                                    <i class="fa-solid fa-person-circle-check"></i>
-                                </div>
-                                <div class="pp-section-header-text">
-                                    <div class="pp-section-num">Section 08</div>
-                                    <h2 class="pp-section-title">Your Rights & Choices</h2>
-                                </div>
-                            </div>
-                            <div class="pp-prose">
-                                <p>Under applicable Indian privacy laws, you have the following rights with respect to your personal data held by R.K. Hospital:</p>
-                                <ul class="pp-list">
-                                    <li>
-                                        <span class="li-icon blue"><i class="fa-solid fa-check"></i></span>
-                                        <div><strong>Right to Access:</strong> You may request a copy of the personal and medical information we hold about you. We will respond to such requests within 30 working days.</div>
-                                    </li>
-                                    <li>
-                                        <span class="li-icon blue"><i class="fa-solid fa-check"></i></span>
-                                        <div><strong>Right to Correction:</strong> If any of your personal details are inaccurate or outdated, you may request us to correct or update them. Please bring valid supporting documents for verification.</div>
-                                    </li>
-                                    <li>
-                                        <span class="li-icon blue"><i class="fa-solid fa-check"></i></span>
-                                        <div><strong>Right to Erasure:</strong> In certain circumstances (not applicable to mandatory medical record retention), you may request deletion of personal data not required for legal or medical purposes.</div>
-                                    </li>
-                                    <li>
-                                        <span class="li-icon blue"><i class="fa-solid fa-check"></i></span>
-                                        <div><strong>Right to Withdraw Consent:</strong> You may withdraw consent for non-essential communications (such as promotional messages) at any time by contacting our reception or using the opt-out link in messages.</div>
-                                    </li>
-                                    <li>
-                                        <span class="li-icon blue"><i class="fa-solid fa-check"></i></span>
-                                        <div><strong>Right to Complain:</strong> If you feel your data privacy rights have been violated, you may file a complaint with the Data Protection Board of India or approach the appropriate consumer forum.</div>
-                                    </li>
-                                </ul>
-
-                                <div class="pp-info-grid">
-                                    <div class="pp-info-card">
-                                        <i class="fa-solid fa-envelope"></i>
-                                        <div>
-                                            <h6>Submit Data Request</h6>
-                                            <p>Visit reception or contact us via our website contact form</p>
-                                        </div>
-                                    </div>
-                                    <div class="pp-info-card">
-                                        <i class="fa-solid fa-hourglass-half"></i>
-                                        <div>
-                                            <h6>Response Timeline</h6>
-                                            <p>We respond to all data requests within 30 working days</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- SECTION 09 — Children's Privacy -->
-                        <div class="pp-section" id="pp-9">
-                            <div class="pp-section-header">
-                                <div class="pp-section-icon red">
-                                    <i class="fa-solid fa-child-reaching"></i>
-                                </div>
-                                <div class="pp-section-header-text">
-                                    <div class="pp-section-num">Section 09</div>
-                                    <h2 class="pp-section-title">Children's Privacy</h2>
-                                </div>
-                            </div>
-                            <div class="pp-prose">
-                                <p>R.K. Hospital provides medical services to patients of all age groups, including children. Special protections apply to the data of minors:</p>
-                                <ul class="pp-list">
-                                    <li>
-                                        <span class="li-icon"><i class="fa-solid fa-check"></i></span>
-                                        All medical information, consent forms, and data-related decisions for patients under 18 years of age must be handled by a parent or legal guardian.
-                                    </li>
-                                    <li>
-                                        <span class="li-icon"><i class="fa-solid fa-check"></i></span>
-                                        We do not knowingly collect personal data directly from children without verifiable parental or guardian consent.
-                                    </li>
-                                    <li>
-                                        <span class="li-icon"><i class="fa-solid fa-check"></i></span>
-                                        Medical records for minor patients are retained until 7 years after the patient attains the age of 18, as per MCI guidelines.
-                                    </li>
-                                    <li>
-                                        <span class="li-icon"><i class="fa-solid fa-check"></i></span>
-                                        If a parent or guardian believes that personal information of a minor has been collected without proper consent, they should contact us immediately so we can take corrective action.
-                                    </li>
-                                </ul>
-                                <div class="pp-highlight blue">
-                                    Parents and guardians have the same data access and correction rights on behalf of their minor children as adult patients have for themselves.
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- SECTION 10 — Policy Updates & Contact -->
-                        <div class="pp-section" id="pp-10">
-                            <div class="pp-section-header">
-                                <div class="pp-section-icon blue">
-                                    <i class="fa-solid fa-rotate"></i>
-                                </div>
-                                <div class="pp-section-header-text">
-                                    <div class="pp-section-num">Section 10</div>
-                                    <h2 class="pp-section-title">Policy Updates & Contact Us</h2>
-                                </div>
-                            </div>
-                            <div class="pp-prose">
-                                <ul class="pp-list">
-                                    <li>
-                                        <span class="li-icon blue"><i class="fa-solid fa-check"></i></span>
-                                        R.K. Hospital reserves the right to update or revise this Privacy Policy at any time to reflect changes in law, regulation, or our internal data practices. All updates will be published on this page with a revised "Last Updated" date.
-                                    </li>
-                                    <li>
-                                        <span class="li-icon blue"><i class="fa-solid fa-check"></i></span>
-                                        For significant changes, we will notify registered patients via SMS or email where contact information is available.
-                                    </li>
-                                    <li>
-                                        <span class="li-icon blue"><i class="fa-solid fa-check"></i></span>
-                                        Continued use of our services after any updates to this policy constitutes your acceptance of the revised Privacy Policy.
-                                    </li>
-                                    <li>
-                                        <span class="li-icon blue"><i class="fa-solid fa-check"></i></span>
-                                        This Privacy Policy is governed by the laws of the State of Maharashtra, India. Any disputes shall be subject to the jurisdiction of courts in Nagpur.
-                                    </li>
-                                </ul>
-
-                                <div class="pp-highlight blue" style="margin-top:20px;">
-                                    For any privacy-related concerns, data requests, or complaints, please contact us at:<br>
-                                    <strong>Dr. Agrawal's R.K. Hospital</strong> | 27, Central Avenue Road, Nagpur – 440002<br>
-                                    <strong>Phone:</strong> +91 97660 57372 &nbsp;|&nbsp; <br>
-                                    <strong>Email:</strong> info@nirajindustriesnagpur.com
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- AGREEMENT BANNER -->
-                        <div class="pp-agreement-banner">
-                            <i class="fa-solid fa-shield-halved"></i>
-                            <h3>Your Privacy Is Our Commitment</h3>
-                            <p>
-                                We are dedicated to keeping your personal and medical information safe, secure, and confidential. Trust is the foundation of every patient relationship at R.K. Hospital.
-                            </p>
-                            <div class="pp-agreement-actions">
-                                <a href="contact-us" class="btn-pp-primary">
-                                    <i class="fa-solid fa-calendar-plus"></i> Book an Appointment
-                                </a>
-                                <a href="index.php" class="btn-pp-outline">
-                                    <i class="fa-solid fa-house"></i> Back to Home
-                                </a>
-                            </div>
-                        </div>
-
-                    </div>
-                    <!-- ── END MAIN CONTENT ── -->
-
-                </div>
-            </div>
-        </section>
-
-        <?php include 'include/footer.php'; ?>
-
-        <!-- Cursor -->
-        <div class="mouse-cursor cursor-outer"></div>
-        <div class="mouse-cursor cursor-inner"></div>
     </div>
-    <!-- /Main Wrapper -->
+</section>
 
-    <!-- Offcanvas -->
-    <div class="offcanvas offcanvas-offset offcanvas-end support_popup" tabindex="-1" id="support_item">
-        <div class="offcanvas-header">
-            <a href="index.php"><img src="assets/img/logo.svg" alt="logo" class="img-fluid logo"></a>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close">
-                <i class="isax isax-close-circle"></i>
-            </button>
-        </div>
-        <div class="offcanvas-body">
-            <div class="about-popup-item">
-                <h3 class="title">About R.K. Hospital</h3>
-                <p>Leading Orthopedic &amp; Gynecology Hospital in Nagpur with 5+ years of medical excellence.</p>
-                <div class="about-img d-flex align-items-center gap-2 justify-content-between">
-                    <a href="<?php echo $base_url; ?>assets/img/banner/about-img-1.jpg" data-fancybox="gallery">
-                        <img src="assets/img/banner/about-img-1.jpg" alt="RK Hospital Nagpur" class="img-fluid">
-                    </a>
-                    <a href="<?php echo $base_url; ?>assets/img/banner/about-img-2.jpg" data-fancybox="gallery">
-                        <img src="assets/img/banner/about-img-2.jpg" alt="RK Hospital Nagpur" class="img-fluid">
-                    </a>
-                    <a href="<?php echo $base_url; ?>assets/img/banner/about-img-3.jpg" data-fancybox="gallery">
-                        <img src="assets/img/banner/about-img-3.jpg" alt="RK Hospital Nagpur" class="img-fluid">
-                    </a>
+<!-- ══ STRIP ════════════════════════════════════ -->
+<div class="ni-pp-strip">
+    <div class="container-fluid px-0">
+        <div class="ni-pp-strip-inner">
+            <div class="ni-pp-strip-item">
+                <div class="si-icon"><i class="fa-solid fa-user-lock"></i></div>
+                <div class="si-text">
+                    <h6>Your Data, Your Control</h6>
+                    <p>You can request deletion anytime</p>
                 </div>
             </div>
-            <div class="about-popup-item">
-                <h3 class="title">Hospital Location</h3>
-                <div class="loction-item mb-3">
-                    <h4 class="title">R.K. Hospital Nagpur</h4>
-                    <p class="location">27 Chandrashekhar, Azad Square, Central Ave, Ladpura, Itwari, Nagpur, Maharashtra 440002</p>
+            <div class="ni-pp-strip-item">
+                <div class="si-icon"><i class="fa-solid fa-ban"></i></div>
+                <div class="si-text">
+                    <h6>Never Sold</h6>
+                    <p>We never sell your personal data</p>
                 </div>
             </div>
-            <div class="about-popup-item">
-                <h3 class="title">Contact Information</h3>
-                <div class="support-item mb-3">
-                    <div class="avatar avatar-lg bg-primary rounded-circle">
-                        <i class="isax isax-call-calling"></i>
-                    </div>
-                    <div>
-                        <p class="title">24/7 Emergency</p>
-                        <h5 class="link"><a href="tel:+919766057372">+91 97660 57372</a></h5>
-                    </div>
-                </div>
-                <div class="support-item">
-                    <div class="avatar avatar-lg bg-primary rounded-circle">
-                        <i class="isax isax-call-calling"></i>
-                    </div>
-                   
+            <div class="ni-pp-strip-item">
+                <div class="si-icon"><i class="fa-solid fa-lock"></i></div>
+                <div class="si-text">
+                    <h6>Securely Stored</h6>
+                    <p>Data protected with industry standards</p>
                 </div>
             </div>
-            <div class="about-popup-item border-0">
-                <h3 class="title">Follow Us</h3>
-                <ul class="d-flex align-items-center gap-2 social-iyem">
-                    <li><a href="#" class="social-icon"><i class="fa-brands fa-facebook"></i></a></li>
-                    <li><a href="#" class="social-icon"><i class="fa-brands fa-instagram"></i></a></li>
-                    <li><a href="#" class="social-icon"><i class="fa-brands fa-youtube"></i></a></li>
-                </ul>
+            <div class="ni-pp-strip-item">
+                <div class="si-icon"><i class="fa-solid fa-cookie-bite"></i></div>
+                <div class="si-text">
+                    <h6>Minimal Cookies</h6>
+                    <p>Only essential cookies are used</p>
+                </div>
             </div>
         </div>
-        <img src="assets/img/bg/offcanvas-bg.png" alt="element" class="element-01">
     </div>
+</div>
 
-    <!-- ScrollToTop -->
-    <div class="progress-wrap active-progress">
-        <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
-            <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"
-                style="transition: stroke-dashoffset 10ms linear 0s; stroke-dasharray: 307.919px, 307.919px; stroke-dashoffset: 228.265px;"></path>
-        </svg>
+<!-- ══ MAIN BODY ════════════════════════════════ -->
+<section class="ni-pp-body">
+    <div class="container">
+        <div class="row g-4">
+
+            <!-- SIDEBAR -->
+            <div class="col-lg-3 d-none d-lg-block">
+                <div class="ni-pp-sidebar">
+                    <div class="ni-toc-card">
+                        <div class="ni-toc-head">
+                            <i class="fa-solid fa-list-ul"></i>
+                            <h5>Table of Contents</h5>
+                        </div>
+                        <div class="ni-toc-list">
+                            <a href="#pp1" class="active"><span class="tnum">01</span> Introduction</a>
+                            <a href="#pp2"><span class="tnum">02</span> Data We Collect</a>
+                            <a href="#pp3"><span class="tnum">03</span> How We Collect It</a>
+                            <a href="#pp4"><span class="tnum">04</span> How We Use Data</a>
+                            <a href="#pp5"><span class="tnum">05</span> Data Sharing</a>
+                            <a href="#pp6"><span class="tnum">06</span> Data Storage & Security</a>
+                            <a href="#pp7"><span class="tnum">07</span> Cookies Policy</a>
+                            <a href="#pp8"><span class="tnum">08</span> Your Rights</a>
+                            <a href="#pp9"><span class="tnum">09</span> Children's Privacy</a>
+                            <a href="#pp10"><span class="tnum">10</span> Contact & Updates</a>
+                        </div>
+                    </div>
+                    <div class="ni-contact-widget">
+                        <div class="cw-icon"><i class="fa-solid fa-envelope-open-text"></i></div>
+                        <h6>Privacy Concern?</h6>
+                        <p>Reach out to us for any data-related queries or deletion requests.</p>
+                        <a href="<?php echo $base_url; ?>contact-us">
+                            <i class="fa-solid fa-arrow-right"></i> Contact Us
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CONTENT -->
+            <div class="col-lg-9">
+
+                <!-- 01 Introduction -->
+                <div class="ni-pp-section" id="pp1" data-aos="fade-up" data-aos-duration="600">
+                    <div class="ni-pp-section-head">
+                        <div class="ni-pp-section-icon"><i class="fa-solid fa-file-circle-info"></i></div>
+                        <div>
+                            <div class="ni-pp-sec-num">Section 01</div>
+                            <h2 class="ni-pp-sec-title">Introduction</h2>
+                        </div>
+                    </div>
+                    <div class="ni-pp-prose">
+                        <p><strong>Niraj Industries</strong> is committed to protecting your privacy. This Privacy Policy explains how we collect, use, store, and safeguard your personal information when you visit our website (<strong><?php echo $base_url; ?></strong>) or interact with us to place orders for our products and services.</p>
+                        <p>By using our website or submitting your personal information to us, you consent to the practices described in this policy. This policy applies to all customers, enquirers, and visitors, whether you are an individual or a business representative.</p>
+                        <div class="ni-highlight">
+                            <strong>Our Commitment:</strong> We only collect data that is necessary to serve you better. We do not collect unnecessary personal information, and we will never sell your data to any third party.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 02 Data We Collect -->
+                <div class="ni-pp-section" id="pp2" data-aos="fade-up" data-aos-duration="600">
+                    <div class="ni-pp-section-head">
+                        <div class="ni-pp-section-icon"><i class="fa-solid fa-database"></i></div>
+                        <div>
+                            <div class="ni-pp-sec-num">Section 02</div>
+                            <h2 class="ni-pp-sec-title">Data We Collect</h2>
+                        </div>
+                    </div>
+                    <div class="ni-pp-prose">
+                        <p>We may collect the following categories of personal information from you:</p>
+                        <div class="ni-data-grid">
+                            <div class="ni-data-card">
+                                <i class="fa-solid fa-user"></i>
+                                <h6>Identity Data</h6>
+                                <p>Name, company name, designation</p>
+                            </div>
+                            <div class="ni-data-card">
+                                <i class="fa-solid fa-address-book"></i>
+                                <h6>Contact Data</h6>
+                                <p>Phone, email, WhatsApp number</p>
+                            </div>
+                            <div class="ni-data-card">
+                                <i class="fa-solid fa-location-dot"></i>
+                                <h6>Address Data</h6>
+                                <p>Delivery &amp; billing address</p>
+                            </div>
+                            <div class="ni-data-card">
+                                <i class="fa-solid fa-file-invoice-dollar"></i>
+                                <h6>Transaction Data</h6>
+                                <p>Order details, payment info, invoices</p>
+                            </div>
+                            <div class="ni-data-card">
+                                <i class="fa-solid fa-comments"></i>
+                                <h6>Communication Data</h6>
+                                <p>Enquiries, messages, feedback</p>
+                            </div>
+                            <div class="ni-data-card">
+                                <i class="fa-solid fa-chart-line"></i>
+                                <h6>Usage Data</h6>
+                                <p>Pages visited, time spent (anonymous)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 03 How We Collect -->
+                <div class="ni-pp-section" id="pp3" data-aos="fade-up" data-aos-duration="600">
+                    <div class="ni-pp-section-head">
+                        <div class="ni-pp-section-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
+                        <div>
+                            <div class="ni-pp-sec-num">Section 03</div>
+                            <h2 class="ni-pp-sec-title">How We Collect Your Data</h2>
+                        </div>
+                    </div>
+                    <div class="ni-pp-prose">
+                        <p>We collect personal information through the following channels:</p>
+                        <ul class="ni-pp-list">
+                            <li>
+                                <span class="li-dot"><i class="fa-solid fa-check"></i></span>
+                                <span><strong>Website Forms:</strong> When you fill out our Contact Us, enquiry, or callback request forms on our website.</span>
+                            </li>
+                            <li>
+                                <span class="li-dot"><i class="fa-solid fa-check"></i></span>
+                                <span><strong>Order Placement:</strong> When you place an order directly through our website, via phone, WhatsApp, or through a sales representative.</span>
+                            </li>
+                            <li>
+                                <span class="li-dot"><i class="fa-solid fa-check"></i></span>
+                                <span><strong>WhatsApp / Phone:</strong> When you contact us directly for product enquiries, quotations, or order-related communication.</span>
+                            </li>
+                            <li>
+                                <span class="li-dot"><i class="fa-solid fa-check"></i></span>
+                                <span><strong>In-Person Visits:</strong> When you visit our office or warehouse and provide your details for business purposes.</span>
+                            </li>
+                            <li>
+                                <span class="li-dot"><i class="fa-solid fa-check"></i></span>
+                                <span><strong>Automatic Collection:</strong> Certain technical data such as IP address, browser type, and pages visited is collected automatically when you use our website via cookies and web analytics.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 04 How We Use Data -->
+                <div class="ni-pp-section" id="pp4" data-aos="fade-up" data-aos-duration="600">
+                    <div class="ni-pp-section-head">
+                        <div class="ni-pp-section-icon"><i class="fa-solid fa-gears"></i></div>
+                        <div>
+                            <div class="ni-pp-sec-num">Section 04</div>
+                            <h2 class="ni-pp-sec-title">How We Use Your Data</h2>
+                        </div>
+                    </div>
+                    <div class="ni-pp-prose">
+                        <p>Your personal data is used strictly for the following purposes:</p>
+                        <ul class="ni-pp-list">
+                            <li>
+                                <span class="li-dot"><i class="fa-solid fa-check"></i></span>
+                                <strong>Order Processing:</strong> To process, confirm, and fulfil your product orders, and to send delivery and invoicing details.
+                            </li>
+                            <li>
+                                <span class="li-dot"><i class="fa-solid fa-check"></i></span>
+                                <strong>Customer Communication:</strong> To respond to your enquiries, provide quotations, follow up on orders, and resolve any issues.
+                            </li>
+                            <li>
+                                <span class="li-dot"><i class="fa-solid fa-check"></i></span>
+                                <strong>Business Records:</strong> To maintain accurate records of transactions, as required under Indian accounting and tax regulations (GST compliance).
+                            </li>
+                            <li>
+                                <span class="li-dot"><i class="fa-solid fa-check"></i></span>
+                                <strong>Service Improvement:</strong> To understand how our website is being used so we can improve its content and usability.
+                            </li>
+                            <li>
+                                <span class="li-dot"><i class="fa-solid fa-check"></i></span>
+                                <strong>Marketing (Optional):</strong> With your consent, we may occasionally share product updates, offers, or new arrivals. You can opt out at any time.
+                            </li>
+                        </ul>
+                        <div class="ni-highlight">
+                            <strong>We will never:</strong> Use your data for any purpose not listed above, share it with unrelated third parties, or use it for automated decision-making that affects you.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 05 Data Sharing -->
+                <div class="ni-pp-section" id="pp5" data-aos="fade-up" data-aos-duration="600">
+                    <div class="ni-pp-section-head">
+                        <div class="ni-pp-section-icon"><i class="fa-solid fa-share-nodes"></i></div>
+                        <div>
+                            <div class="ni-pp-sec-num">Section 05</div>
+                            <h2 class="ni-pp-sec-title">Data Sharing</h2>
+                        </div>
+                    </div>
+                    <div class="ni-pp-prose">
+                        <p>We do not sell, rent, or trade your personal data. We may share your information only in the following limited circumstances:</p>
+                        <ul class="ni-pp-list">
+                            <li>
+                                <span class="li-dot"><i class="fa-solid fa-check"></i></span>
+                                <strong>Logistics Partners:</strong> Your delivery address and contact number may be shared with courier or transport partners solely for the purpose of completing your delivery.
+                            </li>
+                            <li>
+                                <span class="li-dot"><i class="fa-solid fa-check"></i></span>
+                                <strong>Payment Processors:</strong> When payments are made via digital channels, relevant data is processed by secure third-party payment gateways under their own privacy policies.
+                            </li>
+                            <li>
+                                <span class="li-dot"><i class="fa-solid fa-check"></i></span>
+                                <strong>Legal Obligations:</strong> We may disclose your information if required to do so by law, government authority, or a court order under Indian law.
+                            </li>
+                            <li>
+                                <span class="li-dot"><i class="fa-solid fa-check"></i></span>
+                                <strong>Business Transfer:</strong> In the unlikely event of a merger or acquisition, customer data may be transferred as part of business assets, subject to the same privacy protections.
+                            </li>
+                        </ul>
+                        <div class="ni-highlight dark">
+                            <strong>No Data Selling — Ever:</strong> We have never sold customer data, and we have no intention to do so. Your trust is fundamental to our business.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 06 Storage & Security -->
+                <div class="ni-pp-section" id="pp6" data-aos="fade-up" data-aos-duration="600">
+                    <div class="ni-pp-section-head">
+                        <div class="ni-pp-section-icon"><i class="fa-solid fa-server"></i></div>
+                        <div>
+                            <div class="ni-pp-sec-num">Section 06</div>
+                            <h2 class="ni-pp-sec-title">Data Storage &amp; Security</h2>
+                        </div>
+                    </div>
+                    <div class="ni-pp-prose">
+                        <p>We take appropriate technical and organisational measures to protect your personal data against unauthorised access, loss, or misuse:</p>
+                        <ul class="ni-pp-list">
+                            <li>
+                                <span class="li-dot"><i class="fa-solid fa-check"></i></span>
+                                Our website uses <strong>SSL/TLS encryption</strong> to protect data transmitted between your browser and our server.
+                            </li>
+                            <li>
+                                <span class="li-dot"><i class="fa-solid fa-check"></i></span>
+                                Access to customer data within our organisation is <strong>restricted to authorised personnel</strong> only on a need-to-know basis.
+                            </li>
+                            <li>
+                                <span class="li-dot"><i class="fa-solid fa-check"></i></span>
+                                Personal data is stored on <strong>secure servers</strong> and backed up regularly to prevent loss.
+                            </li>
+                            <li>
+                                <span class="li-dot"><i class="fa-solid fa-check"></i></span>
+                                We retain your data only for as long as it is <strong>necessary for the purpose collected</strong>, or as required by law (e.g., GST records must be retained for a minimum of 6 years under Indian law).
+                            </li>
+                            <li>
+                                <span class="li-dot"><i class="fa-solid fa-check"></i></span>
+                                In the event of a <strong>data breach</strong> that poses a risk to your rights, we will notify affected individuals as soon as reasonably practicable.
+                            </li>
+                        </ul>
+                        <div class="ni-info-grid">
+                            <div class="ni-info-card">
+                                <i class="fa-solid fa-lock"></i>
+                                <div>
+                                    <h6>SSL Encrypted</h6>
+                                    <p>All data in transit is encrypted</p>
+                                </div>
+                            </div>
+                            <div class="ni-info-card">
+                                <i class="fa-solid fa-clock-rotate-left"></i>
+                                <div>
+                                    <h6>Retention Period</h6>
+                                    <p>Data kept only as long as required</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 07 Cookies -->
+                <div class="ni-pp-section" id="pp7" data-aos="fade-up" data-aos-duration="600">
+                    <div class="ni-pp-section-head">
+                        <div class="ni-pp-section-icon"><i class="fa-solid fa-cookie-bite"></i></div>
+                        <div>
+                            <div class="ni-pp-sec-num">Section 07</div>
+                            <h2 class="ni-pp-sec-title">Cookies Policy</h2>
+                        </div>
+                    </div>
+                    <div class="ni-pp-prose">
+                        <p>Our website uses cookies to improve your browsing experience. Here is what you need to know:</p>
+                        <ul class="ni-pp-list">
+                            <li>
+                                <span class="li-dot"><i class="fa-solid fa-check"></i></span>
+                                <strong>Essential Cookies:</strong> Required for the website to function correctly (e.g., session management, form submissions). These cannot be disabled.
+                            </li>
+                            <li>
+                                <span class="li-dot"><i class="fa-solid fa-check"></i></span>
+                                <strong>Analytics Cookies:</strong> We use tools like Google Analytics to understand website traffic and user behaviour. This data is <strong>anonymised and aggregated</strong> — it is not linked to you personally.
+                            </li>
+                            <li>
+                                <span class="li-dot"><i class="fa-solid fa-check"></i></span>
+                                We do <strong>not</strong> use advertising or tracking cookies that follow you across other websites.
+                            </li>
+                            <li>
+                                <span class="li-dot"><i class="fa-solid fa-check"></i></span>
+                                You can <strong>disable cookies</strong> through your browser settings at any time. Note that disabling essential cookies may affect website functionality.
+                            </li>
+                        </ul>
+                        <div class="ni-highlight">
+                            <strong>No Tracking Ads:</strong> We do not use remarketing pixels or third-party advertising cookies. Our website does not serve ads, and we do not track your activity across the internet.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 08 Your Rights -->
+                <div class="ni-pp-section" id="pp8" data-aos="fade-up" data-aos-duration="600">
+                    <div class="ni-pp-section-head">
+                        <div class="ni-pp-section-icon"><i class="fa-solid fa-hand-fist"></i></div>
+                        <div>
+                            <div class="ni-pp-sec-num">Section 08</div>
+                            <h2 class="ni-pp-sec-title">Your Rights</h2>
+                        </div>
+                    </div>
+                    <div class="ni-pp-prose">
+                        <p>You have the following rights regarding your personal data held by us:</p>
+                        <div class="ni-info-grid">
+                            <div class="ni-info-card">
+                                <i class="fa-solid fa-eye"></i>
+                                <div>
+                                    <h6>Right to Access</h6>
+                                    <p>Request a copy of the data we hold about you</p>
+                                </div>
+                            </div>
+                            <div class="ni-info-card">
+                                <i class="fa-solid fa-pen"></i>
+                                <div>
+                                    <h6>Right to Correction</h6>
+                                    <p>Ask us to correct inaccurate or incomplete data</p>
+                                </div>
+                            </div>
+                            <div class="ni-info-card">
+                                <i class="fa-solid fa-trash-can"></i>
+                                <div>
+                                    <h6>Right to Deletion</h6>
+                                    <p>Request erasure of your personal data</p>
+                                </div>
+                            </div>
+                            <div class="ni-info-card">
+                                <i class="fa-solid fa-circle-stop"></i>
+                                <div>
+                                    <h6>Right to Object</h6>
+                                    <p>Opt out of marketing communications at any time</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ni-highlight" style="margin-top:18px;">
+                            To exercise any of these rights, please contact us via our <a href="<?php echo $base_url; ?>contact-us">Contact Us</a> page or email us directly. We will respond to all valid requests within <strong>30 days</strong>.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 09 Children -->
+                <div class="ni-pp-section" id="pp9" data-aos="fade-up" data-aos-duration="600">
+                    <div class="ni-pp-section-head">
+                        <div class="ni-pp-section-icon"><i class="fa-solid fa-child-reaching"></i></div>
+                        <div>
+                            <div class="ni-pp-sec-num">Section 09</div>
+                            <h2 class="ni-pp-sec-title">Children's Privacy</h2>
+                        </div>
+                    </div>
+                    <div class="ni-pp-prose">
+                        <p>Our website and services are intended for use by businesses and adults only. We do not knowingly collect personal data from individuals under the age of 18.</p>
+                        <p>If we become aware that we have inadvertently collected data from a minor, we will take immediate steps to delete that information from our records. If you believe a minor has submitted information to us, please contact us immediately.</p>
+                        <div class="ni-highlight dark">
+                            <strong>B2B Focus:</strong> Niraj Industries is a business-to-business supplier. Our website is designed for procurement managers, contractors, and business owners — not for personal consumer or minor use.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 10 Contact & Updates -->
+                <div class="ni-pp-section" id="pp10" data-aos="fade-up" data-aos-duration="600">
+                    <div class="ni-pp-section-head">
+                        <div class="ni-pp-section-icon"><i class="fa-solid fa-pen-to-square"></i></div>
+                        <div>
+                            <div class="ni-pp-sec-num">Section 10</div>
+                            <h2 class="ni-pp-sec-title">Contact &amp; Policy Updates</h2>
+                        </div>
+                    </div>
+                    <div class="ni-pp-prose">
+                        <p>If you have any questions, concerns, or requests related to this Privacy Policy, please contact us:</p>
+                        <ul class="ni-pp-list">
+                            <li>
+                                <span class="li-dot"><i class="fa-solid fa-globe"></i></span>
+                                <span><strong>Online:</strong> Use our <a href="<?php echo $base_url; ?>contact-us" style="color:var(--ni-red-dk);font-weight:600;">Contact Us</a> page and mention "Privacy Request" in your message.</span>
+                            </li>
+                            <li>
+                                <span class="li-dot"><i class="fa-solid fa-location-dot"></i></span>
+                                <span><strong>In Person:</strong> Visit our office in Nagpur, Maharashtra to speak with our team directly.</span>
+                            </li>
+                            <li>
+                                <span class="li-dot"><i class="fa-solid fa-arrows-rotate"></i></span>
+                                <span><strong>Policy Updates:</strong> We may update this Privacy Policy from time to time. All changes will be posted on this page with a revised "Last Updated" date. Continued use of our website constitutes your acceptance of the updated policy.</span>
+                            </li>
+                        </ul>
+                        <div class="ni-highlight dark">
+                            <strong>Current Version:</strong> This Privacy Policy was last updated on <strong>April 01, 2025</strong>. Please visit this page periodically to stay informed of any changes.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CTA -->
+                <div class="ni-pp-cta" data-aos="fade-up" data-aos-duration="700">
+                    <div class="cta-inner">
+                        <h3>Questions About <span>Your Privacy?</span></h3>
+                        <p>We believe transparency builds trust. If you have any data-related concerns, our team will respond promptly and honestly.</p>
+                        <div class="ni-pp-cta-btns">
+                            <a href="<?php echo $base_url; ?>contact-us" class="ni-cta-btn-primary">
+                                <i class="fa-solid fa-paper-plane"></i> Contact Us
+                            </a>
+                            <a href="<?php echo $base_url; ?>products" class="ni-cta-btn-outline">
+                                <i class="fa-solid fa-boxes-stacked"></i> View Products
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
     </div>
+</section>
 
-    <!-- jQuery -->
-    <script src="assets/js/jquery-3.7.1.min.js"></script>
-    <!-- Bootstrap Bundle JS -->
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
-    <!-- Feather Icon JS -->
-    <script src="assets/js/feather.min.js"></script>
-    <!-- BacktoTop JS -->
-    <script src="assets/js/backToTop.js"></script>
-    <!-- select JS -->
-    <script src="assets/plugins/select2/js/select2.min.js"></script>
-    <!-- Slick Slider -->
-    <script src="assets/plugins/slick/slick.min.js"></script>
-    <!-- Fancybox JS -->
-    <script src="assets/plugins/fancybox/jquery.fancybox.min.js"></script>
-    <!-- Counter JS -->
-    <script src="assets/js/counter.js"></script>
-    <!-- Wow JS -->
-    <script src="assets/plugins/wow/js/wow.min.js"></script>
-    <!-- Custom JS -->
-    <script src="assets/js/script.js"></script>
+<?php include 'include/footer.php'; ?>
 
-    <script>
-        // ── TOC Active State on Scroll ──
-        (function () {
-            const sections = document.querySelectorAll('.pp-section[id]');
-            const tocLinks = document.querySelectorAll('.pp-toc-list a');
+<script src="<?php echo $base_url; ?>assets/js/plugins/bootstrap.min.js"></script>
+<script src="<?php echo $base_url; ?>assets/js/plugins/fontawesome.js"></script>
+<script src="<?php echo $base_url; ?>assets/js/plugins/aos.js"></script>
+<script src="<?php echo $base_url; ?>assets/js/plugins/sidebar.js"></script>
+<script src="<?php echo $base_url; ?>assets/js/plugins/mobilemenu.js"></script>
+<script src="<?php echo $base_url; ?>assets/js/main.js"></script>
+<script>
+if (typeof AOS !== 'undefined') { AOS.init({ duration: 600, once: true, offset: 50 }); }
 
-            function updateActive() {
-                let current = '';
-                sections.forEach(sec => {
-                    const top = sec.getBoundingClientRect().top;
-                    if (top <= 120) current = sec.getAttribute('id');
-                });
-                tocLinks.forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href') === '#' + current) {
-                        link.classList.add('active');
-                    }
-                });
-            }
-
-            window.addEventListener('scroll', updateActive, { passive: true });
-            updateActive();
-        })();
-
-        // ── ScrollToTop Progress ──
-        (function () {
-            const wrap = document.querySelector('.progress-wrap');
-            const path = wrap ? wrap.querySelector('path') : null;
-            if (!wrap || !path) return;
-            const pathLength = path.getTotalLength();
-            path.style.strokeDasharray = pathLength + 'px';
-            path.style.strokeDashoffset = pathLength + 'px';
-            path.style.transition = 'stroke-dashoffset 10ms linear';
-
-            function updateProgress() {
-                const scrollTop = window.scrollY || document.documentElement.scrollTop;
-                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-                const scrolled = scrollTop / docHeight;
-                path.style.strokeDashoffset = (pathLength - pathLength * scrolled) + 'px';
-                wrap.classList.toggle('active-progress', scrollTop > 200);
-            }
-            window.addEventListener('scroll', updateProgress, { passive: true });
-            updateProgress();
-        })();
-    </script>
-
+(function () {
+    const sections = document.querySelectorAll('.ni-pp-section[id]');
+    const links    = document.querySelectorAll('.ni-toc-list a');
+    function update() {
+        let current = '';
+        sections.forEach(s => {
+            if (s.getBoundingClientRect().top <= 120) current = s.id;
+        });
+        links.forEach(l => {
+            l.classList.remove('active');
+            if (l.getAttribute('href') === '#' + current) l.classList.add('active');
+        });
+    }
+    window.addEventListener('scroll', update, { passive: true });
+    update();
+})();
+</script>
 </body>
 </html>
